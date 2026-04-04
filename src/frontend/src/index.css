@@ -100,8 +100,13 @@
 }
 
 @layer components {
+  /* ── App shell with radial green gradient ── */
   .writefy-app {
-    background: #000000;
+    background: radial-gradient(
+      ellipse 80% 40% at 50% 0%,
+      rgba(29, 185, 84, 0.08) 0%,
+      #000000 60%
+    );
     min-height: 100dvh;
     max-width: 480px;
     margin: 0 auto;
@@ -111,7 +116,7 @@
     overflow: hidden;
   }
 
-  /* ── Universal Header: exactly 60px ── */
+  /* ── Universal Header: auto height, min 60px ── */
   .writefy-header {
     position: fixed;
     top: 0;
@@ -119,13 +124,14 @@
     transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
-    height: 60px;
+    min-height: 60px;
+    height: auto;
     z-index: 50;
-    background: #000000;
+    background: rgba(0, 0, 0, 0.96);
     border-bottom: 1px solid #1a1a1a;
-    padding: 0 20px;
+    padding: 12px 20px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   }
 
@@ -142,6 +148,7 @@
     border: none;
     flex-shrink: 0;
     color: #ffffff;
+    margin-top: 4px;
   }
 
   .writefy-icon-btn svg {
@@ -161,13 +168,13 @@
 
   /* Brand shown only on Create tab */
   .writefy-brand {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
     color: var(--accent-color, #1db954);
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     line-height: 1;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
   }
 
   /* Tab title (Home / Library / Play) */
@@ -177,11 +184,12 @@
     color: #ffffff;
     text-align: center;
     line-height: 1;
+    margin-top: 6px;
   }
 
   /* ── Editable doc title ── */
   .writefy-doc-title {
-    font-size: 17px;
+    font-size: 26px;
     font-weight: 800;
     color: #ffffff;
     line-height: 1.1;
@@ -189,7 +197,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width: 240px;
     cursor: text;
     background: transparent;
     border: none;
@@ -199,7 +207,7 @@
 
   /* ── Title input ── */
   .writefy-title-input {
-    font-size: 17px;
+    font-size: 26px;
     font-weight: 800;
     color: #ffffff;
     background: transparent;
@@ -207,7 +215,7 @@
     border-bottom: 1.5px solid var(--accent-color, #1db954);
     outline: none;
     text-align: center;
-    width: 180px;
+    width: 220px;
     padding: 0;
     line-height: 1.1;
     font-family: inherit;
@@ -215,15 +223,16 @@
   }
 
   .writefy-doc-meta {
-    font-size: 10px;
+    font-size: 13px;
     font-weight: 400;
-    color: #8a8a8a;
-    margin-top: 1px;
+    opacity: 0.6;
+    color: #ffffff;
+    margin-top: 4px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width: 240px;
   }
 
   /* ── Bottom nav ── */
@@ -240,8 +249,10 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 52px;
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    min-height: 52px;
+    height: auto;
+    padding-top: 8px;
+    padding-bottom: max(env(safe-area-inset-bottom), 20px);
   }
 
   .writefy-nav-item {
@@ -261,7 +272,7 @@
   .writefy-nav-item svg {
     width: 22px;
     height: 22px;
-    color: #8a8a8a;
+    color: rgba(138, 138, 138, 0.6);
   }
 
   .writefy-nav-item.active svg {
@@ -271,7 +282,7 @@
   .writefy-nav-label {
     font-size: 10px;
     font-weight: 500;
-    color: #8a8a8a;
+    color: rgba(138, 138, 138, 0.6);
   }
 
   .writefy-nav-item.active .writefy-nav-label {
@@ -283,7 +294,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8a8a8a;
+    color: rgba(138, 138, 138, 0.6);
     background: transparent;
     border: none;
     padding: 0;
@@ -301,48 +312,51 @@
     height: 26px;
   }
 
-  /* Main screen padding: 60px header + 52px nav */
+  /* Main screen padding: accounts for auto-height header */
   .writefy-screen {
     flex: 1;
     overflow-y: auto;
-    padding-top: 60px;
-    padding-bottom: 52px;
+    padding-top: 76px;
+    padding-bottom: 72px;
   }
 
   /* ── Editor tabs ── */
   .editor-tabs {
     display: flex;
+    gap: 24px;
     border-bottom: 1px solid #1a1a1a;
     background: #000000;
+    padding: 16px 16px 0;
   }
 
   .editor-tab {
-    flex: 1;
-    padding: 14px 0;
-    font-size: 16px;
+    padding: 10px 0;
+    font-size: 15px;
     font-weight: 600;
-    text-align: center;
-    cursor: pointer;
-    color: #8a8a8a;
+    color: rgba(255, 255, 255, 0.5);
     border: none;
     background: transparent;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
+    cursor: pointer;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
   }
 
   .editor-tab.active {
-    color: var(--accent-color, #1db954);
+    color: #ffffff;
     border-bottom: 2px solid var(--accent-color, #1db954);
   }
 
-  /* Format chips */
+  /* ── Format chips ── */
   .format-chips {
     display: flex;
-    gap: 8px;
+    gap: 12px;
     padding: 12px 16px;
     overflow-x: auto;
     background: #000000;
-    border-bottom: 1px solid #1a1a1a;
     scrollbar-width: none;
   }
 
@@ -351,31 +365,31 @@
   }
 
   .format-chip {
-    padding: 8px 16px;
-    border-radius: 100px;
+    padding: 8px 14px;
+    border-radius: 20px;
     font-size: 13px;
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
     border: none;
-    background: #2b2b2b;
-    color: #ffffff;
+    background: #1a1a1a;
+    color: rgba(255, 255, 255, 0.7);
     flex-shrink: 0;
   }
 
   .format-chip.active {
     background: var(--accent-color, #1db954);
-    color: #0a0a0a;
+    color: #ffffff;
   }
 
   /* ── The Writing Slab ── */
   .writing-slab {
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    background: #000000;
-    min-height: calc(100dvh - 200px);
-    padding: 40px 0 100px;
+    max-width: 720px;
+    margin: 20px auto 0;
+    background: transparent;
+    min-height: calc(100dvh - 220px);
+    padding: 24px 0 100px;
   }
 
   /* Slab element types */
@@ -383,22 +397,23 @@
     width: 100%;
     padding: 0 20px;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: 800;
     font-size: 15px;
-    color: #ffffff;
-    margin-bottom: 20px;
+    color: #4caf50;
+    letter-spacing: 0.06em;
+    margin-bottom: 16px;
     font-family: "JetBrains Mono", "Courier New", monospace;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .slab-action {
     width: 100%;
     padding: 0 20px;
-    font-size: 15px;
+    font-size: 16px;
     color: #cccccc;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-family: "JetBrains Mono", "Courier New", monospace;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
   .slab-character {
@@ -406,40 +421,40 @@
     text-align: center;
     text-transform: uppercase;
     color: var(--accent-color, #1db954);
-    margin-top: 25px;
-    margin-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 4px;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 15px;
     font-family: "JetBrains Mono", "Courier New", monospace;
-    line-height: 1.6;
+    line-height: 1.7;
     padding: 0 20px;
   }
 
   .slab-dialogue {
     width: 70%;
-    margin: 0 auto 15px;
+    margin: 6px auto 12px;
     text-align: left;
-    line-height: 1.4;
+    line-height: 1.8;
     color: #ffffff;
-    font-size: 14px;
+    font-size: 16px;
     font-family: "JetBrains Mono", "Courier New", monospace;
   }
 
   .slab-parenthetical {
     width: 50%;
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
     text-align: center;
     font-style: italic;
-    color: #aaaaaa;
-    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
     font-family: "JetBrains Mono", "Courier New", monospace;
-    line-height: 1.6;
+    line-height: 1.7;
   }
 
-  /* Active line highlight */
+  /* Active line — subtle green left border, no box-shadow glow */
   .slab-active {
-    box-shadow: inset 0 0 0 1px rgba(29, 185, 84, 0.15);
-    border-radius: 3px;
+    border-left: 2px solid rgba(29, 185, 84, 0.3);
+    border-radius: 0;
   }
 
   /* ── Save dot ── */

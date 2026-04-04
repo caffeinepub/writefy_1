@@ -329,6 +329,7 @@ export default function App() {
           .writefy-bottom-nav {
             left: 50%;
             transform: translateX(-50%);
+            max-width: 720px;
           }
           body {
             background: #111;
@@ -336,6 +337,7 @@ export default function App() {
           .writefy-app {
             border-left: 1px solid #1A1A1A;
             border-right: 1px solid #1A1A1A;
+            max-width: 720px;
           }
         }
       `}</style>

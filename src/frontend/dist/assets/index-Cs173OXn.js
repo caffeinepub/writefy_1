@@ -29310,7 +29310,7 @@ function ScreenplayEditor({
       return (_a4 = lineRefs.current.get(lineId)) == null ? void 0 : _a4.focus();
     }, 100);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { background: "#000", minHeight: "100%" }, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minHeight: "100%" }, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-tabs", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
@@ -29739,7 +29739,6 @@ function HomeScreen({
     "div",
     {
       style: {
-        background: "#000",
         minHeight: "100%",
         padding: "20px"
       },
@@ -29790,7 +29789,7 @@ function HomeScreen({
               flexDirection: "column",
               justifyContent: "space-between",
               border: "1px solid rgba(29,185,84,0.3)",
-              boxShadow: "0 0 24px rgba(29,185,84,0.15), 0 0 8px rgba(29,185,84,0.08)"
+              boxShadow: "0 0 20px rgba(29,185,84,0.1), 0 0 6px rgba(29,185,84,0.06)"
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -29979,14 +29978,6 @@ function HomeScreen({
     }
   );
 }
-const CARD_ACCENTS = [
-  "var(--accent-color, #1DB954)",
-  "#3B82F6",
-  "#8B5CF6",
-  "#F59E0B",
-  "#E53E3E",
-  "#06B6D4"
-];
 function LibraryScreen({
   docs,
   isLoading,
@@ -29997,13 +29988,14 @@ function LibraryScreen({
   const sorted = [...docs].sort(
     (a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)
   );
-  const getDocIcon = (doc, size, color) => {
+  const getDocIcon = (doc, size) => {
+    const color = "var(--accent-color, #1DB954)";
     if (doc.formatType === "Novel") {
       return /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size, color, strokeWidth: 1.5 });
     }
     return /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size, color, strokeWidth: 1.5 });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { background: "#000", minHeight: "100%" }, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { minHeight: "100%", paddingBottom: 24 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { maxWidth: 720, margin: "0 auto", padding: "0 16px" }, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -30011,21 +30003,12 @@ function LibraryScreen({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "20px 16px 12px"
+          paddingTop: 24,
+          paddingBottom: 16
         },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "span",
-            {
-              style: {
-                fontSize: 22,
-                fontWeight: 800,
-                color: "#fff"
-              },
-              children: "Library"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: 22, fontWeight: 800, color: "#fff" }, children: "Library" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 12 }, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
               {
@@ -30036,8 +30019,8 @@ function LibraryScreen({
                   width: 32,
                   height: 32,
                   borderRadius: 8,
-                  background: viewMode === "grid" ? "rgba(29,185,84,0.15)" : "transparent",
-                  border: viewMode === "grid" ? "1px solid rgba(29,185,84,0.3)" : "1px solid #1a1a1a",
+                  background: viewMode === "grid" ? "var(--accent-color, #1DB954)" : "#1A1A1A",
+                  border: viewMode === "grid" ? "none" : "1px solid #333",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -30048,7 +30031,7 @@ function LibraryScreen({
                   LayoutGrid,
                   {
                     size: 15,
-                    color: viewMode === "grid" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+                    color: viewMode === "grid" ? "#000" : "#8a8a8a"
                   }
                 )
               }
@@ -30063,8 +30046,8 @@ function LibraryScreen({
                   width: 32,
                   height: 32,
                   borderRadius: 8,
-                  background: viewMode === "list" ? "rgba(29,185,84,0.15)" : "transparent",
-                  border: viewMode === "list" ? "1px solid rgba(29,185,84,0.3)" : "1px solid #1a1a1a",
+                  background: viewMode === "list" ? "var(--accent-color, #1DB954)" : "#1A1A1A",
+                  border: viewMode === "list" ? "none" : "1px solid #333",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -30075,7 +30058,7 @@ function LibraryScreen({
                   List,
                   {
                     size: 15,
-                    color: viewMode === "list" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+                    color: viewMode === "list" ? "#000" : "#8a8a8a"
                   }
                 )
               }
@@ -30105,15 +30088,25 @@ function LibraryScreen({
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 12, color: "#8a8a8a", padding: "0 16px 12px" }, children: [
-      sorted.length,
-      " ",
-      sorted.length === 1 ? "project" : "projects"
-    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          fontSize: 12,
+          color: "rgba(255,255,255,0.4)",
+          marginBottom: 16
+        },
+        children: [
+          sorted.length,
+          " ",
+          sorted.length === 1 ? "project" : "projects"
+        ]
+      }
+    ),
     isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        style: { padding: "40px 20px", textAlign: "center" },
+        style: { padding: "40px 0", textAlign: "center" },
         "data-ocid": "library.loading_state",
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
           "div",
@@ -30132,7 +30125,7 @@ function LibraryScreen({
     ) : sorted.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        style: { padding: "40px 20px", textAlign: "center" },
+        style: { padding: "40px 0", textAlign: "center" },
         "data-ocid": "library.empty_state",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "36px", marginBottom: "10px" }, children: "📚" }),
@@ -30171,15 +30164,14 @@ function LibraryScreen({
         ]
       }
     ) : viewMode === "grid" ? (
-      /* GRID MODE — 2:3 poster ratio */
+      /* GRID MODE */
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
           style: {
             display: "grid",
             gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 15,
-            padding: "0 20px 20px"
+            gap: 16
           },
           "data-ocid": "library.list",
           children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -30189,98 +30181,76 @@ function LibraryScreen({
               onClick: () => onOpenDoc(doc.id),
               "data-ocid": `library.script.item.${idx + 1}`,
               style: {
-                aspectRatio: "2 / 3",
-                borderRadius: 20,
+                borderRadius: 18,
                 background: "#121212",
-                border: "1px solid #1a1a1a",
+                border: "1px solid rgba(29,185,84,0.12)",
                 overflow: "hidden",
                 cursor: "pointer",
-                position: "relative",
                 display: "flex",
                 flexDirection: "column",
-                padding: 0
+                padding: 16,
+                textAlign: "left",
+                minHeight: 140
               },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
                     style: {
-                      height: 4,
-                      background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
+                      width: 40,
+                      height: 40,
+                      borderRadius: 10,
+                      background: "rgba(29,185,84,0.1)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      marginBottom: 12,
                       flexShrink: 0
-                    }
+                    },
+                    children: getDocIcon(doc, 20)
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
                     style: {
-                      flex: 1,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
+                      fontSize: 12,
+                      color: "#8a8a8a",
+                      marginBottom: 6,
+                      fontWeight: 500
                     },
-                    children: getDocIcon(
-                      doc,
-                      40,
-                      `${CARD_ACCENTS[idx % CARD_ACCENTS.length]}55`
-                    )
+                    children: doc.formatType || "Screenplay"
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
                     style: {
-                      padding: "12px 10px",
-                      background: "rgba(0,0,0,0.5)",
-                      borderTop: "1px solid #1a1a1a"
+                      fontSize: 16,
+                      fontWeight: 700,
+                      color: "#ffffff",
+                      lineHeight: 1.3,
+                      overflow: "hidden",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      marginBottom: 6,
+                      flex: 1
                     },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          style: {
-                            fontSize: 13,
-                            fontWeight: 700,
-                            color: "#fff",
-                            lineHeight: 1.3,
-                            overflow: "hidden",
-                            display: "-webkit-box",
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: "vertical",
-                            marginBottom: 4,
-                            textAlign: "left"
-                          },
-                          children: doc.title
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          style: {
-                            fontSize: 10,
-                            color: "#8a8a8a",
-                            textAlign: "left",
-                            marginBottom: 2
-                          },
-                          children: doc.formatType || "Screenplay"
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          style: {
-                            fontSize: 10,
-                            color: "#5a5a5a",
-                            textAlign: "left",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis"
-                          },
-                          children: formatRelativeTime(doc.lastEdited)
-                        }
-                      )
-                    ]
+                    children: doc.title
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      fontSize: 12,
+                      color: "rgba(255,255,255,0.45)",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis"
+                    },
+                    children: formatRelativeTime(doc.lastEdited)
                   }
                 )
               ]
@@ -30294,7 +30264,7 @@ function LibraryScreen({
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
         {
-          style: { padding: "0 16px", paddingBottom: 16 },
+          style: { display: "flex", flexDirection: "column", gap: 12 },
           "data-ocid": "library.list",
           children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "button",
@@ -30305,30 +30275,31 @@ function LibraryScreen({
               style: {
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
-                padding: "14px 0",
-                borderBottom: "1px solid #1a1a1a",
+                gap: 14,
+                padding: "14px 16px",
+                borderRadius: 14,
+                background: "#121212",
+                border: "1px solid rgba(255,255,255,0.06)",
                 width: "100%",
-                background: "transparent",
                 cursor: "pointer",
                 textAlign: "left",
-                border: "none"
+                minHeight: 72
               },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "div",
                   {
                     style: {
-                      width: 40,
-                      height: 40,
-                      borderRadius: "50%",
-                      background: "#1a1a1a",
+                      width: 44,
+                      height: 44,
+                      borderRadius: 10,
+                      background: "#1e1e1e",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       flexShrink: 0
                     },
-                    children: getDocIcon(doc, 18, CARD_ACCENTS[idx % CARD_ACCENTS.length])
+                    children: getDocIcon(doc, 20)
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, minWidth: 0 }, children: [
@@ -30336,18 +30307,18 @@ function LibraryScreen({
                     "div",
                     {
                       style: {
-                        fontSize: 14,
+                        fontSize: 15,
                         fontWeight: 700,
                         color: "#fff",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
-                        marginBottom: 3
+                        marginBottom: 4
                       },
                       children: doc.title
                     }
                   ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 12, color: "#8a8a8a" }, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 13, color: "rgba(255,255,255,0.5)" }, children: [
                     doc.formatType || "Screenplay",
                     " •",
                     " ",
@@ -30361,7 +30332,7 @@ function LibraryScreen({
         }
       )
     )
-  ] });
+  ] }) });
 }
 function PlayScreen({ activeDoc }) {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -30740,6 +30711,7 @@ function App() {
           .writefy-bottom-nav {
             left: 50%;
             transform: translateX(-50%);
+            max-width: 720px;
           }
           body {
             background: #111;
@@ -30747,6 +30719,7 @@ function App() {
           .writefy-app {
             border-left: 1px solid #1A1A1A;
             border-right: 1px solid #1A1A1A;
+            max-width: 720px;
           }
         }
       ` })

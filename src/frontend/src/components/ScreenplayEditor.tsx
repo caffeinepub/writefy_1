@@ -252,7 +252,7 @@ export default function ScreenplayEditor({
   };
 
   return (
-    <div style={{ background: "#000", minHeight: "100%" }}>
+    <div style={{ minHeight: "100%" }}>
       {/* Write / Outline tabs */}
       <div className="editor-tabs">
         <button

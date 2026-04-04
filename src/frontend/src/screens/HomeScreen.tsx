@@ -24,7 +24,6 @@ export default function HomeScreen({
   return (
     <div
       style={{
-        background: "#000",
         minHeight: "100%",
         padding: "20px",
       }}
@@ -74,7 +73,7 @@ export default function HomeScreen({
               justifyContent: "space-between",
               border: "1px solid rgba(29,185,84,0.3)",
               boxShadow:
-                "0 0 24px rgba(29,185,84,0.15), 0 0 8px rgba(29,185,84,0.08)",
+                "0 0 20px rgba(29,185,84,0.1), 0 0 6px rgba(29,185,84,0.06)",
             }}
           >
             {/* Top row */}
