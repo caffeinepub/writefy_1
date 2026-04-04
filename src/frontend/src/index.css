@@ -52,11 +52,10 @@
     --sidebar-border: 0.14 0 0;
     --sidebar-ring: 0.72 0.22 145;
 
-    /* Custom Writefy tokens */
+    /* Custom Writefy tokens — glow kept soft */
     --green: #1db954;
-    --green-glow: rgba(29, 185, 84, 0.35);
-    --green-glow-strong: rgba(29, 185, 84, 0.6);
-    --green-line-bg: rgba(29, 185, 84, 0.08);
+    --green-glow: rgba(29, 185, 84, 0.18);
+    --green-line-bg: rgba(29, 185, 84, 0.05);
     --surface: #0d0d0d;
     --surface-2: #1a1a1a;
     --chip-inactive: #2b2b2b;
@@ -112,6 +111,7 @@
     overflow: hidden;
   }
 
+  /* ── Header: tighter padding ── */
   .writefy-header {
     position: fixed;
     top: 0;
@@ -122,15 +122,16 @@
     z-index: 50;
     background: #000000;
     border-bottom: 1px solid #1a1a1a;
-    padding: 10px 16px 10px;
+    padding: 8px 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
+  /* ── Icon buttons: slightly smaller ── */
   .writefy-icon-btn {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
     background: transparent;
     border-radius: 8px;
     display: flex;
@@ -156,7 +157,7 @@
   }
 
   .writefy-brand {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 800;
     color: var(--accent-color, #1db954);
     letter-spacing: 0.08em;
@@ -164,8 +165,9 @@
     line-height: 1;
   }
 
+  /* ── Editable doc title ── */
   .writefy-doc-title {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     color: #ffffff;
     line-height: 1.1;
@@ -175,15 +177,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+    cursor: text;
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-family: inherit;
+    font-size: 20px;
   }
 
+  /* ── Title input: same visual style as static title ── */
   .writefy-title-input {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 800;
     color: #ffffff;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--accent-color, #1db954);
+    border-bottom: 1.5px solid var(--accent-color, #1db954);
     outline: none;
     text-align: center;
     width: 180px;
@@ -191,6 +200,7 @@
     line-height: 1.1;
     margin-top: 2px;
     font-family: inherit;
+    caret-color: var(--accent-color, #1db954);
   }
 
   .writefy-doc-meta {
@@ -201,6 +211,7 @@
     text-align: center;
   }
 
+  /* ── Bottom nav: slimmer height ── */
   .writefy-bottom-nav {
     position: fixed;
     bottom: 0;
@@ -214,7 +225,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 60px;
+    height: 52px;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
@@ -223,7 +234,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     cursor: pointer;
     flex: 1;
     height: 100%;
@@ -232,6 +243,7 @@
     padding: 0;
   }
 
+  /* ── Nav icons: equal size ── */
   .writefy-nav-item svg {
     width: 22px;
     height: 22px;
@@ -252,30 +264,36 @@
     color: var(--accent-color, #1db954);
   }
 
-  /* Simple outline Create icon — no filled circle, soft glow only when active */
+  /* ── Create icon: slightly bigger, NO background circle, very soft glow only when active ── */
   .writefy-create-icon {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #8a8a8a;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
   }
 
   .writefy-create-icon.active {
     color: var(--accent-color, #1db954);
-    filter: drop-shadow(0 0 6px rgba(29, 185, 84, 0.45));
+    filter: drop-shadow(0 0 5px rgba(29, 185, 84, 0.2));
   }
 
+  /* ── Create icon svg: slightly larger than other nav icons ── */
   .writefy-create-icon svg {
     color: inherit;
     width: 26px;
     height: 26px;
   }
 
+  /* ── Main screen: padding adjusted for slimmer header + nav ── */
   .writefy-screen {
     flex: 1;
     overflow-y: auto;
-    padding-top: 72px;
-    padding-bottom: 64px;
+    padding-top: 68px;
+    padding-bottom: 56px;
   }
 
   /* Editor tabs */
@@ -378,10 +396,10 @@
     position: relative;
   }
 
+  /* ── Active line: no glow, only very subtle tint ── */
   .editor-line.active-line {
-    background: color-mix(in srgb, var(--accent-color, #1db954) 6%, transparent);
-    box-shadow: 0 0 6px
-      color-mix(in srgb, var(--accent-color, #1db954) 12%, transparent);
+    background: color-mix(in srgb, var(--accent-color, #1db954) 4%, transparent);
+    box-shadow: none;
   }
 
   .editor-line.character {
@@ -414,7 +432,7 @@
     /* default full width */
   }
 
-  /* Save status dot */
+  /* ── Save dot: reduced glow ── */
   .save-dot {
     width: 8px;
     height: 8px;
@@ -425,7 +443,7 @@
 
   .save-dot.saved {
     background: var(--accent-color, #1db954);
-    box-shadow: 0 0 6px var(--accent-color, #1db954);
+    box-shadow: 0 0 4px var(--accent-color, #1db954);
   }
 
   /* Cards */

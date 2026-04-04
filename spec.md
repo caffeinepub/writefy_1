@@ -1,45 +1,35 @@
-# Writefy — UI Polish Pass
+# Writefy
 
 ## Current State
-- Bottom nav is `height: 80px` with a `.writefy-create-icon` that still shows a box-shadow glow
-- `.writefy-icon-btn` uses green background fill for menu/settings buttons — feels heavy
-- Library grid cards are `height: 160px`, fine but can be tighter; no type label shown
-- Title editing already works (input field on click, blur saves) but needs style polish
-- Header has large padding, buttons are 44×44 with green background
-- Glow effects exist on active-line, save dot, create icon — some are too strong
+- PWA screenplay writing app with dark/green theme
+- Fixed header (menu left, title center, settings right)
+- Bottom nav with 4 tabs: Home, Library, Create, Play
+- Library screen uses 2-column grid cards (height: 130px, border with accent top band)
+- Inline title editing exists in header but may not be fully functional
+- Bottom nav height: 60px, Create icon has `writefy-create-icon` with drop-shadow glow
+- CSS in index.css with custom writefy classes
+- Some residual glow on elements beyond active tab/Create button/cursor
 
 ## Requested Changes (Diff)
 
 ### Add
-- Type label on each Library card ("Screenplay" hardcoded, small grey text)
-- `Screenplay` sub-label below title on library cards
+- Tap-to-edit title: when user taps the title in the header (on Create tab), it becomes an inline input, auto-saves on blur or Enter, reverts on Escape
+- Library card subtle border glow effect (border with accent color at low opacity)
 
 ### Modify
-- **Bottom nav**: reduce height from `80px` to `60px`; keep icons at 22px but make Create icon 26px; remove box/circle around create icon entirely; only keep a soft glow on active Create (reduce opacity); labels at 10px; equal `flex: 1` spacing
-- **Library cards**: reduce fixed height from `160px` to `130px`; tighten grid gap from `12px` to `10px`; add type label ("Screenplay") below title; add subtle border glow `border-color: rgba(29,185,84,0.15)` on cards; reduce padding slightly
-- **Header**: reduce padding from `12px 20px 14px` to `10px 16px 10px`; make icon buttons transparent background (no green fill), icon color = white; icon size stays 20px; ensure center title is truly centered with proper flex layout
-- **General glow reduction**: `.editor-line.active-line` box-shadow opacity from 25% → 12%; create icon active glow from `0 0 12px` → `0 0 8px` at 50% opacity; remove any other ambient glow that is not active tab / create button / cursor
-- **Title input**: keep same style, ensure it visually matches the title text it replaces (same size 22px, same font-weight 800)
-- **writefy-screen padding**: adjust `padding-top` from `88px` to match slimmer header (~72px), `padding-bottom` from `88px` to `68px` to match slimmer nav
+- **Bottom nav**: reduce height from 60px to ~52px; make icons equal size (22px) except Create (26px); remove any circle/background shape behind Create icon; keep only a soft drop-shadow glow on Create when active (reduce from 0.45 to 0.2 opacity); equal flex spacing; labels 10px clean text
+- **Library cards**: reduce height from 130px to ~105px; tighter vertical layout; rounded corners (12px); title bold, type label "Screenplay", time small; spacing between cards tighter (gap: 8px); subtle border: `1px solid rgba(accent, 0.15)`
+- **Header**: tighten padding (reduce from 10px to 8px vertical); keep icon buttons at 36px instead of 40px for tighter feel; reduce title font-size slightly if too large
+- **Global glow reduction**: reduce all box-shadows and glows except: active nav tab label/icon color, Create button soft glow, editor cursor glow (`caretColor`). Remove or reduce `.editor-line.active-line` box-shadow intensity
+- **writefy-screen padding**: adjust to match slimmer nav (padding-bottom: 56px)
 
 ### Remove
-- Green background fill on `.writefy-icon-btn` (replace with transparent background, white icon color)
-- Any explicit circle/box wrapping the Create nav icon
+- Any large circle or filled background behind Create (+) icon in bottom nav
+- Excessive glow on non-active elements
+- Residual `--green-glow-strong` usages outside of designated areas
 
 ## Implementation Plan
-1. Update `index.css`:
-   - `.writefy-header`: tighten padding
-   - `.writefy-icon-btn`: remove green background, use transparent + white icon
-   - `.writefy-bottom-nav`: reduce height to 60px
-   - `.writefy-create-icon`: remove border-radius box, only soft glow when active
-   - `.writefy-screen`: adjust top/bottom padding
-   - `.editor-line.active-line`: soften box-shadow
-   - Library card styles (inline in LibraryScreen — adjust there)
-2. Update `LibraryScreen.tsx`:
-   - Reduce card height to 130px
-   - Reduce gap to 10px
-   - Add `Screenplay` type label below title
-   - Add subtle accent border-color on cards
-3. Update `App.tsx`:
-   - Icon button style cleanup (no green background)
-   - Ensure Create nav icon has no wrapping circle div, just the Plus icon with conditional glow class
+1. Update `index.css`: slim bottom nav height to 52px, reduce create icon glow opacity, tighten header padding, reduce library card height to 105px, tighten card gap to 8px, update card border to subtle accent glow, adjust screen padding-bottom
+2. Update `App.tsx`: ensure title click → input works correctly; `startTitleEdit` fires on Create tab; input blurs save; keyboard Enter saves, Escape cancels; keep same font/size/position
+3. Update `LibraryScreen.tsx`: card height 105px, gap 8px, border with subtle accent glow, ensure title bold, type label, time text are well-spaced and centered
+4. Ensure no large circle element exists in bottom nav Create button area (currently handled via CSS class, confirm no background/border-radius full on the icon wrapper)

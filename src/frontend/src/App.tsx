@@ -136,7 +136,7 @@ export default function App() {
     <>
       <Toaster />
       <div className="writefy-app">
-        {/* \u2500\u2500 Fixed Header \u2500\u2500 */}
+        {/* ── Fixed Header ── */}
         <header className="writefy-header">
           {/* LEFT: Three-dot menu (only shown on Create tab) */}
           {activeTab === "Create" ? (
@@ -147,10 +147,10 @@ export default function App() {
               aria-label="Document options"
               data-ocid="header.menu.button"
             >
-              <MoreVertical />
+              <MoreVertical size={20} />
             </button>
           ) : (
-            <div style={{ width: 40, height: 40, flexShrink: 0 }} />
+            <div style={{ width: 36, height: 36, flexShrink: 0 }} />
           )}
 
           {/* CENTER: Title area */}
@@ -178,10 +178,6 @@ export default function App() {
                 onClick={startTitleEdit}
                 style={{
                   cursor: activeTab === "Create" ? "text" : "default",
-                  background: "transparent",
-                  border: "none",
-                  padding: 0,
-                  font: "inherit",
                 }}
                 data-ocid="header.title.button"
               >
@@ -200,11 +196,11 @@ export default function App() {
             aria-label="Settings"
             data-ocid="header.settings.button"
           >
-            <Settings />
+            <Settings size={20} />
           </button>
         </header>
 
-        {/* \u2500\u2500 Main Content \u2500\u2500 */}
+        {/* ── Main Content ── */}
         <main className="writefy-screen">
           {activeTab === "Home" && (
             <HomeScreen
@@ -237,7 +233,7 @@ export default function App() {
           {activeTab === "Play" && <PlayScreen activeDoc={activeDoc} />}
         </main>
 
-        {/* \u2500\u2500 Fixed Bottom Navigation \u2500\u2500 */}
+        {/* ── Fixed Bottom Navigation ── */}
         <nav className="writefy-bottom-nav" aria-label="Main navigation">
           <button
             type="button"
@@ -259,6 +255,7 @@ export default function App() {
             <span className="writefy-nav-label">Library</span>
           </button>
 
+          {/* Create: icon only, no circle wrapper, soft glow when active */}
           <button
             type="button"
             className={`writefy-nav-item${activeTab === "Create" ? " active" : ""}`}

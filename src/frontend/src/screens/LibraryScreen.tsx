@@ -37,20 +37,20 @@ export default function LibraryScreen({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "20px 16px 4px",
+          padding: "16px 16px 4px",
         }}
       >
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 10,
+            gap: 8,
           }}
         >
-          <BookOpen size={22} color="var(--accent-color, #1DB954)" />
+          <BookOpen size={20} color="var(--accent-color, #1DB954)" />
           <span
             style={{
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: 800,
               color: "#fff",
             }}
@@ -62,8 +62,8 @@ export default function LibraryScreen({
           type="button"
           onClick={onNewDoc}
           style={{
-            width: 36,
-            height: 36,
+            width: 32,
+            height: 32,
             borderRadius: 8,
             background: "var(--accent-color, #1DB954)",
             border: "none",
@@ -74,14 +74,14 @@ export default function LibraryScreen({
           }}
           data-ocid="library.create.primary_button"
         >
-          <Plus size={20} color="#000" />
+          <Plus size={16} color="#000" />
         </button>
       </div>
       <div
         style={{
-          fontSize: 13,
+          fontSize: 12,
           color: "#8A8A8A",
-          padding: "2px 16px 16px",
+          padding: "2px 16px 12px",
         }}
       >
         {sorted.length} screenplay{sorted.length !== 1 ? "s" : ""}
@@ -99,30 +99,30 @@ export default function LibraryScreen({
           style={{ padding: "40px 20px", textAlign: "center" }}
           data-ocid="library.empty_state"
         >
-          <div style={{ fontSize: "40px", marginBottom: "12px" }}>📚</div>
+          <div style={{ fontSize: "36px", marginBottom: "10px" }}>📚</div>
           <div
             style={{
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: 700,
               color: "#fff",
-              marginBottom: 8,
+              marginBottom: 6,
             }}
           >
             No scripts in library
           </div>
-          <div style={{ fontSize: 13, color: "#8A8A8A", marginBottom: 20 }}>
+          <div style={{ fontSize: 12, color: "#8A8A8A", marginBottom: 18 }}>
             Create your first screenplay to get started.
           </div>
           <button
             type="button"
             onClick={onNewDoc}
             style={{
-              padding: "12px 28px",
+              padding: "10px 24px",
               borderRadius: 10,
               background: "var(--accent-color, #1DB954)",
               color: "#000",
               fontWeight: 700,
-              fontSize: 14,
+              fontSize: 13,
               border: "none",
               cursor: "pointer",
             }}
@@ -136,8 +136,8 @@ export default function LibraryScreen({
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 10,
-            padding: "0 16px 16px",
+            gap: 8,
+            padding: "0 12px 16px",
           }}
           data-ocid="library.list"
         >
@@ -157,13 +157,14 @@ export default function LibraryScreen({
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
-                height: 130,
+                height: 105,
+                boxShadow: "0 0 8px rgba(29,185,84,0.06)",
               }}
             >
               {/* Top accent band */}
               <div
                 style={{
-                  height: 4,
+                  height: 3,
                   background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
                   flexShrink: 0,
                 }}
@@ -173,7 +174,7 @@ export default function LibraryScreen({
               <div
                 style={{
                   flex: 1,
-                  padding: "10px 10px 8px",
+                  padding: "8px 10px 6px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -182,9 +183,9 @@ export default function LibraryScreen({
                 {/* Film icon */}
                 <div
                   style={{
-                    width: 28,
-                    height: 28,
-                    borderRadius: 8,
+                    width: 24,
+                    height: 24,
+                    borderRadius: 6,
                     background: "#1A1A1A",
                     display: "flex",
                     alignItems: "center",
@@ -192,7 +193,7 @@ export default function LibraryScreen({
                   }}
                 >
                   <Film
-                    size={14}
+                    size={12}
                     color={CARD_ACCENTS[idx % CARD_ACCENTS.length]}
                   />
                 </div>
@@ -201,7 +202,7 @@ export default function LibraryScreen({
                 <div>
                   <div
                     style={{
-                      fontSize: 13,
+                      fontSize: 12,
                       fontWeight: 700,
                       color: "#fff",
                       lineHeight: 1.3,
@@ -209,20 +210,20 @@ export default function LibraryScreen({
                       display: "-webkit-box",
                       WebkitLineClamp: 2,
                       WebkitBoxOrient: "vertical",
-                      marginBottom: 4,
+                      marginBottom: 3,
                     }}
                   >
                     {doc.title}
                   </div>
                   <div
-                    style={{ fontSize: 11, color: "#6F6F6F", marginBottom: 3 }}
+                    style={{ fontSize: 11, color: "#8A8A8A", marginBottom: 2 }}
                   >
                     Screenplay
                   </div>
                   <div
                     style={{
                       fontSize: 10,
-                      color: "#6F6F6F",
+                      color: "#5A5A5A",
                       whiteSpace: "nowrap",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
