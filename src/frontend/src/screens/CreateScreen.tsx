@@ -8,6 +8,7 @@ import {
   useGetDocument,
   useUpdateDocument,
 } from "../hooks/useQueries";
+import { idbSaveScript } from "../utils/idb";
 
 interface CreateScreenProps {
   activeDocId: string | null;
@@ -15,6 +16,7 @@ interface CreateScreenProps {
   allDocs: DocumentMeta[];
   isInitialized: boolean;
   menuTrigger?: number;
+  onContentUpdate?: (content: string) => void;
 }
 
 export default function CreateScreen({
@@ -23,6 +25,7 @@ export default function CreateScreen({
   allDocs: _allDocs,
   isInitialized,
   menuTrigger,
+  onContentUpdate,
 }: CreateScreenProps) {
   const { data: document } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
@@ -39,6 +42,7 @@ export default function CreateScreen({
   useEffect(() => {
     if (document) {
       setLocalContent(document.content);
+      onContentUpdate?.(document.content);
     }
   }, [document?.id]);
 
@@ -70,12 +74,17 @@ export default function CreateScreen({
     (content: string) => {
       setLocalContent(content);
       setIsSaved(false);
+      onContentUpdate?.(content);
+      // Save to IndexedDB immediately for offline
+      if (activeDocId && document) {
+        idbSaveScript(activeDocId, document.title, content).catch(() => {});
+      }
       if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
       autoSaveTimer.current = setTimeout(() => {
         doSave(content);
       }, 30000);
     },
-    [doSave],
+    [doSave, activeDocId, document, onContentUpdate],
   );
 
   useEffect(() => {
@@ -84,18 +93,61 @@ export default function CreateScreen({
     };
   }, []);
 
-  const handleExport = () => {
+  const handleExportPDF = () => {
     if (!document) return;
     setShowMenu(false);
-    const blob = new Blob([localContent || document.content], {
-      type: "text/plain",
-    });
-    const url = URL.createObjectURL(blob);
-    const a = window.document.createElement("a");
-    a.href = url;
-    a.download = `${document.title.replace(/[^a-z0-9]/gi, "_")}.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
+    const content = localContent || document.content;
+    const lines = content.split("\n");
+    const htmlLines = lines
+      .map((line) => {
+        const trimmed = line.trim();
+        if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.")) {
+          return `<p style="font-weight:bold;text-transform:uppercase;margin:16px 0 4px">${trimmed}</p>`;
+        }
+        if (
+          trimmed === trimmed.toUpperCase() &&
+          trimmed.length > 0 &&
+          /^[A-Z\s]+$/.test(trimmed)
+        ) {
+          return `<p style="text-align:center;font-weight:bold;text-transform:uppercase;margin:16px auto 0;width:60%">${trimmed}</p>`;
+        }
+        if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
+          return `<p style="text-align:center;font-style:italic;margin:0 auto;width:50%">${trimmed}</p>`;
+        }
+        return `<p style="margin:0 auto 8px;width:80%">${trimmed || "&nbsp;"}</p>`;
+      })
+      .join("");
+
+    const win = window.open("", "_blank");
+    if (win) {
+      win.document.write(
+        `<!DOCTYPE html><html><head><title>${document.title}</title><style>body{font-family:'Courier New',monospace;font-size:12pt;line-height:1.5;padding:72px;max-width:8.5in;margin:0 auto;color:#000;background:#fff}p{margin-bottom:8px}@media print{body{padding:1in}}</style></head><body>${htmlLines}</body></html>`,
+      );
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 500);
+    }
+  };
+
+  const handleImport = () => {
+    setShowMenu(false);
+    const input = globalThis.document.createElement("input");
+    input.type = "file";
+    input.accept = ".txt,.fountain";
+    input.onchange = async (e) => {
+      const file = (e.target as HTMLInputElement).files?.[0];
+      if (!file) return;
+      const text = await file.text();
+      setLocalContent(text);
+      setIsSaved(false);
+      onContentUpdate?.(text);
+      if (activeDocId && document) {
+        idbSaveScript(activeDocId, document.title, text).catch(() => {});
+      }
+      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+      doSave(text);
+    };
+    input.click();
   };
 
   const handleShare = async () => {
@@ -137,6 +189,7 @@ export default function CreateScreen({
           padding: 24,
           minHeight: "calc(100dvh - 176px)",
         }}
+        data-ocid="create.loading_state"
       >
         <div
           style={{
@@ -144,7 +197,7 @@ export default function CreateScreen({
             height: 40,
             borderRadius: "50%",
             border: "3px solid #1A1A1A",
-            borderTopColor: "#1DB954",
+            borderTopColor: "var(--accent-color, #1DB954)",
           }}
         />
         <div style={{ fontSize: 14, color: "#8A8A8A" }}>Loading script...</div>
@@ -176,7 +229,8 @@ export default function CreateScreen({
       {showMenu && (
         <MenuOverlay
           onClose={() => setShowMenu(false)}
-          onExport={handleExport}
+          onExport={handleExportPDF}
+          onImport={handleImport}
           onShare={handleShare}
           onDelete={() => {
             setShowMenu(false);

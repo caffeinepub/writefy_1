@@ -1,9 +1,13 @@
 import { Toaster } from "@/components/ui/sonner";
-import { Home, Library, Menu, Plus, Settings } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { BookOpen, Home, MoreVertical, Plus, Settings } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import SettingsOverlay from "./components/SettingsOverlay";
 import { useActor } from "./hooks/useActor";
-import { useCreateDocument, useGetAllDocumentsMeta } from "./hooks/useQueries";
+import {
+  useCreateDocument,
+  useGetAllDocumentsMeta,
+  useUpdateDocument,
+} from "./hooks/useQueries";
 import CreateScreen from "./screens/CreateScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LibraryScreen from "./screens/LibraryScreen";
@@ -26,9 +30,25 @@ export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [menuTrigger, setMenuTrigger] = useState(0);
 
+  // Inline title editing state
+  const [isEditingTitle, setIsEditingTitle] = useState(false);
+  const [titleInput, setTitleInput] = useState("");
+
+  // Track the latest content so we can save with the right title
+  const latestContentRef = useRef("");
+
   const { actor } = useActor();
   const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
   const createDoc = useCreateDocument();
+  const updateDoc = useUpdateDocument();
+
+  // Apply saved theme on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("writefy-theme");
+    if (saved) {
+      document.documentElement.style.setProperty("--accent-color", saved);
+    }
+  }, []);
 
   // Initialize: create first document if none exist
   // biome-ignore lint/correctness/useExhaustiveDependencies: only run when actor/loading state changes
@@ -85,34 +105,94 @@ export default function App() {
     }
   }, [docs, activeDocId, handleNewDoc]);
 
+  // Handle inline title save
+  const saveTitleEdit = useCallback(async () => {
+    setIsEditingTitle(false);
+    if (!activeDocId) return;
+    const newTitle = titleInput.trim() || "Untitled Script";
+    try {
+      await updateDoc.mutateAsync({
+        id: activeDocId,
+        title: newTitle,
+        content: latestContentRef.current,
+      });
+    } catch {
+      // fail silently
+    }
+  }, [activeDocId, titleInput, updateDoc]);
+
+  const startTitleEdit = useCallback(() => {
+    if (activeTab === "Create") {
+      setTitleInput(activeDoc?.title ?? "Untitled Script");
+      setIsEditingTitle(true);
+    }
+  }, [activeTab, activeDoc]);
+
   const lastEditedText = activeDoc
-    ? `Screenplay • Last edited ${formatRelativeTime(activeDoc.lastEdited)}`
-    : "Screenplay • New document";
+    ? `Screenplay \u2022 Last edited ${formatRelativeTime(activeDoc.lastEdited)}`
+    : "Screenplay \u2022 New document";
 
   return (
     <>
       <Toaster />
       <div className="writefy-app">
-        {/* ── Fixed Header ── */}
+        {/* \u2500\u2500 Fixed Header \u2500\u2500 */}
         <header className="writefy-header">
-          <button
-            type="button"
-            className="writefy-icon-btn"
-            onClick={() => setMenuTrigger((n) => n + 1)}
-            aria-label="Menu"
-            data-ocid="header.menu.button"
-          >
-            <Menu />
-          </button>
+          {/* LEFT: Three-dot menu (only shown on Create tab) */}
+          {activeTab === "Create" ? (
+            <button
+              type="button"
+              className="writefy-icon-btn"
+              onClick={() => setMenuTrigger((n) => n + 1)}
+              aria-label="Document options"
+              data-ocid="header.menu.button"
+            >
+              <MoreVertical />
+            </button>
+          ) : (
+            <div style={{ width: 44, height: 44, flexShrink: 0 }} />
+          )}
 
+          {/* CENTER: Title area */}
           <div className="writefy-header-center">
             <span className="writefy-brand">Writefy</span>
-            <span className="writefy-doc-title">
-              {activeDoc?.title ?? "Untitled Script"}
-            </span>
+
+            {isEditingTitle && activeTab === "Create" ? (
+              <input
+                className="writefy-title-input"
+                value={titleInput}
+                onChange={(e) => setTitleInput(e.target.value)}
+                onBlur={saveTitleEdit}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") saveTitleEdit();
+                  if (e.key === "Escape") setIsEditingTitle(false);
+                }}
+                // biome-ignore lint/a11y/noAutofocus: intentional inline rename
+                autoFocus
+                data-ocid="header.title.input"
+              />
+            ) : (
+              <button
+                type="button"
+                className="writefy-doc-title"
+                onClick={startTitleEdit}
+                style={{
+                  cursor: activeTab === "Create" ? "text" : "default",
+                  background: "transparent",
+                  border: "none",
+                  padding: 0,
+                  font: "inherit",
+                }}
+                data-ocid="header.title.button"
+              >
+                {activeDoc?.title ?? "Untitled Script"}
+              </button>
+            )}
+
             <span className="writefy-doc-meta">{lastEditedText}</span>
           </div>
 
+          {/* RIGHT: Settings */}
           <button
             type="button"
             className="writefy-icon-btn"
@@ -124,7 +204,7 @@ export default function App() {
           </button>
         </header>
 
-        {/* ── Main Content ── */}
+        {/* \u2500\u2500 Main Content \u2500\u2500 */}
         <main className="writefy-screen">
           {activeTab === "Home" && (
             <HomeScreen
@@ -149,12 +229,15 @@ export default function App() {
               allDocs={docs}
               isInitialized={isInitialized}
               menuTrigger={menuTrigger}
+              onContentUpdate={(c) => {
+                latestContentRef.current = c;
+              }}
             />
           )}
           {activeTab === "Play" && <PlayScreen activeDoc={activeDoc} />}
         </main>
 
-        {/* ── Fixed Bottom Navigation ── */}
+        {/* \u2500\u2500 Fixed Bottom Navigation \u2500\u2500 */}
         <nav className="writefy-bottom-nav" aria-label="Main navigation">
           <button
             type="button"
@@ -172,22 +255,22 @@ export default function App() {
             onClick={() => setActiveTab("Library")}
             data-ocid="nav.library.link"
           >
-            <Library size={22} />
+            <BookOpen size={22} />
             <span className="writefy-nav-label">Library</span>
           </button>
 
           <button
             type="button"
-            className="writefy-nav-item"
+            className={`writefy-nav-item${activeTab === "Create" ? " active" : ""}`}
             onClick={() => setActiveTab("Create")}
             data-ocid="nav.create.link"
-            style={{ position: "relative" }}
           >
             <div
-              className={`writefy-create-btn${activeTab === "Create" ? " active" : ""}`}
+              className={`writefy-create-icon${activeTab === "Create" ? " active" : ""}`}
             >
-              <Plus size={24} color="#000" />
+              <Plus size={22} />
             </div>
+            <span className="writefy-nav-label">Create</span>
           </button>
 
           <button

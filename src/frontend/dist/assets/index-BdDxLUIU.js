@@ -15150,14 +15150,98 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$f = [
+  ["path", { d: "M12 7v14", key: "1akyts" }],
+  [
+    "path",
+    {
+      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+      key: "ruj8y"
+    }
+  ]
+];
+const BookOpen = createLucideIcon("book-open", __iconNode$f);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
+  ["path", { d: "m2 2 20 20", key: "1ooewy" }],
+  ["path", { d: "M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193", key: "yfwify" }],
+  [
+    "path",
+    { d: "M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07", key: "jlfiyv" }
+  ]
+];
+const CloudOff = createLucideIcon("cloud-off", __iconNode$e);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$d = [
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+];
+const Cloud = createLucideIcon("cloud", __iconNode$d);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$c = [
+  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
+  ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
+  ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
+];
+const EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M12 18v-6", key: "17g6i2" }],
+  ["path", { d: "m9 15 3 3 3-3", key: "1npd3o" }]
+];
+const FileDown = createLucideIcon("file-down", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
   ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
   ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
   ["path", { d: "M10 9H8", key: "b1mrlr" }],
   ["path", { d: "M16 13H8", key: "t4e002" }],
   ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$9);
+const FileText = createLucideIcon("file-text", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "M7 3v18", key: "bbkbws" }],
+  ["path", { d: "M3 7.5h4", key: "zfgn84" }],
+  ["path", { d: "M3 12h18", key: "1i2n21" }],
+  ["path", { d: "M3 16.5h4", key: "1230mu" }],
+  ["path", { d: "M17 3v18", key: "in4fa5" }],
+  ["path", { d: "M17 7.5h4", key: "myr1c1" }],
+  ["path", { d: "M17 16.5h4", key: "go4c1d" }]
+];
+const Film = createLucideIcon("film", __iconNode$9);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15182,12 +15266,11 @@ const House = createLucideIcon("house", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
-  ["path", { d: "m16 6 4 14", key: "ji33uf" }],
-  ["path", { d: "M12 6v14", key: "1n7gus" }],
-  ["path", { d: "M8 8v12", key: "1gg7y9" }],
-  ["path", { d: "M4 4v16", key: "6qkkli" }]
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
 ];
-const Library = createLucideIcon("library", __iconNode$7);
+const LogOut = createLucideIcon("log-out", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15195,11 +15278,10 @@ const Library = createLucideIcon("library", __iconNode$7);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$6 = [
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 18h16", key: "19g7jn" }],
-  ["path", { d: "M4 6h16", key: "1o0s65" }]
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$6);
+const Plus = createLucideIcon("plus", __iconNode$6);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15207,17 +15289,6 @@ const Menu = createLucideIcon("menu", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
-];
-const Plus = createLucideIcon("plus", __iconNode$5);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
   [
     "path",
     {
@@ -15227,7 +15298,21 @@ const __iconNode$4 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Settings = createLucideIcon("settings", __iconNode$4);
+const Settings = createLucideIcon("settings", __iconNode$5);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
+  ["circle", { cx: "18", cy: "5", r: "3", key: "gq8acd" }],
+  ["circle", { cx: "6", cy: "12", r: "3", key: "w7nqdw" }],
+  ["circle", { cx: "18", cy: "19", r: "3", key: "1xt0gg" }],
+  ["line", { x1: "8.59", x2: "15.42", y1: "13.51", y2: "17.49", key: "47mynk" }],
+  ["line", { x1: "15.41", x2: "8.59", y1: "6.51", y2: "10.49", key: "1n3mei" }]
+];
+const Share2 = createLucideIcon("share-2", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15235,20 +15320,6 @@ const Settings = createLucideIcon("settings", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["circle", { cx: "18", cy: "5", r: "3", key: "gq8acd" }],
-  ["circle", { cx: "6", cy: "12", r: "3", key: "w7nqdw" }],
-  ["circle", { cx: "18", cy: "19", r: "3", key: "1xt0gg" }],
-  ["line", { x1: "8.59", x2: "15.42", y1: "13.51", y2: "17.49", key: "47mynk" }],
-  ["line", { x1: "15.41", x2: "8.59", y1: "6.51", y2: "10.49", key: "1n3mei" }]
-];
-const Share2 = createLucideIcon("share-2", __iconNode$3);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
   [
     "path",
     {
@@ -15257,7 +15328,21 @@ const __iconNode$2 = [
     }
   ]
 ];
-const Shield = createLucideIcon("shield", __iconNode$2);
+const Shield = createLucideIcon("shield", __iconNode$3);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+];
+const Trash2 = createLucideIcon("trash-2", __iconNode$2);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15265,13 +15350,11 @@ const Shield = createLucideIcon("shield", __iconNode$2);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$1 = [
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
-  ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
-  ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
-  ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ["path", { d: "M12 3v12", key: "1x0j5s" }],
+  ["path", { d: "m17 8-5-5-5 5", key: "7q97r8" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$1);
+const Upload = createLucideIcon("upload", __iconNode$1);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15283,155 +15366,6 @@ const __iconNode = [
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
 const X$1 = createLucideIcon("x", __iconNode);
-function SettingsOverlay({ onClose }) {
-  const handleShare = async () => {
-    var _a3;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Writefy",
-          text: "Check out Writefy – a professional screenplay writing app!",
-          url: window.location.href
-        });
-      } catch {
-      }
-    } else {
-      (_a3 = navigator.clipboard) == null ? void 0 : _a3.writeText(window.location.href);
-    }
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "settings-overlay",
-      "aria-modal": "true",
-      "aria-label": "Settings",
-      "data-ocid": "settings.modal",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-panel", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                padding: "0 24px 16px",
-                borderBottom: "1px solid #1A1A1A",
-                marginBottom: "8px"
-              },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "18px", fontWeight: 800, color: "#fff" }, children: "Settings" })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "16px 24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                marginBottom: "8px"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 36,
-                      height: 36,
-                      borderRadius: 8,
-                      background: "#1A1A1A",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { size: 18, color: "#1DB954" })
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 14, fontWeight: 600, color: "#fff" }, children: "Permission Manager" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8A8A8A", marginTop: 2 }, children: "Manage app permissions" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginLeft: "auto" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 28,
-                      height: 16,
-                      borderRadius: 8,
-                      background: "#1DB954",
-                      position: "relative"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          width: 12,
-                          height: 12,
-                          borderRadius: "50%",
-                          background: "#000",
-                          position: "absolute",
-                          right: 2,
-                          top: 2
-                        }
-                      }
-                    )
-                  }
-                ) })
-              ]
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: handleShare,
-              "data-ocid": "settings.share.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Share2, { size: 20, color: "#1DB954" }),
-                "Share with Friends"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { flex: 1 } }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onClose,
-              style: { marginTop: "auto" },
-              "data-ocid": "settings.close_button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { style: { color: "#8A8A8A" }, size: 20 }),
-                "Close"
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "aria-label": "Close settings",
-            onClick: onClose,
-            style: {
-              position: "fixed",
-              inset: 0,
-              zIndex: -1,
-              background: "transparent",
-              border: "none",
-              cursor: "default"
-            }
-          }
-        )
-      ]
-    }
-  );
-}
 var ReplicaRejectCode;
 (function(ReplicaRejectCode2) {
   ReplicaRejectCode2[ReplicaRejectCode2["SysFatal"] = 1] = "SysFatal";
@@ -26043,745 +25977,6 @@ function _createActorMethod(actor, methodName, func, blsVerify2) {
   handler.withOptions = (options) => (...args) => caller(options, ...args);
   return handler;
 }
-const DocumentMeta = Record({
-  "id": Text,
-  "lastEdited": Int,
-  "formatType": Text,
-  "title": Text,
-  "owner": Principal2
-});
-const Document = Record({
-  "id": Text,
-  "lastEdited": Int,
-  "formatType": Text,
-  "title": Text,
-  "content": Text,
-  "owner": Principal2
-});
-Service({
-  "createDocument": Func([Text, Text, Text, Text], [], []),
-  "deleteDocument": Func([Text], [], []),
-  "getAllDocumentsMeta": Func([], [Vec(DocumentMeta)], ["query"]),
-  "getDocument": Func([Text], [Document], ["query"]),
-  "getDocumentMeta": Func([Text], [DocumentMeta], ["query"]),
-  "updateDocument": Func([Text, Text, Text], [], [])
-});
-const idlFactory = ({ IDL: IDL2 }) => {
-  const DocumentMeta2 = IDL2.Record({
-    "id": IDL2.Text,
-    "lastEdited": IDL2.Int,
-    "formatType": IDL2.Text,
-    "title": IDL2.Text,
-    "owner": IDL2.Principal
-  });
-  const Document2 = IDL2.Record({
-    "id": IDL2.Text,
-    "lastEdited": IDL2.Int,
-    "formatType": IDL2.Text,
-    "title": IDL2.Text,
-    "content": IDL2.Text,
-    "owner": IDL2.Principal
-  });
-  return IDL2.Service({
-    "createDocument": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "deleteDocument": IDL2.Func([IDL2.Text], [], []),
-    "getAllDocumentsMeta": IDL2.Func([], [IDL2.Vec(DocumentMeta2)], ["query"]),
-    "getDocument": IDL2.Func([IDL2.Text], [Document2], ["query"]),
-    "getDocumentMeta": IDL2.Func([IDL2.Text], [DocumentMeta2], ["query"]),
-    "updateDocument": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [], [])
-  });
-};
-class ExternalBlob {
-  constructor(directURL, blob) {
-    __publicField(this, "_blob");
-    __publicField(this, "directURL");
-    __publicField(this, "onProgress");
-    if (blob) {
-      this._blob = blob;
-    }
-    this.directURL = directURL;
-  }
-  static fromURL(url) {
-    return new ExternalBlob(url, null);
-  }
-  static fromBytes(blob) {
-    const url = URL.createObjectURL(new Blob([
-      new Uint8Array(blob)
-    ], {
-      type: "application/octet-stream"
-    }));
-    return new ExternalBlob(url, blob);
-  }
-  async getBytes() {
-    if (this._blob) {
-      return this._blob;
-    }
-    const response = await fetch(this.directURL);
-    const blob = await response.blob();
-    this._blob = new Uint8Array(await blob.arrayBuffer());
-    return this._blob;
-  }
-  getDirectURL() {
-    return this.directURL;
-  }
-  withUploadProgress(onProgress) {
-    this.onProgress = onProgress;
-    return this;
-  }
-}
-class Backend {
-  constructor(actor, _uploadFile, _downloadFile, processError2) {
-    this.actor = actor;
-    this._uploadFile = _uploadFile;
-    this._downloadFile = _downloadFile;
-    this.processError = processError2;
-  }
-  async createDocument(arg0, arg1, arg2, arg3) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
-      return result;
-    }
-  }
-  async deleteDocument(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.deleteDocument(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.deleteDocument(arg0);
-      return result;
-    }
-  }
-  async getAllDocumentsMeta() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllDocumentsMeta();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllDocumentsMeta();
-      return result;
-    }
-  }
-  async getDocument(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getDocument(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getDocument(arg0);
-      return result;
-    }
-  }
-  async getDocumentMeta(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getDocumentMeta(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getDocumentMeta(arg0);
-      return result;
-    }
-  }
-  async updateDocument(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.updateDocument(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.updateDocument(arg0, arg1, arg2);
-      return result;
-    }
-  }
-}
-function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
-  const agent = options.agent || HttpAgent.createSync({
-    ...options.agentOptions
-  });
-  if (options.agent && options.agentOptions) {
-    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
-  }
-  const actor = Actor.createActor(idlFactory, {
-    agent,
-    canisterId,
-    ...options.actorOptions
-  });
-  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
-}
-const MAXIMUM_CONCURRENT_UPLOADS = 10;
-const MAX_RETRIES = 3;
-const BASE_DELAY_MS = 1e3;
-const MAX_DELAY_MS = 3e4;
-const GATEWAY_VERSION = "v1";
-const HASH_ALGORITHM = "SHA-256";
-const SHA256_PREFIX = "sha256:";
-const DOMAIN_SEPARATOR_FOR_CHUNKS = new TextEncoder().encode("icfs-chunk/");
-const DOMAIN_SEPARATOR_FOR_METADATA = new TextEncoder().encode(
-  "icfs-metadata/"
-);
-const DOMAIN_SEPARATOR_FOR_NODES = new TextEncoder().encode("ynode/");
-async function withRetry(operation) {
-  let lastError;
-  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    try {
-      return await operation();
-    } catch (error) {
-      lastError = error instanceof Error ? error : new Error(String(error));
-      const shouldRetry = isRetriableError(error);
-      if (attempt === MAX_RETRIES || !shouldRetry) {
-        if (!shouldRetry && attempt < MAX_RETRIES) {
-          console.warn(
-            `Non-retriable error encountered: ${lastError.message}. Not retrying.`
-          );
-        }
-        throw error;
-      }
-      const delay = Math.min(
-        BASE_DELAY_MS * 2 ** attempt + Math.random() * 1e3,
-        MAX_DELAY_MS
-      );
-      console.warn(
-        `Request failed (attempt ${attempt + 1}/${MAX_RETRIES + 1}): ${lastError.message}. Retrying in ${Math.round(delay)}ms...`
-      );
-      await new Promise((resolve) => setTimeout(resolve, delay));
-    }
-  }
-  throw lastError || new Error("Unknown error occurred during retry attempts");
-}
-function isRetriableError(error) {
-  var _a3, _b3;
-  const errorMessage = ((_a3 = error == null ? void 0 : error.message) == null ? void 0 : _a3.toLowerCase()) || "";
-  if ((_b3 = error == null ? void 0 : error.response) == null ? void 0 : _b3.status) {
-    const status = error.response.status;
-    if (status === 408 || status === 429) return true;
-    if (status >= 400 && status < 500) return false;
-    if (status >= 500) return true;
-  }
-  if (errorMessage.includes("ssl") || errorMessage.includes("tls") || errorMessage.includes("network error") || errorMessage.includes("connection") || errorMessage.includes("timeout") || errorMessage.includes("fetch")) {
-    return true;
-  }
-  if (errorMessage.includes("validation") || errorMessage.includes("invalid") || errorMessage.includes("malformed") || errorMessage.includes("unauthorized") || errorMessage.includes("forbidden") || errorMessage.includes("not found")) {
-    return false;
-  }
-  return true;
-}
-function validateHashFormat(hash, context) {
-  if (!hash) {
-    throw new Error(`${context}: Hash cannot be empty`);
-  }
-  if (!hash.startsWith(SHA256_PREFIX)) {
-    throw new Error(
-      `${context}: Invalid hash format. Expected format: ${SHA256_PREFIX}<64-char-hex>, got: ${hash}`
-    );
-  }
-  const hexPart = hash.substring(SHA256_PREFIX.length);
-  if (hexPart.length !== 64) {
-    throw new Error(
-      `${context}: Invalid hash format. Expected 64 hex characters after ${SHA256_PREFIX}, got ${hexPart.length} characters: ${hash}`
-    );
-  }
-  if (!/^[0-9a-f]{64}$/i.test(hexPart)) {
-    throw new Error(
-      `${context}: Invalid hash format. Hash must contain only hex characters (0-9, a-f), got: ${hash}`
-    );
-  }
-}
-class YHash {
-  constructor(bytes) {
-    __publicField(this, "bytes");
-    if (bytes.length !== 32) {
-      throw new Error(`YHash must be exactly 32 bytes, got ${bytes.length}`);
-    }
-    this.bytes = new Uint8Array(bytes);
-  }
-  static async fromNodes(left, right) {
-    let leftBytes = left instanceof YHash ? left.bytes : new TextEncoder().encode("UNBALANCED");
-    let rightBytes = right instanceof YHash ? right.bytes : new TextEncoder().encode("UNBALANCED");
-    const combined = new Uint8Array(
-      DOMAIN_SEPARATOR_FOR_NODES.length + leftBytes.length + rightBytes.length
-    );
-    const arrays = [DOMAIN_SEPARATOR_FOR_NODES, leftBytes, rightBytes];
-    let offset = 0;
-    for (const data of arrays) {
-      combined.set(data, offset);
-      offset += data.length;
-    }
-    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
-    return new YHash(new Uint8Array(hashBuffer));
-  }
-  static async fromChunk(data) {
-    return YHash.fromBytes(DOMAIN_SEPARATOR_FOR_CHUNKS, data);
-  }
-  static async fromHeaders(headers) {
-    const headerLines = [];
-    for (const [key, value] of Object.entries(headers)) {
-      headerLines.push(`${key.trim()}: ${value.trim()}
-`);
-    }
-    headerLines.sort();
-    const hash = await YHash.fromBytes(
-      DOMAIN_SEPARATOR_FOR_METADATA,
-      new TextEncoder().encode(headerLines.join(""))
-    );
-    return hash;
-  }
-  static async fromBytes(domainSeparator, data) {
-    const combined = new Uint8Array(domainSeparator.length + data.length);
-    combined.set(domainSeparator);
-    combined.set(data, domainSeparator.length);
-    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
-    return new YHash(new Uint8Array(hashBuffer));
-  }
-  static fromHex(hexString) {
-    const bytes = new Uint8Array(
-      hexString.match(/.{1,2}/g).map((byte) => Number.parseInt(byte, 16))
-    );
-    return new YHash(bytes);
-  }
-  toShaString() {
-    return `${SHA256_PREFIX}${this.toHex()}`;
-  }
-  toString() {
-    throw new Error("toString is not supported for YHash");
-  }
-  toHex() {
-    return Array.from(this.bytes).map((b2) => b2.toString(16).padStart(2, "0")).join("");
-  }
-}
-function nodeToJSON(node) {
-  return {
-    hash: node.hash.toShaString(),
-    left: node.left ? nodeToJSON(node.left) : null,
-    right: node.right ? nodeToJSON(node.right) : null
-  };
-}
-class BlobHashTree {
-  constructor(chunk_hashes, tree, headers = null) {
-    __publicField(this, "tree_type");
-    __publicField(this, "chunk_hashes");
-    __publicField(this, "tree");
-    __publicField(this, "headers");
-    this.tree_type = "DSBMTWH";
-    this.chunk_hashes = chunk_hashes;
-    this.tree = tree;
-    if (headers == null) {
-      this.headers = [];
-    } else if (Array.isArray(headers)) {
-      this.headers = headers;
-    } else {
-      this.headers = Object.entries(headers).map(
-        ([key, value]) => `${key.trim()}: ${value.trim()}`
-      );
-    }
-    this.headers.sort();
-  }
-  static async build(chunkHashes, headers = {}) {
-    if (chunkHashes.length === 0) {
-      const hex = "8b8e620f084e48da0be2287fd12c5aaa4dbe14b468fd2e360f48d741fe7628a0";
-      const bytes = new TextEncoder().encode(hex);
-      chunkHashes.push(new YHash(bytes));
-    }
-    let level = chunkHashes.map((hash) => ({
-      hash,
-      left: null,
-      right: null
-    }));
-    while (level.length > 1) {
-      const nextLevel = [];
-      for (let i = 0; i < level.length; i += 2) {
-        const left = level[i];
-        const right = level[i + 1] || null;
-        const parentHash = await YHash.fromNodes(
-          left.hash,
-          right ? right.hash : null
-        );
-        nextLevel.push({
-          hash: parentHash,
-          left,
-          right
-        });
-      }
-      level = nextLevel;
-    }
-    const chunksRoot = level[0];
-    if (headers && Object.keys(headers).length > 0) {
-      const metadataRootHash = await YHash.fromHeaders(headers);
-      const metadataRoot = {
-        hash: metadataRootHash,
-        left: null,
-        right: null
-      };
-      const combinedRootHash = await YHash.fromNodes(
-        chunksRoot.hash,
-        metadataRoot.hash
-      );
-      const combinedRoot = {
-        hash: combinedRootHash,
-        left: chunksRoot,
-        right: metadataRoot
-      };
-      return new BlobHashTree(chunkHashes, combinedRoot, headers);
-    }
-    return new BlobHashTree(chunkHashes, chunksRoot, headers);
-  }
-  toJSON() {
-    return {
-      tree_type: this.tree_type,
-      chunk_hashes: this.chunk_hashes.map((h2) => h2.toShaString()),
-      tree: nodeToJSON(this.tree),
-      headers: this.headers
-    };
-  }
-}
-class StorageGatewayClient {
-  constructor(storageGatewayUrl) {
-    this.storageGatewayUrl = storageGatewayUrl;
-  }
-  getStorageGatewayUrl() {
-    return this.storageGatewayUrl;
-  }
-  async uploadChunk(params) {
-    const blobHashString = params.blobRootHash.toShaString();
-    const chunkHashString = params.chunkHash.toShaString();
-    validateHashFormat(
-      blobHashString,
-      `uploadChunk[${params.chunkIndex}] blob_hash`
-    );
-    validateHashFormat(
-      chunkHashString,
-      `uploadChunk[${params.chunkIndex}] chunk_hash`
-    );
-    return await withRetry(async () => {
-      const queryParams = new URLSearchParams({
-        owner_id: params.owner,
-        blob_hash: blobHashString,
-        chunk_hash: chunkHashString,
-        chunk_index: params.chunkIndex.toString(),
-        bucket_name: params.bucketName,
-        project_id: params.projectId
-      });
-      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/chunk/?${queryParams.toString()}`;
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/octet-stream",
-          "X-Caffeine-Project-ID": params.projectId
-        },
-        body: params.chunkData
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        const error = new Error(
-          `Failed to upload chunk ${params.chunkIndex}: ${response.status} ${response.statusText} - ${errorText}`
-        );
-        error.response = { status: response.status };
-        throw error;
-      }
-      const result = await response.json();
-      return {
-        isComplete: result.status === "blob_complete"
-      };
-    });
-  }
-  async uploadBlobTree(blobHashTree, bucketName, numBlobBytes, owner, projectId, certificateBytes) {
-    const treeJSON = blobHashTree.toJSON();
-    validateHashFormat(treeJSON.tree.hash, "uploadBlobTree root hash");
-    treeJSON.chunk_hashes.forEach((hash, index2) => {
-      validateHashFormat(hash, `uploadBlobTree chunk_hash[${index2}]`);
-    });
-    return await withRetry(async () => {
-      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/blob-tree/`;
-      const requestBody = {
-        blob_tree: treeJSON,
-        bucket_name: bucketName,
-        num_blob_bytes: numBlobBytes,
-        owner,
-        project_id: projectId,
-        headers: blobHashTree.headers,
-        auth: {
-          OwnerEgressSignature: Array.from(certificateBytes)
-        }
-      };
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Caffeine-Project-ID": projectId
-        },
-        body: JSON.stringify(requestBody)
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        const error = new Error(
-          `Failed to upload blob tree: ${response.status} ${response.statusText} - ${errorText}`
-        );
-        error.response = { status: response.status };
-        throw error;
-      }
-    });
-  }
-}
-class StorageClient {
-  constructor(bucket, storageGatewayUrl, backendCanisterId, projectId, agent) {
-    __publicField(this, "storageGatewayClient");
-    this.bucket = bucket;
-    this.backendCanisterId = backendCanisterId;
-    this.projectId = projectId;
-    this.agent = agent;
-    this.storageGatewayClient = new StorageGatewayClient(storageGatewayUrl);
-  }
-  async getCertificate(hash) {
-    const args = encode$1([Text], [hash]);
-    const result = await this.agent.call(this.backendCanisterId, {
-      methodName: "_caffeineStorageCreateCertificate",
-      arg: args
-    });
-    const respone = result.response.body;
-    if (isV3ResponseBody(respone)) {
-      console.log("Certificate:", respone.certificate);
-      return respone.certificate;
-    }
-    throw new Error("Expected v3 response body");
-  }
-  async putFile(blobBytes, onProgress) {
-    const httpHeaders = {
-      "Content-Type": "application/json"
-    };
-    const file = new Blob([new Uint8Array(blobBytes)], {
-      type: "application/octet-stream"
-    });
-    const fileHeaders = {
-      "Content-Type": "application/octet-stream",
-      "Content-Length": file.size.toString()
-    };
-    const { chunks, chunkHashes, blobHashTree } = await this.processFileForUpload(file, fileHeaders);
-    const blobRootHash = blobHashTree.tree.hash;
-    const hashString2 = blobRootHash.toShaString();
-    const certificateBytes = await this.getCertificate(hashString2);
-    await this.storageGatewayClient.uploadBlobTree(
-      blobHashTree,
-      this.bucket,
-      file.size,
-      this.backendCanisterId,
-      this.projectId,
-      certificateBytes
-    );
-    await this.parallelUpload(
-      chunks,
-      chunkHashes,
-      blobRootHash,
-      httpHeaders,
-      onProgress
-    );
-    return { hash: hashString2 };
-  }
-  async getDirectURL(hash) {
-    if (!hash) {
-      throw new Error("Hash must not be empty");
-    }
-    validateHashFormat(hash, `getDirectURL for path '${hash}'`);
-    return `${this.storageGatewayClient.getStorageGatewayUrl()}/${GATEWAY_VERSION}/blob/?blob_hash=${encodeURIComponent(hash)}&owner_id=${encodeURIComponent(this.backendCanisterId)}&project_id=${encodeURIComponent(this.projectId)}`;
-  }
-  async processFileForUpload(file, headers) {
-    const chunks = this.createFileChunks(file);
-    const chunkHashes = [];
-    for (let i = 0; i < chunks.length; i++) {
-      const chunkData = new Uint8Array(await chunks[i].arrayBuffer());
-      const hash = await YHash.fromChunk(chunkData);
-      chunkHashes.push(hash);
-    }
-    const blobHashTree = await BlobHashTree.build(chunkHashes, headers);
-    return { chunks, chunkHashes, blobHashTree };
-  }
-  async parallelUpload(chunks, chunkHashes, blobRootHash, httpHeaders, onProgress) {
-    let completedChunks = 0;
-    const uploadSingleChunk = async (index2) => {
-      const chunkData = new Uint8Array(await chunks[index2].arrayBuffer());
-      const chunkHash = chunkHashes[index2];
-      await this.storageGatewayClient.uploadChunk({
-        blobRootHash,
-        chunkHash,
-        chunkIndex: index2,
-        chunkData,
-        bucketName: this.bucket,
-        owner: this.backendCanisterId,
-        projectId: this.projectId,
-        httpHeaders
-      });
-      const currentCompleted = ++completedChunks;
-      if (onProgress != null) {
-        const percentage = chunks.length === 0 ? 100 : Math.round(currentCompleted / chunks.length * 100);
-        onProgress(percentage);
-      }
-    };
-    await Promise.all(
-      Array.from(
-        { length: MAXIMUM_CONCURRENT_UPLOADS },
-        async (_2, workerId) => {
-          for (let i = workerId; i < chunks.length; i += MAXIMUM_CONCURRENT_UPLOADS) {
-            await uploadSingleChunk(i);
-          }
-        }
-      )
-    );
-  }
-  createFileChunks(file, chunkSize = 1024 * 1024) {
-    const chunks = [];
-    const totalChunks = Math.ceil(file.size / chunkSize);
-    for (let index2 = 0; index2 < totalChunks; index2++) {
-      const start = index2 * chunkSize;
-      const end = Math.min(start + chunkSize, file.size);
-      const chunk = file.slice(start, end);
-      chunks.push(chunk);
-    }
-    return chunks;
-  }
-}
-var define_process_env_default = {};
-const DEFAULT_STORAGE_GATEWAY_URL = "https://blob.caffeine.ai";
-const DEFAULT_BUCKET_NAME = "default-bucket";
-const DEFAULT_PROJECT_ID = "0000000-0000-0000-0000-00000000000";
-let configCache = null;
-async function loadConfig() {
-  if (configCache) {
-    return configCache;
-  }
-  const backendCanisterId = define_process_env_default.CANISTER_ID_BACKEND;
-  const envBaseUrl = define_process_env_default.BASE_URL || "/";
-  const baseUrl = envBaseUrl.endsWith("/") ? envBaseUrl : `${envBaseUrl}/`;
-  try {
-    const response = await fetch(`${baseUrl}env.json`);
-    const config = await response.json();
-    if (!backendCanisterId && config.backend_canister_id === "undefined") {
-      console.error("CANISTER_ID_BACKEND is not set");
-      throw new Error("CANISTER_ID_BACKEND is not set");
-    }
-    const fullConfig = {
-      backend_host: config.backend_host === "undefined" ? void 0 : config.backend_host,
-      backend_canister_id: config.backend_canister_id === "undefined" ? backendCanisterId : config.backend_canister_id,
-      storage_gateway_url: "https://blob.caffeine.ai",
-      bucket_name: DEFAULT_BUCKET_NAME,
-      project_id: config.project_id !== "undefined" ? config.project_id : DEFAULT_PROJECT_ID,
-      ii_derivation_origin: config.ii_derivation_origin === "undefined" ? void 0 : config.ii_derivation_origin
-    };
-    configCache = fullConfig;
-    return fullConfig;
-  } catch {
-    if (!backendCanisterId) {
-      console.error("CANISTER_ID_BACKEND is not set");
-      throw new Error("CANISTER_ID_BACKEND is not set");
-    }
-    const fallbackConfig = {
-      backend_host: void 0,
-      backend_canister_id: backendCanisterId,
-      storage_gateway_url: DEFAULT_STORAGE_GATEWAY_URL,
-      bucket_name: DEFAULT_BUCKET_NAME,
-      project_id: DEFAULT_PROJECT_ID,
-      ii_derivation_origin: void 0
-    };
-    return fallbackConfig;
-  }
-}
-function extractAgentErrorMessage(error) {
-  const errorString = String(error);
-  const match = errorString.match(/with message:\s*'([^']+)'/s);
-  return match ? match[1] : errorString;
-}
-function processError(e) {
-  if (e && typeof e === "object" && "message" in e) {
-    throw new Error(extractAgentErrorMessage(`${e.message}`));
-  }
-  throw e;
-}
-async function maybeLoadMockBackend() {
-  {
-    return null;
-  }
-}
-async function createActorWithConfig(options) {
-  var _a3;
-  const mock = await maybeLoadMockBackend();
-  if (mock) {
-    return mock;
-  }
-  const config = await loadConfig();
-  const resolvedOptions = options ?? {};
-  const agent = new HttpAgent({
-    ...resolvedOptions.agentOptions,
-    host: config.backend_host
-  });
-  if ((_a3 = config.backend_host) == null ? void 0 : _a3.includes("localhost")) {
-    await agent.fetchRootKey().catch((err) => {
-      console.warn(
-        "Unable to fetch root key. Check to ensure that your local replica is running"
-      );
-      console.error(err);
-    });
-  }
-  const actorOptions = {
-    ...resolvedOptions,
-    agent,
-    processError
-  };
-  const storageClient = new StorageClient(
-    config.bucket_name,
-    config.storage_gateway_url,
-    config.backend_canister_id,
-    config.project_id,
-    agent
-  );
-  const MOTOKO_DEDUPLICATION_SENTINEL = "!caf!";
-  const uploadFile = async (file) => {
-    const { hash } = await storageClient.putFile(
-      await file.getBytes(),
-      file.onProgress
-    );
-    return new TextEncoder().encode(MOTOKO_DEDUPLICATION_SENTINEL + hash);
-  };
-  const downloadFile = async (bytes) => {
-    const hashWithPrefix = new TextDecoder().decode(new Uint8Array(bytes));
-    const hash = hashWithPrefix.substring(MOTOKO_DEDUPLICATION_SENTINEL.length);
-    const url = await storageClient.getDirectURL(hash);
-    return ExternalBlob.fromURL(url);
-  };
-  return createActor(
-    config.backend_canister_id,
-    uploadFile,
-    downloadFile,
-    actorOptions
-  );
-}
 function isObject(value) {
   return value !== null && typeof value === "object";
 }
@@ -28095,6 +27290,745 @@ function mergeLoginOptions(loginOptions, otherLoginOptions) {
     customValues
   };
 }
+const DocumentMeta = Record({
+  "id": Text,
+  "lastEdited": Int,
+  "formatType": Text,
+  "title": Text,
+  "owner": Principal2
+});
+const Document = Record({
+  "id": Text,
+  "lastEdited": Int,
+  "formatType": Text,
+  "title": Text,
+  "content": Text,
+  "owner": Principal2
+});
+Service({
+  "createDocument": Func([Text, Text, Text, Text], [], []),
+  "deleteDocument": Func([Text], [], []),
+  "getAllDocumentsMeta": Func([], [Vec(DocumentMeta)], ["query"]),
+  "getDocument": Func([Text], [Document], ["query"]),
+  "getDocumentMeta": Func([Text], [DocumentMeta], ["query"]),
+  "updateDocument": Func([Text, Text, Text], [], [])
+});
+const idlFactory = ({ IDL: IDL2 }) => {
+  const DocumentMeta2 = IDL2.Record({
+    "id": IDL2.Text,
+    "lastEdited": IDL2.Int,
+    "formatType": IDL2.Text,
+    "title": IDL2.Text,
+    "owner": IDL2.Principal
+  });
+  const Document2 = IDL2.Record({
+    "id": IDL2.Text,
+    "lastEdited": IDL2.Int,
+    "formatType": IDL2.Text,
+    "title": IDL2.Text,
+    "content": IDL2.Text,
+    "owner": IDL2.Principal
+  });
+  return IDL2.Service({
+    "createDocument": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
+    "deleteDocument": IDL2.Func([IDL2.Text], [], []),
+    "getAllDocumentsMeta": IDL2.Func([], [IDL2.Vec(DocumentMeta2)], ["query"]),
+    "getDocument": IDL2.Func([IDL2.Text], [Document2], ["query"]),
+    "getDocumentMeta": IDL2.Func([IDL2.Text], [DocumentMeta2], ["query"]),
+    "updateDocument": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [], [])
+  });
+};
+class ExternalBlob {
+  constructor(directURL, blob) {
+    __publicField(this, "_blob");
+    __publicField(this, "directURL");
+    __publicField(this, "onProgress");
+    if (blob) {
+      this._blob = blob;
+    }
+    this.directURL = directURL;
+  }
+  static fromURL(url) {
+    return new ExternalBlob(url, null);
+  }
+  static fromBytes(blob) {
+    const url = URL.createObjectURL(new Blob([
+      new Uint8Array(blob)
+    ], {
+      type: "application/octet-stream"
+    }));
+    return new ExternalBlob(url, blob);
+  }
+  async getBytes() {
+    if (this._blob) {
+      return this._blob;
+    }
+    const response = await fetch(this.directURL);
+    const blob = await response.blob();
+    this._blob = new Uint8Array(await blob.arrayBuffer());
+    return this._blob;
+  }
+  getDirectURL() {
+    return this.directURL;
+  }
+  withUploadProgress(onProgress) {
+    this.onProgress = onProgress;
+    return this;
+  }
+}
+class Backend {
+  constructor(actor, _uploadFile, _downloadFile, processError2) {
+    this.actor = actor;
+    this._uploadFile = _uploadFile;
+    this._downloadFile = _downloadFile;
+    this.processError = processError2;
+  }
+  async createDocument(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
+      return result;
+    }
+  }
+  async deleteDocument(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteDocument(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteDocument(arg0);
+      return result;
+    }
+  }
+  async getAllDocumentsMeta() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllDocumentsMeta();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllDocumentsMeta();
+      return result;
+    }
+  }
+  async getDocument(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getDocument(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getDocument(arg0);
+      return result;
+    }
+  }
+  async getDocumentMeta(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getDocumentMeta(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getDocumentMeta(arg0);
+      return result;
+    }
+  }
+  async updateDocument(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateDocument(arg0, arg1, arg2);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateDocument(arg0, arg1, arg2);
+      return result;
+    }
+  }
+}
+function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
+  const agent = options.agent || HttpAgent.createSync({
+    ...options.agentOptions
+  });
+  if (options.agent && options.agentOptions) {
+    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
+  }
+  const actor = Actor.createActor(idlFactory, {
+    agent,
+    canisterId,
+    ...options.actorOptions
+  });
+  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
+}
+const MAXIMUM_CONCURRENT_UPLOADS = 10;
+const MAX_RETRIES = 3;
+const BASE_DELAY_MS = 1e3;
+const MAX_DELAY_MS = 3e4;
+const GATEWAY_VERSION = "v1";
+const HASH_ALGORITHM = "SHA-256";
+const SHA256_PREFIX = "sha256:";
+const DOMAIN_SEPARATOR_FOR_CHUNKS = new TextEncoder().encode("icfs-chunk/");
+const DOMAIN_SEPARATOR_FOR_METADATA = new TextEncoder().encode(
+  "icfs-metadata/"
+);
+const DOMAIN_SEPARATOR_FOR_NODES = new TextEncoder().encode("ynode/");
+async function withRetry(operation) {
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      const shouldRetry = isRetriableError(error);
+      if (attempt === MAX_RETRIES || !shouldRetry) {
+        if (!shouldRetry && attempt < MAX_RETRIES) {
+          console.warn(
+            `Non-retriable error encountered: ${lastError.message}. Not retrying.`
+          );
+        }
+        throw error;
+      }
+      const delay = Math.min(
+        BASE_DELAY_MS * 2 ** attempt + Math.random() * 1e3,
+        MAX_DELAY_MS
+      );
+      console.warn(
+        `Request failed (attempt ${attempt + 1}/${MAX_RETRIES + 1}): ${lastError.message}. Retrying in ${Math.round(delay)}ms...`
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+  throw lastError || new Error("Unknown error occurred during retry attempts");
+}
+function isRetriableError(error) {
+  var _a3, _b3;
+  const errorMessage = ((_a3 = error == null ? void 0 : error.message) == null ? void 0 : _a3.toLowerCase()) || "";
+  if ((_b3 = error == null ? void 0 : error.response) == null ? void 0 : _b3.status) {
+    const status = error.response.status;
+    if (status === 408 || status === 429) return true;
+    if (status >= 400 && status < 500) return false;
+    if (status >= 500) return true;
+  }
+  if (errorMessage.includes("ssl") || errorMessage.includes("tls") || errorMessage.includes("network error") || errorMessage.includes("connection") || errorMessage.includes("timeout") || errorMessage.includes("fetch")) {
+    return true;
+  }
+  if (errorMessage.includes("validation") || errorMessage.includes("invalid") || errorMessage.includes("malformed") || errorMessage.includes("unauthorized") || errorMessage.includes("forbidden") || errorMessage.includes("not found")) {
+    return false;
+  }
+  return true;
+}
+function validateHashFormat(hash, context) {
+  if (!hash) {
+    throw new Error(`${context}: Hash cannot be empty`);
+  }
+  if (!hash.startsWith(SHA256_PREFIX)) {
+    throw new Error(
+      `${context}: Invalid hash format. Expected format: ${SHA256_PREFIX}<64-char-hex>, got: ${hash}`
+    );
+  }
+  const hexPart = hash.substring(SHA256_PREFIX.length);
+  if (hexPart.length !== 64) {
+    throw new Error(
+      `${context}: Invalid hash format. Expected 64 hex characters after ${SHA256_PREFIX}, got ${hexPart.length} characters: ${hash}`
+    );
+  }
+  if (!/^[0-9a-f]{64}$/i.test(hexPart)) {
+    throw new Error(
+      `${context}: Invalid hash format. Hash must contain only hex characters (0-9, a-f), got: ${hash}`
+    );
+  }
+}
+class YHash {
+  constructor(bytes) {
+    __publicField(this, "bytes");
+    if (bytes.length !== 32) {
+      throw new Error(`YHash must be exactly 32 bytes, got ${bytes.length}`);
+    }
+    this.bytes = new Uint8Array(bytes);
+  }
+  static async fromNodes(left, right) {
+    let leftBytes = left instanceof YHash ? left.bytes : new TextEncoder().encode("UNBALANCED");
+    let rightBytes = right instanceof YHash ? right.bytes : new TextEncoder().encode("UNBALANCED");
+    const combined = new Uint8Array(
+      DOMAIN_SEPARATOR_FOR_NODES.length + leftBytes.length + rightBytes.length
+    );
+    const arrays = [DOMAIN_SEPARATOR_FOR_NODES, leftBytes, rightBytes];
+    let offset = 0;
+    for (const data of arrays) {
+      combined.set(data, offset);
+      offset += data.length;
+    }
+    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
+    return new YHash(new Uint8Array(hashBuffer));
+  }
+  static async fromChunk(data) {
+    return YHash.fromBytes(DOMAIN_SEPARATOR_FOR_CHUNKS, data);
+  }
+  static async fromHeaders(headers) {
+    const headerLines = [];
+    for (const [key, value] of Object.entries(headers)) {
+      headerLines.push(`${key.trim()}: ${value.trim()}
+`);
+    }
+    headerLines.sort();
+    const hash = await YHash.fromBytes(
+      DOMAIN_SEPARATOR_FOR_METADATA,
+      new TextEncoder().encode(headerLines.join(""))
+    );
+    return hash;
+  }
+  static async fromBytes(domainSeparator, data) {
+    const combined = new Uint8Array(domainSeparator.length + data.length);
+    combined.set(domainSeparator);
+    combined.set(data, domainSeparator.length);
+    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
+    return new YHash(new Uint8Array(hashBuffer));
+  }
+  static fromHex(hexString) {
+    const bytes = new Uint8Array(
+      hexString.match(/.{1,2}/g).map((byte) => Number.parseInt(byte, 16))
+    );
+    return new YHash(bytes);
+  }
+  toShaString() {
+    return `${SHA256_PREFIX}${this.toHex()}`;
+  }
+  toString() {
+    throw new Error("toString is not supported for YHash");
+  }
+  toHex() {
+    return Array.from(this.bytes).map((b2) => b2.toString(16).padStart(2, "0")).join("");
+  }
+}
+function nodeToJSON(node) {
+  return {
+    hash: node.hash.toShaString(),
+    left: node.left ? nodeToJSON(node.left) : null,
+    right: node.right ? nodeToJSON(node.right) : null
+  };
+}
+class BlobHashTree {
+  constructor(chunk_hashes, tree, headers = null) {
+    __publicField(this, "tree_type");
+    __publicField(this, "chunk_hashes");
+    __publicField(this, "tree");
+    __publicField(this, "headers");
+    this.tree_type = "DSBMTWH";
+    this.chunk_hashes = chunk_hashes;
+    this.tree = tree;
+    if (headers == null) {
+      this.headers = [];
+    } else if (Array.isArray(headers)) {
+      this.headers = headers;
+    } else {
+      this.headers = Object.entries(headers).map(
+        ([key, value]) => `${key.trim()}: ${value.trim()}`
+      );
+    }
+    this.headers.sort();
+  }
+  static async build(chunkHashes, headers = {}) {
+    if (chunkHashes.length === 0) {
+      const hex = "8b8e620f084e48da0be2287fd12c5aaa4dbe14b468fd2e360f48d741fe7628a0";
+      const bytes = new TextEncoder().encode(hex);
+      chunkHashes.push(new YHash(bytes));
+    }
+    let level = chunkHashes.map((hash) => ({
+      hash,
+      left: null,
+      right: null
+    }));
+    while (level.length > 1) {
+      const nextLevel = [];
+      for (let i = 0; i < level.length; i += 2) {
+        const left = level[i];
+        const right = level[i + 1] || null;
+        const parentHash = await YHash.fromNodes(
+          left.hash,
+          right ? right.hash : null
+        );
+        nextLevel.push({
+          hash: parentHash,
+          left,
+          right
+        });
+      }
+      level = nextLevel;
+    }
+    const chunksRoot = level[0];
+    if (headers && Object.keys(headers).length > 0) {
+      const metadataRootHash = await YHash.fromHeaders(headers);
+      const metadataRoot = {
+        hash: metadataRootHash,
+        left: null,
+        right: null
+      };
+      const combinedRootHash = await YHash.fromNodes(
+        chunksRoot.hash,
+        metadataRoot.hash
+      );
+      const combinedRoot = {
+        hash: combinedRootHash,
+        left: chunksRoot,
+        right: metadataRoot
+      };
+      return new BlobHashTree(chunkHashes, combinedRoot, headers);
+    }
+    return new BlobHashTree(chunkHashes, chunksRoot, headers);
+  }
+  toJSON() {
+    return {
+      tree_type: this.tree_type,
+      chunk_hashes: this.chunk_hashes.map((h2) => h2.toShaString()),
+      tree: nodeToJSON(this.tree),
+      headers: this.headers
+    };
+  }
+}
+class StorageGatewayClient {
+  constructor(storageGatewayUrl) {
+    this.storageGatewayUrl = storageGatewayUrl;
+  }
+  getStorageGatewayUrl() {
+    return this.storageGatewayUrl;
+  }
+  async uploadChunk(params) {
+    const blobHashString = params.blobRootHash.toShaString();
+    const chunkHashString = params.chunkHash.toShaString();
+    validateHashFormat(
+      blobHashString,
+      `uploadChunk[${params.chunkIndex}] blob_hash`
+    );
+    validateHashFormat(
+      chunkHashString,
+      `uploadChunk[${params.chunkIndex}] chunk_hash`
+    );
+    return await withRetry(async () => {
+      const queryParams = new URLSearchParams({
+        owner_id: params.owner,
+        blob_hash: blobHashString,
+        chunk_hash: chunkHashString,
+        chunk_index: params.chunkIndex.toString(),
+        bucket_name: params.bucketName,
+        project_id: params.projectId
+      });
+      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/chunk/?${queryParams.toString()}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/octet-stream",
+          "X-Caffeine-Project-ID": params.projectId
+        },
+        body: params.chunkData
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        const error = new Error(
+          `Failed to upload chunk ${params.chunkIndex}: ${response.status} ${response.statusText} - ${errorText}`
+        );
+        error.response = { status: response.status };
+        throw error;
+      }
+      const result = await response.json();
+      return {
+        isComplete: result.status === "blob_complete"
+      };
+    });
+  }
+  async uploadBlobTree(blobHashTree, bucketName, numBlobBytes, owner, projectId, certificateBytes) {
+    const treeJSON = blobHashTree.toJSON();
+    validateHashFormat(treeJSON.tree.hash, "uploadBlobTree root hash");
+    treeJSON.chunk_hashes.forEach((hash, index2) => {
+      validateHashFormat(hash, `uploadBlobTree chunk_hash[${index2}]`);
+    });
+    return await withRetry(async () => {
+      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/blob-tree/`;
+      const requestBody = {
+        blob_tree: treeJSON,
+        bucket_name: bucketName,
+        num_blob_bytes: numBlobBytes,
+        owner,
+        project_id: projectId,
+        headers: blobHashTree.headers,
+        auth: {
+          OwnerEgressSignature: Array.from(certificateBytes)
+        }
+      };
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Caffeine-Project-ID": projectId
+        },
+        body: JSON.stringify(requestBody)
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        const error = new Error(
+          `Failed to upload blob tree: ${response.status} ${response.statusText} - ${errorText}`
+        );
+        error.response = { status: response.status };
+        throw error;
+      }
+    });
+  }
+}
+class StorageClient {
+  constructor(bucket, storageGatewayUrl, backendCanisterId, projectId, agent) {
+    __publicField(this, "storageGatewayClient");
+    this.bucket = bucket;
+    this.backendCanisterId = backendCanisterId;
+    this.projectId = projectId;
+    this.agent = agent;
+    this.storageGatewayClient = new StorageGatewayClient(storageGatewayUrl);
+  }
+  async getCertificate(hash) {
+    const args = encode$1([Text], [hash]);
+    const result = await this.agent.call(this.backendCanisterId, {
+      methodName: "_caffeineStorageCreateCertificate",
+      arg: args
+    });
+    const respone = result.response.body;
+    if (isV3ResponseBody(respone)) {
+      console.log("Certificate:", respone.certificate);
+      return respone.certificate;
+    }
+    throw new Error("Expected v3 response body");
+  }
+  async putFile(blobBytes, onProgress) {
+    const httpHeaders = {
+      "Content-Type": "application/json"
+    };
+    const file = new Blob([new Uint8Array(blobBytes)], {
+      type: "application/octet-stream"
+    });
+    const fileHeaders = {
+      "Content-Type": "application/octet-stream",
+      "Content-Length": file.size.toString()
+    };
+    const { chunks, chunkHashes, blobHashTree } = await this.processFileForUpload(file, fileHeaders);
+    const blobRootHash = blobHashTree.tree.hash;
+    const hashString2 = blobRootHash.toShaString();
+    const certificateBytes = await this.getCertificate(hashString2);
+    await this.storageGatewayClient.uploadBlobTree(
+      blobHashTree,
+      this.bucket,
+      file.size,
+      this.backendCanisterId,
+      this.projectId,
+      certificateBytes
+    );
+    await this.parallelUpload(
+      chunks,
+      chunkHashes,
+      blobRootHash,
+      httpHeaders,
+      onProgress
+    );
+    return { hash: hashString2 };
+  }
+  async getDirectURL(hash) {
+    if (!hash) {
+      throw new Error("Hash must not be empty");
+    }
+    validateHashFormat(hash, `getDirectURL for path '${hash}'`);
+    return `${this.storageGatewayClient.getStorageGatewayUrl()}/${GATEWAY_VERSION}/blob/?blob_hash=${encodeURIComponent(hash)}&owner_id=${encodeURIComponent(this.backendCanisterId)}&project_id=${encodeURIComponent(this.projectId)}`;
+  }
+  async processFileForUpload(file, headers) {
+    const chunks = this.createFileChunks(file);
+    const chunkHashes = [];
+    for (let i = 0; i < chunks.length; i++) {
+      const chunkData = new Uint8Array(await chunks[i].arrayBuffer());
+      const hash = await YHash.fromChunk(chunkData);
+      chunkHashes.push(hash);
+    }
+    const blobHashTree = await BlobHashTree.build(chunkHashes, headers);
+    return { chunks, chunkHashes, blobHashTree };
+  }
+  async parallelUpload(chunks, chunkHashes, blobRootHash, httpHeaders, onProgress) {
+    let completedChunks = 0;
+    const uploadSingleChunk = async (index2) => {
+      const chunkData = new Uint8Array(await chunks[index2].arrayBuffer());
+      const chunkHash = chunkHashes[index2];
+      await this.storageGatewayClient.uploadChunk({
+        blobRootHash,
+        chunkHash,
+        chunkIndex: index2,
+        chunkData,
+        bucketName: this.bucket,
+        owner: this.backendCanisterId,
+        projectId: this.projectId,
+        httpHeaders
+      });
+      const currentCompleted = ++completedChunks;
+      if (onProgress != null) {
+        const percentage = chunks.length === 0 ? 100 : Math.round(currentCompleted / chunks.length * 100);
+        onProgress(percentage);
+      }
+    };
+    await Promise.all(
+      Array.from(
+        { length: MAXIMUM_CONCURRENT_UPLOADS },
+        async (_2, workerId) => {
+          for (let i = workerId; i < chunks.length; i += MAXIMUM_CONCURRENT_UPLOADS) {
+            await uploadSingleChunk(i);
+          }
+        }
+      )
+    );
+  }
+  createFileChunks(file, chunkSize = 1024 * 1024) {
+    const chunks = [];
+    const totalChunks = Math.ceil(file.size / chunkSize);
+    for (let index2 = 0; index2 < totalChunks; index2++) {
+      const start = index2 * chunkSize;
+      const end = Math.min(start + chunkSize, file.size);
+      const chunk = file.slice(start, end);
+      chunks.push(chunk);
+    }
+    return chunks;
+  }
+}
+var define_process_env_default = {};
+const DEFAULT_STORAGE_GATEWAY_URL = "https://blob.caffeine.ai";
+const DEFAULT_BUCKET_NAME = "default-bucket";
+const DEFAULT_PROJECT_ID = "0000000-0000-0000-0000-00000000000";
+let configCache = null;
+async function loadConfig() {
+  if (configCache) {
+    return configCache;
+  }
+  const backendCanisterId = define_process_env_default.CANISTER_ID_BACKEND;
+  const envBaseUrl = define_process_env_default.BASE_URL || "/";
+  const baseUrl = envBaseUrl.endsWith("/") ? envBaseUrl : `${envBaseUrl}/`;
+  try {
+    const response = await fetch(`${baseUrl}env.json`);
+    const config = await response.json();
+    if (!backendCanisterId && config.backend_canister_id === "undefined") {
+      console.error("CANISTER_ID_BACKEND is not set");
+      throw new Error("CANISTER_ID_BACKEND is not set");
+    }
+    const fullConfig = {
+      backend_host: config.backend_host === "undefined" ? void 0 : config.backend_host,
+      backend_canister_id: config.backend_canister_id === "undefined" ? backendCanisterId : config.backend_canister_id,
+      storage_gateway_url: "https://blob.caffeine.ai",
+      bucket_name: DEFAULT_BUCKET_NAME,
+      project_id: config.project_id !== "undefined" ? config.project_id : DEFAULT_PROJECT_ID,
+      ii_derivation_origin: config.ii_derivation_origin === "undefined" ? void 0 : config.ii_derivation_origin
+    };
+    configCache = fullConfig;
+    return fullConfig;
+  } catch {
+    if (!backendCanisterId) {
+      console.error("CANISTER_ID_BACKEND is not set");
+      throw new Error("CANISTER_ID_BACKEND is not set");
+    }
+    const fallbackConfig = {
+      backend_host: void 0,
+      backend_canister_id: backendCanisterId,
+      storage_gateway_url: DEFAULT_STORAGE_GATEWAY_URL,
+      bucket_name: DEFAULT_BUCKET_NAME,
+      project_id: DEFAULT_PROJECT_ID,
+      ii_derivation_origin: void 0
+    };
+    return fallbackConfig;
+  }
+}
+function extractAgentErrorMessage(error) {
+  const errorString = String(error);
+  const match = errorString.match(/with message:\s*'([^']+)'/s);
+  return match ? match[1] : errorString;
+}
+function processError(e) {
+  if (e && typeof e === "object" && "message" in e) {
+    throw new Error(extractAgentErrorMessage(`${e.message}`));
+  }
+  throw e;
+}
+async function maybeLoadMockBackend() {
+  {
+    return null;
+  }
+}
+async function createActorWithConfig(options) {
+  var _a3;
+  const mock = await maybeLoadMockBackend();
+  if (mock) {
+    return mock;
+  }
+  const config = await loadConfig();
+  const resolvedOptions = options ?? {};
+  const agent = new HttpAgent({
+    ...resolvedOptions.agentOptions,
+    host: config.backend_host
+  });
+  if ((_a3 = config.backend_host) == null ? void 0 : _a3.includes("localhost")) {
+    await agent.fetchRootKey().catch((err) => {
+      console.warn(
+        "Unable to fetch root key. Check to ensure that your local replica is running"
+      );
+      console.error(err);
+    });
+  }
+  const actorOptions = {
+    ...resolvedOptions,
+    agent,
+    processError
+  };
+  const storageClient = new StorageClient(
+    config.bucket_name,
+    config.storage_gateway_url,
+    config.backend_canister_id,
+    config.project_id,
+    agent
+  );
+  const MOTOKO_DEDUPLICATION_SENTINEL = "!caf!";
+  const uploadFile = async (file) => {
+    const { hash } = await storageClient.putFile(
+      await file.getBytes(),
+      file.onProgress
+    );
+    return new TextEncoder().encode(MOTOKO_DEDUPLICATION_SENTINEL + hash);
+  };
+  const downloadFile = async (bytes) => {
+    const hashWithPrefix = new TextDecoder().decode(new Uint8Array(bytes));
+    const hash = hashWithPrefix.substring(MOTOKO_DEDUPLICATION_SENTINEL.length);
+    const url = await storageClient.getDirectURL(hash);
+    return ExternalBlob.fromURL(url);
+  };
+  return createActor(
+    config.backend_canister_id,
+    uploadFile,
+    downloadFile,
+    actorOptions
+  );
+}
 const ONE_HOUR_IN_NANOSECONDS = BigInt(36e11);
 const DEFAULT_IDENTITY_PROVIDER = "https://id.ai";
 const InternetIdentityReactContext = reactExports.createContext(
@@ -28246,6 +28180,375 @@ function InternetIdentityProvider({
     value,
     children
   });
+}
+const THEMES = [
+  { name: "Spotify Green", color: "#1DB954" },
+  { name: "Blood Red", color: "#E53E3E" },
+  { name: "Electric Blue", color: "#3B82F6" },
+  { name: "Nebula Purple", color: "#8B5CF6" },
+  { name: "Cyber Gold", color: "#F59E0B" }
+];
+function applyTheme(color) {
+  localStorage.setItem("writefy-theme", color);
+  document.documentElement.style.setProperty("--accent-color", color);
+  const existing = document.getElementById("writefy-theme-style");
+  const style2 = existing ?? (() => {
+    const el = document.createElement("style");
+    el.id = "writefy-theme-style";
+    document.head.appendChild(el);
+    return el;
+  })();
+  style2.textContent = `::-webkit-scrollbar-thumb { background: ${color} !important; } * { scrollbar-color: ${color} #000 !important; }`;
+}
+function SettingsOverlay({ onClose }) {
+  var _a3;
+  const { identity, login, clear, isLoggingIn, isLoginSuccess } = useInternetIdentity();
+  const currentTheme = localStorage.getItem("writefy-theme") ?? "#1DB954";
+  const handleShare = async () => {
+    var _a4;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Writefy",
+          text: "Check out Writefy – a professional screenplay writing app!",
+          url: window.location.href
+        });
+      } catch {
+      }
+    } else {
+      (_a4 = navigator.clipboard) == null ? void 0 : _a4.writeText(window.location.href);
+    }
+  };
+  const isConnected = isLoginSuccess || !!identity;
+  const principal = identity == null ? void 0 : identity.getPrincipal().toString();
+  const shortPrincipal = principal ? `${principal.slice(0, 5)}...${principal.slice(-4)}` : "";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      className: "settings-overlay",
+      "aria-modal": "true",
+      "aria-label": "Settings",
+      "data-ocid": "settings.modal",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-panel", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                padding: "0 24px 16px",
+                borderBottom: "1px solid #1A1A1A",
+                marginBottom: "8px"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "18px", fontWeight: 800, color: "#fff" }, children: "Settings" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "16px 24px" }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#8A8A8A",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: 12
+                },
+                children: "Theme"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", gap: 10, flexWrap: "wrap" }, children: THEMES.map((theme) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                title: theme.name,
+                onClick: () => applyTheme(theme.color),
+                "data-ocid": "settings.theme.toggle",
+                style: {
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  background: theme.color,
+                  border: currentTheme === theme.color ? "3px solid #fff" : "3px solid transparent",
+                  cursor: "pointer",
+                  flexShrink: 0,
+                  boxShadow: currentTheme === theme.color ? `0 0 10px ${theme.color}` : "none"
+                }
+              },
+              theme.color
+            )) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  fontSize: 11,
+                  color: "#8A8A8A",
+                  marginTop: 8
+                },
+                children: ((_a3 = THEMES.find((t) => t.color === currentTheme)) == null ? void 0 : _a3.name) ?? "Spotify Green"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "16px 24px" }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "div",
+              {
+                style: {
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: "#8A8A8A",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.08em",
+                  marginBottom: 12
+                },
+                children: "Cloud Vault"
+              }
+            ),
+            isConnected ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  background: "#0d0d0d",
+                  border: "1px solid #1A1A1A",
+                  borderRadius: 10,
+                  padding: "12px 14px"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      style: {
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        marginBottom: 10
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Cloud, { size: 18, color: "var(--accent-color, #1DB954)" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              style: {
+                                fontSize: 13,
+                                fontWeight: 600,
+                                color: "#fff"
+                              },
+                              children: "Connected"
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              style: {
+                                fontSize: 11,
+                                color: "#8A8A8A",
+                                marginTop: 1,
+                                fontFamily: "'JetBrains Mono', monospace"
+                              },
+                              children: shortPrincipal
+                            }
+                          )
+                        ] })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: clear,
+                      "data-ocid": "settings.disconnect.button",
+                      style: {
+                        width: "100%",
+                        padding: "8px 0",
+                        borderRadius: 8,
+                        border: "1px solid #2A2A2A",
+                        background: "transparent",
+                        color: "#ef4444",
+                        fontSize: 13,
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 6
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { size: 14 }),
+                        "Disconnect"
+                      ]
+                    }
+                  )
+                ]
+              }
+            ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: login,
+                disabled: isLoggingIn,
+                "data-ocid": "settings.login.button",
+                style: {
+                  width: "100%",
+                  padding: "12px 0",
+                  borderRadius: 10,
+                  border: "none",
+                  background: "var(--accent-color, #1DB954)",
+                  color: "#000",
+                  fontSize: 14,
+                  fontWeight: 700,
+                  cursor: isLoggingIn ? "not-allowed" : "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: 8,
+                  opacity: isLoggingIn ? 0.7 : 1
+                },
+                children: isLoggingIn ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        width: 14,
+                        height: 14,
+                        borderRadius: "50%",
+                        border: "2px solid #000",
+                        borderTopColor: "transparent"
+                      }
+                    }
+                  ),
+                  "Connecting..."
+                ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(CloudOff, { size: 16 }),
+                  "Connect with Internet Identity"
+                ] })
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "16px 24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: "12px"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      width: 36,
+                      height: 36,
+                      borderRadius: 8,
+                      background: "#1A1A1A",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { size: 18, color: "var(--accent-color, #1DB954)" })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 14, fontWeight: 600, color: "#fff" }, children: "Permission Manager" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8A8A8A", marginTop: 2 }, children: "Manage app permissions" })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginLeft: "auto" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      width: 28,
+                      height: 16,
+                      borderRadius: 8,
+                      background: "var(--accent-color, #1DB954)",
+                      position: "relative"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          width: 12,
+                          height: 12,
+                          borderRadius: "50%",
+                          background: "#000",
+                          position: "absolute",
+                          right: 2,
+                          top: 2
+                        }
+                      }
+                    )
+                  }
+                ) })
+              ]
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              className: "menu-item",
+              onClick: handleShare,
+              "data-ocid": "settings.share.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Share2, { size: 20, color: "var(--accent-color, #1DB954)" }),
+                "Share with Friends"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { flex: 1 } }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              className: "menu-item",
+              onClick: onClose,
+              style: { marginTop: "auto" },
+              "data-ocid": "settings.close_button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { style: { color: "#8A8A8A" }, size: 20 }),
+                "Close"
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            "aria-label": "Close settings",
+            onClick: onClose,
+            style: {
+              position: "fixed",
+              inset: 0,
+              zIndex: -1,
+              background: "transparent",
+              border: "none",
+              cursor: "default"
+            }
+          }
+        )
+      ]
+    }
+  );
 }
 const ACTOR_QUERY_KEY = "actor";
 function useActor() {
@@ -28438,6 +28741,7 @@ function DeleteConfirm({
 function MenuOverlay({
   onClose,
   onExport,
+  onImport,
   onShare,
   onDelete
 }) {
@@ -28472,8 +28776,21 @@ function MenuOverlay({
               onClick: onExport,
               "data-ocid": "menu.export.button",
               children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, {}),
-                "Export"
+                /* @__PURE__ */ jsxRuntimeExports.jsx(FileDown, {}),
+                "Export PDF"
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              className: "menu-item",
+              onClick: onImport,
+              "data-ocid": "menu.import.button",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, {}),
+                "Import"
               ]
             }
           ),
@@ -28884,12 +29201,34 @@ function ScreenplayEditor({
     )) })
   ] });
 }
+const DB_NAME = "writefy-offline";
+const STORE = "scripts";
+async function getDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => {
+      req.result.createObjectStore(STORE, { keyPath: "id" });
+    };
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+async function idbSaveScript(id, title, content) {
+  const db = await getDB();
+  const tx = db.transaction(STORE, "readwrite");
+  tx.objectStore(STORE).put({ id, title, content, savedAt: Date.now() });
+  return new Promise((resolve, reject) => {
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+}
 function CreateScreen({
   activeDocId,
   onDocumentDeleted,
   allDocs: _allDocs,
   isInitialized,
-  menuTrigger
+  menuTrigger,
+  onContentUpdate
 }) {
   const { data: document2 } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
@@ -28903,6 +29242,7 @@ function CreateScreen({
   reactExports.useEffect(() => {
     if (document2) {
       setLocalContent(document2.content);
+      onContentUpdate == null ? void 0 : onContentUpdate(document2.content);
     }
   }, [document2 == null ? void 0 : document2.id]);
   reactExports.useEffect(() => {
@@ -28930,30 +29270,72 @@ function CreateScreen({
     (content) => {
       setLocalContent(content);
       setIsSaved(false);
+      onContentUpdate == null ? void 0 : onContentUpdate(content);
+      if (activeDocId && document2) {
+        idbSaveScript(activeDocId, document2.title, content).catch(() => {
+        });
+      }
       if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
       autoSaveTimer.current = setTimeout(() => {
         doSave(content);
       }, 3e4);
     },
-    [doSave]
+    [doSave, activeDocId, document2, onContentUpdate]
   );
   reactExports.useEffect(() => {
     return () => {
       if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
     };
   }, []);
-  const handleExport = () => {
+  const handleExportPDF = () => {
     if (!document2) return;
     setShowMenu(false);
-    const blob = new Blob([localContent || document2.content], {
-      type: "text/plain"
-    });
-    const url = URL.createObjectURL(blob);
-    const a2 = window.document.createElement("a");
-    a2.href = url;
-    a2.download = `${document2.title.replace(/[^a-z0-9]/gi, "_")}.txt`;
-    a2.click();
-    URL.revokeObjectURL(url);
+    const content = localContent || document2.content;
+    const lines = content.split("\n");
+    const htmlLines = lines.map((line) => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.")) {
+        return `<p style="font-weight:bold;text-transform:uppercase;margin:16px 0 4px">${trimmed}</p>`;
+      }
+      if (trimmed === trimmed.toUpperCase() && trimmed.length > 0 && /^[A-Z\s]+$/.test(trimmed)) {
+        return `<p style="text-align:center;font-weight:bold;text-transform:uppercase;margin:16px auto 0;width:60%">${trimmed}</p>`;
+      }
+      if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
+        return `<p style="text-align:center;font-style:italic;margin:0 auto;width:50%">${trimmed}</p>`;
+      }
+      return `<p style="margin:0 auto 8px;width:80%">${trimmed || "&nbsp;"}</p>`;
+    }).join("");
+    const win = window.open("", "_blank");
+    if (win) {
+      win.document.write(
+        `<!DOCTYPE html><html><head><title>${document2.title}</title><style>body{font-family:'Courier New',monospace;font-size:12pt;line-height:1.5;padding:72px;max-width:8.5in;margin:0 auto;color:#000;background:#fff}p{margin-bottom:8px}@media print{body{padding:1in}}</style></head><body>${htmlLines}</body></html>`
+      );
+      win.document.close();
+      win.focus();
+      setTimeout(() => win.print(), 500);
+    }
+  };
+  const handleImport = () => {
+    setShowMenu(false);
+    const input = globalThis.document.createElement("input");
+    input.type = "file";
+    input.accept = ".txt,.fountain";
+    input.onchange = async (e) => {
+      var _a3;
+      const file = (_a3 = e.target.files) == null ? void 0 : _a3[0];
+      if (!file) return;
+      const text = await file.text();
+      setLocalContent(text);
+      setIsSaved(false);
+      onContentUpdate == null ? void 0 : onContentUpdate(text);
+      if (activeDocId && document2) {
+        idbSaveScript(activeDocId, document2.title, text).catch(() => {
+        });
+      }
+      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
+      doSave(text);
+    };
+    input.click();
   };
   const handleShare = async () => {
     var _a3;
@@ -28993,6 +29375,7 @@ function CreateScreen({
           padding: 24,
           minHeight: "calc(100dvh - 176px)"
         },
+        "data-ocid": "create.loading_state",
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
@@ -29002,7 +29385,7 @@ function CreateScreen({
                 height: 40,
                 borderRadius: "50%",
                 border: "3px solid #1A1A1A",
-                borderTopColor: "#1DB954"
+                borderTopColor: "var(--accent-color, #1DB954)"
               }
             }
           ),
@@ -29037,7 +29420,8 @@ function CreateScreen({
       MenuOverlay,
       {
         onClose: () => setShowMenu(false),
-        onExport: handleExport,
+        onExport: handleExportPDF,
+        onImport: handleImport,
         onShare: handleShare,
         onDelete: () => {
           setShowMenu(false);
@@ -29242,6 +29626,14 @@ function HomeScreen({
     )
   ] });
 }
+const CARD_ACCENTS = [
+  "var(--accent-color, #1DB954)",
+  "#3B82F6",
+  "#8B5CF6",
+  "#F59E0B",
+  "#E53E3E",
+  "#06B6D4"
+];
 function LibraryScreen({
   docs,
   isLoading,
@@ -29259,10 +29651,33 @@ function LibraryScreen({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "20px 16px 8px"
+          padding: "20px 16px 4px"
         },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-title", style: { padding: 0 }, children: "Library" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: 10
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 22, color: "var(--accent-color, #1DB954)" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "span",
+                  {
+                    style: {
+                      fontSize: 24,
+                      fontWeight: 800,
+                      color: "#fff"
+                    },
+                    children: "Library"
+                  }
+                )
+              ]
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
@@ -29272,7 +29687,7 @@ function LibraryScreen({
                 width: 36,
                 height: 36,
                 borderRadius: 8,
-                background: "#1DB954",
+                background: "var(--accent-color, #1DB954)",
                 border: "none",
                 display: "flex",
                 alignItems: "center",
@@ -29286,7 +29701,21 @@ function LibraryScreen({
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-subtitle", children: "All your screenplays" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          fontSize: 13,
+          color: "#8A8A8A",
+          padding: "2px 16px 16px"
+        },
+        children: [
+          sorted.length,
+          " screenplay",
+          sorted.length !== 1 ? "s" : ""
+        ]
+      }
+    ),
     isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
@@ -29313,73 +29742,135 @@ function LibraryScreen({
               children: "No scripts in library"
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8A8A8A" }, children: "Your screenplays will appear here." })
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8A8A8A", marginBottom: 20 }, children: "Create your first screenplay to get started." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: onNewDoc,
+              style: {
+                padding: "12px 28px",
+                borderRadius: 10,
+                background: "var(--accent-color, #1DB954)",
+                color: "#000",
+                fontWeight: 700,
+                fontSize: 14,
+                border: "none",
+                cursor: "pointer"
+              },
+              "data-ocid": "library.empty.primary_button",
+              children: "New Script"
+            }
+          )
         ]
       }
     ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
         style: {
-          padding: "0 16px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 10
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 12,
+          padding: "0 16px 16px"
         },
-        children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "data-ocid": "library.list",
+        children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "button",
           {
             type: "button",
-            className: "script-card",
-            style: {
-              width: "100%",
-              textAlign: "left",
-              cursor: "pointer",
-              border: "1px solid #1A1A1A"
-            },
             onClick: () => onOpenDoc(doc.id),
             "data-ocid": `library.script.item.${idx + 1}`,
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: { display: "flex", alignItems: "flex-start", gap: 12 },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        width: 40,
-                        height: 40,
-                        borderRadius: 8,
-                        background: "#1A1A1A",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        flexShrink: 0
-                      },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 18, color: "#1DB954" })
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, minWidth: 0 }, children: [
+            style: {
+              background: "#0d0d0d",
+              border: "1px solid #1A1A1A",
+              borderRadius: 12,
+              padding: 0,
+              cursor: "pointer",
+              textAlign: "left",
+              display: "flex",
+              flexDirection: "column",
+              overflow: "hidden",
+              height: 160
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    height: 4,
+                    background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
+                    flexShrink: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    flex: 1,
+                    padding: "12px 12px 10px",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between"
+                  },
+                  children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "div",
                       {
-                        className: "script-card-title",
                         style: {
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap"
+                          width: 32,
+                          height: 32,
+                          borderRadius: 8,
+                          background: "#1A1A1A",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center"
                         },
-                        children: doc.title
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Film,
+                          {
+                            size: 16,
+                            color: CARD_ACCENTS[idx % CARD_ACCENTS.length]
+                          }
+                        )
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "script-card-meta", children: [
-                      "Screenplay • ",
-                      formatRelativeTime(doc.lastEdited)
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          style: {
+                            fontSize: 13,
+                            fontWeight: 700,
+                            color: "#fff",
+                            lineHeight: 1.3,
+                            overflow: "hidden",
+                            display: "-webkit-box",
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: "vertical",
+                            marginBottom: 4
+                          },
+                          children: doc.title
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          style: {
+                            fontSize: 10,
+                            color: "#6F6F6F",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis"
+                          },
+                          children: formatRelativeTime(doc.lastEdited)
+                        }
+                      )
                     ] })
-                  ] })
-                ]
-              }
-            )
+                  ]
+                }
+              )
+            ]
           },
           doc.id
         ))
@@ -29488,9 +29979,19 @@ function App() {
   const [showSettings, setShowSettings] = reactExports.useState(false);
   const [isInitialized, setIsInitialized] = reactExports.useState(false);
   const [menuTrigger, setMenuTrigger] = reactExports.useState(0);
+  const [isEditingTitle, setIsEditingTitle] = reactExports.useState(false);
+  const [titleInput, setTitleInput] = reactExports.useState("");
+  const latestContentRef = reactExports.useRef("");
   const { actor } = useActor();
   const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
   const createDoc = useCreateDocument();
+  const updateDoc = useUpdateDocument();
+  reactExports.useEffect(() => {
+    const saved = localStorage.getItem("writefy-theme");
+    if (saved) {
+      document.documentElement.style.setProperty("--accent-color", saved);
+    }
+  }, []);
   reactExports.useEffect(() => {
     if (!actor || docsLoading) return;
     if (docs.length > 0) {
@@ -29537,25 +30038,74 @@ function App() {
       handleNewDoc();
     }
   }, [docs, activeDocId, handleNewDoc]);
+  const saveTitleEdit = reactExports.useCallback(async () => {
+    setIsEditingTitle(false);
+    if (!activeDocId) return;
+    const newTitle = titleInput.trim() || "Untitled Script";
+    try {
+      await updateDoc.mutateAsync({
+        id: activeDocId,
+        title: newTitle,
+        content: latestContentRef.current
+      });
+    } catch {
+    }
+  }, [activeDocId, titleInput, updateDoc]);
+  const startTitleEdit = reactExports.useCallback(() => {
+    if (activeTab === "Create") {
+      setTitleInput((activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script");
+      setIsEditingTitle(true);
+    }
+  }, [activeTab, activeDoc]);
   const lastEditedText = activeDoc ? `Screenplay • Last edited ${formatRelativeTime(activeDoc.lastEdited)}` : "Screenplay • New document";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-app", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "writefy-header", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
+        activeTab === "Create" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
             className: "writefy-icon-btn",
             onClick: () => setMenuTrigger((n) => n + 1),
-            "aria-label": "Menu",
+            "aria-label": "Document options",
             "data-ocid": "header.menu.button",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Menu, {})
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(EllipsisVertical, {})
           }
-        ),
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: 44, height: 44, flexShrink: 0 } }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-header-center", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-doc-title", children: (activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script" }),
+          isEditingTitle && activeTab === "Create" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              className: "writefy-title-input",
+              value: titleInput,
+              onChange: (e) => setTitleInput(e.target.value),
+              onBlur: saveTitleEdit,
+              onKeyDown: (e) => {
+                if (e.key === "Enter") saveTitleEdit();
+                if (e.key === "Escape") setIsEditingTitle(false);
+              },
+              autoFocus: true,
+              "data-ocid": "header.title.input"
+            }
+          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              className: "writefy-doc-title",
+              onClick: startTitleEdit,
+              style: {
+                cursor: activeTab === "Create" ? "text" : "default",
+                background: "transparent",
+                border: "none",
+                padding: 0,
+                font: "inherit"
+              },
+              "data-ocid": "header.title.button",
+              children: (activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script"
+            }
+          ),
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-doc-meta", children: lastEditedText })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -29596,7 +30146,10 @@ function App() {
             onDocumentDeleted: handleDocumentDeleted,
             allDocs: docs,
             isInitialized,
-            menuTrigger
+            menuTrigger,
+            onContentUpdate: (c2) => {
+              latestContentRef.current = c2;
+            }
           }
         ),
         activeTab === "Play" && /* @__PURE__ */ jsxRuntimeExports.jsx(PlayScreen, { activeDoc })
@@ -29623,26 +30176,28 @@ function App() {
             onClick: () => setActiveTab("Library"),
             "data-ocid": "nav.library.link",
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Library, { size: 22 }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 22 }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Library" })
             ]
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "button",
           {
             type: "button",
-            className: "writefy-nav-item",
+            className: `writefy-nav-item${activeTab === "Create" ? " active" : ""}`,
             onClick: () => setActiveTab("Create"),
             "data-ocid": "nav.create.link",
-            style: { position: "relative" },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                className: `writefy-create-btn${activeTab === "Create" ? " active" : ""}`,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 24, color: "#000" })
-              }
-            )
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  className: `writefy-create-icon${activeTab === "Create" ? " active" : ""}`,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 22 })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Create" })
+            ]
           }
         ),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(

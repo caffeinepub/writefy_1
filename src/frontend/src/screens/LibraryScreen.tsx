@@ -1,4 +1,4 @@
-import { FileText, Plus } from "lucide-react";
+import { BookOpen, Film, Plus } from "lucide-react";
 import type { DocumentMeta } from "../backend.d";
 import { formatRelativeTime } from "../utils/formatTime";
 
@@ -8,6 +8,16 @@ interface LibraryScreenProps {
   onOpenDoc: (id: string) => void;
   onNewDoc: () => void;
 }
+
+// Accent colors for card top bands — cycles through these
+const CARD_ACCENTS = [
+  "var(--accent-color, #1DB954)",
+  "#3B82F6",
+  "#8B5CF6",
+  "#F59E0B",
+  "#E53E3E",
+  "#06B6D4",
+];
 
 export default function LibraryScreen({
   docs,
@@ -21,16 +31,32 @@ export default function LibraryScreen({
 
   return (
     <div style={{ background: "#000", minHeight: "100%" }}>
+      {/* Header */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "20px 16px 8px",
+          padding: "20px 16px 4px",
         }}
       >
-        <div className="page-title" style={{ padding: 0 }}>
-          Library
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}
+        >
+          <BookOpen size={22} color="var(--accent-color, #1DB954)" />
+          <span
+            style={{
+              fontSize: 24,
+              fontWeight: 800,
+              color: "#fff",
+            }}
+          >
+            Library
+          </span>
         </div>
         <button
           type="button"
@@ -39,7 +65,7 @@ export default function LibraryScreen({
             width: 36,
             height: 36,
             borderRadius: 8,
-            background: "#1DB954",
+            background: "var(--accent-color, #1DB954)",
             border: "none",
             display: "flex",
             alignItems: "center",
@@ -51,7 +77,15 @@ export default function LibraryScreen({
           <Plus size={20} color="#000" />
         </button>
       </div>
-      <div className="page-subtitle">All your screenplays</div>
+      <div
+        style={{
+          fontSize: 13,
+          color: "#8A8A8A",
+          padding: "2px 16px 16px",
+        }}
+      >
+        {sorted.length} screenplay{sorted.length !== 1 ? "s" : ""}
+      </div>
 
       {isLoading ? (
         <div
@@ -76,63 +110,120 @@ export default function LibraryScreen({
           >
             No scripts in library
           </div>
-          <div style={{ fontSize: 13, color: "#8A8A8A" }}>
-            Your screenplays will appear here.
+          <div style={{ fontSize: 13, color: "#8A8A8A", marginBottom: 20 }}>
+            Create your first screenplay to get started.
           </div>
+          <button
+            type="button"
+            onClick={onNewDoc}
+            style={{
+              padding: "12px 28px",
+              borderRadius: 10,
+              background: "var(--accent-color, #1DB954)",
+              color: "#000",
+              fontWeight: 700,
+              fontSize: 14,
+              border: "none",
+              cursor: "pointer",
+            }}
+            data-ocid="library.empty.primary_button"
+          >
+            New Script
+          </button>
         </div>
       ) : (
         <div
           style={{
-            padding: "0 16px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 12,
+            padding: "0 16px 16px",
           }}
+          data-ocid="library.list"
         >
           {sorted.map((doc, idx) => (
             <button
               key={doc.id}
               type="button"
-              className="script-card"
-              style={{
-                width: "100%",
-                textAlign: "left",
-                cursor: "pointer",
-                border: "1px solid #1A1A1A",
-              }}
               onClick={() => onOpenDoc(doc.id)}
               data-ocid={`library.script.item.${idx + 1}`}
+              style={{
+                background: "#0d0d0d",
+                border: "1px solid #1A1A1A",
+                borderRadius: 12,
+                padding: 0,
+                cursor: "pointer",
+                textAlign: "left",
+                display: "flex",
+                flexDirection: "column",
+                overflow: "hidden",
+                height: 160,
+              }}
             >
+              {/* Top accent band */}
               <div
-                style={{ display: "flex", alignItems: "flex-start", gap: 12 }}
+                style={{
+                  height: 4,
+                  background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
+                  flexShrink: 0,
+                }}
+              />
+
+              {/* Card body */}
+              <div
+                style={{
+                  flex: 1,
+                  padding: "12px 12px 10px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                }}
               >
+                {/* Film icon */}
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
+                    width: 32,
+                    height: 32,
                     borderRadius: 8,
                     background: "#1A1A1A",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    flexShrink: 0,
                   }}
                 >
-                  <FileText size={18} color="#1DB954" />
+                  <Film
+                    size={16}
+                    color={CARD_ACCENTS[idx % CARD_ACCENTS.length]}
+                  />
                 </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
+
+                {/* Title + meta */}
+                <div>
                   <div
-                    className="script-card-title"
                     style={{
+                      fontSize: 13,
+                      fontWeight: 700,
+                      color: "#fff",
+                      lineHeight: 1.3,
                       overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      marginBottom: 4,
                     }}
                   >
                     {doc.title}
                   </div>
-                  <div className="script-card-meta">
-                    Screenplay • {formatRelativeTime(doc.lastEdited)}
+                  <div
+                    style={{
+                      fontSize: 10,
+                      color: "#6F6F6F",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {formatRelativeTime(doc.lastEdited)}
                   </div>
                 </div>
               </div>

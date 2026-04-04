@@ -1,8 +1,9 @@
-import { FileText, Share2, Trash2, X } from "lucide-react";
+import { FileDown, Share2, Trash2, Upload, X } from "lucide-react";
 
 interface MenuOverlayProps {
   onClose: () => void;
   onExport: () => void;
+  onImport: () => void;
   onShare: () => void;
   onDelete: () => void;
 }
@@ -10,6 +11,7 @@ interface MenuOverlayProps {
 export default function MenuOverlay({
   onClose,
   onExport,
+  onImport,
   onShare,
   onDelete,
 }: MenuOverlayProps) {
@@ -42,8 +44,18 @@ export default function MenuOverlay({
           onClick={onExport}
           data-ocid="menu.export.button"
         >
-          <FileText />
-          Export
+          <FileDown />
+          Export PDF
+        </button>
+
+        <button
+          type="button"
+          className="menu-item"
+          onClick={onImport}
+          data-ocid="menu.import.button"
+        >
+          <Upload />
+          Import
         </button>
 
         <button

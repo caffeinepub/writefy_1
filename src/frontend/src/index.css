@@ -15,6 +15,9 @@
   :root {
     --radius: 0.5rem;
 
+    /* Accent color — overridden by theme selector */
+    --accent-color: #1db954;
+
     /* Writefy dark theme — pure black + Spotify green */
     --background: 0 0 0; /* #000000 */
     --foreground: 1 0 0; /* #ffffff */
@@ -76,7 +79,7 @@
   /* Scrollbar styling */
   * {
     scrollbar-width: thin;
-    scrollbar-color: #1db954 #000;
+    scrollbar-color: var(--accent-color, #1db954) #000;
   }
   ::-webkit-scrollbar {
     width: 4px;
@@ -86,7 +89,7 @@
     background: #000;
   }
   ::-webkit-scrollbar-thumb {
-    background: #1db954;
+    background: var(--accent-color, #1db954);
     border-radius: 2px;
   }
 
@@ -128,7 +131,7 @@
   .writefy-icon-btn {
     width: 44px;
     height: 44px;
-    background: #1db954;
+    background: var(--accent-color, #1db954);
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -155,7 +158,7 @@
   .writefy-brand {
     font-size: 14px;
     font-weight: 800;
-    color: #1db954;
+    color: var(--accent-color, #1db954);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     line-height: 1;
@@ -172,6 +175,22 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
+  }
+
+  .writefy-title-input {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--accent-color, #1db954);
+    outline: none;
+    text-align: center;
+    width: 180px;
+    padding: 0;
+    line-height: 1.1;
+    margin-top: 2px;
+    font-family: inherit;
   }
 
   .writefy-doc-meta {
@@ -220,7 +239,7 @@
   }
 
   .writefy-nav-item.active svg {
-    color: #1db954;
+    color: var(--accent-color, #1db954);
   }
 
   .writefy-nav-label {
@@ -230,32 +249,29 @@
   }
 
   .writefy-nav-item.active .writefy-nav-label {
-    color: #1db954;
+    color: var(--accent-color, #1db954);
   }
 
-  .writefy-create-btn {
-    width: 56px;
-    height: 56px;
-    background: #1db954;
-    border-radius: 50%;
+  /* Simple outline Create icon — no filled circle */
+  .writefy-create-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 0 16px rgba(29, 185, 84, 0.5);
-    margin-bottom: 4px;
-    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    color: #8a8a8a;
   }
 
-  .writefy-create-btn.active {
-    box-shadow: 0 0 24px rgba(29, 185, 84, 0.7);
+  .writefy-create-icon.active {
+    color: var(--accent-color, #1db954);
+    box-shadow: 0 0 12px var(--accent-color, #1db954);
   }
 
-  .writefy-create-btn svg {
-    color: #000000;
-    width: 24px;
-    height: 24px;
+  .writefy-create-icon svg {
+    color: inherit;
+    width: 22px;
+    height: 22px;
   }
 
   .writefy-screen {
@@ -287,8 +303,8 @@
   }
 
   .editor-tab.active {
-    color: #1db954;
-    border-bottom: 2px solid #1db954;
+    color: var(--accent-color, #1db954);
+    border-bottom: 2px solid var(--accent-color, #1db954);
   }
 
   /* Format chips */
@@ -320,7 +336,7 @@
   }
 
   .format-chip.active {
-    background: #1db954;
+    background: var(--accent-color, #1db954);
     color: #0a0a0a;
   }
 
@@ -352,7 +368,7 @@
     line-height: 1.6;
     color: #ffffff;
     outline: none;
-    caret-color: #1db954;
+    caret-color: var(--accent-color, #1db954);
     min-height: calc(100dvh - 250px);
     white-space: pre-wrap;
     word-break: break-word;
@@ -366,9 +382,10 @@
   }
 
   .editor-line.active-line {
-    background: rgba(29, 185, 84, 0.08);
-    box-shadow: 0 0 8px rgba(29, 185, 84, 0.25), inset 0 0 0 1px
-      rgba(29, 185, 84, 0.15);
+    background: color-mix(in srgb, var(--accent-color, #1db954) 8%, transparent);
+    box-shadow: 0 0 8px
+      color-mix(in srgb, var(--accent-color, #1db954) 25%, transparent), inset 0
+      0 0 1px color-mix(in srgb, var(--accent-color, #1db954) 15%, transparent);
   }
 
   .editor-line.character {
@@ -411,8 +428,8 @@
   }
 
   .save-dot.saved {
-    background: #1db954;
-    box-shadow: 0 0 6px rgba(29, 185, 84, 0.8);
+    background: var(--accent-color, #1db954);
+    box-shadow: 0 0 6px var(--accent-color, #1db954);
   }
 
   /* Cards */
@@ -490,7 +507,7 @@
   .menu-item svg {
     width: 20px;
     height: 20px;
-    color: #1db954;
+    color: var(--accent-color, #1db954);
     flex-shrink: 0;
   }
 
@@ -543,6 +560,7 @@
     display: flex;
     flex-direction: column;
     gap: 4px;
+    overflow-y: auto;
   }
 
   /* Outline view */
