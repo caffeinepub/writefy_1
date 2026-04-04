@@ -136,7 +136,7 @@ export default function LibraryScreen({
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: 12,
+            gap: 10,
             padding: "0 16px 16px",
           }}
           data-ocid="library.list"
@@ -149,7 +149,7 @@ export default function LibraryScreen({
               data-ocid={`library.script.item.${idx + 1}`}
               style={{
                 background: "#0d0d0d",
-                border: "1px solid #1A1A1A",
+                border: "1px solid rgba(29,185,84,0.12)",
                 borderRadius: 12,
                 padding: 0,
                 cursor: "pointer",
@@ -157,7 +157,7 @@ export default function LibraryScreen({
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
-                height: 160,
+                height: 130,
               }}
             >
               {/* Top accent band */}
@@ -173,7 +173,7 @@ export default function LibraryScreen({
               <div
                 style={{
                   flex: 1,
-                  padding: "12px 12px 10px",
+                  padding: "10px 10px 8px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -182,8 +182,8 @@ export default function LibraryScreen({
                 {/* Film icon */}
                 <div
                   style={{
-                    width: 32,
-                    height: 32,
+                    width: 28,
+                    height: 28,
                     borderRadius: 8,
                     background: "#1A1A1A",
                     display: "flex",
@@ -192,7 +192,7 @@ export default function LibraryScreen({
                   }}
                 >
                   <Film
-                    size={16}
+                    size={14}
                     color={CARD_ACCENTS[idx % CARD_ACCENTS.length]}
                   />
                 </div>
@@ -213,6 +213,11 @@ export default function LibraryScreen({
                     }}
                   >
                     {doc.title}
+                  </div>
+                  <div
+                    style={{ fontSize: 11, color: "#6F6F6F", marginBottom: 3 }}
+                  >
+                    Screenplay
                   </div>
                   <div
                     style={{

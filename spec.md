@@ -1,69 +1,45 @@
-# Writefy
+# Writefy — UI Polish Pass
 
 ## Current State
-Writefy is a screenplay writing PWA with:
-- Motoko backend: createDocument, getDocument, getDocumentMeta, updateDocument, deleteDocument, getAllDocumentsMeta
-- React frontend with 4 tabs: Home, Library, Create (editor), Play
-- Fixed header with Menu (☰) left, centered Writefy brand + doc title, Settings (⚙) right
-- Bottom nav with Home, Library, Create (large green circle button), Play
-- ScreenplayEditor with Write/Outline tabs, 5 format chips, line-by-line editor with auto-format
-- MenuOverlay (left panel) with Export (.txt), Share, Delete
-- SettingsOverlay (right panel) with Permission Manager toggle, Share with Friends
-- Auto-save timer (30s), save status dot in header
-- No rename feature, no PDF export, no import, no themes, no IndexedDB offline save, no Internet Identity
+- Bottom nav is `height: 80px` with a `.writefy-create-icon` that still shows a box-shadow glow
+- `.writefy-icon-btn` uses green background fill for menu/settings buttons — feels heavy
+- Library grid cards are `height: 160px`, fine but can be tighter; no type label shown
+- Title editing already works (input field on click, blur saves) but needs style polish
+- Header has large padding, buttons are 44×44 with green background
+- Glow effects exist on active-line, save dot, create icon — some are too strong
 
 ## Requested Changes (Diff)
 
 ### Add
-- **Rename script**: Click on doc title in header → inline input to rename; instantly syncs title in Library
-- **PDF export**: In three-dot menu, Export generates a proper PDF of the screenplay text
-- **Import file**: In three-dot menu, Import opens file picker (.txt / .fountain) and loads content into editor
-- **Library grid redesign**: 4 sample cards (The Midnight Runner, City of Ghosts, Whispers of the Past, Code Red) as rectangular cards; titles are clickable to open in editor
-- **Library plus button**: Working + in Library header creates new Untitled Script
-- **Theme selector in Settings**: 5 themes - Spotify Green, Blood Red, Electric Blue, Nebula Purple, Cyber Gold; updates CSS custom properties for all accents, glows, cursor color
-- **IndexedDB offline save**: All scripts autosave to IndexedDB; load from IndexedDB when backend is unavailable
-- **Internet Identity login in Settings**: Connect/disconnect II; syncs scripts to/from backend when logged in
-- **Settings gear icon**: Already in header (top-right). Keep as-is.
+- Type label on each Library card ("Screenplay" hardcoded, small grey text)
+- `Screenplay` sub-label below title on library cards
 
 ### Modify
-- **Bottom nav Create button**: Replace large green filled circle with simple outline + icon, same size as Home/Play icons. Add green glow ONLY when Create tab is active.
-- **Header on Create screen**: Remove 'W' background image (none exists currently). Move three-dot (⋮) vertical dots menu to LEFT side of header, replacing the hamburger (☰) icon. Keep Settings (⚙) on right.
-- **MenuOverlay**: Convert from left-slide panel to a small dropdown-style or bottom sheet anchored near the ⋮ button. Add Import option. Change Export to generate PDF.
-- **Library screen**: Rebuild as a 2-column grid of rectangular cards matching image_14 aesthetic.
-- **Nav icons**: Library uses BookOpen/stack-of-books icon. Create uses simple Plus outline icon (no circle).
-- **Remove all status bar / browser chrome noise**: No time, battery indicators - already clean but ensure viewport meta is set correctly.
-- **Auto-save**: Keep existing 30s timer. Also save to IndexedDB on every content change.
+- **Bottom nav**: reduce height from `80px` to `60px`; keep icons at 22px but make Create icon 26px; remove box/circle around create icon entirely; only keep a soft glow on active Create (reduce opacity); labels at 10px; equal `flex: 1` spacing
+- **Library cards**: reduce fixed height from `160px` to `130px`; tighten grid gap from `12px` to `10px`; add type label ("Screenplay") below title; add subtle border glow `border-color: rgba(29,185,84,0.15)` on cards; reduce padding slightly
+- **Header**: reduce padding from `12px 20px 14px` to `10px 16px 10px`; make icon buttons transparent background (no green fill), icon color = white; icon size stays 20px; ensure center title is truly centered with proper flex layout
+- **General glow reduction**: `.editor-line.active-line` box-shadow opacity from 25% → 12%; create icon active glow from `0 0 12px` → `0 0 8px` at 50% opacity; remove any other ambient glow that is not active tab / create button / cursor
+- **Title input**: keep same style, ensure it visually matches the title text it replaces (same size 22px, same font-weight 800)
+- **writefy-screen padding**: adjust `padding-top` from `88px` to match slimmer header (~72px), `padding-bottom` from `88px` to `68px` to match slimmer nav
 
 ### Remove
-- Large green circle background on Create nav button
-- Hamburger ☰ icon from header (replaced by ⋮ vertical dots on left)
-- Any 'W' branding image or logo in Create header
+- Green background fill on `.writefy-icon-btn` (replace with transparent background, white icon color)
+- Any explicit circle/box wrapping the Create nav icon
 
 ## Implementation Plan
-1. Add IndexedDB utility (idb.ts) for offline script persistence - save/load/list/delete scripts locally
-2. Update App.tsx:
-   - Change header left button from Menu ☰ to vertical three-dot ⋮ that opens MenuOverlay
-   - Make doc title clickable/editable inline with an input
-   - Persist theme to localStorage; apply theme CSS variables on body
-3. Update index.css:
-   - Add 5 theme CSS variable sets (Spotify Green default, Blood Red, Electric Blue, Nebula Purple, Cyber Gold)
-   - Modify .writefy-create-btn: remove filled circle, make it just a plain icon container with glow only when active
-4. Update App.tsx bottom nav:
-   - Use BookOpen icon for Library
-   - Use Plus with outline only for Create - no background circle
-   - Active state only adds glow, no background fill for Create
-5. Update CreateScreen.tsx:
-   - Wire ⋮ menu (from App header) with: Export PDF, Import file (.txt/.fountain), Share, Delete
-   - On import: read file text → setLocalContent → trigger save
-   - On export: use jsPDF or window.print() to generate PDF of screenplay text
-6. Update LibraryScreen.tsx:
-   - Change layout to 2-column card grid
-   - Seed 4 sample scripts if docs < 4 on first load
-   - Project titles are clickable (onOpenDoc)
-   - + button in header creates new Untitled Script
-7. Update SettingsOverlay.tsx:
-   - Add Theme Selector section with 5 theme swatches
-   - Add Internet Identity login/logout section
-   - Apply theme via CSS custom property update on :root
-8. Add IndexedDB hooks: save on content change, load as fallback if backend fails
-9. Validate, fix lint/type errors
+1. Update `index.css`:
+   - `.writefy-header`: tighten padding
+   - `.writefy-icon-btn`: remove green background, use transparent + white icon
+   - `.writefy-bottom-nav`: reduce height to 60px
+   - `.writefy-create-icon`: remove border-radius box, only soft glow when active
+   - `.writefy-screen`: adjust top/bottom padding
+   - `.editor-line.active-line`: soften box-shadow
+   - Library card styles (inline in LibraryScreen — adjust there)
+2. Update `LibraryScreen.tsx`:
+   - Reduce card height to 130px
+   - Reduce gap to 10px
+   - Add `Screenplay` type label below title
+   - Add subtle accent border-color on cards
+3. Update `App.tsx`:
+   - Icon button style cleanup (no green background)
+   - Ensure Create nav icon has no wrapping circle div, just the Plus icon with conditional glow class

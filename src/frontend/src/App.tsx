@@ -150,7 +150,7 @@ export default function App() {
               <MoreVertical />
             </button>
           ) : (
-            <div style={{ width: 44, height: 44, flexShrink: 0 }} />
+            <div style={{ width: 40, height: 40, flexShrink: 0 }} />
           )}
 
           {/* CENTER: Title area */}
@@ -268,7 +268,7 @@ export default function App() {
             <div
               className={`writefy-create-icon${activeTab === "Create" ? " active" : ""}`}
             >
-              <Plus size={22} />
+              <Plus size={26} />
             </div>
             <span className="writefy-nav-label">Create</span>
           </button>

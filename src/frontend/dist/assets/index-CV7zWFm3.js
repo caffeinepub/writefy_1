@@ -29770,7 +29770,7 @@ function LibraryScreen({
         style: {
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: 12,
+          gap: 10,
           padding: "0 16px 16px"
         },
         "data-ocid": "library.list",
@@ -29782,7 +29782,7 @@ function LibraryScreen({
             "data-ocid": `library.script.item.${idx + 1}`,
             style: {
               background: "#0d0d0d",
-              border: "1px solid #1A1A1A",
+              border: "1px solid rgba(29,185,84,0.12)",
               borderRadius: 12,
               padding: 0,
               cursor: "pointer",
@@ -29790,7 +29790,7 @@ function LibraryScreen({
               display: "flex",
               flexDirection: "column",
               overflow: "hidden",
-              height: 160
+              height: 130
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -29808,7 +29808,7 @@ function LibraryScreen({
                 {
                   style: {
                     flex: 1,
-                    padding: "12px 12px 10px",
+                    padding: "10px 10px 8px",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between"
@@ -29818,8 +29818,8 @@ function LibraryScreen({
                       "div",
                       {
                         style: {
-                          width: 32,
-                          height: 32,
+                          width: 28,
+                          height: 28,
                           borderRadius: 8,
                           background: "#1A1A1A",
                           display: "flex",
@@ -29829,7 +29829,7 @@ function LibraryScreen({
                         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                           Film,
                           {
-                            size: 16,
+                            size: 14,
                             color: CARD_ACCENTS[idx % CARD_ACCENTS.length]
                           }
                         )
@@ -29851,6 +29851,13 @@ function LibraryScreen({
                             marginBottom: 4
                           },
                           children: doc.title
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "div",
+                        {
+                          style: { fontSize: 11, color: "#6F6F6F", marginBottom: 3 },
+                          children: "Screenplay"
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30072,7 +30079,7 @@ function App() {
             "data-ocid": "header.menu.button",
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(EllipsisVertical, {})
           }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: 44, height: 44, flexShrink: 0 } }),
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: 40, height: 40, flexShrink: 0 } }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-header-center", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }),
           isEditingTitle && activeTab === "Create" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30193,7 +30200,7 @@ function App() {
                 "div",
                 {
                   className: `writefy-create-icon${activeTab === "Create" ? " active" : ""}`,
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 22 })
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 26 })
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Create" })

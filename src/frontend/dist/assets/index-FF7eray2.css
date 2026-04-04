@@ -623,17 +623,17 @@ html,
     z-index: 50;
     background: #000000;
     border-bottom: 1px solid #1a1a1a;
-    padding: 12px 20px 14px;
+    padding: 10px 16px 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
 
 .writefy-icon-btn {
-    width: 44px;
-    height: 44px;
-    background: var(--accent-color, #1db954);
-    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -643,7 +643,7 @@ html,
   }
 
 .writefy-icon-btn svg {
-    color: #000000;
+    color: #ffffff;
     width: 20px;
     height: 20px;
   }
@@ -715,7 +715,7 @@ html,
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 80px;
+    height: 60px;
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
@@ -761,39 +761,36 @@ html,
     color: var(--accent-color, #1db954) !important;
   }
 
-/* Simple outline Create icon — no filled circle */
+/* Simple outline Create icon — no filled circle, soft glow only when active */
 
 .writefy-create-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 6px;
     color: #8a8a8a;
   }
 
 .writefy-create-icon.active {
     color: var(--accent-color, #1db954);
-    box-shadow: 0 0 12px var(--accent-color, #1db954);
+    filter: drop-shadow(0 0 6px rgba(29, 185, 84, 0.45));
   }
 
 .writefy-create-icon.\!active {
     color: var(--accent-color, #1db954) !important;
-    box-shadow: 0 0 12px var(--accent-color, #1db954) !important;
+    filter: drop-shadow(0 0 6px rgba(29, 185, 84, 0.45)) !important;
   }
 
 .writefy-create-icon svg {
     color: inherit;
-    width: 22px;
-    height: 22px;
+    width: 26px;
+    height: 26px;
   }
 
 .writefy-screen {
     flex: 1;
     overflow-y: auto;
-    padding-top: 88px;
-    padding-bottom: 88px;
+    padding-top: 72px;
+    padding-bottom: 64px;
   }
 
 /* Editor tabs */
@@ -912,10 +909,9 @@ html,
   }
 
 .editor-line.active-line {
-    background: color-mix(in srgb, var(--accent-color, #1db954) 8%, transparent);
-    box-shadow: 0 0 8px
-      color-mix(in srgb, var(--accent-color, #1db954) 25%, transparent), inset 0
-      0 0 1px color-mix(in srgb, var(--accent-color, #1db954) 15%, transparent);
+    background: color-mix(in srgb, var(--accent-color, #1db954) 6%, transparent);
+    box-shadow: 0 0 6px
+      color-mix(in srgb, var(--accent-color, #1db954) 12%, transparent);
   }
 
 .editor-line.character {
@@ -2497,6 +2493,11 @@ html,
 
 .ring-offset-background{
   --tw-ring-offset-color: oklch(var(--background));
+}
+
+.drop-shadow{
+  --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
 .filter{
