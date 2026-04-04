@@ -1,4 +1,4 @@
-import { FileText, Plus } from "lucide-react";
+import { FileText, Pencil } from "lucide-react";
 import type { DocumentMeta } from "../backend.d";
 import { formatRelativeTime } from "../utils/formatTime";
 
@@ -15,139 +15,228 @@ export default function HomeScreen({
   onOpenDoc,
   onNewDoc,
 }: HomeScreenProps) {
-  const recentDocs = [...docs]
-    .sort((a, b) => Number(b.lastEdited) - Number(a.lastEdited))
-    .slice(0, 6);
+  // Sort by lastEdited descending and take the most recent
+  const sortedDocs = [...docs].sort(
+    (a, b) => Number(b.lastEdited) - Number(a.lastEdited),
+  );
+  const resumeDoc = sortedDocs[0] ?? null;
 
   return (
-    <div style={{ background: "#000", minHeight: "100%" }}>
-      <div className="page-title">Home</div>
-      <div className="page-subtitle">Your recent screenplays</div>
-
+    <div
+      style={{
+        background: "#000",
+        minHeight: "100%",
+        padding: "20px",
+      }}
+    >
       {isLoading ? (
         <div
-          style={{ padding: "40px 20px", textAlign: "center" }}
+          style={{ padding: "60px 0", textAlign: "center" }}
           data-ocid="home.loading_state"
         >
-          <div style={{ color: "#8A8A8A", fontSize: 14 }}>Loading...</div>
-        </div>
-      ) : recentDocs.length === 0 ? (
-        <div
-          style={{ padding: "40px 20px", textAlign: "center" }}
-          data-ocid="home.empty_state"
-        >
-          <div style={{ fontSize: "40px", marginBottom: "12px" }}>🎬</div>
           <div
             style={{
-              fontSize: 16,
-              fontWeight: 700,
-              color: "#fff",
-              marginBottom: 8,
+              width: 32,
+              height: 32,
+              borderRadius: "50%",
+              border: "3px solid #1A1A1A",
+              borderTopColor: "var(--accent-color, #1DB954)",
+              margin: "0 auto",
             }}
-          >
-            No scripts yet
-          </div>
-          <div style={{ fontSize: 13, color: "#8A8A8A", marginBottom: 20 }}>
-            Start your first screenplay on the Create tab.
-          </div>
-          <button
-            type="button"
-            onClick={onNewDoc}
-            style={{
-              background: "#1DB954",
-              color: "#000",
-              border: "none",
-              borderRadius: 10,
-              padding: "12px 24px",
-              fontSize: 14,
-              fontWeight: 700,
-              cursor: "pointer",
-            }}
-            data-ocid="home.create.primary_button"
-          >
-            New Script
-          </button>
+          />
         </div>
-      ) : (
-        <div
-          style={{
-            padding: "0 16px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 10,
-          }}
-        >
-          {recentDocs.map((doc, idx) => (
-            <button
-              key={doc.id}
-              type="button"
-              className="script-card"
+      ) : resumeDoc ? (
+        <>
+          {/* Section label */}
+          <div
+            style={{
+              fontSize: 11,
+              fontWeight: 700,
+              color: "#8a8a8a",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              marginBottom: 12,
+            }}
+          >
+            Continue Writing
+          </div>
+
+          {/* Resume Card */}
+          <div
+            data-ocid="home.resume.card"
+            style={{
+              height: 180,
+              background: "#0b0b0b",
+              borderRadius: 24,
+              padding: 20,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid rgba(29,185,84,0.3)",
+              boxShadow:
+                "0 0 24px rgba(29,185,84,0.15), 0 0 8px rgba(29,185,84,0.08)",
+            }}
+          >
+            {/* Top row */}
+            <div
               style={{
-                width: "100%",
-                textAlign: "left",
-                cursor: "pointer",
-                border: "1px solid #1A1A1A",
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: 8,
               }}
-              onClick={() => onOpenDoc(doc.id)}
-              data-ocid={`home.script.item.${idx + 1}`}
             >
               <div
-                style={{ display: "flex", alignItems: "flex-start", gap: 12 }}
+                style={{
+                  fontSize: 18,
+                  fontWeight: 800,
+                  color: "#ffffff",
+                  lineHeight: 1.2,
+                  flex: 1,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
               >
-                <div
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 8,
-                    background: "#1A1A1A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    flexShrink: 0,
-                  }}
-                >
-                  <FileText size={18} color="#1DB954" />
-                </div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div
-                    className="script-card-title"
-                    style={{
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {doc.title}
-                  </div>
-                  <div className="script-card-meta">
-                    Screenplay • {formatRelativeTime(doc.lastEdited)}
-                  </div>
-                </div>
+                {resumeDoc.title}
               </div>
+              <span
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: "var(--accent-color, #1DB954)",
+                  background: "rgba(29,185,84,0.12)",
+                  border: "1px solid rgba(29,185,84,0.25)",
+                  borderRadius: 100,
+                  padding: "3px 10px",
+                  flexShrink: 0,
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {resumeDoc.formatType || "Screenplay"}
+              </span>
+            </div>
+
+            {/* Last edited */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+              }}
+            >
+              <FileText size={13} color="#8a8a8a" style={{ flexShrink: 0 }} />
+              <span style={{ fontSize: 12, color: "#8a8a8a" }}>
+                Last edited {formatRelativeTime(resumeDoc.lastEdited)}
+              </span>
+            </div>
+
+            {/* Resume button */}
+            <button
+              type="button"
+              onClick={() => onOpenDoc(resumeDoc.id)}
+              data-ocid="home.resume.primary_button"
+              style={{
+                background: "var(--accent-color, #1DB954)",
+                color: "#000",
+                border: "none",
+                borderRadius: 10,
+                padding: "10px 20px",
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: "pointer",
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 6,
+              }}
+            >
+              <Pencil size={14} />
+              Resume Writing
             </button>
-          ))}
+          </div>
+
+          {/* Quick actions */}
+          <div
+            style={{
+              marginTop: 24,
+              fontSize: 11,
+              fontWeight: 700,
+              color: "#8a8a8a",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              marginBottom: 12,
+            }}
+          >
+            Quick Actions
+          </div>
           <button
             type="button"
             onClick={onNewDoc}
+            data-ocid="home.new_doc.primary_button"
             style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-              padding: "14px 16px",
+              width: "100%",
               background: "transparent",
               border: "1px dashed #333",
-              borderRadius: 12,
-              color: "#1DB954",
+              borderRadius: 14,
+              padding: "16px 20px",
+              color: "var(--accent-color, #1DB954)",
               fontSize: 14,
               fontWeight: 600,
               cursor: "pointer",
-              width: "100%",
-              marginTop: 4,
+              textAlign: "left",
             }}
-            data-ocid="home.new_script.button"
           >
-            <Plus size={16} />
-            New Script
+            + Start something new
+          </button>
+        </>
+      ) : (
+        /* Empty state */
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 300,
+            textAlign: "center",
+            gap: 12,
+          }}
+          data-ocid="home.empty_state"
+        >
+          <div style={{ fontSize: 48, marginBottom: 4 }}>🎬</div>
+          <div style={{ fontSize: 18, fontWeight: 800, color: "#fff" }}>
+            Welcome to Writefy
+          </div>
+          <div
+            style={{
+              fontSize: 13,
+              color: "#8a8a8a",
+              lineHeight: 1.6,
+              maxWidth: 260,
+            }}
+          >
+            Your writing journey starts here. Create your first screenplay or
+            novel.
+          </div>
+          <button
+            type="button"
+            onClick={onNewDoc}
+            data-ocid="home.create.primary_button"
+            style={{
+              marginTop: 8,
+              background: "var(--accent-color, #1DB954)",
+              color: "#000",
+              border: "none",
+              borderRadius: 10,
+              padding: "12px 28px",
+              fontSize: 14,
+              fontWeight: 700,
+              cursor: "pointer",
+            }}
+          >
+            Start Writing
           </button>
         </div>
       )}

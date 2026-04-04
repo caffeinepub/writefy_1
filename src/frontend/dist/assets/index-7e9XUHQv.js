@@ -15150,7 +15150,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$f = [
+const __iconNode$i = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -15160,14 +15160,14 @@ const __iconNode$f = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$f);
+const BookOpen = createLucideIcon("book-open", __iconNode$i);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$e = [
+const __iconNode$h = [
   ["path", { d: "m2 2 20 20", key: "1ooewy" }],
   ["path", { d: "M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193", key: "yfwify" }],
   [
@@ -15175,7 +15175,42 @@ const __iconNode$e = [
     { d: "M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07", key: "jlfiyv" }
   ]
 ];
-const CloudOff = createLucideIcon("cloud-off", __iconNode$e);
+const CloudOff = createLucideIcon("cloud-off", __iconNode$h);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$g = [
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+];
+const Cloud = createLucideIcon("cloud", __iconNode$g);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$f = [
+  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
+  ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
+  ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
+];
+const EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode$f);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M12 18v-6", key: "17g6i2" }],
+  ["path", { d: "m9 15 3 3 3-3", key: "1npd3o" }]
+];
+const FileDown = createLucideIcon("file-down", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15183,9 +15218,13 @@ const CloudOff = createLucideIcon("cloud-off", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
+  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
 ];
-const Cloud = createLucideIcon("cloud", __iconNode$d);
+const FileText = createLucideIcon("file-text", __iconNode$d);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15193,45 +15232,6 @@ const Cloud = createLucideIcon("cloud", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
-  ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
-  ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
-];
-const EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode$c);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M12 18v-6", key: "17g6i2" }],
-  ["path", { d: "m9 15 3 3 3-3", key: "1npd3o" }]
-];
-const FileDown = createLucideIcon("file-down", __iconNode$b);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$a = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$a);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$9 = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
   ["path", { d: "M7 3v18", key: "bbkbws" }],
   ["path", { d: "M3 7.5h4", key: "zfgn84" }],
@@ -15241,14 +15241,14 @@ const __iconNode$9 = [
   ["path", { d: "M17 7.5h4", key: "myr1c1" }],
   ["path", { d: "M17 16.5h4", key: "go4c1d" }]
 ];
-const Film = createLucideIcon("film", __iconNode$9);
+const Film = createLucideIcon("film", __iconNode$c);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$b = [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
@@ -15258,7 +15258,47 @@ const __iconNode$8 = [
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$8);
+const House = createLucideIcon("house", __iconNode$b);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$a = [
+  ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
+  ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
+  ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
+];
+const LayoutGrid = createLucideIcon("layout-grid", __iconNode$a);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  ["path", { d: "M3 12h.01", key: "nlz23k" }],
+  ["path", { d: "M3 18h.01", key: "1tta3j" }],
+  ["path", { d: "M3 6h.01", key: "1rqtza" }],
+  ["path", { d: "M8 12h13", key: "1za7za" }],
+  ["path", { d: "M8 18h13", key: "1lx6n3" }],
+  ["path", { d: "M8 6h13", key: "ik3vkj" }]
+];
+const List = createLucideIcon("list", __iconNode$9);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
+  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
+  ["path", { d: "M21 12H9", key: "dn1m92" }],
+  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+];
+const LogOut = createLucideIcon("log-out", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15266,11 +15306,16 @@ const House = createLucideIcon("house", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const LogOut = createLucideIcon("log-out", __iconNode$7);
+const Pencil = createLucideIcon("pencil", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15366,6 +15411,209 @@ const __iconNode = [
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
 const X$1 = createLucideIcon("x", __iconNode);
+function NewDocModal({ onSelect, onClose }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      style: {
+        position: "fixed",
+        inset: 0,
+        zIndex: 200,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        background: "rgba(0,0,0,0.85)"
+      },
+      "data-ocid": "new_doc.modal",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: onClose,
+            style: {
+              position: "absolute",
+              top: 20,
+              right: 20,
+              width: 36,
+              height: 36,
+              background: "#1a1a1a",
+              border: "none",
+              borderRadius: 8,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+              color: "#fff"
+            },
+            "data-ocid": "new_doc.close_button",
+            "aria-label": "Close",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 18 })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              fontSize: 22,
+              fontWeight: 800,
+              color: "#ffffff",
+              marginBottom: 32,
+              textAlign: "center",
+              letterSpacing: "0.01em"
+            },
+            children: "What are you writing?"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              gap: 16,
+              alignItems: "stretch"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => onSelect("Novel"),
+                  "data-ocid": "new_doc.novel.card",
+                  style: {
+                    background: "#0d0d0d",
+                    border: "1px solid #1a1a1a",
+                    borderRadius: 20,
+                    padding: "32px 20px",
+                    width: 140,
+                    minHeight: 200,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 16,
+                    cursor: "pointer"
+                  },
+                  onMouseEnter: (e) => {
+                    e.currentTarget.style.border = "1px solid var(--accent-color, #1DB954)";
+                    e.currentTarget.style.boxShadow = "0 0 16px rgba(29,185,84,0.2)";
+                  },
+                  onMouseLeave: (e) => {
+                    e.currentTarget.style.border = "1px solid #1a1a1a";
+                    e.currentTarget.style.boxShadow = "none";
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      BookOpen,
+                      {
+                        size: 40,
+                        color: "var(--accent-color, #1DB954)",
+                        strokeWidth: 1.5
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          fontSize: 16,
+                          fontWeight: 800,
+                          color: "#ffffff",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase"
+                        },
+                        children: "NOVEL"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          fontSize: 12,
+                          color: "#8a8a8a",
+                          textAlign: "center",
+                          lineHeight: 1.4
+                        },
+                        children: "Long-form narrative"
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => onSelect("Screenplay"),
+                  "data-ocid": "new_doc.screenplay.card",
+                  style: {
+                    background: "#0d0d0d",
+                    border: "1px solid #1a1a1a",
+                    borderRadius: 20,
+                    padding: "32px 20px",
+                    width: 140,
+                    minHeight: 200,
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 16,
+                    cursor: "pointer"
+                  },
+                  onMouseEnter: (e) => {
+                    e.currentTarget.style.border = "1px solid var(--accent-color, #1DB954)";
+                    e.currentTarget.style.boxShadow = "0 0 16px rgba(29,185,84,0.2)";
+                  },
+                  onMouseLeave: (e) => {
+                    e.currentTarget.style.border = "1px solid #1a1a1a";
+                    e.currentTarget.style.boxShadow = "none";
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Film,
+                      {
+                        size: 40,
+                        color: "var(--accent-color, #1DB954)",
+                        strokeWidth: 1.5
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          fontSize: 16,
+                          fontWeight: 800,
+                          color: "#ffffff",
+                          letterSpacing: "0.08em",
+                          textTransform: "uppercase"
+                        },
+                        children: "SCREENPLAY"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          fontSize: 12,
+                          color: "#8a8a8a",
+                          textAlign: "center",
+                          lineHeight: 1.4
+                        },
+                        children: "Script format"
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+}
 var ReplicaRejectCode;
 (function(ReplicaRejectCode2) {
   ReplicaRejectCode2[ReplicaRejectCode2["SysFatal"] = 1] = "SysFatal";
@@ -28927,6 +29175,13 @@ function detectNextLineType(currentType) {
   if (currentType === "slugline") return "action";
   return "action";
 }
+const SLAB_CLASS = {
+  slugline: "slab-slugline",
+  action: "slab-action",
+  character: "slab-character",
+  dialogue: "slab-dialogue",
+  parenthetical: "slab-parenthetical"
+};
 function ScreenplayEditor({
   document: document2,
   onContentChange,
@@ -29046,11 +29301,6 @@ function ScreenplayEditor({
     },
     [lines, formatMode, handleFormatModeChange, emitChange]
   );
-  const getLineHeight = (text) => {
-    const chars = text.length;
-    if (chars < 40) return 1;
-    return Math.ceil(chars / 40);
-  };
   const sluglineCount = lines.filter((l) => l.type === "slugline").length;
   const handleOutlineItemClick = (lineId) => {
     setActiveTab("Write");
@@ -29095,71 +29345,51 @@ function ScreenplayEditor({
         },
         mode
       )) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "screenplay-editor", "data-ocid": "editor.canvas_target", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "line-numbers", "aria-hidden": "true", children: lines.map((line, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              lineHeight: "1.6",
-              height: `${getLineHeight(line.text) * 1.6}em`,
-              display: "flex",
-              alignItems: "flex-start",
-              justifyContent: "flex-end",
-              paddingTop: "2px",
-              color: line.id === activeLineId ? "#1DB954" : "#6F6F6F"
-            },
-            children: idx + 1
-          },
-          line.id
-        )) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { flex: 1, paddingRight: "16px" }, children: lines.map((line) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: `editor-line ${line.type}${line.id === activeLineId ? " active-line" : ""}`,
-            "data-ocid": line.id === activeLineId ? "editor.active.row" : void 0,
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "textarea",
-              {
-                ref: (el) => {
-                  if (el) lineRefs.current.set(line.id, el);
-                  else lineRefs.current.delete(line.id);
-                },
-                value: line.text,
-                onChange: (e) => handleLineChange(line.id, e.target.value),
-                onFocus: () => setActiveLineId(line.id),
-                onKeyDown: (e) => handleKeyDown(e, line.id),
-                rows: getLineHeight(line.text),
-                style: {
-                  width: "100%",
-                  background: "transparent",
-                  border: "none",
-                  outline: "none",
-                  resize: "none",
-                  fontFamily: "'JetBrains Mono', 'Courier New', Courier, monospace",
-                  fontSize: "16px",
-                  lineHeight: "1.6",
-                  color: "#ffffff",
-                  caretColor: "#1DB954",
-                  padding: 0,
-                  overflow: "hidden",
-                  textAlign: line.type === "character" ? "center" : "left",
-                  fontWeight: line.type === "character" || line.type === "slugline" ? 700 : 400,
-                  textTransform: line.type === "character" ? "uppercase" : "none",
-                  fontStyle: line.type === "parenthetical" ? "italic" : "normal",
-                  paddingLeft: line.type === "character" ? "0" : line.type === "dialogue" ? "10%" : line.type === "parenthetical" ? "15%" : "0",
-                  paddingRight: line.type === "character" ? "0" : line.type === "dialogue" ? "10%" : line.type === "parenthetical" ? "15%" : "0"
-                },
-                placeholder: line.type === "character" ? "CHARACTER NAME" : line.type === "slugline" ? "INT. LOCATION - TIME" : line.type === "parenthetical" ? "(direction)" : line.type === "dialogue" ? "Dialogue..." : "Action...",
-                spellCheck: false,
-                autoComplete: "off",
-                autoCorrect: "off",
-                autoCapitalize: line.type === "character" || line.type === "slugline" ? "characters" : "sentences"
-              }
-            )
-          },
-          line.id
-        )) })
-      ] })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writing-slab", "data-ocid": "editor.canvas_target", children: lines.map((line) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          className: `${SLAB_CLASS[line.type]}${line.id === activeLineId ? " slab-active" : ""}`,
+          "data-ocid": line.id === activeLineId ? "editor.active.row" : void 0,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "textarea",
+            {
+              ref: (el) => {
+                if (el) lineRefs.current.set(line.id, el);
+                else lineRefs.current.delete(line.id);
+              },
+              value: line.text,
+              onChange: (e) => handleLineChange(line.id, e.target.value),
+              onFocus: () => setActiveLineId(line.id),
+              onKeyDown: (e) => handleKeyDown(e, line.id),
+              rows: 1,
+              style: {
+                width: "100%",
+                background: "transparent",
+                border: "none",
+                outline: "none",
+                resize: "none",
+                color: "inherit",
+                fontSize: "inherit",
+                lineHeight: "inherit",
+                fontFamily: "inherit",
+                textAlign: "inherit",
+                fontWeight: "inherit",
+                textTransform: "inherit",
+                fontStyle: "inherit",
+                caretColor: "var(--accent-color, #1DB954)",
+                overflow: "hidden",
+                padding: 0
+              },
+              placeholder: line.type === "character" ? "CHARACTER NAME" : line.type === "slugline" ? "INT. LOCATION - TIME" : line.type === "parenthetical" ? "(direction)" : line.type === "dialogue" ? "Dialogue..." : "Action...",
+              spellCheck: false,
+              autoComplete: "off",
+              autoCorrect: "off",
+              autoCapitalize: line.type === "character" || line.type === "slugline" ? "characters" : "sentences"
+            }
+          )
+        },
+        line.id
+      )) })
     ] }),
     activeTab === "Outline" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "8px 0" }, children: sluglineCount === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
@@ -29355,7 +29585,10 @@ function CreateScreen({
   };
   const handleDeleteConfirm = async () => {
     if (!activeDocId) return;
-    await deleteDoc.mutateAsync(activeDocId);
+    try {
+      await deleteDoc.mutateAsync(activeDocId);
+    } catch {
+    }
     setShowDelete(false);
     setShowMenu(false);
     onDocumentDeleted();
@@ -29390,6 +29623,30 @@ function CreateScreen({
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 14, color: "#8A8A8A" }, children: "Loading script..." })
+        ]
+      }
+    );
+  }
+  if (!activeDocId) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          flexDirection: "column",
+          gap: 12,
+          padding: 24,
+          minHeight: "calc(100dvh - 176px)",
+          textAlign: "center"
+        },
+        "data-ocid": "create.empty_state",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 32, marginBottom: 4 }, children: "✍️" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 16, fontWeight: 700, color: "#fff" }, children: "No script open" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8a8a8a" }, children: "Use the + button to start writing." })
         ]
       }
     );
@@ -29474,157 +29731,253 @@ function HomeScreen({
   onOpenDoc,
   onNewDoc
 }) {
-  const recentDocs = [...docs].sort((a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)).slice(0, 6);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { background: "#000", minHeight: "100%" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-title", children: "Home" }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-subtitle", children: "Your recent screenplays" }),
-    isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        style: { padding: "40px 20px", textAlign: "center" },
-        "data-ocid": "home.loading_state",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { color: "#8A8A8A", fontSize: 14 }, children: "Loading..." })
-      }
-    ) : recentDocs.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: { padding: "40px 20px", textAlign: "center" },
-        "data-ocid": "home.empty_state",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "40px", marginBottom: "12px" }, children: "🎬" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
+  const sortedDocs = [...docs].sort(
+    (a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)
+  );
+  const resumeDoc = sortedDocs[0] ?? null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      style: {
+        background: "#000",
+        minHeight: "100%",
+        padding: "20px"
+      },
+      children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: { padding: "60px 0", textAlign: "center" },
+          "data-ocid": "home.loading_state",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
               style: {
-                fontSize: 16,
-                fontWeight: 700,
-                color: "#fff",
-                marginBottom: 8
-              },
-              children: "No scripts yet"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8A8A8A", marginBottom: 20 }, children: "Start your first screenplay on the Create tab." }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: onNewDoc,
-              style: {
-                background: "#1DB954",
-                color: "#000",
-                border: "none",
-                borderRadius: 10,
-                padding: "12px 24px",
-                fontSize: 14,
-                fontWeight: 700,
-                cursor: "pointer"
-              },
-              "data-ocid": "home.create.primary_button",
-              children: "New Script"
+                width: 32,
+                height: 32,
+                borderRadius: "50%",
+                border: "3px solid #1A1A1A",
+                borderTopColor: "var(--accent-color, #1DB954)",
+                margin: "0 auto"
+              }
             }
           )
-        ]
-      }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          padding: "0 16px",
-          display: "flex",
-          flexDirection: "column",
-          gap: 10
-        },
-        children: [
-          recentDocs.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: "script-card",
-              style: {
-                width: "100%",
-                textAlign: "left",
-                cursor: "pointer",
-                border: "1px solid #1A1A1A"
-              },
-              onClick: () => onOpenDoc(doc.id),
-              "data-ocid": `home.script.item.${idx + 1}`,
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        }
+      ) : resumeDoc ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              fontSize: 11,
+              fontWeight: 700,
+              color: "#8a8a8a",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              marginBottom: 12
+            },
+            children: "Continue Writing"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            "data-ocid": "home.resume.card",
+            style: {
+              height: 180,
+              background: "#0b0b0b",
+              borderRadius: 24,
+              padding: 20,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              border: "1px solid rgba(29,185,84,0.3)",
+              boxShadow: "0 0 24px rgba(29,185,84,0.15), 0 0 8px rgba(29,185,84,0.08)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
-                  style: { display: "flex", alignItems: "flex-start", gap: 12 },
+                  style: {
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "space-between",
+                    gap: 8
+                  },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(
                       "div",
                       {
                         style: {
-                          width: 40,
-                          height: 40,
-                          borderRadius: 8,
-                          background: "#1A1A1A",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0
+                          fontSize: 18,
+                          fontWeight: 800,
+                          color: "#ffffff",
+                          lineHeight: 1.2,
+                          flex: 1,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap"
                         },
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 18, color: "#1DB954" })
+                        children: resumeDoc.title
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, minWidth: 0 }, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "div",
-                        {
-                          className: "script-card-title",
-                          style: {
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            whiteSpace: "nowrap"
-                          },
-                          children: doc.title
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "script-card-meta", children: [
-                        "Screenplay • ",
-                        formatRelativeTime(doc.lastEdited)
-                      ] })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "span",
+                      {
+                        style: {
+                          fontSize: 11,
+                          fontWeight: 700,
+                          color: "var(--accent-color, #1DB954)",
+                          background: "rgba(29,185,84,0.12)",
+                          border: "1px solid rgba(29,185,84,0.25)",
+                          borderRadius: 100,
+                          padding: "3px 10px",
+                          flexShrink: 0,
+                          whiteSpace: "nowrap"
+                        },
+                        children: resumeDoc.formatType || "Screenplay"
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 6
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13, color: "#8a8a8a", style: { flexShrink: 0 } }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { fontSize: 12, color: "#8a8a8a" }, children: [
+                      "Last edited ",
+                      formatRelativeTime(resumeDoc.lastEdited)
                     ] })
                   ]
                 }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => onOpenDoc(resumeDoc.id),
+                  "data-ocid": "home.resume.primary_button",
+                  style: {
+                    background: "var(--accent-color, #1DB954)",
+                    color: "#000",
+                    border: "none",
+                    borderRadius: 10,
+                    padding: "10px 20px",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    cursor: "pointer",
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 6
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { size: 14 }),
+                    "Resume Writing"
+                  ]
+                }
               )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              marginTop: 24,
+              fontSize: 11,
+              fontWeight: 700,
+              color: "#8a8a8a",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              marginBottom: 12
             },
-            doc.id
-          )),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              onClick: onNewDoc,
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "14px 16px",
-                background: "transparent",
-                border: "1px dashed #333",
-                borderRadius: 12,
-                color: "#1DB954",
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer",
-                width: "100%",
-                marginTop: 4
-              },
-              "data-ocid": "home.new_script.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16 }),
-                "New Script"
-              ]
-            }
-          )
-        ]
-      }
-    )
-  ] });
+            children: "Quick Actions"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            onClick: onNewDoc,
+            "data-ocid": "home.new_doc.primary_button",
+            style: {
+              width: "100%",
+              background: "transparent",
+              border: "1px dashed #333",
+              borderRadius: 14,
+              padding: "16px 20px",
+              color: "var(--accent-color, #1DB954)",
+              fontSize: 14,
+              fontWeight: 600,
+              cursor: "pointer",
+              textAlign: "left"
+            },
+            children: "+ Start something new"
+          }
+        )
+      ] }) : (
+        /* Empty state */
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              minHeight: 300,
+              textAlign: "center",
+              gap: 12
+            },
+            "data-ocid": "home.empty_state",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 48, marginBottom: 4 }, children: "🎬" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 18, fontWeight: 800, color: "#fff" }, children: "Welcome to Writefy" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    fontSize: 13,
+                    color: "#8a8a8a",
+                    lineHeight: 1.6,
+                    maxWidth: 260
+                  },
+                  children: "Your writing journey starts here. Create your first screenplay or novel."
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  onClick: onNewDoc,
+                  "data-ocid": "home.create.primary_button",
+                  style: {
+                    marginTop: 8,
+                    background: "var(--accent-color, #1DB954)",
+                    color: "#000",
+                    border: "none",
+                    borderRadius: 10,
+                    padding: "12px 28px",
+                    fontSize: 14,
+                    fontWeight: 700,
+                    cursor: "pointer"
+                  },
+                  children: "Start Writing"
+                }
+              )
+            ]
+          }
+        )
+      )
+    }
+  );
 }
 const CARD_ACCENTS = [
   "var(--accent-color, #1DB954)",
@@ -29640,9 +29993,16 @@ function LibraryScreen({
   onOpenDoc,
   onNewDoc
 }) {
+  const [viewMode, setViewMode] = reactExports.useState("grid");
   const sorted = [...docs].sort(
     (a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)
   );
+  const getDocIcon = (doc, size, color) => {
+    if (doc.formatType === "Novel") {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size, color, strokeWidth: 1.5 });
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size, color, strokeWidth: 1.5 });
+  };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { background: "#000", minHeight: "100%" }, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
@@ -29651,77 +30011,123 @@ function LibraryScreen({
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "16px 16px 4px"
+          padding: "20px 16px 12px"
         },
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "span",
             {
               style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 8
+                fontSize: 22,
+                fontWeight: 800,
+                color: "#fff"
               },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 20, color: "var(--accent-color, #1DB954)" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "span",
-                  {
-                    style: {
-                      fontSize: 22,
-                      fontWeight: 800,
-                      color: "#fff"
-                    },
-                    children: "Library"
-                  }
-                )
-              ]
+              children: "Library"
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: onNewDoc,
-              style: {
-                width: 32,
-                height: 32,
-                borderRadius: 8,
-                background: "var(--accent-color, #1DB954)",
-                border: "none",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer"
-              },
-              "data-ocid": "library.create.primary_button",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16, color: "#000" })
-            }
-          )
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setViewMode("grid"),
+                "data-ocid": "library.grid.toggle",
+                style: {
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: viewMode === "grid" ? "rgba(29,185,84,0.15)" : "transparent",
+                  border: viewMode === "grid" ? "1px solid rgba(29,185,84,0.3)" : "1px solid #1a1a1a",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer"
+                },
+                "aria-label": "Grid view",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  LayoutGrid,
+                  {
+                    size: 15,
+                    color: viewMode === "grid" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setViewMode("list"),
+                "data-ocid": "library.list.toggle",
+                style: {
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: viewMode === "list" ? "rgba(29,185,84,0.15)" : "transparent",
+                  border: viewMode === "list" ? "1px solid rgba(29,185,84,0.3)" : "1px solid #1a1a1a",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer"
+                },
+                "aria-label": "List view",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  List,
+                  {
+                    size: 15,
+                    color: viewMode === "list" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: onNewDoc,
+                "data-ocid": "library.create.primary_button",
+                style: {
+                  width: 32,
+                  height: 32,
+                  borderRadius: 8,
+                  background: "var(--accent-color, #1DB954)",
+                  border: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer"
+                },
+                "aria-label": "New document",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16, color: "#000" })
+              }
+            )
+          ] })
         ]
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          fontSize: 12,
-          color: "#8A8A8A",
-          padding: "2px 16px 12px"
-        },
-        children: [
-          sorted.length,
-          " screenplay",
-          sorted.length !== 1 ? "s" : ""
-        ]
-      }
-    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 12, color: "#8a8a8a", padding: "0 16px 12px" }, children: [
+      sorted.length,
+      " ",
+      sorted.length === 1 ? "project" : "projects"
+    ] }),
     isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
         style: { padding: "40px 20px", textAlign: "center" },
         "data-ocid": "library.loading_state",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { color: "#8A8A8A", fontSize: 14 }, children: "Loading..." })
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              width: 28,
+              height: 28,
+              borderRadius: "50%",
+              border: "2px solid #1A1A1A",
+              borderTopColor: "var(--accent-color, #1DB954)",
+              margin: "0 auto"
+            }
+          }
+        )
       }
     ) : sorted.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
@@ -29739,15 +30145,16 @@ function LibraryScreen({
                 color: "#fff",
                 marginBottom: 6
               },
-              children: "No scripts in library"
+              children: "No projects yet"
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8A8A8A", marginBottom: 18 }, children: "Create your first screenplay to get started." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8a8a8a", marginBottom: 18 }, children: "Tap + to create your first screenplay or novel." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
               type: "button",
               onClick: onNewDoc,
+              "data-ocid": "library.empty.primary_button",
               style: {
                 padding: "10px 24px",
                 borderRadius: 10,
@@ -29758,90 +30165,82 @@ function LibraryScreen({
                 border: "none",
                 cursor: "pointer"
               },
-              "data-ocid": "library.empty.primary_button",
-              children: "New Script"
+              children: "New Project"
             }
           )
         ]
       }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        style: {
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 8,
-          padding: "0 12px 16px"
-        },
-        "data-ocid": "library.list",
-        children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            onClick: () => onOpenDoc(doc.id),
-            "data-ocid": `library.script.item.${idx + 1}`,
-            style: {
-              background: "#0d0d0d",
-              border: "1px solid rgba(29,185,84,0.12)",
-              borderRadius: 12,
-              padding: 0,
-              cursor: "pointer",
-              textAlign: "left",
-              display: "flex",
-              flexDirection: "column",
-              overflow: "hidden",
-              height: 105,
-              boxShadow: "0 0 8px rgba(29,185,84,0.06)"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  style: {
-                    height: 3,
-                    background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
-                    flexShrink: 0
+    ) : viewMode === "grid" ? (
+      /* GRID MODE — 2:3 poster ratio */
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            display: "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 15,
+            padding: "0 20px 20px"
+          },
+          "data-ocid": "library.list",
+          children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              onClick: () => onOpenDoc(doc.id),
+              "data-ocid": `library.script.item.${idx + 1}`,
+              style: {
+                aspectRatio: "2 / 3",
+                borderRadius: 20,
+                background: "#121212",
+                border: "1px solid #1a1a1a",
+                overflow: "hidden",
+                cursor: "pointer",
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                padding: 0
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      height: 4,
+                      background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
+                      flexShrink: 0
+                    }
                   }
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  style: {
-                    flex: 1,
-                    padding: "8px 10px 6px",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          width: 24,
-                          height: 24,
-                          borderRadius: 6,
-                          background: "#1A1A1A",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center"
-                        },
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Film,
-                          {
-                            size: 12,
-                            color: CARD_ACCENTS[idx % CARD_ACCENTS.length]
-                          }
-                        )
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      flex: 1,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    },
+                    children: getDocIcon(
+                      doc,
+                      40,
+                      `${CARD_ACCENTS[idx % CARD_ACCENTS.length]}55`
+                    )
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    style: {
+                      padding: "12px 10px",
+                      background: "rgba(0,0,0,0.5)",
+                      borderTop: "1px solid #1a1a1a"
+                    },
+                    children: [
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
                           style: {
-                            fontSize: 12,
+                            fontSize: 13,
                             fontWeight: 700,
                             color: "#fff",
                             lineHeight: 1.3,
@@ -29849,7 +30248,8 @@ function LibraryScreen({
                             display: "-webkit-box",
                             WebkitLineClamp: 2,
                             WebkitBoxOrient: "vertical",
-                            marginBottom: 3
+                            marginBottom: 4,
+                            textAlign: "left"
                           },
                           children: doc.title
                         }
@@ -29857,8 +30257,13 @@ function LibraryScreen({
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
                         "div",
                         {
-                          style: { fontSize: 11, color: "#8A8A8A", marginBottom: 2 },
-                          children: "Screenplay"
+                          style: {
+                            fontSize: 10,
+                            color: "#8a8a8a",
+                            textAlign: "left",
+                            marginBottom: 2
+                          },
+                          children: doc.formatType || "Screenplay"
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -29866,7 +30271,8 @@ function LibraryScreen({
                         {
                           style: {
                             fontSize: 10,
-                            color: "#5A5A5A",
+                            color: "#5a5a5a",
+                            textAlign: "left",
                             whiteSpace: "nowrap",
                             overflow: "hidden",
                             textOverflow: "ellipsis"
@@ -29874,15 +30280,86 @@ function LibraryScreen({
                           children: formatRelativeTime(doc.lastEdited)
                         }
                       )
-                    ] })
-                  ]
-                }
-              )
-            ]
-          },
-          doc.id
-        ))
-      }
+                    ]
+                  }
+                )
+              ]
+            },
+            doc.id
+          ))
+        }
+      )
+    ) : (
+      /* LIST MODE */
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: { padding: "0 16px", paddingBottom: 16 },
+          "data-ocid": "library.list",
+          children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "button",
+            {
+              type: "button",
+              onClick: () => onOpenDoc(doc.id),
+              "data-ocid": `library.script.item.${idx + 1}`,
+              style: {
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "14px 0",
+                borderBottom: "1px solid #1a1a1a",
+                width: "100%",
+                background: "transparent",
+                cursor: "pointer",
+                textAlign: "left",
+                border: "none"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      width: 40,
+                      height: 40,
+                      borderRadius: "50%",
+                      background: "#1a1a1a",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      flexShrink: 0
+                    },
+                    children: getDocIcon(doc, 18, CARD_ACCENTS[idx % CARD_ACCENTS.length])
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, minWidth: 0 }, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        fontSize: 14,
+                        fontWeight: 700,
+                        color: "#fff",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        marginBottom: 3
+                      },
+                      children: doc.title
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 12, color: "#8a8a8a" }, children: [
+                    doc.formatType || "Screenplay",
+                    " •",
+                    " ",
+                    formatRelativeTime(doc.lastEdited)
+                  ] })
+                ] })
+              ]
+            },
+            doc.id
+          ))
+        }
+      )
     )
   ] });
 }
@@ -29982,9 +30459,10 @@ if ("serviceWorker" in navigator) {
   });
 }
 function App() {
-  const [activeTab, setActiveTab] = reactExports.useState("Create");
+  const [activeTab, setActiveTab] = reactExports.useState("Home");
   const [activeDocId, setActiveDocId] = reactExports.useState(null);
   const [showSettings, setShowSettings] = reactExports.useState(false);
+  const [showNewDocModal, setShowNewDocModal] = reactExports.useState(false);
   const [isInitialized, setIsInitialized] = reactExports.useState(false);
   const [menuTrigger, setMenuTrigger] = reactExports.useState(0);
   const [isEditingTitle, setIsEditingTitle] = reactExports.useState(false);
@@ -30006,46 +30484,38 @@ function App() {
       if (!activeDocId) setActiveDocId(docs[0].id);
       setIsInitialized(true);
     } else {
-      const newId = generateUUID();
-      createDoc.mutateAsync({
-        id: newId,
-        title: "Untitled Script",
-        content: "",
-        formatType: "Action"
-      }).then(() => {
-        setActiveDocId(newId);
-        setIsInitialized(true);
-      }).catch(() => {
-        setIsInitialized(true);
-      });
+      setIsInitialized(true);
     }
   }, [actor, docsLoading, docs.length]);
   const activeDoc = docs.find((d2) => d2.id === activeDocId) ?? null;
-  const handleNewDoc = reactExports.useCallback(async () => {
-    const newId = generateUUID();
-    await createDoc.mutateAsync({
-      id: newId,
-      title: "Untitled Script",
-      content: "",
-      formatType: "Action"
-    });
-    setActiveDocId(newId);
-    setActiveTab("Create");
-  }, [createDoc]);
+  const handleNewDoc = reactExports.useCallback(
+    async (type = "Screenplay") => {
+      const newId = generateUUID();
+      await createDoc.mutateAsync({
+        id: newId,
+        title: "Untitled Script",
+        content: "",
+        formatType: type
+      });
+      setActiveDocId(newId);
+      setActiveTab("Create");
+    },
+    [createDoc]
+  );
   const handleOpenDoc = reactExports.useCallback((id) => {
     setActiveDocId(id);
     setActiveTab("Create");
   }, []);
   const handleDocumentDeleted = reactExports.useCallback(() => {
-    var _a3;
-    if (docs.length > 1) {
-      const remaining = docs.filter((d2) => d2.id !== activeDocId);
-      setActiveDocId(((_a3 = remaining[0]) == null ? void 0 : _a3.id) ?? null);
+    const remaining = docs.filter((d2) => d2.id !== activeDocId);
+    if (remaining.length > 0) {
+      setActiveDocId(remaining[0].id);
+      setActiveTab("Create");
     } else {
       setActiveDocId(null);
-      handleNewDoc();
+      setActiveTab("Home");
     }
-  }, [docs, activeDocId, handleNewDoc]);
+  }, [docs, activeDocId]);
   const saveTitleEdit = reactExports.useCallback(async () => {
     setIsEditingTitle(false);
     if (!activeDocId) return;
@@ -30065,53 +30535,75 @@ function App() {
       setIsEditingTitle(true);
     }
   }, [activeTab, activeDoc]);
-  const lastEditedText = activeDoc ? `Screenplay • Last edited ${formatRelativeTime(activeDoc.lastEdited)}` : "Screenplay • New document";
+  const lastEditedText = activeDoc ? `Screenplay • ${formatRelativeTime(activeDoc.lastEdited)}` : "Screenplay • New document";
+  const renderHeaderCenter = () => {
+    if (activeTab === "Create") {
+      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-header-center", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }),
+        isEditingTitle ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            className: "writefy-title-input",
+            value: titleInput,
+            onChange: (e) => setTitleInput(e.target.value),
+            onBlur: saveTitleEdit,
+            onKeyDown: (e) => {
+              if (e.key === "Enter") saveTitleEdit();
+              if (e.key === "Escape") setIsEditingTitle(false);
+            },
+            autoFocus: true,
+            "data-ocid": "header.title.input"
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "writefy-doc-title",
+            onClick: startTitleEdit,
+            style: { cursor: "text" },
+            "data-ocid": "header.title.button",
+            children: (activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-doc-meta", children: lastEditedText })
+      ] });
+    }
+    const tabTitles = {
+      Home: "Home",
+      Library: "Library",
+      Create: "Create",
+      Play: "Play"
+    };
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writefy-header-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-tab-title", children: tabTitles[activeTab] }) });
+  };
+  const handlePlusPress = () => {
+    setShowNewDocModal(true);
+  };
+  const handleNewDocModalSelect = async (type) => {
+    setShowNewDocModal(false);
+    await handleNewDoc(type);
+  };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, {}),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-app", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "writefy-header", children: [
-        activeTab === "Create" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "writefy-header", "data-ocid": "header.section", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
             type: "button",
             className: "writefy-icon-btn",
-            onClick: () => setMenuTrigger((n) => n + 1),
+            onClick: () => {
+              if (activeTab === "Create") {
+                setMenuTrigger((n) => n + 1);
+              }
+            },
             "aria-label": "Document options",
             "data-ocid": "header.menu.button",
+            style: { opacity: activeTab === "Create" ? 1 : 0.3 },
             children: /* @__PURE__ */ jsxRuntimeExports.jsx(EllipsisVertical, { size: 20 })
           }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: 36, height: 36, flexShrink: 0 } }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-header-center", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }),
-          isEditingTitle && activeTab === "Create" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "input",
-            {
-              className: "writefy-title-input",
-              value: titleInput,
-              onChange: (e) => setTitleInput(e.target.value),
-              onBlur: saveTitleEdit,
-              onKeyDown: (e) => {
-                if (e.key === "Enter") saveTitleEdit();
-                if (e.key === "Escape") setIsEditingTitle(false);
-              },
-              autoFocus: true,
-              "data-ocid": "header.title.input"
-            }
-          ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              className: "writefy-doc-title",
-              onClick: startTitleEdit,
-              style: {
-                cursor: activeTab === "Create" ? "text" : "default"
-              },
-              "data-ocid": "header.title.button",
-              children: (activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-doc-meta", children: lastEditedText })
-        ] }),
+        ),
+        renderHeaderCenter(),
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           "button",
           {
@@ -30131,7 +30623,7 @@ function App() {
             docs,
             isLoading: docsLoading,
             onOpenDoc: handleOpenDoc,
-            onNewDoc: handleNewDoc
+            onNewDoc: handlePlusPress
           }
         ),
         activeTab === "Library" && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30140,7 +30632,7 @@ function App() {
             docs,
             isLoading: docsLoading,
             onOpenDoc: handleOpenDoc,
-            onNewDoc: handleNewDoc
+            onNewDoc: handlePlusPress
           }
         ),
         activeTab === "Create" && /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30190,7 +30682,7 @@ function App() {
           {
             type: "button",
             className: `writefy-nav-item${activeTab === "Create" ? " active" : ""}`,
-            onClick: () => setActiveTab("Create"),
+            onClick: handlePlusPress,
             "data-ocid": "nav.create.link",
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -30233,7 +30725,14 @@ function App() {
           }
         )
       ] }),
-      showSettings && /* @__PURE__ */ jsxRuntimeExports.jsx(SettingsOverlay, { onClose: () => setShowSettings(false) })
+      showSettings && /* @__PURE__ */ jsxRuntimeExports.jsx(SettingsOverlay, { onClose: () => setShowSettings(false) }),
+      showNewDocModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        NewDocModal,
+        {
+          onSelect: handleNewDocModalSelect,
+          onClose: () => setShowNewDocModal(false)
+        }
+      )
     ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
         @media (min-width: 480px) {

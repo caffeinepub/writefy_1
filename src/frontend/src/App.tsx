@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { BookOpen, Home, MoreVertical, Plus, Settings } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import NewDocModal from "./components/NewDocModal";
 import SettingsOverlay from "./components/SettingsOverlay";
 import { useActor } from "./hooks/useActor";
 import {
@@ -24,13 +25,14 @@ if ("serviceWorker" in navigator) {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TabName>("Create");
+  const [activeTab, setActiveTab] = useState<TabName>("Home");
   const [activeDocId, setActiveDocId] = useState<string | null>(null);
   const [showSettings, setShowSettings] = useState(false);
+  const [showNewDocModal, setShowNewDocModal] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [menuTrigger, setMenuTrigger] = useState(0);
 
-  // Inline title editing state
+  // Inline title editing state (only for Create tab)
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [titleInput, setTitleInput] = useState("");
 
@@ -50,7 +52,7 @@ export default function App() {
     }
   }, []);
 
-  // Initialize: create first document if none exist
+  // Initialize: set first document id if available
   // biome-ignore lint/correctness/useExhaustiveDependencies: only run when actor/loading state changes
   useEffect(() => {
     if (!actor || docsLoading) return;
@@ -58,37 +60,27 @@ export default function App() {
       if (!activeDocId) setActiveDocId(docs[0].id);
       setIsInitialized(true);
     } else {
-      const newId = generateUUID();
-      createDoc
-        .mutateAsync({
-          id: newId,
-          title: "Untitled Script",
-          content: "",
-          formatType: "Action",
-        })
-        .then(() => {
-          setActiveDocId(newId);
-          setIsInitialized(true);
-        })
-        .catch(() => {
-          setIsInitialized(true);
-        });
+      // No docs yet — don't auto-create; user will use the (+) modal
+      setIsInitialized(true);
     }
   }, [actor, docsLoading, docs.length]);
 
   const activeDoc = docs.find((d) => d.id === activeDocId) ?? null;
 
-  const handleNewDoc = useCallback(async () => {
-    const newId = generateUUID();
-    await createDoc.mutateAsync({
-      id: newId,
-      title: "Untitled Script",
-      content: "",
-      formatType: "Action",
-    });
-    setActiveDocId(newId);
-    setActiveTab("Create");
-  }, [createDoc]);
+  const handleNewDoc = useCallback(
+    async (type: "Novel" | "Screenplay" = "Screenplay") => {
+      const newId = generateUUID();
+      await createDoc.mutateAsync({
+        id: newId,
+        title: "Untitled Script",
+        content: "",
+        formatType: type,
+      });
+      setActiveDocId(newId);
+      setActiveTab("Create");
+    },
+    [createDoc],
+  );
 
   const handleOpenDoc = useCallback((id: string) => {
     setActiveDocId(id);
@@ -96,14 +88,15 @@ export default function App() {
   }, []);
 
   const handleDocumentDeleted = useCallback(() => {
-    if (docs.length > 1) {
-      const remaining = docs.filter((d) => d.id !== activeDocId);
-      setActiveDocId(remaining[0]?.id ?? null);
+    const remaining = docs.filter((d) => d.id !== activeDocId);
+    if (remaining.length > 0) {
+      setActiveDocId(remaining[0].id);
+      setActiveTab("Create");
     } else {
       setActiveDocId(null);
-      handleNewDoc();
+      setActiveTab("Home");
     }
-  }, [docs, activeDocId, handleNewDoc]);
+  }, [docs, activeDocId]);
 
   // Handle inline title save
   const saveTitleEdit = useCallback(async () => {
@@ -129,64 +122,90 @@ export default function App() {
   }, [activeTab, activeDoc]);
 
   const lastEditedText = activeDoc
-    ? `Screenplay \u2022 Last edited ${formatRelativeTime(activeDoc.lastEdited)}`
+    ? `Screenplay \u2022 ${formatRelativeTime(activeDoc.lastEdited)}`
     : "Screenplay \u2022 New document";
+
+  // Header center content
+  const renderHeaderCenter = () => {
+    if (activeTab === "Create") {
+      return (
+        <div className="writefy-header-center">
+          <span className="writefy-brand">Writefy</span>
+          {isEditingTitle ? (
+            <input
+              className="writefy-title-input"
+              value={titleInput}
+              onChange={(e) => setTitleInput(e.target.value)}
+              onBlur={saveTitleEdit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") saveTitleEdit();
+                if (e.key === "Escape") setIsEditingTitle(false);
+              }}
+              // biome-ignore lint/a11y/noAutofocus: intentional inline rename
+              autoFocus
+              data-ocid="header.title.input"
+            />
+          ) : (
+            <button
+              type="button"
+              className="writefy-doc-title"
+              onClick={startTitleEdit}
+              style={{ cursor: "text" }}
+              data-ocid="header.title.button"
+            >
+              {activeDoc?.title ?? "Untitled Script"}
+            </button>
+          )}
+          <span className="writefy-doc-meta">{lastEditedText}</span>
+        </div>
+      );
+    }
+    const tabTitles: Record<TabName, string> = {
+      Home: "Home",
+      Library: "Library",
+      Create: "Create",
+      Play: "Play",
+    };
+    return (
+      <div className="writefy-header-center">
+        <span className="writefy-tab-title">{tabTitles[activeTab]}</span>
+      </div>
+    );
+  };
+
+  const handlePlusPress = () => {
+    setShowNewDocModal(true);
+  };
+
+  const handleNewDocModalSelect = async (type: "Novel" | "Screenplay") => {
+    setShowNewDocModal(false);
+    await handleNewDoc(type);
+  };
 
   return (
     <>
       <Toaster />
       <div className="writefy-app">
         {/* ── Fixed Header ── */}
-        <header className="writefy-header">
-          {/* LEFT: Three-dot menu (only shown on Create tab) */}
-          {activeTab === "Create" ? (
-            <button
-              type="button"
-              className="writefy-icon-btn"
-              onClick={() => setMenuTrigger((n) => n + 1)}
-              aria-label="Document options"
-              data-ocid="header.menu.button"
-            >
-              <MoreVertical size={20} />
-            </button>
-          ) : (
-            <div style={{ width: 36, height: 36, flexShrink: 0 }} />
-          )}
+        <header className="writefy-header" data-ocid="header.section">
+          {/* LEFT: Three-dot menu — always visible */}
+          <button
+            type="button"
+            className="writefy-icon-btn"
+            onClick={() => {
+              if (activeTab === "Create") {
+                setMenuTrigger((n) => n + 1);
+              }
+            }}
+            aria-label="Document options"
+            data-ocid="header.menu.button"
+            style={{ opacity: activeTab === "Create" ? 1 : 0.3 }}
+          >
+            <MoreVertical size={20} />
+          </button>
 
-          {/* CENTER: Title area */}
-          <div className="writefy-header-center">
-            <span className="writefy-brand">Writefy</span>
-
-            {isEditingTitle && activeTab === "Create" ? (
-              <input
-                className="writefy-title-input"
-                value={titleInput}
-                onChange={(e) => setTitleInput(e.target.value)}
-                onBlur={saveTitleEdit}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") saveTitleEdit();
-                  if (e.key === "Escape") setIsEditingTitle(false);
-                }}
-                // biome-ignore lint/a11y/noAutofocus: intentional inline rename
-                autoFocus
-                data-ocid="header.title.input"
-              />
-            ) : (
-              <button
-                type="button"
-                className="writefy-doc-title"
-                onClick={startTitleEdit}
-                style={{
-                  cursor: activeTab === "Create" ? "text" : "default",
-                }}
-                data-ocid="header.title.button"
-              >
-                {activeDoc?.title ?? "Untitled Script"}
-              </button>
-            )}
-
-            <span className="writefy-doc-meta">{lastEditedText}</span>
-          </div>
+          {/* CENTER */}
+          {renderHeaderCenter()}
 
           {/* RIGHT: Settings */}
           <button
@@ -207,7 +226,7 @@ export default function App() {
               docs={docs}
               isLoading={docsLoading}
               onOpenDoc={handleOpenDoc}
-              onNewDoc={handleNewDoc}
+              onNewDoc={handlePlusPress}
             />
           )}
           {activeTab === "Library" && (
@@ -215,7 +234,7 @@ export default function App() {
               docs={docs}
               isLoading={docsLoading}
               onOpenDoc={handleOpenDoc}
-              onNewDoc={handleNewDoc}
+              onNewDoc={handlePlusPress}
             />
           )}
           {activeTab === "Create" && (
@@ -255,11 +274,11 @@ export default function App() {
             <span className="writefy-nav-label">Library</span>
           </button>
 
-          {/* Create: icon only, no circle wrapper, soft glow when active */}
+          {/* Create: always opens modal */}
           <button
             type="button"
             className={`writefy-nav-item${activeTab === "Create" ? " active" : ""}`}
-            onClick={() => setActiveTab("Create")}
+            onClick={handlePlusPress}
             data-ocid="nav.create.link"
           >
             <div
@@ -294,6 +313,13 @@ export default function App() {
 
         {showSettings && (
           <SettingsOverlay onClose={() => setShowSettings(false)} />
+        )}
+
+        {showNewDocModal && (
+          <NewDocModal
+            onSelect={handleNewDocModalSelect}
+            onClose={() => setShowNewDocModal(false)}
+          />
         )}
       </div>
 

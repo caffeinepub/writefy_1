@@ -167,9 +167,14 @@ export default function CreateScreen({
     }
   };
 
+  // FIX: close overlays BEFORE calling onDocumentDeleted to avoid stale state
   const handleDeleteConfirm = async () => {
     if (!activeDocId) return;
-    await deleteDoc.mutateAsync(activeDocId);
+    try {
+      await deleteDoc.mutateAsync(activeDocId);
+    } catch {
+      // ignore
+    }
     setShowDelete(false);
     setShowMenu(false);
     onDocumentDeleted();
@@ -205,8 +210,36 @@ export default function CreateScreen({
     );
   }
 
+  if (!activeDocId) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          flexDirection: "column",
+          gap: 12,
+          padding: 24,
+          minHeight: "calc(100dvh - 176px)",
+          textAlign: "center",
+        }}
+        data-ocid="create.empty_state"
+      >
+        <div style={{ fontSize: 32, marginBottom: 4 }}>✍️</div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>
+          No script open
+        </div>
+        <div style={{ fontSize: 13, color: "#8a8a8a" }}>
+          Use the + button to start writing.
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
+      {/* Save indicator dot */}
       <div
         style={{
           position: "fixed",

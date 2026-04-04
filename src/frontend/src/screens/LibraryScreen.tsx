@@ -1,4 +1,5 @@
-import { BookOpen, Film, Plus } from "lucide-react";
+import { BookOpen, Film, LayoutGrid, List, Plus } from "lucide-react";
+import { useState } from "react";
 import type { DocumentMeta } from "../backend.d";
 import { formatRelativeTime } from "../utils/formatTime";
 
@@ -9,7 +10,6 @@ interface LibraryScreenProps {
   onNewDoc: () => void;
 }
 
-// Accent colors for card top bands — cycles through these
 const CARD_ACCENTS = [
   "var(--accent-color, #1DB954)",
   "#3B82F6",
@@ -25,66 +25,127 @@ export default function LibraryScreen({
   onOpenDoc,
   onNewDoc,
 }: LibraryScreenProps) {
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
   const sorted = [...docs].sort(
     (a, b) => Number(b.lastEdited) - Number(a.lastEdited),
   );
 
+  const getDocIcon = (doc: DocumentMeta, size: number, color: string) => {
+    if (doc.formatType === "Novel") {
+      return <BookOpen size={size} color={color} strokeWidth={1.5} />;
+    }
+    return <Film size={size} color={color} strokeWidth={1.5} />;
+  };
+
   return (
     <div style={{ background: "#000", minHeight: "100%" }}>
-      {/* Header */}
+      {/* Inline header row */}
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "16px 16px 4px",
+          padding: "20px 16px 12px",
         }}
       >
-        <div
+        <span
           style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
+            fontSize: 22,
+            fontWeight: 800,
+            color: "#fff",
           }}
         >
-          <BookOpen size={20} color="var(--accent-color, #1DB954)" />
-          <span
+          Library
+        </span>
+
+        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+          {/* Grid toggle */}
+          <button
+            type="button"
+            onClick={() => setViewMode("grid")}
+            data-ocid="library.grid.toggle"
             style={{
-              fontSize: 22,
-              fontWeight: 800,
-              color: "#fff",
+              width: 32,
+              height: 32,
+              borderRadius: 8,
+              background:
+                viewMode === "grid" ? "rgba(29,185,84,0.15)" : "transparent",
+              border:
+                viewMode === "grid"
+                  ? "1px solid rgba(29,185,84,0.3)"
+                  : "1px solid #1a1a1a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
             }}
+            aria-label="Grid view"
           >
-            Library
-          </span>
+            <LayoutGrid
+              size={15}
+              color={
+                viewMode === "grid" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+              }
+            />
+          </button>
+
+          {/* List toggle */}
+          <button
+            type="button"
+            onClick={() => setViewMode("list")}
+            data-ocid="library.list.toggle"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 8,
+              background:
+                viewMode === "list" ? "rgba(29,185,84,0.15)" : "transparent",
+              border:
+                viewMode === "list"
+                  ? "1px solid rgba(29,185,84,0.3)"
+                  : "1px solid #1a1a1a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            aria-label="List view"
+          >
+            <List
+              size={15}
+              color={
+                viewMode === "list" ? "var(--accent-color, #1DB954)" : "#8a8a8a"
+              }
+            />
+          </button>
+
+          {/* New doc button */}
+          <button
+            type="button"
+            onClick={onNewDoc}
+            data-ocid="library.create.primary_button"
+            style={{
+              width: 32,
+              height: 32,
+              borderRadius: 8,
+              background: "var(--accent-color, #1DB954)",
+              border: "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
+            }}
+            aria-label="New document"
+          >
+            <Plus size={16} color="#000" />
+          </button>
         </div>
-        <button
-          type="button"
-          onClick={onNewDoc}
-          style={{
-            width: 32,
-            height: 32,
-            borderRadius: 8,
-            background: "var(--accent-color, #1DB954)",
-            border: "none",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
-          }}
-          data-ocid="library.create.primary_button"
-        >
-          <Plus size={16} color="#000" />
-        </button>
       </div>
-      <div
-        style={{
-          fontSize: 12,
-          color: "#8A8A8A",
-          padding: "2px 16px 12px",
-        }}
-      >
-        {sorted.length} screenplay{sorted.length !== 1 ? "s" : ""}
+
+      {/* Doc count */}
+      <div style={{ fontSize: 12, color: "#8a8a8a", padding: "0 16px 12px" }}>
+        {sorted.length} {sorted.length === 1 ? "project" : "projects"}
       </div>
 
       {isLoading ? (
@@ -92,7 +153,16 @@ export default function LibraryScreen({
           style={{ padding: "40px 20px", textAlign: "center" }}
           data-ocid="library.loading_state"
         >
-          <div style={{ color: "#8A8A8A", fontSize: 14 }}>Loading...</div>
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: "50%",
+              border: "2px solid #1A1A1A",
+              borderTopColor: "var(--accent-color, #1DB954)",
+              margin: "0 auto",
+            }}
+          />
         </div>
       ) : sorted.length === 0 ? (
         <div
@@ -108,14 +178,15 @@ export default function LibraryScreen({
               marginBottom: 6,
             }}
           >
-            No scripts in library
+            No projects yet
           </div>
-          <div style={{ fontSize: 12, color: "#8A8A8A", marginBottom: 18 }}>
-            Create your first screenplay to get started.
+          <div style={{ fontSize: 12, color: "#8a8a8a", marginBottom: 18 }}>
+            Tap + to create your first screenplay or novel.
           </div>
           <button
             type="button"
             onClick={onNewDoc}
+            data-ocid="library.empty.primary_button"
             style={{
               padding: "10px 24px",
               borderRadius: 10,
@@ -126,18 +197,18 @@ export default function LibraryScreen({
               border: "none",
               cursor: "pointer",
             }}
-            data-ocid="library.empty.primary_button"
           >
-            New Script
+            New Project
           </button>
         </div>
-      ) : (
+      ) : viewMode === "grid" ? (
+        /* GRID MODE — 2:3 poster ratio */
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 8,
-            padding: "0 12px 16px",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: 15,
+            padding: "0 20px 20px",
           }}
           data-ocid="library.list"
         >
@@ -148,89 +219,152 @@ export default function LibraryScreen({
               onClick={() => onOpenDoc(doc.id)}
               data-ocid={`library.script.item.${idx + 1}`}
               style={{
-                background: "#0d0d0d",
-                border: "1px solid rgba(29,185,84,0.12)",
-                borderRadius: 12,
-                padding: 0,
+                aspectRatio: "2 / 3",
+                borderRadius: 20,
+                background: "#121212",
+                border: "1px solid #1a1a1a",
+                overflow: "hidden",
                 cursor: "pointer",
-                textAlign: "left",
+                position: "relative",
                 display: "flex",
                 flexDirection: "column",
-                overflow: "hidden",
-                height: 105,
-                boxShadow: "0 0 8px rgba(29,185,84,0.06)",
+                padding: 0,
               }}
             >
               {/* Top accent band */}
               <div
                 style={{
-                  height: 3,
+                  height: 4,
                   background: CARD_ACCENTS[idx % CARD_ACCENTS.length],
                   flexShrink: 0,
                 }}
               />
 
-              {/* Card body */}
+              {/* Icon area */}
               <div
                 style={{
                   flex: 1,
-                  padding: "8px 10px 6px",
                   display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                {/* Film icon */}
+                {getDocIcon(
+                  doc,
+                  40,
+                  `${CARD_ACCENTS[idx % CARD_ACCENTS.length]}55`,
+                )}
+              </div>
+
+              {/* Bottom overlay */}
+              <div
+                style={{
+                  padding: "12px 10px",
+                  background: "rgba(0,0,0,0.5)",
+                  borderTop: "1px solid #1a1a1a",
+                }}
+              >
                 <div
                   style={{
-                    width: 24,
-                    height: 24,
-                    borderRadius: 6,
-                    background: "#1A1A1A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: "#fff",
+                    lineHeight: 1.3,
+                    overflow: "hidden",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: "vertical",
+                    marginBottom: 4,
+                    textAlign: "left",
                   }}
                 >
-                  <Film
-                    size={12}
-                    color={CARD_ACCENTS[idx % CARD_ACCENTS.length]}
-                  />
+                  {doc.title}
                 </div>
+                <div
+                  style={{
+                    fontSize: 10,
+                    color: "#8a8a8a",
+                    textAlign: "left",
+                    marginBottom: 2,
+                  }}
+                >
+                  {doc.formatType || "Screenplay"}
+                </div>
+                <div
+                  style={{
+                    fontSize: 10,
+                    color: "#5a5a5a",
+                    textAlign: "left",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {formatRelativeTime(doc.lastEdited)}
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      ) : (
+        /* LIST MODE */
+        <div
+          style={{ padding: "0 16px", paddingBottom: 16 }}
+          data-ocid="library.list"
+        >
+          {sorted.map((doc, idx) => (
+            <button
+              key={doc.id}
+              type="button"
+              onClick={() => onOpenDoc(doc.id)}
+              data-ocid={`library.script.item.${idx + 1}`}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                padding: "14px 0",
+                borderBottom: "1px solid #1a1a1a",
+                width: "100%",
+                background: "transparent",
+                cursor: "pointer",
+                textAlign: "left",
+                border: "none",
+              }}
+            >
+              {/* Icon circle */}
+              <div
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: "50%",
+                  background: "#1a1a1a",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                {getDocIcon(doc, 18, CARD_ACCENTS[idx % CARD_ACCENTS.length])}
+              </div>
 
-                {/* Title + meta */}
-                <div>
-                  <div
-                    style={{
-                      fontSize: 12,
-                      fontWeight: 700,
-                      color: "#fff",
-                      lineHeight: 1.3,
-                      overflow: "hidden",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      marginBottom: 3,
-                    }}
-                  >
-                    {doc.title}
-                  </div>
-                  <div
-                    style={{ fontSize: 11, color: "#8A8A8A", marginBottom: 2 }}
-                  >
-                    Screenplay
-                  </div>
-                  <div
-                    style={{
-                      fontSize: 10,
-                      color: "#5A5A5A",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                    }}
-                  >
-                    {formatRelativeTime(doc.lastEdited)}
-                  </div>
+              {/* Title + meta */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div
+                  style={{
+                    fontSize: 14,
+                    fontWeight: 700,
+                    color: "#fff",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                    marginBottom: 3,
+                  }}
+                >
+                  {doc.title}
+                </div>
+                <div style={{ fontSize: 12, color: "#8a8a8a" }}>
+                  {doc.formatType || "Screenplay"} •{" "}
+                  {formatRelativeTime(doc.lastEdited)}
                 </div>
               </div>
             </button>

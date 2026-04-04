@@ -106,6 +106,15 @@ function detectNextLineType(currentType: LineType): LineType {
   return "action";
 }
 
+// Map LineType to slab CSS class
+const SLAB_CLASS: Record<LineType, string> = {
+  slugline: "slab-slugline",
+  action: "slab-action",
+  character: "slab-character",
+  dialogue: "slab-dialogue",
+  parenthetical: "slab-parenthetical",
+};
+
 export default function ScreenplayEditor({
   document,
   onContentChange,
@@ -234,12 +243,6 @@ export default function ScreenplayEditor({
     [lines, formatMode, handleFormatModeChange, emitChange],
   );
 
-  const getLineHeight = (text: string) => {
-    const chars = text.length;
-    if (chars < 40) return 1;
-    return Math.ceil(chars / 40);
-  };
-
   const sluglineCount = lines.filter((l) => l.type === "slugline").length;
 
   const handleOutlineItemClick = (lineId: number) => {
@@ -250,7 +253,7 @@ export default function ScreenplayEditor({
 
   return (
     <div style={{ background: "#000", minHeight: "100%" }}>
-      {/* Editor Tabs */}
+      {/* Write / Outline tabs */}
       <div className="editor-tabs">
         <button
           type="button"
@@ -287,111 +290,68 @@ export default function ScreenplayEditor({
             ))}
           </div>
 
-          {/* Screenplay editor */}
-          <div className="screenplay-editor" data-ocid="editor.canvas_target">
-            {/* Line numbers */}
-            <div className="line-numbers" aria-hidden="true">
-              {lines.map((line, idx) => (
-                <div
-                  key={line.id}
-                  style={{
-                    lineHeight: "1.6",
-                    height: `${getLineHeight(line.text) * 1.6}em`,
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "flex-end",
-                    paddingTop: "2px",
-                    color: line.id === activeLineId ? "#1DB954" : "#6F6F6F",
+          {/* Writing Slab */}
+          <div className="writing-slab" data-ocid="editor.canvas_target">
+            {lines.map((line) => (
+              <div
+                key={line.id}
+                className={`${SLAB_CLASS[line.type]}${
+                  line.id === activeLineId ? " slab-active" : ""
+                }`}
+                data-ocid={
+                  line.id === activeLineId ? "editor.active.row" : undefined
+                }
+              >
+                <textarea
+                  ref={(el) => {
+                    if (el) lineRefs.current.set(line.id, el);
+                    else lineRefs.current.delete(line.id);
                   }}
-                >
-                  {idx + 1}
-                </div>
-              ))}
-            </div>
-
-            {/* Text area */}
-            <div style={{ flex: 1, paddingRight: "16px" }}>
-              {lines.map((line) => (
-                <div
-                  key={line.id}
-                  className={`editor-line ${line.type}${line.id === activeLineId ? " active-line" : ""}`}
-                  data-ocid={
-                    line.id === activeLineId ? "editor.active.row" : undefined
+                  value={line.text}
+                  onChange={(e) => handleLineChange(line.id, e.target.value)}
+                  onFocus={() => setActiveLineId(line.id)}
+                  onKeyDown={(e) => handleKeyDown(e, line.id)}
+                  rows={1}
+                  style={{
+                    width: "100%",
+                    background: "transparent",
+                    border: "none",
+                    outline: "none",
+                    resize: "none",
+                    color: "inherit",
+                    fontSize: "inherit",
+                    lineHeight: "inherit",
+                    fontFamily: "inherit",
+                    textAlign: "inherit",
+                    fontWeight: "inherit",
+                    textTransform: "inherit",
+                    fontStyle: "inherit",
+                    caretColor: "var(--accent-color, #1DB954)",
+                    overflow: "hidden",
+                    padding: 0,
+                  }}
+                  placeholder={
+                    line.type === "character"
+                      ? "CHARACTER NAME"
+                      : line.type === "slugline"
+                        ? "INT. LOCATION - TIME"
+                        : line.type === "parenthetical"
+                          ? "(direction)"
+                          : line.type === "dialogue"
+                            ? "Dialogue..."
+                            : "Action..."
                   }
-                >
-                  <textarea
-                    ref={(el) => {
-                      if (el) lineRefs.current.set(line.id, el);
-                      else lineRefs.current.delete(line.id);
-                    }}
-                    value={line.text}
-                    onChange={(e) => handleLineChange(line.id, e.target.value)}
-                    onFocus={() => setActiveLineId(line.id)}
-                    onKeyDown={(e) => handleKeyDown(e, line.id)}
-                    rows={getLineHeight(line.text)}
-                    style={{
-                      width: "100%",
-                      background: "transparent",
-                      border: "none",
-                      outline: "none",
-                      resize: "none",
-                      fontFamily:
-                        "'JetBrains Mono', 'Courier New', Courier, monospace",
-                      fontSize: "16px",
-                      lineHeight: "1.6",
-                      color: "#ffffff",
-                      caretColor: "#1DB954",
-                      padding: 0,
-                      overflow: "hidden",
-                      textAlign: line.type === "character" ? "center" : "left",
-                      fontWeight:
-                        line.type === "character" || line.type === "slugline"
-                          ? 700
-                          : 400,
-                      textTransform:
-                        line.type === "character" ? "uppercase" : "none",
-                      fontStyle:
-                        line.type === "parenthetical" ? "italic" : "normal",
-                      paddingLeft:
-                        line.type === "character"
-                          ? "0"
-                          : line.type === "dialogue"
-                            ? "10%"
-                            : line.type === "parenthetical"
-                              ? "15%"
-                              : "0",
-                      paddingRight:
-                        line.type === "character"
-                          ? "0"
-                          : line.type === "dialogue"
-                            ? "10%"
-                            : line.type === "parenthetical"
-                              ? "15%"
-                              : "0",
-                    }}
-                    placeholder={
-                      line.type === "character"
-                        ? "CHARACTER NAME"
-                        : line.type === "slugline"
-                          ? "INT. LOCATION - TIME"
-                          : line.type === "parenthetical"
-                            ? "(direction)"
-                            : line.type === "dialogue"
-                              ? "Dialogue..."
-                              : "Action..."
-                    }
-                    spellCheck={false}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    autoCapitalize={
-                      line.type === "character" || line.type === "slugline"
-                        ? "characters"
-                        : "sentences"
-                    }
-                  />
-                </div>
-              ))}
-            </div>
+                  spellCheck={false}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  autoCapitalize={
+                    line.type === "character" || line.type === "slugline"
+                      ? "characters"
+                      : "sentences"
+                  }
+                />
+              </div>
+            ))}
           </div>
         </>
       )}
