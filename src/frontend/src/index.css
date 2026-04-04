@@ -1,0 +1,578 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Writefy dark theme — pure black + Spotify green */
+    --background: 0 0 0; /* #000000 */
+    --foreground: 1 0 0; /* #ffffff */
+    --card: 0.05 0 0; /* #0D0D0D */
+    --card-foreground: 1 0 0;
+    --popover: 0.08 0 0; /* #141414 */
+    --popover-foreground: 1 0 0;
+    --primary: 0.72 0.22 145; /* #1DB954 green */
+    --primary-foreground: 0 0 0;
+    --secondary: 0.18 0 0; /* #2B2B2B */
+    --secondary-foreground: 1 0 0;
+    --muted: 0.12 0 0; /* #1A1A1A */
+    --muted-foreground: 0.6 0 0; /* #8A8A8A */
+    --accent: 0.72 0.22 145;
+    --accent-foreground: 0 0 0;
+    --destructive: 0.55 0.22 27;
+    --destructive-foreground: 1 0 0;
+    --border: 0.14 0 0; /* #1A1A1A */
+    --input: 0.18 0 0;
+    --ring: 0.72 0.22 145;
+    --chart-1: 0.72 0.22 145;
+    --chart-2: 0.6 0.118 184;
+    --chart-3: 0.398 0.07 227;
+    --chart-4: 0.828 0.189 84;
+    --chart-5: 0.769 0.188 70;
+    --sidebar: 0.05 0 0;
+    --sidebar-foreground: 1 0 0;
+    --sidebar-primary: 0.72 0.22 145;
+    --sidebar-primary-foreground: 0 0 0;
+    --sidebar-accent: 0.18 0 0;
+    --sidebar-accent-foreground: 1 0 0;
+    --sidebar-border: 0.14 0 0;
+    --sidebar-ring: 0.72 0.22 145;
+
+    /* Custom Writefy tokens */
+    --green: #1db954;
+    --green-glow: rgba(29, 185, 84, 0.35);
+    --green-glow-strong: rgba(29, 185, 84, 0.6);
+    --green-line-bg: rgba(29, 185, 84, 0.08);
+    --surface: #0d0d0d;
+    --surface-2: #1a1a1a;
+    --chip-inactive: #2b2b2b;
+    --line-num: #6f6f6f;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbar styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1db954 #000;
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1db954;
+    border-radius: 2px;
+  }
+
+  /* Remove ALL hover effects site-wide */
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@layer components {
+  .writefy-app {
+    background: #000000;
+    min-height: 100dvh;
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .writefy-header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    z-index: 50;
+    background: #000000;
+    border-bottom: 1px solid #1a1a1a;
+    padding: 12px 20px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .writefy-icon-btn {
+    width: 44px;
+    height: 44px;
+    background: #1db954;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    flex-shrink: 0;
+  }
+
+  .writefy-icon-btn svg {
+    color: #000000;
+    width: 20px;
+    height: 20px;
+  }
+
+  .writefy-header-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 0 8px;
+  }
+
+  .writefy-brand {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1db954;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  .writefy-doc-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-top: 2px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+  }
+
+  .writefy-doc-meta {
+    font-size: 11px;
+    font-weight: 400;
+    color: #8a8a8a;
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  .writefy-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    z-index: 50;
+    background: #000000;
+    border-top: 1px solid #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80px;
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .writefy-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  .writefy-nav-item svg {
+    width: 22px;
+    height: 22px;
+    color: #8a8a8a;
+  }
+
+  .writefy-nav-item.active svg {
+    color: #1db954;
+  }
+
+  .writefy-nav-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: #8a8a8a;
+  }
+
+  .writefy-nav-item.active .writefy-nav-label {
+    color: #1db954;
+  }
+
+  .writefy-create-btn {
+    width: 56px;
+    height: 56px;
+    background: #1db954;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 16px rgba(29, 185, 84, 0.5);
+    margin-bottom: 4px;
+    flex-shrink: 0;
+  }
+
+  .writefy-create-btn.active {
+    box-shadow: 0 0 24px rgba(29, 185, 84, 0.7);
+  }
+
+  .writefy-create-btn svg {
+    color: #000000;
+    width: 24px;
+    height: 24px;
+  }
+
+  .writefy-screen {
+    flex: 1;
+    overflow-y: auto;
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  /* Editor tabs */
+  .editor-tabs {
+    display: flex;
+    border-bottom: 1px solid #1a1a1a;
+    background: #000000;
+  }
+
+  .editor-tab {
+    flex: 1;
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    color: #8a8a8a;
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  .editor-tab.active {
+    color: #1db954;
+    border-bottom: 2px solid #1db954;
+  }
+
+  /* Format chips */
+  .format-chips {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    background: #000000;
+    border-bottom: 1px solid #1a1a1a;
+    scrollbar-width: none;
+  }
+
+  .format-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .format-chip {
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border: none;
+    background: #2b2b2b;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .format-chip.active {
+    background: #1db954;
+    color: #0a0a0a;
+  }
+
+  /* Screenplay editor */
+  .screenplay-editor {
+    display: flex;
+    background: #000000;
+    min-height: calc(100dvh - 250px);
+    padding: 16px 0;
+  }
+
+  .line-numbers {
+    width: 40px;
+    padding: 0 8px 0 16px;
+    flex-shrink: 0;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6f6f6f;
+    user-select: none;
+    text-align: right;
+  }
+
+  .editor-content {
+    flex: 1;
+    padding: 0 16px 0 8px;
+    font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ffffff;
+    outline: none;
+    caret-color: #1db954;
+    min-height: calc(100dvh - 250px);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .editor-line {
+    padding: 2px 4px;
+    border-radius: 3px;
+    min-height: 1.6em;
+    position: relative;
+  }
+
+  .editor-line.active-line {
+    background: rgba(29, 185, 84, 0.08);
+    box-shadow: 0 0 8px rgba(29, 185, 84, 0.25), inset 0 0 0 1px
+      rgba(29, 185, 84, 0.15);
+  }
+
+  .editor-line.character {
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding-left: 25%;
+    padding-right: 25%;
+    letter-spacing: 0.05em;
+  }
+
+  .editor-line.dialogue {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+
+  .editor-line.parenthetical {
+    padding-left: 20%;
+    padding-right: 20%;
+    font-style: italic;
+    color: #cccccc;
+  }
+
+  .editor-line.slugline {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .editor-line.action {
+    /* default full width */
+  }
+
+  /* Save status dot */
+  .save-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #8a8a8a;
+    flex-shrink: 0;
+  }
+
+  .save-dot.saved {
+    background: #1db954;
+    box-shadow: 0 0 6px rgba(29, 185, 84, 0.8);
+  }
+
+  /* Cards */
+  .script-card {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+  }
+
+  .script-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 4px;
+  }
+
+  .script-card-meta {
+    font-size: 12px;
+    color: #8a8a8a;
+  }
+
+  /* Page titles */
+  .page-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    padding: 20px 20px 8px;
+  }
+
+  .page-subtitle {
+    font-size: 14px;
+    color: #8a8a8a;
+    padding: 0 20px 16px;
+  }
+
+  /* Overlay menu */
+  .menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .menu-panel {
+    background: #0d0d0d;
+    border-right: 1px solid #1a1a1a;
+    width: 260px;
+    height: 100%;
+    padding: 60px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+  }
+
+  .menu-item svg {
+    width: 20px;
+    height: 20px;
+    color: #1db954;
+    flex-shrink: 0;
+  }
+
+  .menu-item.danger {
+    color: #ef4444;
+  }
+
+  .menu-item.danger svg {
+    color: #ef4444;
+  }
+
+  /* Delete confirmation */
+  .confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .confirm-panel {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  /* Settings panel */
+  .settings-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+
+  .settings-panel {
+    background: #0d0d0d;
+    border-left: 1px solid #1a1a1a;
+    width: 280px;
+    height: 100%;
+    padding: 60px 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* Outline view */
+  .outline-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #1a1a1a;
+    cursor: pointer;
+  }
+
+  .outline-num {
+    font-size: 11px;
+    color: #6f6f6f;
+    font-family: "JetBrains Mono", monospace;
+    padding-top: 2px;
+    flex-shrink: 0;
+    width: 24px;
+  }
+
+  .outline-text {
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 600;
+  }
+
+  .outline-sub {
+    font-size: 12px;
+    color: #8a8a8a;
+    margin-top: 2px;
+  }
+}
