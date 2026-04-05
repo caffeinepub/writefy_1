@@ -4,16 +4,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import NewDocModal from "./components/NewDocModal";
 import SettingsOverlay from "./components/SettingsOverlay";
 import { useActor } from "./hooks/useActor";
-import {
-  useCreateDocument,
-  useGetAllDocumentsMeta,
-  useUpdateDocument,
-} from "./hooks/useQueries";
+import { useCreateDocument, useGetAllDocumentsMeta } from "./hooks/useQueries";
 import CreateScreen from "./screens/CreateScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LibraryScreen from "./screens/LibraryScreen";
 import PlayScreen from "./screens/PlayScreen";
-import { formatRelativeTime, generateUUID } from "./utils/formatTime";
+import { generateUUID } from "./utils/formatTime";
 
 type TabName = "Home" | "Library" | "Create" | "Play";
 
@@ -32,17 +28,11 @@ export default function App() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [menuTrigger, setMenuTrigger] = useState(0);
 
-  // Inline title editing state (only for Create tab)
-  const [isEditingTitle, setIsEditingTitle] = useState(false);
-  const [titleInput, setTitleInput] = useState("");
-
-  // Track the latest content so we can save with the right title
   const latestContentRef = useRef("");
 
   const { actor } = useActor();
   const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
   const createDoc = useCreateDocument();
-  const updateDoc = useUpdateDocument();
 
   // Apply saved theme on mount
   useEffect(() => {
@@ -60,7 +50,6 @@ export default function App() {
       if (!activeDocId) setActiveDocId(docs[0].id);
       setIsInitialized(true);
     } else {
-      // No docs yet — don't auto-create; user will use the (+) modal
       setIsInitialized(true);
     }
   }, [actor, docsLoading, docs.length]);
@@ -98,65 +87,12 @@ export default function App() {
     }
   }, [docs, activeDocId]);
 
-  // Handle inline title save
-  const saveTitleEdit = useCallback(async () => {
-    setIsEditingTitle(false);
-    if (!activeDocId) return;
-    const newTitle = titleInput.trim() || "Untitled Script";
-    try {
-      await updateDoc.mutateAsync({
-        id: activeDocId,
-        title: newTitle,
-        content: latestContentRef.current,
-      });
-    } catch {
-      // fail silently
-    }
-  }, [activeDocId, titleInput, updateDoc]);
-
-  const startTitleEdit = useCallback(() => {
-    if (activeTab === "Create") {
-      setTitleInput(activeDoc?.title ?? "Untitled Script");
-      setIsEditingTitle(true);
-    }
-  }, [activeTab, activeDoc]);
-
-  const lastEditedText = activeDoc
-    ? `Screenplay \u2022 ${formatRelativeTime(activeDoc.lastEdited)}`
-    : "Screenplay \u2022 New document";
-
   // Header center content
   const renderHeaderCenter = () => {
     if (activeTab === "Create") {
       return (
         <div className="writefy-header-center">
           <span className="writefy-brand">Writefy</span>
-          {isEditingTitle ? (
-            <input
-              className="writefy-title-input"
-              value={titleInput}
-              onChange={(e) => setTitleInput(e.target.value)}
-              onBlur={saveTitleEdit}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") saveTitleEdit();
-                if (e.key === "Escape") setIsEditingTitle(false);
-              }}
-              // biome-ignore lint/a11y/noAutofocus: intentional inline rename
-              autoFocus
-              data-ocid="header.title.input"
-            />
-          ) : (
-            <button
-              type="button"
-              className="writefy-doc-title"
-              onClick={startTitleEdit}
-              style={{ cursor: "text" }}
-              data-ocid="header.title.button"
-            >
-              {activeDoc?.title ?? "Untitled Script"}
-            </button>
-          )}
-          <span className="writefy-doc-meta">{lastEditedText}</span>
         </div>
       );
     }
@@ -188,7 +124,6 @@ export default function App() {
       <div className="writefy-app">
         {/* ── Fixed Header ── */}
         <header className="writefy-header" data-ocid="header.section">
-          {/* LEFT: Three-dot menu — always visible */}
           <button
             type="button"
             className="writefy-icon-btn"
@@ -204,10 +139,8 @@ export default function App() {
             <MoreVertical size={20} />
           </button>
 
-          {/* CENTER */}
           {renderHeaderCenter()}
 
-          {/* RIGHT: Settings */}
           <button
             type="button"
             className="writefy-icon-btn"
@@ -274,7 +207,6 @@ export default function App() {
             <span className="writefy-nav-label">Library</span>
           </button>
 
-          {/* Create: always opens modal */}
           <button
             type="button"
             className={`writefy-nav-item${activeTab === "Create" ? " active" : ""}`}

@@ -8,6 +8,7 @@ import {
   useGetDocument,
   useUpdateDocument,
 } from "../hooks/useQueries";
+import { formatRelativeTime } from "../utils/formatTime";
 import { idbSaveScript } from "../utils/idb";
 
 interface CreateScreenProps {
@@ -75,7 +76,6 @@ export default function CreateScreen({
       setLocalContent(content);
       setIsSaved(false);
       onContentUpdate?.(content);
-      // Save to IndexedDB immediately for offline
       if (activeDocId && document) {
         idbSaveScript(activeDocId, document.title, content).catch(() => {});
       }
@@ -167,7 +167,6 @@ export default function CreateScreen({
     }
   };
 
-  // FIX: close overlays BEFORE calling onDocumentDeleted to avoid stale state
   const handleDeleteConfirm = async () => {
     if (!activeDocId) return;
     try {
@@ -237,6 +236,10 @@ export default function CreateScreen({
     );
   }
 
+  const docMeta = document
+    ? `${document.formatType} \u2022 ${formatRelativeTime(document.lastEdited)}`
+    : "Screenplay \u2022 New document";
+
   return (
     <>
       {/* Save indicator dot */}
@@ -284,6 +287,8 @@ export default function CreateScreen({
         document={document ?? null}
         onContentChange={handleContentChange}
         isSaved={isSaved}
+        docTitle={document?.title}
+        docMeta={docMeta}
       />
     </>
   );

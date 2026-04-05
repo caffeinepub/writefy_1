@@ -29185,7 +29185,9 @@ const SLAB_CLASS = {
 function ScreenplayEditor({
   document: document2,
   onContentChange,
-  isSaved: _isSaved
+  isSaved: _isSaved,
+  docTitle,
+  docMeta
 }) {
   var _a3;
   const [activeTab, setActiveTab] = reactExports.useState("Write");
@@ -29310,8 +29312,81 @@ function ScreenplayEditor({
       return (_a4 = lineRefs.current.get(lineId)) == null ? void 0 : _a4.focus();
     }, 100);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minHeight: "100%" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-tabs", children: [
+  const displayTitle = docTitle || (document2 == null ? void 0 : document2.title) || "Untitled Script";
+  const displayMeta = docMeta || "Screenplay • New document";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minHeight: "100%", position: "relative" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        "aria-hidden": "true",
+        style: {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+          zIndex: 0,
+          paddingTop: "8px",
+          overflow: "hidden"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "span",
+          {
+            style: {
+              fontSize: "140px",
+              fontWeight: 900,
+              color: "#4caf50",
+              opacity: 0.06,
+              lineHeight: 1,
+              letterSpacing: "-0.04em",
+              userSelect: "none",
+              fontFamily: "Inter, system-ui, sans-serif"
+            },
+            children: "W"
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          position: "relative",
+          zIndex: 1,
+          padding: "20px 16px 0"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: "24px",
+                fontWeight: 800,
+                color: "#ffffff",
+                lineHeight: 1.2,
+                letterSpacing: "-0.01em"
+              },
+              children: displayTitle
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: "13px",
+                color: "rgba(255,255,255,0.55)",
+                marginTop: "4px",
+                fontWeight: 400
+              },
+              children: displayMeta
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-tabs", style: { position: "relative", zIndex: 1 }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
@@ -29333,7 +29408,7 @@ function ScreenplayEditor({
         }
       )
     ] }),
-    activeTab === "Write" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    activeTab === "Write" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative", zIndex: 1 }, children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "format-chips", "data-ocid": "editor.format.panel", children: FORMAT_MODES.map((mode) => /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
@@ -29391,7 +29466,7 @@ function ScreenplayEditor({
         line.id
       )) })
     ] }),
-    activeTab === "Outline" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "8px 0" }, children: sluglineCount === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    activeTab === "Outline" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "8px 0", position: "relative", zIndex: 1 }, children: sluglineCount === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         style: {
@@ -29430,6 +29505,27 @@ function ScreenplayEditor({
       line.id
     )) })
   ] });
+}
+function formatRelativeTime(nanoseconds) {
+  const ms = Number(nanoseconds) / 1e6;
+  const now2 = Date.now();
+  const diff = now2 - ms;
+  const seconds = Math.floor(diff / 1e3);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  if (seconds < 60) return "just now";
+  if (minutes < 60) return `${minutes}m ago`;
+  if (hours < 24) return `${hours}h ago`;
+  if (days === 1) return "yesterday";
+  return `${days}d ago`;
+}
+function generateUUID() {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c2) => {
+    const r2 = Math.random() * 16 | 0;
+    const v2 = c2 === "x" ? r2 : r2 & 3 | 8;
+    return v2.toString(16);
+  });
 }
 const DB_NAME = "writefy-offline";
 const STORE = "scripts";
@@ -29651,6 +29747,7 @@ function CreateScreen({
       }
     );
   }
+  const docMeta = document2 ? `${document2.formatType} • ${formatRelativeTime(document2.lastEdited)}` : "Screenplay • New document";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
@@ -29699,31 +29796,12 @@ function CreateScreen({
       {
         document: document2 ?? null,
         onContentChange: handleContentChange,
-        isSaved
+        isSaved,
+        docTitle: document2 == null ? void 0 : document2.title,
+        docMeta
       }
     )
   ] });
-}
-function formatRelativeTime(nanoseconds) {
-  const ms = Number(nanoseconds) / 1e6;
-  const now2 = Date.now();
-  const diff = now2 - ms;
-  const seconds = Math.floor(diff / 1e3);
-  const minutes = Math.floor(seconds / 60);
-  const hours = Math.floor(minutes / 60);
-  const days = Math.floor(hours / 24);
-  if (seconds < 60) return "just now";
-  if (minutes < 60) return `${minutes}m ago`;
-  if (hours < 24) return `${hours}h ago`;
-  if (days === 1) return "yesterday";
-  return `${days}d ago`;
-}
-function generateUUID() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c2) => {
-    const r2 = Math.random() * 16 | 0;
-    const v2 = c2 === "x" ? r2 : r2 & 3 | 8;
-    return v2.toString(16);
-  });
 }
 function HomeScreen({
   docs,
@@ -30334,94 +30412,536 @@ function LibraryScreen({
     )
   ] }) });
 }
-function PlayScreen({ activeDoc }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      style: {
-        background: "#000",
-        minHeight: "100%",
-        display: "flex",
-        flexDirection: "column"
-      },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-title", children: "Play" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "page-subtitle", children: "Preview your screenplay here." }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "40px 24px",
-              textAlign: "center"
-            },
-            "data-ocid": "play.section",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
+function parseScript(content) {
+  if (!content.trim()) return [];
+  const rawLines = content.split("\n");
+  return rawLines.filter((l) => l.trim().length > 0).map((text) => {
+    const trimmed = text.trim();
+    let type = "action";
+    if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.") || trimmed.startsWith("INT/EXT")) {
+      type = "slugline";
+    } else if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
+      type = "parenthetical";
+    } else if (trimmed === trimmed.toUpperCase() && trimmed.length > 0 && /^[A-Z][A-Z\s]+$/.test(trimmed)) {
+      type = "character";
+    }
+    return { type, text: trimmed };
+  });
+}
+function PlayReader({ doc }) {
+  const lines = parseScript(doc.content);
+  const [isPlaying, setIsPlaying] = reactExports.useState(false);
+  const [speed, setSpeed] = reactExports.useState(2);
+  const [fontSize, setFontSize] = reactExports.useState(16);
+  const containerRef = reactExports.useRef(null);
+  const rafRef = reactExports.useRef(null);
+  const posRef = reactExports.useRef(0);
+  const speedRef = reactExports.useRef(speed);
+  reactExports.useEffect(() => {
+    speedRef.current = speed;
+  }, [speed]);
+  const scroll = () => {
+    if (!containerRef.current) return;
+    posRef.current += speedRef.current * 0.5;
+    containerRef.current.scrollTop = posRef.current;
+    if (posRef.current < containerRef.current.scrollHeight - containerRef.current.clientHeight) {
+      rafRef.current = requestAnimationFrame(scroll);
+    } else {
+      setIsPlaying(false);
+    }
+  };
+  reactExports.useEffect(() => {
+    if (isPlaying) {
+      rafRef.current = requestAnimationFrame(scroll);
+    } else {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    }
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isPlaying]);
+  const handleReset = () => {
+    setIsPlaying(false);
+    posRef.current = 0;
+    if (containerRef.current) containerRef.current.scrollTop = 0;
+  };
+  if (lines.length === 0) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%",
+          padding: "40px 24px",
+          textAlign: "center",
+          color: "#8A8A8A",
+          minHeight: "60vh"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 40, marginBottom: 16 }, children: "🎬" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: 16,
+                fontWeight: 700,
+                color: "#fff",
+                marginBottom: 8
+              },
+              children: "Script is empty"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8A8A8A" }, children: "Write something in the Create tab first." })
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          padding: "12px 16px",
+          background: "rgba(0,0,0,0.85)",
+          borderBottom: "1px solid #1a1a1a",
+          display: "flex",
+          alignItems: "center",
+          gap: "12px",
+          flexWrap: "wrap"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: () => setIsPlaying((p2) => !p2),
+              style: {
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: "#1DB954",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              },
+              "aria-label": isPlaying ? "Pause" : "Play",
+              "data-ocid": "play.play_pause.button",
+              children: isPlaying ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "svg",
                 {
-                  style: {
-                    width: 80,
-                    height: 80,
-                    borderRadius: "50%",
-                    background: "#1A1A1A",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: 20,
-                    border: "2px solid #1DB954",
-                    boxShadow: "0 0 20px rgba(29, 185, 84, 0.3)"
-                  },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "svg",
-                    {
-                      width: "32",
-                      height: "32",
-                      viewBox: "0 0 24 24",
-                      fill: "#1DB954",
-                      "aria-hidden": "true",
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
-                      ]
-                    }
-                  )
+                  width: "18",
+                  height: "18",
+                  viewBox: "0 0 24 24",
+                  fill: "#000",
+                  "aria-hidden": "true",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Pause" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "6", y: "4", width: "4", height: "16" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "14", y: "4", width: "4", height: "16" })
+                  ]
                 }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
+              ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "svg",
                 {
-                  style: {
-                    fontSize: 18,
-                    fontWeight: 700,
-                    color: "#fff",
-                    marginBottom: 8
-                  },
-                  children: activeDoc ? activeDoc.title : "No Script Selected"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  style: {
-                    fontSize: 13,
-                    color: "#8A8A8A",
-                    lineHeight: 1.6,
-                    maxWidth: 260
-                  },
-                  children: activeDoc ? "Teleprompter-style reading mode coming soon. Your screenplay will scroll here." : "Open a screenplay from the Library or create one in the Create tab to preview it here."
+                  width: "18",
+                  height: "18",
+                  viewBox: "0 0 24 24",
+                  fill: "#000",
+                  "aria-hidden": "true",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
+                  ]
                 }
               )
-            ]
-          }
-        )
-      ]
-    }
-  );
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "button",
+              onClick: handleReset,
+              style: {
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                background: "#1a1a1a",
+                border: "1px solid #333",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                color: "#8A8A8A"
+              },
+              "aria-label": "Reset to top",
+              "data-ocid": "play.reset.button",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "svg",
+                {
+                  width: "14",
+                  height: "14",
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: "2.5",
+                  "aria-hidden": "true",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Reset" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "1 4 1 10 7 10" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3.51 15a9 9 0 1 0 .49-4.84" })
+                  ]
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8, flex: 1 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "span",
+              {
+                style: { fontSize: 11, color: "#8A8A8A", whiteSpace: "nowrap" },
+                children: "Speed"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "input",
+              {
+                type: "range",
+                min: 1,
+                max: 6,
+                step: 0.5,
+                value: speed,
+                onChange: (e) => setSpeed(Number(e.target.value)),
+                style: {
+                  flex: 1,
+                  accentColor: "#1DB954",
+                  height: 4,
+                  cursor: "pointer"
+                },
+                "data-ocid": "play.speed.slider"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { fontSize: 11, color: "#8A8A8A", minWidth: 20 }, children: [
+              speed,
+              "x"
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setFontSize((s2) => Math.max(12, s2 - 2)),
+                style: {
+                  width: 28,
+                  height: 28,
+                  background: "#1a1a1a",
+                  border: "1px solid #333",
+                  borderRadius: 6,
+                  color: "#fff",
+                  cursor: "pointer",
+                  fontSize: 14,
+                  lineHeight: 1
+                },
+                "aria-label": "Decrease font size",
+                children: "A"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                type: "button",
+                onClick: () => setFontSize((s2) => Math.min(28, s2 + 2)),
+                style: {
+                  width: 28,
+                  height: 28,
+                  background: "#1a1a1a",
+                  border: "1px solid #333",
+                  borderRadius: 6,
+                  color: "#fff",
+                  cursor: "pointer",
+                  fontSize: 20,
+                  lineHeight: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center"
+                },
+                "aria-label": "Increase font size",
+                children: "A"
+              }
+            )
+          ] })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        ref: containerRef,
+        style: {
+          flex: 1,
+          overflowY: isPlaying ? "hidden" : "auto",
+          padding: "32px 16px 80px",
+          background: "#000",
+          scrollBehavior: "auto"
+        },
+        "data-ocid": "play.reader.area",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              "aria-hidden": "true",
+              style: {
+                position: "sticky",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 48,
+                background: "linear-gradient(to bottom, #000, transparent)",
+                pointerEvents: "none",
+                marginBottom: -48,
+                zIndex: 2
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                maxWidth: 560,
+                margin: "0 auto",
+                fontFamily: "'JetBrains Mono', 'Courier New', monospace"
+              },
+              children: lines.map((line, i) => {
+                const key = `${i}-${line.text.slice(0, 8)}`;
+                if (line.type === "slugline") {
+                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        fontSize,
+                        fontWeight: 800,
+                        color: "#4CAF50",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        marginTop: i === 0 ? 0 : 32,
+                        marginBottom: 12,
+                        lineHeight: 1.5,
+                        borderLeft: "3px solid #1DB954",
+                        paddingLeft: 12
+                      },
+                      children: line.text
+                    },
+                    key
+                  );
+                }
+                if (line.type === "character") {
+                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        fontSize: fontSize - 1,
+                        fontWeight: 700,
+                        color: "var(--accent-color, #1DB954)",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        marginTop: 24,
+                        marginBottom: 4,
+                        lineHeight: 1.5,
+                        letterSpacing: "0.04em"
+                      },
+                      children: line.text
+                    },
+                    key
+                  );
+                }
+                if (line.type === "dialogue") {
+                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        fontSize,
+                        color: "#ffffff",
+                        maxWidth: "70%",
+                        margin: "4px auto 8px",
+                        textAlign: "left",
+                        lineHeight: 1.7
+                      },
+                      children: line.text
+                    },
+                    key
+                  );
+                }
+                if (line.type === "parenthetical") {
+                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        fontSize: fontSize - 2,
+                        color: "rgba(255,255,255,0.6)",
+                        fontStyle: "italic",
+                        textAlign: "center",
+                        maxWidth: "50%",
+                        margin: "0 auto 4px",
+                        lineHeight: 1.5
+                      },
+                      children: line.text
+                    },
+                    key
+                  );
+                }
+                return /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      fontSize,
+                      color: "#cccccc",
+                      marginBottom: 10,
+                      lineHeight: 1.7
+                    },
+                    children: line.text
+                  },
+                  key
+                );
+              })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              "aria-hidden": "true",
+              style: {
+                position: "sticky",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 80,
+                background: "linear-gradient(to top, #000, transparent)",
+                pointerEvents: "none",
+                marginTop: -80,
+                zIndex: 2
+              }
+            }
+          )
+        ]
+      }
+    )
+  ] });
+}
+function PlayScreen({ activeDoc }) {
+  const { data: fullDoc } = useGetDocument((activeDoc == null ? void 0 : activeDoc.id) ?? null);
+  if (!activeDoc) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          background: "transparent",
+          minHeight: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "40px 24px",
+          textAlign: "center"
+        },
+        "data-ocid": "play.section",
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                width: 72,
+                height: 72,
+                borderRadius: "50%",
+                background: "#1A1A1A",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: 20,
+                border: "2px solid #1DB954"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "svg",
+                {
+                  width: "28",
+                  height: "28",
+                  viewBox: "0 0 24 24",
+                  fill: "#1DB954",
+                  "aria-hidden": "true",
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
+                  ]
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: 18,
+                fontWeight: 700,
+                color: "#fff",
+                marginBottom: 8
+              },
+              children: "No Script Open"
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                fontSize: 13,
+                color: "#8A8A8A",
+                lineHeight: 1.6,
+                maxWidth: 260
+              },
+              children: "Open a screenplay from the Library or create one in the Create tab."
+            }
+          )
+        ]
+      }
+    );
+  }
+  if (!fullDoc) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "60vh",
+          color: "#8A8A8A",
+          flexDirection: "column",
+          gap: 12
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "3px solid #1A1A1A",
+                borderTopColor: "#1DB954"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13 }, children: "Loading script..." })
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(PlayReader, { doc: fullDoc });
 }
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
@@ -30436,13 +30956,10 @@ function App() {
   const [showNewDocModal, setShowNewDocModal] = reactExports.useState(false);
   const [isInitialized, setIsInitialized] = reactExports.useState(false);
   const [menuTrigger, setMenuTrigger] = reactExports.useState(0);
-  const [isEditingTitle, setIsEditingTitle] = reactExports.useState(false);
-  const [titleInput, setTitleInput] = reactExports.useState("");
   const latestContentRef = reactExports.useRef("");
   const { actor } = useActor();
   const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
   const createDoc = useCreateDocument();
-  const updateDoc = useUpdateDocument();
   reactExports.useEffect(() => {
     const saved = localStorage.getItem("writefy-theme");
     if (saved) {
@@ -30487,57 +31004,9 @@ function App() {
       setActiveTab("Home");
     }
   }, [docs, activeDocId]);
-  const saveTitleEdit = reactExports.useCallback(async () => {
-    setIsEditingTitle(false);
-    if (!activeDocId) return;
-    const newTitle = titleInput.trim() || "Untitled Script";
-    try {
-      await updateDoc.mutateAsync({
-        id: activeDocId,
-        title: newTitle,
-        content: latestContentRef.current
-      });
-    } catch {
-    }
-  }, [activeDocId, titleInput, updateDoc]);
-  const startTitleEdit = reactExports.useCallback(() => {
-    if (activeTab === "Create") {
-      setTitleInput((activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script");
-      setIsEditingTitle(true);
-    }
-  }, [activeTab, activeDoc]);
-  const lastEditedText = activeDoc ? `Screenplay • ${formatRelativeTime(activeDoc.lastEdited)}` : "Screenplay • New document";
   const renderHeaderCenter = () => {
     if (activeTab === "Create") {
-      return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-header-center", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }),
-        isEditingTitle ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "input",
-          {
-            className: "writefy-title-input",
-            value: titleInput,
-            onChange: (e) => setTitleInput(e.target.value),
-            onBlur: saveTitleEdit,
-            onKeyDown: (e) => {
-              if (e.key === "Enter") saveTitleEdit();
-              if (e.key === "Escape") setIsEditingTitle(false);
-            },
-            autoFocus: true,
-            "data-ocid": "header.title.input"
-          }
-        ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "writefy-doc-title",
-            onClick: startTitleEdit,
-            style: { cursor: "text" },
-            "data-ocid": "header.title.button",
-            children: (activeDoc == null ? void 0 : activeDoc.title) ?? "Untitled Script"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-doc-meta", children: lastEditedText })
-      ] });
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writefy-header-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }) });
     }
     const tabTitles = {
       Home: "Home",

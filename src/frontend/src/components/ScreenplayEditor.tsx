@@ -24,6 +24,8 @@ interface ScreenplayEditorProps {
   document: Document | null;
   onContentChange: (content: string) => void;
   isSaved: boolean;
+  docTitle?: string;
+  docMeta?: string;
 }
 
 const FORMAT_MODES: FormatMode[] = [
@@ -106,7 +108,6 @@ function detectNextLineType(currentType: LineType): LineType {
   return "action";
 }
 
-// Map LineType to slab CSS class
 const SLAB_CLASS: Record<LineType, string> = {
   slugline: "slab-slugline",
   action: "slab-action",
@@ -119,6 +120,8 @@ export default function ScreenplayEditor({
   document,
   onContentChange,
   isSaved: _isSaved,
+  docTitle,
+  docMeta,
 }: ScreenplayEditorProps) {
   const [activeTab, setActiveTab] = useState<"Write" | "Outline">("Write");
   const [formatMode, setFormatMode] = useState<FormatMode>("Action");
@@ -251,10 +254,76 @@ export default function ScreenplayEditor({
     setTimeout(() => lineRefs.current.get(lineId)?.focus(), 100);
   };
 
+  const displayTitle = docTitle || document?.title || "Untitled Script";
+  const displayMeta = docMeta || "Screenplay \u2022 New document";
+
   return (
-    <div style={{ minHeight: "100%" }}>
-      {/* Write / Outline tabs */}
-      <div className="editor-tabs">
+    <div style={{ minHeight: "100%", position: "relative" }}>
+      {/* ── Background W watermark ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          display: "flex",
+          justifyContent: "center",
+          pointerEvents: "none",
+          zIndex: 0,
+          paddingTop: "8px",
+          overflow: "hidden",
+        }}
+      >
+        <span
+          style={{
+            fontSize: "140px",
+            fontWeight: 900,
+            color: "#4caf50",
+            opacity: 0.06,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
+            userSelect: "none",
+            fontFamily: "Inter, system-ui, sans-serif",
+          }}
+        >
+          W
+        </span>
+      </div>
+
+      {/* ── Content above tabs: title + subtitle ── */}
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          padding: "20px 16px 0",
+        }}
+      >
+        <div
+          style={{
+            fontSize: "24px",
+            fontWeight: 800,
+            color: "#ffffff",
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {displayTitle}
+        </div>
+        <div
+          style={{
+            fontSize: "13px",
+            color: "rgba(255,255,255,0.55)",
+            marginTop: "4px",
+            fontWeight: 400,
+          }}
+        >
+          {displayMeta}
+        </div>
+      </div>
+
+      {/* ── Write / Outline minimal tabs ── */}
+      <div className="editor-tabs" style={{ position: "relative", zIndex: 1 }}>
         <button
           type="button"
           className={`editor-tab${activeTab === "Write" ? " active" : ""}`}
@@ -274,7 +343,7 @@ export default function ScreenplayEditor({
       </div>
 
       {activeTab === "Write" && (
-        <>
+        <div style={{ position: "relative", zIndex: 1 }}>
           {/* Format chips */}
           <div className="format-chips" data-ocid="editor.format.panel">
             {FORMAT_MODES.map((mode) => (
@@ -353,11 +422,11 @@ export default function ScreenplayEditor({
               </div>
             ))}
           </div>
-        </>
+        </div>
       )}
 
       {activeTab === "Outline" && (
-        <div style={{ padding: "8px 0" }}>
+        <div style={{ padding: "8px 0", position: "relative", zIndex: 1 }}>
           {sluglineCount === 0 ? (
             <div
               style={{

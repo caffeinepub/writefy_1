@@ -633,7 +633,7 @@ html,
     overflow: hidden;
   }
 
-/* ── Universal Header: auto height, min 60px ── */
+/* ── Universal Header: fixed 52px height ── */
 
 .writefy-header {
     position: fixed;
@@ -642,14 +642,13 @@ html,
     transform: translateX(-50%);
     width: 100%;
     max-width: 480px;
-    min-height: 60px;
-    height: auto;
+    height: 52px;
     z-index: 50;
     background: rgba(0, 0, 0, 0.96);
     border-bottom: 1px solid #1a1a1a;
-    padding: 12px 20px;
+    padding: 0 16px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
   }
 
@@ -667,7 +666,6 @@ html,
     border: none;
     flex-shrink: 0;
     color: #ffffff;
-    margin-top: 4px;
   }
 
 .writefy-icon-btn svg {
@@ -685,7 +683,7 @@ html,
     min-width: 0;
   }
 
-/* Brand shown only on Create tab */
+/* Brand shown on Create tab in header */
 
 .writefy-brand {
     font-size: 12px;
@@ -694,7 +692,6 @@ html,
     letter-spacing: 0.12em;
     text-transform: uppercase;
     line-height: 1;
-    margin-bottom: 8px;
   }
 
 /* Tab title (Home / Library / Play) */
@@ -705,21 +702,20 @@ html,
     color: #ffffff;
     text-align: center;
     line-height: 1;
-    margin-top: 6px;
   }
 
-/* ── Editable doc title ── */
+/* ── Editable doc title (legacy, kept for compatibility) ── */
 
 .writefy-doc-title {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 800;
     color: #ffffff;
-    line-height: 1.1;
-    text-align: center;
+    line-height: 1.2;
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 240px;
+    max-width: 100%;
     cursor: text;
     background: transparent;
     border: none;
@@ -730,32 +726,32 @@ html,
 /* ── Title input ── */
 
 .writefy-title-input {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 800;
     color: #ffffff;
     background: transparent;
     border: none;
     border-bottom: 1.5px solid var(--accent-color, #1db954);
     outline: none;
-    text-align: center;
-    width: 220px;
+    text-align: left;
+    width: 100%;
     padding: 0;
-    line-height: 1.1;
+    line-height: 1.2;
     font-family: inherit;
     caret-color: var(--accent-color, #1db954);
   }
 
 .writefy-doc-meta {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
-    opacity: 0.6;
+    opacity: 0.55;
     color: #ffffff;
     margin-top: 4px;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 240px;
+    max-width: 100%;
   }
 
 /* ── Bottom nav ── */
@@ -850,59 +846,63 @@ html,
     height: 26px;
   }
 
-/* Main screen padding: accounts for auto-height header */
+/* Main screen padding: 52px header + 1px border */
 
 .writefy-screen {
     flex: 1;
     overflow-y: auto;
-    padding-top: 76px;
+    padding-top: 53px;
     padding-bottom: 72px;
   }
 
-/* ── Editor tabs ── */
+/* ── Editor tabs — minimal text tabs with underline ── */
 
 .editor-tabs {
     display: flex;
-    gap: 24px;
+    gap: 0;
     border-bottom: 1px solid #1a1a1a;
-    background: #000000;
+    background: transparent;
     padding: 16px 16px 0;
   }
 
 .editor-tab {
-    padding: 10px 0;
-    font-size: 15px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
+    padding: 6px 0;
+    padding-right: 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.45);
     border: none;
     background: transparent;
     border-bottom: 2px solid transparent;
     margin-bottom: -1px;
     cursor: pointer;
-    min-height: 40px;
-    display: flex;
+    line-height: 1.4;
+    display: inline-flex;
     align-items: center;
     flex: 0 0 auto;
+    letter-spacing: 0.01em;
   }
 
 .editor-tab.active {
     color: #ffffff;
     border-bottom: 2px solid var(--accent-color, #1db954);
+    font-weight: 600;
   }
 
 .editor-tab.\!active {
     color: #ffffff !important;
     border-bottom: 2px solid var(--accent-color, #1db954) !important;
+    font-weight: 600 !important;
   }
 
 /* ── Format chips ── */
 
 .format-chips {
     display: flex;
-    gap: 12px;
-    padding: 12px 16px;
+    gap: 10px;
+    padding: 10px 16px;
     overflow-x: auto;
-    background: #000000;
+    background: transparent;
     scrollbar-width: none;
   }
 
@@ -911,15 +911,15 @@ html,
   }
 
 .format-chip {
-    padding: 8px 14px;
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
     border: none;
     background: #1a1a1a;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.65);
     flex-shrink: 0;
   }
 
@@ -938,17 +938,17 @@ html,
 .writing-slab {
     width: 100%;
     max-width: 720px;
-    margin: 20px auto 0;
+    margin: 16px auto 0;
     background: transparent;
-    min-height: calc(100dvh - 220px);
-    padding: 24px 0 100px;
+    min-height: calc(100dvh - 240px);
+    padding: 16px 0 100px;
   }
 
 /* Slab element types */
 
 .slab-slugline {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 16px;
     text-transform: uppercase;
     font-weight: 800;
     font-size: 15px;
@@ -961,7 +961,7 @@ html,
 
 .slab-action {
     width: 100%;
-    padding: 0 20px;
+    padding: 0 16px;
     font-size: 16px;
     color: #cccccc;
     margin-bottom: 12px;
@@ -980,7 +980,7 @@ html,
     font-size: 15px;
     font-family: "JetBrains Mono", "Courier New", monospace;
     line-height: 1.7;
-    padding: 0 20px;
+    padding: 0 16px;
   }
 
 .slab-dialogue {
@@ -1004,7 +1004,7 @@ html,
     line-height: 1.7;
   }
 
-/* Active line — subtle green left border, no box-shadow glow */
+/* Active line — subtle green left border only */
 
 .slab-active {
     border-left: 2px solid rgba(29, 185, 84, 0.3);
@@ -1026,7 +1026,7 @@ html,
     box-shadow: 0 0 4px var(--accent-color, #1db954);
   }
 
-/* Script cards (legacy, kept for compatibility) */
+/* Script cards (legacy) */
 
 .script-card {
     background: #0d0d0d;
@@ -1232,6 +1232,10 @@ html,
 
 .relative{
   position: relative;
+}
+
+.sticky{
+  position: sticky;
 }
 
 .inset-0{
@@ -1443,10 +1447,6 @@ html,
 
 .block{
   display: block;
-}
-
-.inline{
-  display: inline;
 }
 
 .flex{
@@ -2464,6 +2464,10 @@ html,
 
 .text-sidebar-foreground{
   color: oklch(var(--sidebar-foreground));
+}
+
+.underline{
+  text-decoration-line: underline;
 }
 
 .underline-offset-4{
