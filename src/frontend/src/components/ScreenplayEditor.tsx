@@ -139,20 +139,22 @@ export default function ScreenplayEditor({
   const textareaRefs = useRef<Map<string, HTMLTextAreaElement>>(new Map());
   const focusedLineIdRef = useRef<string | null>(null);
   const [focusedLineId, setFocusedLineId] = useState<string | null>(null);
-  // Track docId to re-parse when a new doc opens
-  const docIdRef = useRef(document.id);
+  // Track docId to re-parse only when a DIFFERENT doc opens
+  const lastParsedDocIdRef = useRef(document.id);
 
+  // Sync title when prop changes
   useEffect(() => {
     setTitleValue(docTitle);
   }, [docTitle]);
 
-  // Re-parse content only when a different doc is opened
+  // Re-parse content only when a genuinely different doc is loaded
+  // This runs once per doc switch, not on every render
   useEffect(() => {
-    if (document.id !== docIdRef.current) {
-      docIdRef.current = document.id;
+    if (document.id !== lastParsedDocIdRef.current) {
+      lastParsedDocIdRef.current = document.id;
       setLines(parseContent(document.content));
     }
-  });
+  }, [document.id, document.content]);
 
   const resizeAll = useCallback(() => {
     for (const el of textareaRefs.current.values()) {
@@ -161,16 +163,7 @@ export default function ScreenplayEditor({
     }
   }, []);
 
-  // Run resize whenever lines count changes
-  const linesLenRef = useRef(lines.length);
-  useEffect(() => {
-    if (lines.length !== linesLenRef.current) {
-      linesLenRef.current = lines.length;
-      requestAnimationFrame(resizeAll);
-    }
-  });
-
-  // Initial resize on mount
+  // Initial resize on mount only
   useEffect(() => {
     requestAnimationFrame(resizeAll);
   }, [resizeAll]);
@@ -290,6 +283,7 @@ export default function ScreenplayEditor({
 
   return (
     <div className="screenplay-editor" data-ocid="create.editor">
+      {/* Background W watermark — must have pointer-events: none */}
       <div className="editor-watermark" aria-hidden="true">
         W
       </div>

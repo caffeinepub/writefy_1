@@ -1,5 +1,5 @@
 import { Plus } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Document, DocumentMeta } from "../backend.d";
 import DeleteConfirm from "../components/DeleteConfirm";
 import MenuOverlay from "../components/MenuOverlay";
@@ -19,8 +19,6 @@ interface Props {
   menuTrigger: number;
 }
 
-let lastMenuTrigger = 0;
-
 export default function CreateScreen({
   activeDocId,
   onDocumentDeleted,
@@ -35,42 +33,34 @@ export default function CreateScreen({
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const liveContentRef = useRef(liveContent);
   const liveTitleRef = useRef(liveTitle);
-  const initializedDocRef = useRef<string | null>(null);
 
   const { data: doc, isLoading } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
   const deleteDoc = useDeleteDocument();
 
-  // Track latest values in refs to avoid stale closures
+  // Keep refs in sync with state (no render cost)
   liveContentRef.current = liveContent;
   liveTitleRef.current = liveTitle;
 
-  // Sync local state when a new doc loads (not on re-renders)
-  if (doc && doc.id !== initializedDocRef.current) {
-    initializedDocRef.current = doc.id;
-    // Use a direct assignment pattern (not useEffect) to avoid stale closure issues
-    // These will take effect in the render after this
-  }
-
-  // Derive initial content/title from doc when it changes
-  // Track via a "lastSyncedDocId" ref to sync once on doc load
+  // Sync local state when a different doc loads — using useEffect with stable dep
   const lastSyncedDocIdRef = useRef<string | null>(null);
-  if (doc && doc.id !== lastSyncedDocIdRef.current) {
-    lastSyncedDocIdRef.current = doc.id;
-    // Sync happens as side-effect after render — but we need it NOW:
-    // Trigger an update in the next tick
-    Promise.resolve().then(() => {
+  useEffect(() => {
+    if (doc && doc.id !== lastSyncedDocIdRef.current) {
+      lastSyncedDocIdRef.current = doc.id;
       setLiveTitle(doc.title);
       setLiveContent(doc.content);
       setIsSaved(true);
-    });
-  }
+    }
+  }, [doc]);
 
-  // Open menu when trigger fires (compare to last seen value)
-  if (menuTrigger > lastMenuTrigger && activeDocId) {
-    lastMenuTrigger = menuTrigger;
-    Promise.resolve().then(() => setShowMenu(true));
-  }
+  // Open menu when trigger fires
+  const lastMenuTriggerRef = useRef(menuTrigger);
+  useEffect(() => {
+    if (menuTrigger > lastMenuTriggerRef.current && activeDocId) {
+      lastMenuTriggerRef.current = menuTrigger;
+      setShowMenu(true);
+    }
+  }, [menuTrigger, activeDocId]);
 
   async function doSave(content: string, title: string) {
     if (!activeDocId) return;

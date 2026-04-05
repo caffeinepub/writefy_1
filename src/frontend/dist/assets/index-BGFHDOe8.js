@@ -28292,29 +28292,22 @@ function ScreenplayEditor({
   const textareaRefs = reactExports.useRef(/* @__PURE__ */ new Map());
   const focusedLineIdRef = reactExports.useRef(null);
   const [focusedLineId, setFocusedLineId] = reactExports.useState(null);
-  const docIdRef = reactExports.useRef(document2.id);
+  const lastParsedDocIdRef = reactExports.useRef(document2.id);
   reactExports.useEffect(() => {
     setTitleValue(docTitle);
   }, [docTitle]);
   reactExports.useEffect(() => {
-    if (document2.id !== docIdRef.current) {
-      docIdRef.current = document2.id;
+    if (document2.id !== lastParsedDocIdRef.current) {
+      lastParsedDocIdRef.current = document2.id;
       setLines(parseContent$1(document2.content));
     }
-  });
+  }, [document2.id, document2.content]);
   const resizeAll = reactExports.useCallback(() => {
     for (const el of textareaRefs.current.values()) {
       el.style.height = "auto";
       el.style.height = `${el.scrollHeight}px`;
     }
   }, []);
-  const linesLenRef = reactExports.useRef(lines.length);
-  reactExports.useEffect(() => {
-    if (lines.length !== linesLenRef.current) {
-      linesLenRef.current = lines.length;
-      requestAnimationFrame(resizeAll);
-    }
-  });
   reactExports.useEffect(() => {
     requestAnimationFrame(resizeAll);
   }, [resizeAll]);
@@ -28566,7 +28559,6 @@ async function idbSaveScript(id, title, content) {
     tx.onerror = () => reject(tx.error);
   });
 }
-let lastMenuTrigger = 0;
 function CreateScreen({
   activeDocId,
   onDocumentDeleted,
@@ -28581,28 +28573,27 @@ function CreateScreen({
   const saveTimerRef = reactExports.useRef(null);
   const liveContentRef = reactExports.useRef(liveContent);
   const liveTitleRef = reactExports.useRef(liveTitle);
-  const initializedDocRef = reactExports.useRef(null);
   const { data: doc, isLoading } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
   const deleteDoc = useDeleteDocument();
   liveContentRef.current = liveContent;
   liveTitleRef.current = liveTitle;
-  if (doc && doc.id !== initializedDocRef.current) {
-    initializedDocRef.current = doc.id;
-  }
   const lastSyncedDocIdRef = reactExports.useRef(null);
-  if (doc && doc.id !== lastSyncedDocIdRef.current) {
-    lastSyncedDocIdRef.current = doc.id;
-    Promise.resolve().then(() => {
+  reactExports.useEffect(() => {
+    if (doc && doc.id !== lastSyncedDocIdRef.current) {
+      lastSyncedDocIdRef.current = doc.id;
       setLiveTitle(doc.title);
       setLiveContent(doc.content);
       setIsSaved(true);
-    });
-  }
-  if (menuTrigger > lastMenuTrigger && activeDocId) {
-    lastMenuTrigger = menuTrigger;
-    Promise.resolve().then(() => setShowMenu(true));
-  }
+    }
+  }, [doc]);
+  const lastMenuTriggerRef = reactExports.useRef(menuTrigger);
+  reactExports.useEffect(() => {
+    if (menuTrigger > lastMenuTriggerRef.current && activeDocId) {
+      lastMenuTriggerRef.current = menuTrigger;
+      setShowMenu(true);
+    }
+  }, [menuTrigger, activeDocId]);
   async function doSave(content, title) {
     if (!activeDocId) return;
     const useTitle = title.trim() || "Untitled Script";
