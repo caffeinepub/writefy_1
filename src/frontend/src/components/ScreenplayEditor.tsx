@@ -1,478 +1,449 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { Document } from "../backend.d";
+import type { Document, DocumentMeta } from "../backend.d";
+
+interface Props {
+  document: Document;
+  onContentChange: (content: string) => void;
+  onTitleChange: (title: string) => void;
+  onSaveNow: () => void;
+  isSaved: boolean;
+  docTitle: string;
+  docMeta: DocumentMeta | null;
+}
 
 type LineType =
+  | "slugline"
   | "action"
   | "character"
   | "dialogue"
-  | "parenthetical"
-  | "slugline";
-type FormatMode =
-  | "Slugline"
-  | "Action"
-  | "Character"
-  | "Dialogue"
-  | "Parenthetical";
+  | "parenthetical";
 
-interface ScriptLine {
-  id: number;
+interface Line {
+  id: string;
   type: LineType;
   text: string;
 }
 
-interface ScreenplayEditorProps {
-  document: Document | null;
-  onContentChange: (content: string) => void;
-  isSaved: boolean;
-  docTitle?: string;
-  docMeta?: string;
-}
+type EditorTab = "write" | "outline";
 
-const FORMAT_MODES: FormatMode[] = [
-  "Slugline",
-  "Action",
-  "Character",
-  "Dialogue",
-  "Parenthetical",
+const FORMAT_CHIPS: { label: string; type: LineType }[] = [
+  { label: "Slugline", type: "slugline" },
+  { label: "Action", type: "action" },
+  { label: "Character", type: "character" },
+  { label: "Dialogue", type: "dialogue" },
+  { label: "Parenthetical", type: "parenthetical" },
 ];
 
-const FORMAT_MAP: Record<FormatMode, LineType> = {
-  Slugline: "slugline",
-  Action: "action",
-  Character: "character",
-  Dialogue: "dialogue",
-  Parenthetical: "parenthetical",
+const SMART_NEXT: Record<LineType, LineType> = {
+  slugline: "action",
+  action: "action",
+  character: "dialogue",
+  dialogue: "action",
+  parenthetical: "dialogue",
 };
 
-const LINE_TYPE_MAP: Record<LineType, FormatMode> = {
-  slugline: "Slugline",
-  action: "Action",
-  character: "Character",
-  dialogue: "Dialogue",
-  parenthetical: "Parenthetical",
+const TYPE_PREFIX: Record<LineType, string> = {
+  slugline: "[slugline]",
+  action: "",
+  character: "[character]",
+  dialogue: "[dialogue]",
+  parenthetical: "[parenthetical]",
 };
 
-const DEFAULT_LINES: ScriptLine[] = [
-  { id: 1, type: "slugline", text: "INT. ABANDONED WAREHOUSE - NIGHT" },
+const DEFAULT_LINES: Line[] = [
+  { id: "d1", type: "slugline", text: "INT. ABANDONED WAREHOUSE - NIGHT" },
   {
-    id: 2,
+    id: "d2",
     type: "action",
-    text: "Moonlight seeps through cracked windows. Dust dances in the air. Two figures face each other in silence.",
+    text: "Moonlight seeps through cracked windows.",
   },
-  { id: 3, type: "character", text: "RAMA" },
-  { id: 4, type: "parenthetical", text: "(quietly)" },
+  { id: "d3", type: "character", text: "RAMA" },
+  { id: "d4", type: "parenthetical", text: "(quietly)" },
   {
-    id: 5,
+    id: "d5",
     type: "dialogue",
     text: "I've been waiting for this moment my entire life.",
   },
-  { id: 6, type: "character", text: "SARAH" },
-  { id: 7, type: "dialogue", text: "Then let's not waste another second." },
-  { id: 8, type: "action", text: "" },
+  { id: "d6", type: "character", text: "SARAH" },
+  { id: "d7", type: "dialogue", text: "Then let's not waste another second." },
 ];
 
-function parseContentToLines(content: string): ScriptLine[] {
-  if (!content.trim()) return DEFAULT_LINES;
-  const rawLines = content.split("\n");
-  let nextId = 1;
-  return rawLines.map((text) => {
-    const trimmed = text.trim();
-    let type: LineType = "action";
-    if (
-      trimmed.startsWith("INT.") ||
-      trimmed.startsWith("EXT.") ||
-      trimmed.startsWith("INT/EXT")
-    ) {
-      type = "slugline";
-    } else if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-      type = "parenthetical";
-    } else if (
-      trimmed === trimmed.toUpperCase() &&
-      trimmed.length > 0 &&
-      /^[A-Z\s]+$/.test(trimmed)
-    ) {
-      type = "character";
+function uid() {
+  return Math.random().toString(36).slice(2, 10);
+}
+
+function parseContent(content: string): Line[] {
+  if (!content.trim()) return DEFAULT_LINES.map((l) => ({ ...l, id: uid() }));
+  const lines = content.split("\n");
+  const result: Line[] = [];
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line) continue;
+    const trimmed = line.trim();
+    if (trimmed.startsWith("[slugline]")) {
+      result.push({
+        id: uid(),
+        type: "slugline",
+        text: trimmed.replace("[slugline]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[character]")) {
+      result.push({
+        id: uid(),
+        type: "character",
+        text: trimmed.replace("[character]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[dialogue]")) {
+      result.push({
+        id: uid(),
+        type: "dialogue",
+        text: trimmed.replace("[dialogue]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[parenthetical]")) {
+      result.push({
+        id: uid(),
+        type: "parenthetical",
+        text: trimmed.replace("[parenthetical]", "").trim(),
+      });
+    } else {
+      result.push({ id: uid(), type: "action", text: line });
     }
-    return { id: nextId++, type, text };
-  });
+  }
+  return result.length > 0
+    ? result
+    : DEFAULT_LINES.map((l) => ({ ...l, id: uid() }));
 }
 
-function linesToContent(lines: ScriptLine[]): string {
-  return lines.map((l) => l.text).join("\n");
+function serializeLines(lines: Line[]): string {
+  return lines
+    .map((l) => {
+      const prefix = TYPE_PREFIX[l.type];
+      return prefix ? `${prefix} ${l.text}` : l.text;
+    })
+    .join("\n");
 }
-
-function detectNextLineType(currentType: LineType): LineType {
-  if (currentType === "character") return "dialogue";
-  if (currentType === "parenthetical") return "dialogue";
-  if (currentType === "slugline") return "action";
-  return "action";
-}
-
-const SLAB_CLASS: Record<LineType, string> = {
-  slugline: "slab-slugline",
-  action: "slab-action",
-  character: "slab-character",
-  dialogue: "slab-dialogue",
-  parenthetical: "slab-parenthetical",
-};
 
 export default function ScreenplayEditor({
   document,
   onContentChange,
-  isSaved: _isSaved,
+  onTitleChange,
+  onSaveNow,
   docTitle,
   docMeta,
-}: ScreenplayEditorProps) {
-  const [activeTab, setActiveTab] = useState<"Write" | "Outline">("Write");
-  const [formatMode, setFormatMode] = useState<FormatMode>("Action");
-  const [lines, setLines] = useState<ScriptLine[]>(() => {
-    if (document?.content) return parseContentToLines(document.content);
-    return DEFAULT_LINES;
+}: Props) {
+  const [lines, setLines] = useState<Line[]>(() =>
+    parseContent(document.content),
+  );
+  const [activeTab, setActiveTab] = useState<EditorTab>("write");
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [titleValue, setTitleValue] = useState(docTitle);
+  const textareaRefs = useRef<Map<string, HTMLTextAreaElement>>(new Map());
+  const focusedLineIdRef = useRef<string | null>(null);
+  const [focusedLineId, setFocusedLineId] = useState<string | null>(null);
+  // Track docId to re-parse when a new doc opens
+  const docIdRef = useRef(document.id);
+
+  useEffect(() => {
+    setTitleValue(docTitle);
+  }, [docTitle]);
+
+  // Re-parse content only when a different doc is opened
+  useEffect(() => {
+    if (document.id !== docIdRef.current) {
+      docIdRef.current = document.id;
+      setLines(parseContent(document.content));
+    }
   });
-  const [activeLineId, setActiveLineId] = useState<number>(lines[0]?.id ?? 1);
-  const nextId = useRef(Math.max(...lines.map((l) => l.id)) + 1);
-  const lineRefs = useRef<Map<number, HTMLTextAreaElement>>(new Map());
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only reload when doc id changes
-  useEffect(() => {
-    if (document?.content) {
-      const parsed = parseContentToLines(document.content);
-      setLines(parsed);
-      nextId.current = Math.max(...parsed.map((l) => l.id)) + 1;
+  const resizeAll = useCallback(() => {
+    for (const el of textareaRefs.current.values()) {
+      el.style.height = "auto";
+      el.style.height = `${el.scrollHeight}px`;
     }
-  }, [document?.id]);
+  }, []);
 
+  // Run resize whenever lines count changes
+  const linesLenRef = useRef(lines.length);
   useEffect(() => {
-    const activeLine = lines.find((l) => l.id === activeLineId);
-    if (activeLine) {
-      setFormatMode(LINE_TYPE_MAP[activeLine.type]);
+    if (lines.length !== linesLenRef.current) {
+      linesLenRef.current = lines.length;
+      requestAnimationFrame(resizeAll);
     }
-  }, [activeLineId, lines]);
+  });
 
-  const emitChange = useCallback(
-    (updatedLines: ScriptLine[]) => {
-      onContentChange(linesToContent(updatedLines));
-    },
-    [onContentChange],
-  );
+  // Initial resize on mount
+  useEffect(() => {
+    requestAnimationFrame(resizeAll);
+  }, [resizeAll]);
 
-  const handleLineChange = useCallback(
-    (id: number, text: string) => {
-      setLines((prev) => {
-        const updated = prev.map((l) => (l.id === id ? { ...l, text } : l));
-        emitChange(updated);
-        return updated;
-      });
-    },
-    [emitChange],
-  );
-
-  const handleFormatModeChange = useCallback(
-    (mode: FormatMode) => {
-      setFormatMode(mode);
-      setLines((prev) => {
-        const updated = prev.map((l) =>
-          l.id === activeLineId ? { ...l, type: FORMAT_MAP[mode] } : l,
-        );
-        emitChange(updated);
-        return updated;
-      });
-    },
-    [activeLineId, emitChange],
-  );
-
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLTextAreaElement>, lineId: number) => {
-      const lineIndex = lines.findIndex((l) => l.id === lineId);
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const currentLine = lines[lineIndex];
-        const nextType = detectNextLineType(currentLine.type);
-        const newId = nextId.current++;
-        const newLine: ScriptLine = { id: newId, type: nextType, text: "" };
-        setLines((prev) => {
-          const updated = [
-            ...prev.slice(0, lineIndex + 1),
-            newLine,
-            ...prev.slice(lineIndex + 1),
-          ];
-          emitChange(updated);
-          return updated;
-        });
-        setActiveLineId(newId);
-        setTimeout(() => {
-          lineRefs.current.get(newId)?.focus();
-        }, 0);
-      } else if (
-        e.key === "Backspace" &&
-        lines[lineIndex].text === "" &&
-        lines.length > 1
-      ) {
-        e.preventDefault();
-        const prevLine = lines[lineIndex - 1];
-        setLines((prev) => {
-          const updated = prev.filter((l) => l.id !== lineId);
-          emitChange(updated);
-          return updated;
-        });
-        if (prevLine) {
-          setActiveLineId(prevLine.id);
-          setTimeout(() => {
-            const el = lineRefs.current.get(prevLine.id);
-            if (el) {
-              el.focus();
-              el.setSelectionRange(el.value.length, el.value.length);
-            }
-          }, 0);
-        }
-      } else if (e.key === "Tab") {
-        e.preventDefault();
-        const modes = FORMAT_MODES;
-        const currentIndex = modes.indexOf(formatMode);
-        const nextMode = modes[(currentIndex + 1) % modes.length];
-        handleFormatModeChange(nextMode);
-      } else if (e.key === "ArrowUp" && lineIndex > 0) {
-        e.preventDefault();
-        const prevLine = lines[lineIndex - 1];
-        setActiveLineId(prevLine.id);
-        lineRefs.current.get(prevLine.id)?.focus();
-      } else if (e.key === "ArrowDown" && lineIndex < lines.length - 1) {
-        e.preventDefault();
-        const nextLine = lines[lineIndex + 1];
-        setActiveLineId(nextLine.id);
-        lineRefs.current.get(nextLine.id)?.focus();
+  function updateLine(id: string, text: string) {
+    setLines((prev) => {
+      const next = prev.map((l) => (l.id === id ? { ...l, text } : l));
+      onContentChange(serializeLines(next));
+      return next;
+    });
+    requestAnimationFrame(() => {
+      const el = textareaRefs.current.get(id);
+      if (el) {
+        el.style.height = "auto";
+        el.style.height = `${el.scrollHeight}px`;
       }
-    },
-    [lines, formatMode, handleFormatModeChange, emitChange],
-  );
+    });
+  }
 
-  const sluglineCount = lines.filter((l) => l.type === "slugline").length;
+  function changeLineType(id: string, type: LineType) {
+    setLines((prev) => {
+      const next = prev.map((l) => (l.id === id ? { ...l, type } : l));
+      onContentChange(serializeLines(next));
+      return next;
+    });
+    requestAnimationFrame(resizeAll);
+  }
 
-  const handleOutlineItemClick = (lineId: number) => {
-    setActiveTab("Write");
-    setActiveLineId(lineId);
-    setTimeout(() => lineRefs.current.get(lineId)?.focus(), 100);
-  };
+  function handleKeyDown(
+    e: React.KeyboardEvent<HTMLTextAreaElement>,
+    id: string,
+    idx: number,
+  ) {
+    const line = lines[idx];
 
-  const displayTitle = docTitle || document?.title || "Untitled Script";
-  const displayMeta = docMeta || "Screenplay \u2022 New document";
+    if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+      e.preventDefault();
+      onSaveNow();
+      return;
+    }
+
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      const newLine: Line = {
+        id: uid(),
+        type: SMART_NEXT[line.type],
+        text: "",
+      };
+      setLines((prev) => {
+        const next = [
+          ...prev.slice(0, idx + 1),
+          newLine,
+          ...prev.slice(idx + 1),
+        ];
+        onContentChange(serializeLines(next));
+        return next;
+      });
+      requestAnimationFrame(() => {
+        const el = textareaRefs.current.get(newLine.id);
+        el?.focus();
+      });
+      return;
+    }
+
+    if (e.key === "Backspace" && line.text === "" && lines.length > 1) {
+      e.preventDefault();
+      const prevLine = lines[idx - 1] ?? lines[0];
+      setLines((prev) => {
+        const next = prev.filter((l) => l.id !== id);
+        onContentChange(serializeLines(next));
+        return next;
+      });
+      requestAnimationFrame(() => {
+        const el = textareaRefs.current.get(prevLine.id);
+        if (el) {
+          el.focus();
+          el.setSelectionRange(el.value.length, el.value.length);
+        }
+      });
+      return;
+    }
+
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const types: LineType[] = [
+        "slugline",
+        "action",
+        "character",
+        "dialogue",
+        "parenthetical",
+      ];
+      const currentIdx = types.indexOf(line.type);
+      const nextType = types[(currentIdx + 1) % types.length];
+      changeLineType(id, nextType);
+      return;
+    }
+
+    if (e.key === "ArrowUp" && idx > 0) {
+      const prevEl = textareaRefs.current.get(lines[idx - 1].id);
+      prevEl?.focus();
+    }
+    if (e.key === "ArrowDown" && idx < lines.length - 1) {
+      const nextEl = textareaRefs.current.get(lines[idx + 1].id);
+      nextEl?.focus();
+    }
+  }
+
+  const activeLineType = focusedLineId
+    ? (lines.find((l) => l.id === focusedLineId)?.type ?? "action")
+    : "action";
+
+  const sluglines = lines.filter((l) => l.type === "slugline" && l.text.trim());
+
+  const subtitleText = docMeta
+    ? `${docMeta.formatType} \u00b7 last edited just now`
+    : "Screenplay \u00b7 last edited just now";
 
   return (
-    <div style={{ minHeight: "100%", position: "relative" }}>
-      {/* ── Background W watermark ── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
-          pointerEvents: "none",
-          zIndex: 0,
-          paddingTop: "8px",
-          overflow: "hidden",
-        }}
-      >
-        <span
-          style={{
-            fontSize: "140px",
-            fontWeight: 900,
-            color: "#4caf50",
-            opacity: 0.06,
-            lineHeight: 1,
-            letterSpacing: "-0.04em",
-            userSelect: "none",
-            fontFamily: "Inter, system-ui, sans-serif",
-          }}
-        >
-          W
-        </span>
+    <div className="screenplay-editor" data-ocid="create.editor">
+      <div className="editor-watermark" aria-hidden="true">
+        W
       </div>
 
-      {/* ── Content above tabs: title + subtitle ── */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          padding: "20px 16px 0",
-        }}
-      >
-        <div
-          style={{
-            fontSize: "24px",
-            fontWeight: 800,
-            color: "#ffffff",
-            lineHeight: 1.2,
-            letterSpacing: "-0.01em",
-          }}
-        >
-          {displayTitle}
-        </div>
-        <div
-          style={{
-            fontSize: "13px",
-            color: "rgba(255,255,255,0.55)",
-            marginTop: "4px",
-            fontWeight: 400,
-          }}
-        >
-          {displayMeta}
-        </div>
-      </div>
-
-      {/* ── Write / Outline minimal tabs ── */}
-      <div className="editor-tabs" style={{ position: "relative", zIndex: 1 }}>
-        <button
-          type="button"
-          className={`editor-tab${activeTab === "Write" ? " active" : ""}`}
-          onClick={() => setActiveTab("Write")}
-          data-ocid="editor.write.tab"
-        >
-          Write
-        </button>
-        <button
-          type="button"
-          className={`editor-tab${activeTab === "Outline" ? " active" : ""}`}
-          onClick={() => setActiveTab("Outline")}
-          data-ocid="editor.outline.tab"
-        >
-          Outline
-        </button>
-      </div>
-
-      {activeTab === "Write" && (
-        <div style={{ position: "relative", zIndex: 1 }}>
-          {/* Format chips */}
-          <div className="format-chips" data-ocid="editor.format.panel">
-            {FORMAT_MODES.map((mode) => (
-              <button
-                key={mode}
-                type="button"
-                className={`format-chip${formatMode === mode ? " active" : ""}`}
-                onClick={() => handleFormatModeChange(mode)}
-                data-ocid={`editor.format.${mode.toLowerCase()}.toggle`}
-              >
-                {mode}
-              </button>
-            ))}
-          </div>
-
-          {/* Writing Slab */}
-          <div className="writing-slab" data-ocid="editor.canvas_target">
-            {lines.map((line) => (
-              <div
-                key={line.id}
-                className={`${SLAB_CLASS[line.type]}${
-                  line.id === activeLineId ? " slab-active" : ""
-                }`}
-                data-ocid={
-                  line.id === activeLineId ? "editor.active.row" : undefined
+      <div className="editor-header">
+        <div className="editor-doc-title-wrapper">
+          {editingTitle ? (
+            <input
+              className="editor-doc-title-input"
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+              onBlur={() => {
+                setEditingTitle(false);
+                const t = titleValue.trim() || "Untitled Script";
+                setTitleValue(t);
+                onTitleChange(t);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.currentTarget.blur();
+                } else if (e.key === "Escape") {
+                  setTitleValue(docTitle);
+                  setEditingTitle(false);
                 }
-              >
-                <textarea
-                  ref={(el) => {
-                    if (el) lineRefs.current.set(line.id, el);
-                    else lineRefs.current.delete(line.id);
-                  }}
-                  value={line.text}
-                  onChange={(e) => handleLineChange(line.id, e.target.value)}
-                  onFocus={() => setActiveLineId(line.id)}
-                  onKeyDown={(e) => handleKeyDown(e, line.id)}
-                  rows={1}
-                  style={{
-                    width: "100%",
-                    background: "transparent",
-                    border: "none",
-                    outline: "none",
-                    resize: "none",
-                    color: "inherit",
-                    fontSize: "inherit",
-                    lineHeight: "inherit",
-                    fontFamily: "inherit",
-                    textAlign: "inherit",
-                    fontWeight: "inherit",
-                    textTransform: "inherit",
-                    fontStyle: "inherit",
-                    caretColor: "var(--accent-color, #1DB954)",
-                    overflow: "hidden",
-                    padding: 0,
-                  }}
-                  placeholder={
-                    line.type === "character"
-                      ? "CHARACTER NAME"
-                      : line.type === "slugline"
-                        ? "INT. LOCATION - TIME"
-                        : line.type === "parenthetical"
-                          ? "(direction)"
-                          : line.type === "dialogue"
-                            ? "Dialogue..."
-                            : "Action..."
-                  }
-                  spellCheck={false}
-                  autoComplete="off"
-                  autoCorrect="off"
-                  autoCapitalize={
-                    line.type === "character" || line.type === "slugline"
-                      ? "characters"
-                      : "sentences"
-                  }
-                />
-              </div>
-            ))}
-          </div>
+              }}
+              // biome-ignore lint/a11y/noAutofocus: intentional inline title rename
+              autoFocus
+              data-ocid="create.title.input"
+            />
+          ) : (
+            <button
+              type="button"
+              className="editor-doc-title"
+              onClick={() => setEditingTitle(true)}
+              title="Tap to rename"
+              data-ocid="create.title.button"
+            >
+              {titleValue || "Untitled Script"}
+            </button>
+          )}
+          <p className="editor-doc-subtitle">{subtitleText}</p>
+        </div>
+
+        <div className="editor-tabs" role="tablist">
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "write"}
+            className={`editor-tab${activeTab === "write" ? " active" : ""}`}
+            onClick={() => setActiveTab("write")}
+            data-ocid="create.write.tab"
+          >
+            Write
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={activeTab === "outline"}
+            className={`editor-tab${activeTab === "outline" ? " active" : ""}`}
+            onClick={() => setActiveTab("outline")}
+            data-ocid="create.outline.tab"
+          >
+            Outline
+          </button>
+        </div>
+      </div>
+
+      {activeTab === "write" && (
+        <div className="format-chips" role="toolbar" aria-label="Format">
+          {FORMAT_CHIPS.map((chip) => (
+            <button
+              key={chip.type}
+              type="button"
+              className={`format-chip${activeLineType === chip.type ? " active" : ""}`}
+              onClick={() => {
+                if (focusedLineIdRef.current) {
+                  changeLineType(focusedLineIdRef.current, chip.type);
+                }
+              }}
+              data-ocid={`create.format_${chip.type}.button`}
+            >
+              {chip.label}
+            </button>
+          ))}
         </div>
       )}
 
-      {activeTab === "Outline" && (
-        <div style={{ padding: "8px 0", position: "relative", zIndex: 1 }}>
-          {sluglineCount === 0 ? (
-            <div
-              style={{
-                padding: "40px 20px",
-                textAlign: "center",
-                color: "#8A8A8A",
-              }}
-            >
-              <div style={{ fontSize: "32px", marginBottom: "12px" }}>🎬</div>
-              <div style={{ fontSize: "15px", fontWeight: 600 }}>
-                No scenes yet
-              </div>
-              <div style={{ fontSize: "13px", marginTop: "6px" }}>
-                Add sluglines (INT./EXT.) to create scenes in your outline.
-              </div>
+      {activeTab === "write" && (
+        <div className="writing-slab" data-ocid="create.writing.editor">
+          {lines.map((line, idx) => (
+            <div key={line.id} className="slab-line" data-type={line.type}>
+              <textarea
+                ref={(el) => {
+                  if (el) textareaRefs.current.set(line.id, el);
+                  else textareaRefs.current.delete(line.id);
+                }}
+                className="slab-textarea"
+                value={line.text}
+                rows={1}
+                placeholder={getPlaceholder(line.type)}
+                onChange={(e) => updateLine(line.id, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(e, line.id, idx)}
+                onFocus={() => {
+                  focusedLineIdRef.current = line.id;
+                  setFocusedLineId(line.id);
+                }}
+                onInput={(e) => {
+                  const el = e.currentTarget;
+                  el.style.height = "auto";
+                  el.style.height = `${el.scrollHeight}px`;
+                }}
+                spellCheck
+                data-ocid={`create.line.${idx + 1}.textarea`}
+              />
             </div>
+          ))}
+        </div>
+      )}
+
+      {activeTab === "outline" && (
+        <div className="outline-container" data-ocid="create.outline.panel">
+          {sluglines.length === 0 ? (
+            <p className="outline-empty">
+              No scene headings yet. Add a Slugline in the Write tab to see your
+              outline here.
+            </p>
           ) : (
-            lines
-              .filter((l) => l.type === "slugline" || l.type === "character")
-              .map((line, idx) => (
-                <button
-                  key={line.id}
-                  type="button"
-                  className="outline-item"
-                  style={{
-                    width: "100%",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    background: "transparent",
-                    border: "none",
-                  }}
-                  onClick={() => handleOutlineItemClick(line.id)}
-                  data-ocid={`outline.item.${idx + 1}`}
-                >
-                  <span className="outline-num">{idx + 1}</span>
-                  <div>
-                    <div className="outline-text">{line.text || "(empty)"}</div>
-                    <div className="outline-sub">
-                      {line.type === "slugline" ? "Scene" : "Character"}
-                    </div>
-                  </div>
-                </button>
-              ))
+            sluglines.map((line, i) => (
+              <div
+                key={line.id}
+                className="outline-item"
+                data-ocid={`create.outline.item.${i + 1}`}
+              >
+                <p className="outline-item-title">{line.text}</p>
+              </div>
+            ))
           )}
         </div>
       )}
     </div>
   );
+}
+
+function getPlaceholder(type: LineType): string {
+  switch (type) {
+    case "slugline":
+      return "INT. LOCATION - TIME";
+    case "action":
+      return "Describe the action...";
+    case "character":
+      return "CHARACTER NAME";
+    case "dialogue":
+      return "Dialogue goes here...";
+    case "parenthetical":
+      return "(beat)";
+  }
 }

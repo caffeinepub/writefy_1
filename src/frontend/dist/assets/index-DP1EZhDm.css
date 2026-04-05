@@ -627,7 +627,9 @@ body {
   z-index: 0;
   line-height: 1;
   font-family: system-ui, -apple-system, sans-serif;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 .editor-header {
@@ -770,6 +772,10 @@ body {
   caret-color: var(--accent-color);
   padding: 2px 0;
   display: block;
+}
+
+.slab-textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .slab-textarea::placeholder {

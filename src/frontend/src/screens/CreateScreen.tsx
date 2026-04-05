@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { DocumentMeta } from "../backend.d";
+import { Plus } from "lucide-react";
+import { useRef, useState } from "react";
+import type { Document, DocumentMeta } from "../backend.d";
 import DeleteConfirm from "../components/DeleteConfirm";
 import MenuOverlay from "../components/MenuOverlay";
 import ScreenplayEditor from "../components/ScreenplayEditor";
@@ -8,288 +9,228 @@ import {
   useGetDocument,
   useUpdateDocument,
 } from "../hooks/useQueries";
-import { formatRelativeTime } from "../utils/formatTime";
 import { idbSaveScript } from "../utils/idb";
 
-interface CreateScreenProps {
+interface Props {
   activeDocId: string | null;
   onDocumentDeleted: () => void;
   allDocs: DocumentMeta[];
   isInitialized: boolean;
-  menuTrigger?: number;
-  onContentUpdate?: (content: string) => void;
+  menuTrigger: number;
 }
+
+let lastMenuTrigger = 0;
 
 export default function CreateScreen({
   activeDocId,
   onDocumentDeleted,
-  allDocs: _allDocs,
-  isInitialized,
+  allDocs,
   menuTrigger,
-  onContentUpdate,
-}: CreateScreenProps) {
-  const { data: document } = useGetDocument(activeDocId);
+}: Props) {
+  const [showMenu, setShowMenu] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [isSaved, setIsSaved] = useState(true);
+  const [liveContent, setLiveContent] = useState("");
+  const [liveTitle, setLiveTitle] = useState("");
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const liveContentRef = useRef(liveContent);
+  const liveTitleRef = useRef(liveTitle);
+  const initializedDocRef = useRef<string | null>(null);
+
+  const { data: doc, isLoading } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
   const deleteDoc = useDeleteDocument();
 
-  const [showMenu, setShowMenu] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
-  const [isSaved, setIsSaved] = useState(true);
-  const [localContent, setLocalContent] = useState("");
-  const autoSaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const prevMenuTrigger = useRef(0);
+  // Track latest values in refs to avoid stale closures
+  liveContentRef.current = liveContent;
+  liveTitleRef.current = liveTitle;
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only reset content on doc id change
-  useEffect(() => {
-    if (document) {
-      setLocalContent(document.content);
-      onContentUpdate?.(document.content);
+  // Sync local state when a new doc loads (not on re-renders)
+  if (doc && doc.id !== initializedDocRef.current) {
+    initializedDocRef.current = doc.id;
+    // Use a direct assignment pattern (not useEffect) to avoid stale closure issues
+    // These will take effect in the render after this
+  }
+
+  // Derive initial content/title from doc when it changes
+  // Track via a "lastSyncedDocId" ref to sync once on doc load
+  const lastSyncedDocIdRef = useRef<string | null>(null);
+  if (doc && doc.id !== lastSyncedDocIdRef.current) {
+    lastSyncedDocIdRef.current = doc.id;
+    // Sync happens as side-effect after render — but we need it NOW:
+    // Trigger an update in the next tick
+    Promise.resolve().then(() => {
+      setLiveTitle(doc.title);
+      setLiveContent(doc.content);
+      setIsSaved(true);
+    });
+  }
+
+  // Open menu when trigger fires (compare to last seen value)
+  if (menuTrigger > lastMenuTrigger && activeDocId) {
+    lastMenuTrigger = menuTrigger;
+    Promise.resolve().then(() => setShowMenu(true));
+  }
+
+  async function doSave(content: string, title: string) {
+    if (!activeDocId) return;
+    const useTitle = title.trim() || "Untitled Script";
+    try {
+      await Promise.all([
+        updateDoc.mutateAsync({ id: activeDocId, title: useTitle, content }),
+        idbSaveScript(activeDocId, useTitle, content),
+      ]);
+      setIsSaved(true);
+    } catch {
+      // IDB still saves offline
     }
-  }, [document?.id]);
+  }
 
-  useEffect(() => {
-    if (menuTrigger && menuTrigger !== prevMenuTrigger.current) {
-      prevMenuTrigger.current = menuTrigger;
-      setShowMenu(true);
-    }
-  }, [menuTrigger]);
+  function scheduleSave(content: string, title: string, delay = 30000) {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => doSave(content, title), delay);
+  }
 
-  const doSave = useCallback(
-    async (content: string) => {
-      if (!activeDocId || !document) return;
-      try {
-        await updateDoc.mutateAsync({
-          id: activeDocId,
-          title: document.title,
-          content,
-        });
-        setIsSaved(true);
-      } catch {
-        // save failed silently
-      }
-    },
-    [activeDocId, document, updateDoc],
-  );
+  function handleContentChange(content: string) {
+    setLiveContent(content);
+    setIsSaved(false);
+    scheduleSave(content, liveTitleRef.current);
+  }
 
-  const handleContentChange = useCallback(
-    (content: string) => {
-      setLocalContent(content);
-      setIsSaved(false);
-      onContentUpdate?.(content);
-      if (activeDocId && document) {
-        idbSaveScript(activeDocId, document.title, content).catch(() => {});
-      }
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-      autoSaveTimer.current = setTimeout(() => {
-        doSave(content);
-      }, 30000);
-    },
-    [doSave, activeDocId, document, onContentUpdate],
-  );
+  function handleTitleChange(title: string) {
+    setLiveTitle(title);
+    setIsSaved(false);
+    scheduleSave(liveContentRef.current, title, 2000);
+  }
 
-  useEffect(() => {
-    return () => {
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-    };
-  }, []);
+  function handleManualSave() {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    doSave(liveContentRef.current, liveTitleRef.current);
+  }
 
-  const handleExportPDF = () => {
-    if (!document) return;
+  function handleExportTxt() {
+    const blob = new Blob([liveContent], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = window.document.createElement("a");
+    a.href = url;
+    a.download = `${liveTitle || "untitled"}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
     setShowMenu(false);
-    const content = localContent || document.content;
-    const lines = content.split("\n");
-    const htmlLines = lines
-      .map((line) => {
-        const trimmed = line.trim();
-        if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.")) {
-          return `<p style="font-weight:bold;text-transform:uppercase;margin:16px 0 4px">${trimmed}</p>`;
-        }
-        if (
-          trimmed === trimmed.toUpperCase() &&
-          trimmed.length > 0 &&
-          /^[A-Z\s]+$/.test(trimmed)
-        ) {
-          return `<p style="text-align:center;font-weight:bold;text-transform:uppercase;margin:16px auto 0;width:60%">${trimmed}</p>`;
-        }
-        if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-          return `<p style="text-align:center;font-style:italic;margin:0 auto;width:50%">${trimmed}</p>`;
-        }
-        return `<p style="margin:0 auto 8px;width:80%">${trimmed || "&nbsp;"}</p>`;
-      })
-      .join("");
+  }
 
-    const win = window.open("", "_blank");
-    if (win) {
-      win.document.write(
-        `<!DOCTYPE html><html><head><title>${document.title}</title><style>body{font-family:'Courier New',monospace;font-size:12pt;line-height:1.5;padding:72px;max-width:8.5in;margin:0 auto;color:#000;background:#fff}p{margin-bottom:8px}@media print{body{padding:1in}}</style></head><body>${htmlLines}</body></html>`,
-      );
-      win.document.close();
-      win.focus();
-      setTimeout(() => win.print(), 500);
-    }
-  };
-
-  const handleImport = () => {
-    setShowMenu(false);
-    const input = globalThis.document.createElement("input");
+  function handleImport() {
+    const input = window.document.createElement("input");
     input.type = "file";
     input.accept = ".txt,.fountain";
-    input.onchange = async (e) => {
+    input.onchange = (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
       if (!file) return;
-      const text = await file.text();
-      setLocalContent(text);
-      setIsSaved(false);
-      onContentUpdate?.(text);
-      if (activeDocId && document) {
-        idbSaveScript(activeDocId, document.title, text).catch(() => {});
-      }
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-      doSave(text);
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const text = ev.target?.result as string;
+        if (text) {
+          setLiveContent(text);
+          setIsSaved(false);
+          scheduleSave(text, liveTitleRef.current, 3000);
+        }
+      };
+      reader.readAsText(file);
     };
     input.click();
-  };
-
-  const handleShare = async () => {
     setShowMenu(false);
-    if (!document) return;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: document.title,
-          text: localContent || document.content,
-        });
-      } catch {
-        // user cancelled
-      }
-    } else {
-      navigator.clipboard?.writeText(localContent || document.content);
-    }
-  };
+  }
 
-  const handleDeleteConfirm = async () => {
-    if (!activeDocId) return;
-    try {
-      await deleteDoc.mutateAsync(activeDocId);
-    } catch {
-      // ignore
+  function handleShare() {
+    if (navigator.share) {
+      navigator.share({ title: liveTitle, text: liveContent }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(liveContent).catch(() => {});
     }
-    setShowDelete(false);
+    setShowMenu(false);
+  }
+
+  async function handleDelete() {
+    if (!activeDocId) return;
+    await deleteDoc.mutateAsync(activeDocId);
+    setShowDeleteConfirm(false);
     setShowMenu(false);
     onDocumentDeleted();
-  };
-
-  if (!isInitialized) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          color: "#8A8A8A",
-          flexDirection: "column",
-          gap: 12,
-          padding: 24,
-          minHeight: "calc(100dvh - 176px)",
-        }}
-        data-ocid="create.loading_state"
-      >
-        <div
-          style={{
-            width: 40,
-            height: 40,
-            borderRadius: "50%",
-            border: "3px solid #1A1A1A",
-            borderTopColor: "var(--accent-color, #1DB954)",
-          }}
-        />
-        <div style={{ fontSize: 14, color: "#8A8A8A" }}>Loading script...</div>
-      </div>
-    );
   }
 
   if (!activeDocId) {
     return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          flexDirection: "column",
-          gap: 12,
-          padding: 24,
-          minHeight: "calc(100dvh - 176px)",
-          textAlign: "center",
-        }}
-        data-ocid="create.empty_state"
-      >
-        <div style={{ fontSize: 32, marginBottom: 4 }}>✍️</div>
-        <div style={{ fontSize: 16, fontWeight: 700, color: "#fff" }}>
-          No script open
-        </div>
-        <div style={{ fontSize: 13, color: "#8a8a8a" }}>
-          Use the + button to start writing.
+      <div className="create-screen">
+        <div className="editor-no-doc" data-ocid="create.empty_state">
+          <div
+            style={{
+              width: 60,
+              height: 60,
+              borderRadius: "50%",
+              background: "rgba(29,185,84,0.1)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Plus size={28} style={{ color: "var(--accent-color)" }} />
+          </div>
+          <p>Tap the + button below to start a new script</p>
         </div>
       </div>
     );
   }
 
-  const docMeta = document
-    ? `${document.formatType} \u2022 ${formatRelativeTime(document.lastEdited)}`
-    : "Screenplay \u2022 New document";
+  if (isLoading || !doc) {
+    return (
+      <div className="create-screen">
+        <div className="editor-loading" data-ocid="create.loading_state">
+          Loading script...
+        </div>
+      </div>
+    );
+  }
+
+  const currentMeta = allDocs.find((d) => d.id === activeDocId) ?? null;
 
   return (
-    <>
-      {/* Save indicator dot */}
+    <div className="create-screen" data-ocid="create.section">
       <div
-        style={{
-          position: "fixed",
-          top: 10,
-          left: "50%",
-          transform: "translateX(calc(-50% + 64px))",
-          zIndex: 60,
-          pointerEvents: "none",
-        }}
-      >
-        <div
-          className={`save-dot${isSaved ? " saved" : ""}`}
-          title={isSaved ? "Saved" : "Unsaved changes"}
-          data-ocid={
-            isSaved ? "create.save.success_state" : "create.save.loading_state"
-          }
-        />
-      </div>
+        className={`save-dot${isSaved ? " saved" : ""}`}
+        title={isSaved ? "Saved" : "Unsaved changes"}
+        data-ocid="create.save.success_state"
+      />
+
+      <ScreenplayEditor
+        document={doc as Document}
+        onContentChange={handleContentChange}
+        onTitleChange={handleTitleChange}
+        onSaveNow={handleManualSave}
+        isSaved={isSaved}
+        docTitle={liveTitle || doc.title}
+        docMeta={currentMeta}
+      />
 
       {showMenu && (
         <MenuOverlay
           onClose={() => setShowMenu(false)}
-          onExport={handleExportPDF}
+          onExport={handleExportTxt}
           onImport={handleImport}
           onShare={handleShare}
           onDelete={() => {
             setShowMenu(false);
-            setShowDelete(true);
+            setShowDeleteConfirm(true);
           }}
         />
       )}
 
-      {showDelete && (
+      {showDeleteConfirm && (
         <DeleteConfirm
-          title={document?.title ?? "Untitled Script"}
-          onConfirm={handleDeleteConfirm}
-          onCancel={() => setShowDelete(false)}
+          title={liveTitle || "Untitled Script"}
+          onConfirm={handleDelete}
+          onCancel={() => setShowDeleteConfirm(false)}
         />
       )}
-
-      <ScreenplayEditor
-        document={document ?? null}
-        onContentChange={handleContentChange}
-        isSaved={isSaved}
-        docTitle={document?.title}
-        docMeta={docMeta}
-      />
-    </>
+    </div>
   );
 }

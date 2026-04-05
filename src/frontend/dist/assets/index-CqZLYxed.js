@@ -1763,7 +1763,7 @@ var Mutation = (_g = class extends Removable {
     this.execute(this.state.variables);
   }
   async execute(variables) {
-    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k2, _l2, _m, _n, _o, _p, _q, _r, _s, _t2;
+    var _a3, _b3, _c2, _d2, _e2, _f2, _g2, _h2, _i2, _j2, _k2, _l2, _m, _n, _o, _p, _q, _r, _s, _t;
     const onContinue = () => {
       __privateMethod(this, _Mutation_instances, dispatch_fn2).call(this, { type: "continue" });
     };
@@ -1879,7 +1879,7 @@ var Mutation = (_g = class extends Removable {
           this,
           mutationFnContext
         ));
-        await ((_t2 = (_s = this.options).onSettled) == null ? void 0 : _t2.call(
+        await ((_t = (_s = this.options).onSettled) == null ? void 0 : _t.call(
           _s,
           void 0,
           error,
@@ -3030,7 +3030,6 @@ react_production.version = "19.1.1";
   react.exports = react_production;
 }
 var reactExports = react.exports;
-const o$1 = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
 var QueryClientContext = reactExports.createContext(
   void 0
 );
@@ -3647,7 +3646,6 @@ function checkDCE$1() {
   reactDom.exports = reactDom_production;
 }
 var reactDomExports = reactDom.exports;
-const vt = /* @__PURE__ */ getDefaultExportFromCjs(reactDomExports);
 /**
  * @license React
  * react-dom-client.production.js
@@ -14722,329 +14720,6 @@ function checkDCE() {
 }
 var clientExports = client.exports;
 const ReactDOM = /* @__PURE__ */ getDefaultExportFromCjs(clientExports);
-var M$2 = (e, i, s2, u, m2, a2, l, h2) => {
-  let d2 = document.documentElement, w2 = ["light", "dark"];
-  function p2(n) {
-    (Array.isArray(e) ? e : [e]).forEach((y2) => {
-      let k2 = y2 === "class", S2 = k2 && a2 ? m2.map((f) => a2[f] || f) : m2;
-      k2 ? (d2.classList.remove(...S2), d2.classList.add(a2 && a2[n] ? a2[n] : n)) : d2.setAttribute(y2, n);
-    }), R2(n);
-  }
-  function R2(n) {
-    h2 && w2.includes(n) && (d2.style.colorScheme = n);
-  }
-  function c2() {
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
-  if (u) p2(u);
-  else try {
-    let n = localStorage.getItem(i) || s2, y2 = l && n === "system" ? c2() : n;
-    p2(y2);
-  } catch (n) {
-  }
-};
-var x$1 = reactExports.createContext(void 0), U = { setTheme: (e) => {
-}, themes: [] }, z$1 = () => {
-  var e;
-  return (e = reactExports.useContext(x$1)) != null ? e : U;
-};
-reactExports.memo(({ forcedTheme: e, storageKey: i, attribute: s2, enableSystem: u, enableColorScheme: m2, defaultTheme: a2, value: l, themes: h2, nonce: d2, scriptProps: w2 }) => {
-  let p2 = JSON.stringify([s2, i, a2, e, h2, l, u, m2]).slice(1, -1);
-  return reactExports.createElement("script", { ...w2, suppressHydrationWarning: true, nonce: typeof window == "undefined" ? d2 : "", dangerouslySetInnerHTML: { __html: `(${M$2.toString()})(${p2})` } });
-});
-var jt = (n) => {
-  switch (n) {
-    case "success":
-      return ee;
-    case "info":
-      return ae;
-    case "warning":
-      return oe;
-    case "error":
-      return se;
-    default:
-      return null;
-  }
-}, te = Array(12).fill(0), Yt = ({ visible: n, className: e }) => o$1.createElement("div", { className: ["sonner-loading-wrapper", e].filter(Boolean).join(" "), "data-visible": n }, o$1.createElement("div", { className: "sonner-spinner" }, te.map((t, a2) => o$1.createElement("div", { className: "sonner-loading-bar", key: `spinner-bar-${a2}` })))), ee = o$1.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", height: "20", width: "20" }, o$1.createElement("path", { fillRule: "evenodd", d: "M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z", clipRule: "evenodd" })), oe = o$1.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", height: "20", width: "20" }, o$1.createElement("path", { fillRule: "evenodd", d: "M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z", clipRule: "evenodd" })), ae = o$1.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", height: "20", width: "20" }, o$1.createElement("path", { fillRule: "evenodd", d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z", clipRule: "evenodd" })), se = o$1.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", height: "20", width: "20" }, o$1.createElement("path", { fillRule: "evenodd", d: "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z", clipRule: "evenodd" })), Ot = o$1.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "12", height: "12", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }, o$1.createElement("line", { x1: "18", y1: "6", x2: "6", y2: "18" }), o$1.createElement("line", { x1: "6", y1: "6", x2: "18", y2: "18" }));
-var Ft = () => {
-  let [n, e] = o$1.useState(document.hidden);
-  return o$1.useEffect(() => {
-    let t = () => {
-      e(document.hidden);
-    };
-    return document.addEventListener("visibilitychange", t), () => window.removeEventListener("visibilitychange", t);
-  }, []), n;
-};
-var bt = 1, yt = class {
-  constructor() {
-    this.subscribe = (e) => (this.subscribers.push(e), () => {
-      let t = this.subscribers.indexOf(e);
-      this.subscribers.splice(t, 1);
-    });
-    this.publish = (e) => {
-      this.subscribers.forEach((t) => t(e));
-    };
-    this.addToast = (e) => {
-      this.publish(e), this.toasts = [...this.toasts, e];
-    };
-    this.create = (e) => {
-      var S2;
-      let { message: t, ...a2 } = e, u = typeof (e == null ? void 0 : e.id) == "number" || ((S2 = e.id) == null ? void 0 : S2.length) > 0 ? e.id : bt++, f = this.toasts.find((g2) => g2.id === u), w2 = e.dismissible === void 0 ? true : e.dismissible;
-      return this.dismissedToasts.has(u) && this.dismissedToasts.delete(u), f ? this.toasts = this.toasts.map((g2) => g2.id === u ? (this.publish({ ...g2, ...e, id: u, title: t }), { ...g2, ...e, id: u, dismissible: w2, title: t }) : g2) : this.addToast({ title: t, ...a2, dismissible: w2, id: u }), u;
-    };
-    this.dismiss = (e) => (this.dismissedToasts.add(e), e || this.toasts.forEach((t) => {
-      this.subscribers.forEach((a2) => a2({ id: t.id, dismiss: true }));
-    }), this.subscribers.forEach((t) => t({ id: e, dismiss: true })), e);
-    this.message = (e, t) => this.create({ ...t, message: e });
-    this.error = (e, t) => this.create({ ...t, message: e, type: "error" });
-    this.success = (e, t) => this.create({ ...t, type: "success", message: e });
-    this.info = (e, t) => this.create({ ...t, type: "info", message: e });
-    this.warning = (e, t) => this.create({ ...t, type: "warning", message: e });
-    this.loading = (e, t) => this.create({ ...t, type: "loading", message: e });
-    this.promise = (e, t) => {
-      if (!t) return;
-      let a2;
-      t.loading !== void 0 && (a2 = this.create({ ...t, promise: e, type: "loading", message: t.loading, description: typeof t.description != "function" ? t.description : void 0 }));
-      let u = e instanceof Promise ? e : e(), f = a2 !== void 0, w2, S2 = u.then(async (i) => {
-        if (w2 = ["resolve", i], o$1.isValidElement(i)) f = false, this.create({ id: a2, type: "default", message: i });
-        else if (ie(i) && !i.ok) {
-          f = false;
-          let T2 = typeof t.error == "function" ? await t.error(`HTTP error! status: ${i.status}`) : t.error, F2 = typeof t.description == "function" ? await t.description(`HTTP error! status: ${i.status}`) : t.description;
-          this.create({ id: a2, type: "error", message: T2, description: F2 });
-        } else if (t.success !== void 0) {
-          f = false;
-          let T2 = typeof t.success == "function" ? await t.success(i) : t.success, F2 = typeof t.description == "function" ? await t.description(i) : t.description;
-          this.create({ id: a2, type: "success", message: T2, description: F2 });
-        }
-      }).catch(async (i) => {
-        if (w2 = ["reject", i], t.error !== void 0) {
-          f = false;
-          let D = typeof t.error == "function" ? await t.error(i) : t.error, T2 = typeof t.description == "function" ? await t.description(i) : t.description;
-          this.create({ id: a2, type: "error", message: D, description: T2 });
-        }
-      }).finally(() => {
-        var i;
-        f && (this.dismiss(a2), a2 = void 0), (i = t.finally) == null || i.call(t);
-      }), g2 = () => new Promise((i, D) => S2.then(() => w2[0] === "reject" ? D(w2[1]) : i(w2[1])).catch(D));
-      return typeof a2 != "string" && typeof a2 != "number" ? { unwrap: g2 } : Object.assign(a2, { unwrap: g2 });
-    };
-    this.custom = (e, t) => {
-      let a2 = (t == null ? void 0 : t.id) || bt++;
-      return this.create({ jsx: e(a2), id: a2, ...t }), a2;
-    };
-    this.getActiveToasts = () => this.toasts.filter((e) => !this.dismissedToasts.has(e.id));
-    this.subscribers = [], this.toasts = [], this.dismissedToasts = /* @__PURE__ */ new Set();
-  }
-}, v$1 = new yt(), ne = (n, e) => {
-  let t = (e == null ? void 0 : e.id) || bt++;
-  return v$1.addToast({ title: n, ...e, id: t }), t;
-}, ie = (n) => n && typeof n == "object" && "ok" in n && typeof n.ok == "boolean" && "status" in n && typeof n.status == "number", le = ne, ce = () => v$1.toasts, de = () => v$1.getActiveToasts();
-Object.assign(le, { success: v$1.success, info: v$1.info, warning: v$1.warning, error: v$1.error, custom: v$1.custom, message: v$1.message, promise: v$1.promise, dismiss: v$1.dismiss, loading: v$1.loading }, { getHistory: ce, getToasts: de });
-function wt(n, { insertAt: e } = {}) {
-  if (typeof document == "undefined") return;
-  let t = document.head || document.getElementsByTagName("head")[0], a2 = document.createElement("style");
-  a2.type = "text/css", e === "top" && t.firstChild ? t.insertBefore(a2, t.firstChild) : t.appendChild(a2), a2.styleSheet ? a2.styleSheet.cssText = n : a2.appendChild(document.createTextNode(n));
-}
-wt(`:where(html[dir="ltr"]),:where([data-sonner-toaster][dir="ltr"]){--toast-icon-margin-start: -3px;--toast-icon-margin-end: 4px;--toast-svg-margin-start: -1px;--toast-svg-margin-end: 0px;--toast-button-margin-start: auto;--toast-button-margin-end: 0;--toast-close-button-start: 0;--toast-close-button-end: unset;--toast-close-button-transform: translate(-35%, -35%)}:where(html[dir="rtl"]),:where([data-sonner-toaster][dir="rtl"]){--toast-icon-margin-start: 4px;--toast-icon-margin-end: -3px;--toast-svg-margin-start: 0px;--toast-svg-margin-end: -1px;--toast-button-margin-start: 0;--toast-button-margin-end: auto;--toast-close-button-start: unset;--toast-close-button-end: 0;--toast-close-button-transform: translate(35%, -35%)}:where([data-sonner-toaster]){position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1: hsl(0, 0%, 99%);--gray2: hsl(0, 0%, 97.3%);--gray3: hsl(0, 0%, 95.1%);--gray4: hsl(0, 0%, 93%);--gray5: hsl(0, 0%, 90.9%);--gray6: hsl(0, 0%, 88.7%);--gray7: hsl(0, 0%, 85.8%);--gray8: hsl(0, 0%, 78%);--gray9: hsl(0, 0%, 56.1%);--gray10: hsl(0, 0%, 52.3%);--gray11: hsl(0, 0%, 43.5%);--gray12: hsl(0, 0%, 9%);--border-radius: 8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:none;z-index:999999999;transition:transform .4s ease}:where([data-sonner-toaster][data-lifted="true"]){transform:translateY(-10px)}@media (hover: none) and (pointer: coarse){:where([data-sonner-toaster][data-lifted="true"]){transform:none}}:where([data-sonner-toaster][data-x-position="right"]){right:var(--offset-right)}:where([data-sonner-toaster][data-x-position="left"]){left:var(--offset-left)}:where([data-sonner-toaster][data-x-position="center"]){left:50%;transform:translate(-50%)}:where([data-sonner-toaster][data-y-position="top"]){top:var(--offset-top)}:where([data-sonner-toaster][data-y-position="bottom"]){bottom:var(--offset-bottom)}:where([data-sonner-toast]){--y: translateY(100%);--lift-amount: calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);filter:blur(0);touch-action:none;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:none;overflow-wrap:anywhere}:where([data-sonner-toast][data-styled="true"]){padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px #0000001a;width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}:where([data-sonner-toast]:focus-visible){box-shadow:0 4px 12px #0000001a,0 0 0 2px #0003}:where([data-sonner-toast][data-y-position="top"]){top:0;--y: translateY(-100%);--lift: 1;--lift-amount: calc(1 * var(--gap))}:where([data-sonner-toast][data-y-position="bottom"]){bottom:0;--y: translateY(100%);--lift: -1;--lift-amount: calc(var(--lift) * var(--gap))}:where([data-sonner-toast]) :where([data-description]){font-weight:400;line-height:1.4;color:inherit}:where([data-sonner-toast]) :where([data-title]){font-weight:500;line-height:1.5;color:inherit}:where([data-sonner-toast]) :where([data-icon]){display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}:where([data-sonner-toast][data-promise="true"]) :where([data-icon])>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}:where([data-sonner-toast]) :where([data-icon])>*{flex-shrink:0}:where([data-sonner-toast]) :where([data-icon]) svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}:where([data-sonner-toast]) :where([data-content]){display:flex;flex-direction:column;gap:2px}[data-sonner-toast][data-styled=true] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;cursor:pointer;outline:none;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}:where([data-sonner-toast]) :where([data-button]):focus-visible{box-shadow:0 0 0 2px #0006}:where([data-sonner-toast]) :where([data-button]):first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}:where([data-sonner-toast]) :where([data-cancel]){color:var(--normal-text);background:rgba(0,0,0,.08)}:where([data-sonner-toast][data-theme="dark"]) :where([data-cancel]){background:rgba(255,255,255,.3)}:where([data-sonner-toast]) :where([data-close-button]){position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;color:var(--gray12);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast] [data-close-button]{background:var(--gray1)}:where([data-sonner-toast]) :where([data-close-button]):focus-visible{box-shadow:0 4px 12px #0000001a,0 0 0 2px #0003}:where([data-sonner-toast]) :where([data-disabled="true"]){cursor:not-allowed}:where([data-sonner-toast]):hover :where([data-close-button]):hover{background:var(--gray2);border-color:var(--gray5)}:where([data-sonner-toast][data-swiping="true"]):before{content:"";position:absolute;left:-50%;right:-50%;height:100%;z-index:-1}:where([data-sonner-toast][data-y-position="top"][data-swiping="true"]):before{bottom:50%;transform:scaleY(3) translateY(50%)}:where([data-sonner-toast][data-y-position="bottom"][data-swiping="true"]):before{top:50%;transform:scaleY(3) translateY(-50%)}:where([data-sonner-toast][data-swiping="false"][data-removed="true"]):before{content:"";position:absolute;inset:0;transform:scaleY(2)}:where([data-sonner-toast]):after{content:"";position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}:where([data-sonner-toast][data-mounted="true"]){--y: translateY(0);opacity:1}:where([data-sonner-toast][data-expanded="false"][data-front="false"]){--scale: var(--toasts-before) * .05 + 1;--y: translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}:where([data-sonner-toast])>*{transition:opacity .4s}:where([data-sonner-toast][data-expanded="false"][data-front="false"][data-styled="true"])>*{opacity:0}:where([data-sonner-toast][data-visible="false"]){opacity:0;pointer-events:none}:where([data-sonner-toast][data-mounted="true"][data-expanded="true"]){--y: translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}:where([data-sonner-toast][data-removed="true"][data-front="true"][data-swipe-out="false"]){--y: translateY(calc(var(--lift) * -100%));opacity:0}:where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="true"]){--y: translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}:where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="false"]){--y: translateY(40%);opacity:0;transition:transform .5s,opacity .2s}:where([data-sonner-toast][data-removed="true"][data-front="false"]):before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount-y, 0px)) translate(var(--swipe-amount-x, 0px));transition:none}[data-sonner-toast][data-swiped=true]{user-select:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation-duration:.2s;animation-timing-function:ease-out;animation-fill-mode:forwards}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=left]{animation-name:swipe-out-left}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=right]{animation-name:swipe-out-right}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=up]{animation-name:swipe-out-up}[data-sonner-toast][data-swipe-out=true][data-swipe-direction=down]{animation-name:swipe-out-down}@keyframes swipe-out-left{0%{transform:var(--y) translate(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translate(calc(var(--swipe-amount-x) - 100%));opacity:0}}@keyframes swipe-out-right{0%{transform:var(--y) translate(var(--swipe-amount-x));opacity:1}to{transform:var(--y) translate(calc(var(--swipe-amount-x) + 100%));opacity:0}}@keyframes swipe-out-up{0%{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) - 100%));opacity:0}}@keyframes swipe-out-down{0%{transform:var(--y) translateY(var(--swipe-amount-y));opacity:1}to{transform:var(--y) translateY(calc(var(--swipe-amount-y) + 100%));opacity:0}}@media (max-width: 600px){[data-sonner-toaster]{position:fixed;right:var(--mobile-offset-right);left:var(--mobile-offset-left);width:100%}[data-sonner-toaster][dir=rtl]{left:calc(var(--mobile-offset-left) * -1)}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - var(--mobile-offset-left) * 2)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset-left)}[data-sonner-toaster][data-y-position=bottom]{bottom:var(--mobile-offset-bottom)}[data-sonner-toaster][data-y-position=top]{top:var(--mobile-offset-top)}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset-left);right:var(--mobile-offset-right);transform:none}}[data-sonner-toaster][data-theme=light]{--normal-bg: #fff;--normal-border: var(--gray4);--normal-text: var(--gray12);--success-bg: hsl(143, 85%, 96%);--success-border: hsl(145, 92%, 91%);--success-text: hsl(140, 100%, 27%);--info-bg: hsl(208, 100%, 97%);--info-border: hsl(221, 91%, 91%);--info-text: hsl(210, 92%, 45%);--warning-bg: hsl(49, 100%, 97%);--warning-border: hsl(49, 91%, 91%);--warning-text: hsl(31, 92%, 45%);--error-bg: hsl(359, 100%, 97%);--error-border: hsl(359, 100%, 94%);--error-text: hsl(360, 100%, 45%)}[data-sonner-toaster][data-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg: #000;--normal-border: hsl(0, 0%, 20%);--normal-text: var(--gray1)}[data-sonner-toaster][data-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg: #fff;--normal-border: var(--gray3);--normal-text: var(--gray12)}[data-sonner-toaster][data-theme=dark]{--normal-bg: #000;--normal-bg-hover: hsl(0, 0%, 12%);--normal-border: hsl(0, 0%, 20%);--normal-border-hover: hsl(0, 0%, 25%);--normal-text: var(--gray1);--success-bg: hsl(150, 100%, 6%);--success-border: hsl(147, 100%, 12%);--success-text: hsl(150, 86%, 65%);--info-bg: hsl(215, 100%, 6%);--info-border: hsl(223, 100%, 12%);--info-text: hsl(216, 87%, 65%);--warning-bg: hsl(64, 100%, 6%);--warning-border: hsl(60, 100%, 12%);--warning-text: hsl(46, 87%, 65%);--error-bg: hsl(358, 76%, 10%);--error-border: hsl(357, 89%, 16%);--error-text: hsl(358, 100%, 81%)}[data-sonner-toaster][data-theme=dark] [data-sonner-toast] [data-close-button]{background:var(--normal-bg);border-color:var(--normal-border);color:var(--normal-text)}[data-sonner-toaster][data-theme=dark] [data-sonner-toast] [data-close-button]:hover{background:var(--normal-bg-hover);border-color:var(--normal-border-hover)}[data-rich-colors=true][data-sonner-toast][data-type=success],[data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true][data-sonner-toast][data-type=info],[data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true][data-sonner-toast][data-type=warning],[data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true][data-sonner-toast][data-type=error],[data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size: 16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:nth-child(1){animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}to{opacity:.15}}@media (prefers-reduced-motion){[data-sonner-toast],[data-sonner-toast]>*,.sonner-loading-bar{transition:none!important;animation:none!important}}.sonner-loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.sonner-loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}
-`);
-function tt$1(n) {
-  return n.label !== void 0;
-}
-var pe = 3, me = "32px", ge = "16px", Wt = 4e3, he = 356, be = 14, ye = 20, we = 200;
-function M$1(...n) {
-  return n.filter(Boolean).join(" ");
-}
-function xe(n) {
-  let [e, t] = n.split("-"), a2 = [];
-  return e && a2.push(e), t && a2.push(t), a2;
-}
-var ve = (n) => {
-  var Dt, Pt, Nt, Bt, Ct, kt, It, Mt, Ht, At, Lt;
-  let { invert: e, toast: t, unstyled: a2, interacting: u, setHeights: f, visibleToasts: w2, heights: S2, index: g2, toasts: i, expanded: D, removeToast: T2, defaultRichColors: F2, closeButton: et2, style: ut2, cancelButtonStyle: ft2, actionButtonStyle: l, className: ot2 = "", descriptionClassName: at = "", duration: X2, position: st2, gap: pt, loadingIcon: rt, expandByDefault: B2, classNames: s2, icons: P2, closeButtonAriaLabel: nt2 = "Close toast", pauseWhenPageIsHidden: it2 } = n, [Y2, C2] = o$1.useState(null), [lt, J2] = o$1.useState(null), [W2, H2] = o$1.useState(false), [A2, mt] = o$1.useState(false), [L2, z2] = o$1.useState(false), [ct2, d2] = o$1.useState(false), [h2, y2] = o$1.useState(false), [R2, j2] = o$1.useState(0), [p2, _2] = o$1.useState(0), O2 = o$1.useRef(t.duration || X2 || Wt), G2 = o$1.useRef(null), k2 = o$1.useRef(null), Vt = g2 === 0, Ut = g2 + 1 <= w2, N2 = t.type, V2 = t.dismissible !== false, Kt = t.className || "", Xt = t.descriptionClassName || "", dt2 = o$1.useMemo(() => S2.findIndex((r2) => r2.toastId === t.id) || 0, [S2, t.id]), Jt = o$1.useMemo(() => {
-    var r2;
-    return (r2 = t.closeButton) != null ? r2 : et2;
-  }, [t.closeButton, et2]), Tt = o$1.useMemo(() => t.duration || X2 || Wt, [t.duration, X2]), gt = o$1.useRef(0), U2 = o$1.useRef(0), St = o$1.useRef(0), K2 = o$1.useRef(null), [Gt, Qt] = st2.split("-"), Rt = o$1.useMemo(() => S2.reduce((r2, m2, c2) => c2 >= dt2 ? r2 : r2 + m2.height, 0), [S2, dt2]), Et = Ft(), qt = t.invert || e, ht = N2 === "loading";
-  U2.current = o$1.useMemo(() => dt2 * pt + Rt, [dt2, Rt]), o$1.useEffect(() => {
-    O2.current = Tt;
-  }, [Tt]), o$1.useEffect(() => {
-    H2(true);
-  }, []), o$1.useEffect(() => {
-    let r2 = k2.current;
-    if (r2) {
-      let m2 = r2.getBoundingClientRect().height;
-      return _2(m2), f((c2) => [{ toastId: t.id, height: m2, position: t.position }, ...c2]), () => f((c2) => c2.filter((b2) => b2.toastId !== t.id));
-    }
-  }, [f, t.id]), o$1.useLayoutEffect(() => {
-    if (!W2) return;
-    let r2 = k2.current, m2 = r2.style.height;
-    r2.style.height = "auto";
-    let c2 = r2.getBoundingClientRect().height;
-    r2.style.height = m2, _2(c2), f((b2) => b2.find((x2) => x2.toastId === t.id) ? b2.map((x2) => x2.toastId === t.id ? { ...x2, height: c2 } : x2) : [{ toastId: t.id, height: c2, position: t.position }, ...b2]);
-  }, [W2, t.title, t.description, f, t.id]);
-  let $2 = o$1.useCallback(() => {
-    mt(true), j2(U2.current), f((r2) => r2.filter((m2) => m2.toastId !== t.id)), setTimeout(() => {
-      T2(t);
-    }, we);
-  }, [t, T2, f, U2]);
-  o$1.useEffect(() => {
-    if (t.promise && N2 === "loading" || t.duration === 1 / 0 || t.type === "loading") return;
-    let r2;
-    return D || u || it2 && Et ? (() => {
-      if (St.current < gt.current) {
-        let b2 = (/* @__PURE__ */ new Date()).getTime() - gt.current;
-        O2.current = O2.current - b2;
-      }
-      St.current = (/* @__PURE__ */ new Date()).getTime();
-    })() : (() => {
-      O2.current !== 1 / 0 && (gt.current = (/* @__PURE__ */ new Date()).getTime(), r2 = setTimeout(() => {
-        var b2;
-        (b2 = t.onAutoClose) == null || b2.call(t, t), $2();
-      }, O2.current));
-    })(), () => clearTimeout(r2);
-  }, [D, u, t, N2, it2, Et, $2]), o$1.useEffect(() => {
-    t.delete && $2();
-  }, [$2, t.delete]);
-  function Zt() {
-    var r2, m2, c2;
-    return P2 != null && P2.loading ? o$1.createElement("div", { className: M$1(s2 == null ? void 0 : s2.loader, (r2 = t == null ? void 0 : t.classNames) == null ? void 0 : r2.loader, "sonner-loader"), "data-visible": N2 === "loading" }, P2.loading) : rt ? o$1.createElement("div", { className: M$1(s2 == null ? void 0 : s2.loader, (m2 = t == null ? void 0 : t.classNames) == null ? void 0 : m2.loader, "sonner-loader"), "data-visible": N2 === "loading" }, rt) : o$1.createElement(Yt, { className: M$1(s2 == null ? void 0 : s2.loader, (c2 = t == null ? void 0 : t.classNames) == null ? void 0 : c2.loader), visible: N2 === "loading" });
-  }
-  return o$1.createElement("li", { tabIndex: 0, ref: k2, className: M$1(ot2, Kt, s2 == null ? void 0 : s2.toast, (Dt = t == null ? void 0 : t.classNames) == null ? void 0 : Dt.toast, s2 == null ? void 0 : s2.default, s2 == null ? void 0 : s2[N2], (Pt = t == null ? void 0 : t.classNames) == null ? void 0 : Pt[N2]), "data-sonner-toast": "", "data-rich-colors": (Nt = t.richColors) != null ? Nt : F2, "data-styled": !(t.jsx || t.unstyled || a2), "data-mounted": W2, "data-promise": !!t.promise, "data-swiped": h2, "data-removed": A2, "data-visible": Ut, "data-y-position": Gt, "data-x-position": Qt, "data-index": g2, "data-front": Vt, "data-swiping": L2, "data-dismissible": V2, "data-type": N2, "data-invert": qt, "data-swipe-out": ct2, "data-swipe-direction": lt, "data-expanded": !!(D || B2 && W2), style: { "--index": g2, "--toasts-before": g2, "--z-index": i.length - g2, "--offset": `${A2 ? R2 : U2.current}px`, "--initial-height": B2 ? "auto" : `${p2}px`, ...ut2, ...t.style }, onDragEnd: () => {
-    z2(false), C2(null), K2.current = null;
-  }, onPointerDown: (r2) => {
-    ht || !V2 || (G2.current = /* @__PURE__ */ new Date(), j2(U2.current), r2.target.setPointerCapture(r2.pointerId), r2.target.tagName !== "BUTTON" && (z2(true), K2.current = { x: r2.clientX, y: r2.clientY }));
-  }, onPointerUp: () => {
-    var x2, Q2, q2, Z2;
-    if (ct2 || !V2) return;
-    K2.current = null;
-    let r2 = Number(((x2 = k2.current) == null ? void 0 : x2.style.getPropertyValue("--swipe-amount-x").replace("px", "")) || 0), m2 = Number(((Q2 = k2.current) == null ? void 0 : Q2.style.getPropertyValue("--swipe-amount-y").replace("px", "")) || 0), c2 = (/* @__PURE__ */ new Date()).getTime() - ((q2 = G2.current) == null ? void 0 : q2.getTime()), b2 = Y2 === "x" ? r2 : m2, I2 = Math.abs(b2) / c2;
-    if (Math.abs(b2) >= ye || I2 > 0.11) {
-      j2(U2.current), (Z2 = t.onDismiss) == null || Z2.call(t, t), J2(Y2 === "x" ? r2 > 0 ? "right" : "left" : m2 > 0 ? "down" : "up"), $2(), d2(true), y2(false);
-      return;
-    }
-    z2(false), C2(null);
-  }, onPointerMove: (r2) => {
-    var Q2, q2, Z2, zt;
-    if (!K2.current || !V2 || ((Q2 = window.getSelection()) == null ? void 0 : Q2.toString().length) > 0) return;
-    let c2 = r2.clientY - K2.current.y, b2 = r2.clientX - K2.current.x, I2 = (q2 = n.swipeDirections) != null ? q2 : xe(st2);
-    !Y2 && (Math.abs(b2) > 1 || Math.abs(c2) > 1) && C2(Math.abs(b2) > Math.abs(c2) ? "x" : "y");
-    let x2 = { x: 0, y: 0 };
-    Y2 === "y" ? (I2.includes("top") || I2.includes("bottom")) && (I2.includes("top") && c2 < 0 || I2.includes("bottom") && c2 > 0) && (x2.y = c2) : Y2 === "x" && (I2.includes("left") || I2.includes("right")) && (I2.includes("left") && b2 < 0 || I2.includes("right") && b2 > 0) && (x2.x = b2), (Math.abs(x2.x) > 0 || Math.abs(x2.y) > 0) && y2(true), (Z2 = k2.current) == null || Z2.style.setProperty("--swipe-amount-x", `${x2.x}px`), (zt = k2.current) == null || zt.style.setProperty("--swipe-amount-y", `${x2.y}px`);
-  } }, Jt && !t.jsx ? o$1.createElement("button", { "aria-label": nt2, "data-disabled": ht, "data-close-button": true, onClick: ht || !V2 ? () => {
-  } : () => {
-    var r2;
-    $2(), (r2 = t.onDismiss) == null || r2.call(t, t);
-  }, className: M$1(s2 == null ? void 0 : s2.closeButton, (Bt = t == null ? void 0 : t.classNames) == null ? void 0 : Bt.closeButton) }, (Ct = P2 == null ? void 0 : P2.close) != null ? Ct : Ot) : null, t.jsx || reactExports.isValidElement(t.title) ? t.jsx ? t.jsx : typeof t.title == "function" ? t.title() : t.title : o$1.createElement(o$1.Fragment, null, N2 || t.icon || t.promise ? o$1.createElement("div", { "data-icon": "", className: M$1(s2 == null ? void 0 : s2.icon, (kt = t == null ? void 0 : t.classNames) == null ? void 0 : kt.icon) }, t.promise || t.type === "loading" && !t.icon ? t.icon || Zt() : null, t.type !== "loading" ? t.icon || (P2 == null ? void 0 : P2[N2]) || jt(N2) : null) : null, o$1.createElement("div", { "data-content": "", className: M$1(s2 == null ? void 0 : s2.content, (It = t == null ? void 0 : t.classNames) == null ? void 0 : It.content) }, o$1.createElement("div", { "data-title": "", className: M$1(s2 == null ? void 0 : s2.title, (Mt = t == null ? void 0 : t.classNames) == null ? void 0 : Mt.title) }, typeof t.title == "function" ? t.title() : t.title), t.description ? o$1.createElement("div", { "data-description": "", className: M$1(at, Xt, s2 == null ? void 0 : s2.description, (Ht = t == null ? void 0 : t.classNames) == null ? void 0 : Ht.description) }, typeof t.description == "function" ? t.description() : t.description) : null), reactExports.isValidElement(t.cancel) ? t.cancel : t.cancel && tt$1(t.cancel) ? o$1.createElement("button", { "data-button": true, "data-cancel": true, style: t.cancelButtonStyle || ft2, onClick: (r2) => {
-    var m2, c2;
-    tt$1(t.cancel) && V2 && ((c2 = (m2 = t.cancel).onClick) == null || c2.call(m2, r2), $2());
-  }, className: M$1(s2 == null ? void 0 : s2.cancelButton, (At = t == null ? void 0 : t.classNames) == null ? void 0 : At.cancelButton) }, t.cancel.label) : null, reactExports.isValidElement(t.action) ? t.action : t.action && tt$1(t.action) ? o$1.createElement("button", { "data-button": true, "data-action": true, style: t.actionButtonStyle || l, onClick: (r2) => {
-    var m2, c2;
-    tt$1(t.action) && ((c2 = (m2 = t.action).onClick) == null || c2.call(m2, r2), !r2.defaultPrevented && $2());
-  }, className: M$1(s2 == null ? void 0 : s2.actionButton, (Lt = t == null ? void 0 : t.classNames) == null ? void 0 : Lt.actionButton) }, t.action.label) : null));
-};
-function _t() {
-  if (typeof window == "undefined" || typeof document == "undefined") return "ltr";
-  let n = document.documentElement.getAttribute("dir");
-  return n === "auto" || !n ? window.getComputedStyle(document.documentElement).direction : n;
-}
-function Te(n, e) {
-  let t = {};
-  return [n, e].forEach((a2, u) => {
-    let f = u === 1, w2 = f ? "--mobile-offset" : "--offset", S2 = f ? ge : me;
-    function g2(i) {
-      ["top", "right", "bottom", "left"].forEach((D) => {
-        t[`${w2}-${D}`] = typeof i == "number" ? `${i}px` : i;
-      });
-    }
-    typeof a2 == "number" || typeof a2 == "string" ? g2(a2) : typeof a2 == "object" ? ["top", "right", "bottom", "left"].forEach((i) => {
-      a2[i] === void 0 ? t[`${w2}-${i}`] = S2 : t[`${w2}-${i}`] = typeof a2[i] == "number" ? `${a2[i]}px` : a2[i];
-    }) : g2(S2);
-  }), t;
-}
-var $e = reactExports.forwardRef(function(e, t) {
-  let { invert: a2, position: u = "bottom-right", hotkey: f = ["altKey", "KeyT"], expand: w2, closeButton: S2, className: g2, offset: i, mobileOffset: D, theme: T2 = "light", richColors: F2, duration: et2, style: ut2, visibleToasts: ft2 = pe, toastOptions: l, dir: ot2 = _t(), gap: at = be, loadingIcon: X2, icons: st2, containerAriaLabel: pt = "Notifications", pauseWhenPageIsHidden: rt } = e, [B2, s2] = o$1.useState([]), P2 = o$1.useMemo(() => Array.from(new Set([u].concat(B2.filter((d2) => d2.position).map((d2) => d2.position)))), [B2, u]), [nt2, it2] = o$1.useState([]), [Y2, C2] = o$1.useState(false), [lt, J2] = o$1.useState(false), [W2, H2] = o$1.useState(T2 !== "system" ? T2 : typeof window != "undefined" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"), A2 = o$1.useRef(null), mt = f.join("+").replace(/Key/g, "").replace(/Digit/g, ""), L2 = o$1.useRef(null), z2 = o$1.useRef(false), ct2 = o$1.useCallback((d2) => {
-    s2((h2) => {
-      var y2;
-      return (y2 = h2.find((R2) => R2.id === d2.id)) != null && y2.delete || v$1.dismiss(d2.id), h2.filter(({ id: R2 }) => R2 !== d2.id);
-    });
-  }, []);
-  return o$1.useEffect(() => v$1.subscribe((d2) => {
-    if (d2.dismiss) {
-      s2((h2) => h2.map((y2) => y2.id === d2.id ? { ...y2, delete: true } : y2));
-      return;
-    }
-    setTimeout(() => {
-      vt.flushSync(() => {
-        s2((h2) => {
-          let y2 = h2.findIndex((R2) => R2.id === d2.id);
-          return y2 !== -1 ? [...h2.slice(0, y2), { ...h2[y2], ...d2 }, ...h2.slice(y2 + 1)] : [d2, ...h2];
-        });
-      });
-    });
-  }), []), o$1.useEffect(() => {
-    if (T2 !== "system") {
-      H2(T2);
-      return;
-    }
-    if (T2 === "system" && (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? H2("dark") : H2("light")), typeof window == "undefined") return;
-    let d2 = window.matchMedia("(prefers-color-scheme: dark)");
-    try {
-      d2.addEventListener("change", ({ matches: h2 }) => {
-        H2(h2 ? "dark" : "light");
-      });
-    } catch (h2) {
-      d2.addListener(({ matches: y2 }) => {
-        try {
-          H2(y2 ? "dark" : "light");
-        } catch (R2) {
-          console.error(R2);
-        }
-      });
-    }
-  }, [T2]), o$1.useEffect(() => {
-    B2.length <= 1 && C2(false);
-  }, [B2]), o$1.useEffect(() => {
-    let d2 = (h2) => {
-      var R2, j2;
-      f.every((p2) => h2[p2] || h2.code === p2) && (C2(true), (R2 = A2.current) == null || R2.focus()), h2.code === "Escape" && (document.activeElement === A2.current || (j2 = A2.current) != null && j2.contains(document.activeElement)) && C2(false);
-    };
-    return document.addEventListener("keydown", d2), () => document.removeEventListener("keydown", d2);
-  }, [f]), o$1.useEffect(() => {
-    if (A2.current) return () => {
-      L2.current && (L2.current.focus({ preventScroll: true }), L2.current = null, z2.current = false);
-    };
-  }, [A2.current]), o$1.createElement("section", { ref: t, "aria-label": `${pt} ${mt}`, tabIndex: -1, "aria-live": "polite", "aria-relevant": "additions text", "aria-atomic": "false", suppressHydrationWarning: true }, P2.map((d2, h2) => {
-    var j2;
-    let [y2, R2] = d2.split("-");
-    return B2.length ? o$1.createElement("ol", { key: d2, dir: ot2 === "auto" ? _t() : ot2, tabIndex: -1, ref: A2, className: g2, "data-sonner-toaster": true, "data-theme": W2, "data-y-position": y2, "data-lifted": Y2 && B2.length > 1 && !w2, "data-x-position": R2, style: { "--front-toast-height": `${((j2 = nt2[0]) == null ? void 0 : j2.height) || 0}px`, "--width": `${he}px`, "--gap": `${at}px`, ...ut2, ...Te(i, D) }, onBlur: (p2) => {
-      z2.current && !p2.currentTarget.contains(p2.relatedTarget) && (z2.current = false, L2.current && (L2.current.focus({ preventScroll: true }), L2.current = null));
-    }, onFocus: (p2) => {
-      p2.target instanceof HTMLElement && p2.target.dataset.dismissible === "false" || z2.current || (z2.current = true, L2.current = p2.relatedTarget);
-    }, onMouseEnter: () => C2(true), onMouseMove: () => C2(true), onMouseLeave: () => {
-      lt || C2(false);
-    }, onDragEnd: () => C2(false), onPointerDown: (p2) => {
-      p2.target instanceof HTMLElement && p2.target.dataset.dismissible === "false" || J2(true);
-    }, onPointerUp: () => J2(false) }, B2.filter((p2) => !p2.position && h2 === 0 || p2.position === d2).map((p2, _2) => {
-      var O2, G2;
-      return o$1.createElement(ve, { key: p2.id, icons: st2, index: _2, toast: p2, defaultRichColors: F2, duration: (O2 = l == null ? void 0 : l.duration) != null ? O2 : et2, className: l == null ? void 0 : l.className, descriptionClassName: l == null ? void 0 : l.descriptionClassName, invert: a2, visibleToasts: ft2, closeButton: (G2 = l == null ? void 0 : l.closeButton) != null ? G2 : S2, interacting: lt, position: d2, style: l == null ? void 0 : l.style, unstyled: l == null ? void 0 : l.unstyled, classNames: l == null ? void 0 : l.classNames, cancelButtonStyle: l == null ? void 0 : l.cancelButtonStyle, actionButtonStyle: l == null ? void 0 : l.actionButtonStyle, removeToast: ct2, toasts: B2.filter((k2) => k2.position == p2.position), heights: nt2.filter((k2) => k2.position == p2.position), setHeights: it2, expandByDefault: w2, gap: at, loadingIcon: X2, expanded: Y2, pauseWhenPageIsHidden: rt, swipeDirections: e.swipeDirections });
-    })) : null;
-  }));
-});
-const Toaster = ({ ...props }) => {
-  const { theme = "system" } = z$1();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    $e,
-    {
-      theme,
-      className: "toaster group",
-      style: {
-        "--normal-bg": "var(--popover)",
-        "--normal-text": "var(--popover-foreground)",
-        "--normal-border": "var(--border)"
-      },
-      ...props
-    }
-  );
-};
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15150,7 +14825,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$i = [
+const __iconNode$e = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -15160,57 +14835,7 @@ const __iconNode$i = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$i);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$h = [
-  ["path", { d: "m2 2 20 20", key: "1ooewy" }],
-  ["path", { d: "M5.782 5.782A7 7 0 0 0 9 19h8.5a4.5 4.5 0 0 0 1.307-.193", key: "yfwify" }],
-  [
-    "path",
-    { d: "M21.532 16.5A4.5 4.5 0 0 0 17.5 10h-1.79A7.008 7.008 0 0 0 10 5.07", key: "jlfiyv" }
-  ]
-];
-const CloudOff = createLucideIcon("cloud-off", __iconNode$h);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$g = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$g);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
-  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
-  ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
-  ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
-];
-const EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode$f);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$e = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M12 18v-6", key: "17g6i2" }],
-  ["path", { d: "m9 15 3 3 3-3", key: "1npd3o" }]
-];
-const FileDown = createLucideIcon("file-down", __iconNode$e);
+const BookOpen = createLucideIcon("book-open", __iconNode$e);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15218,13 +14843,11 @@ const FileDown = createLucideIcon("file-down", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z", key: "1rqfz7" }],
-  ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const FileText = createLucideIcon("file-text", __iconNode$d);
+const Download = createLucideIcon("download", __iconNode$d);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15232,6 +14855,18 @@ const FileText = createLucideIcon("file-text", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
+  ["circle", { cx: "12", cy: "12", r: "1", key: "41hilf" }],
+  ["circle", { cx: "12", cy: "5", r: "1", key: "gxeob9" }],
+  ["circle", { cx: "12", cy: "19", r: "1", key: "lyex9k" }]
+];
+const EllipsisVertical = createLucideIcon("ellipsis-vertical", __iconNode$c);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$b = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
   ["path", { d: "M7 3v18", key: "bbkbws" }],
   ["path", { d: "M3 7.5h4", key: "zfgn84" }],
@@ -15241,24 +14876,7 @@ const __iconNode$c = [
   ["path", { d: "M17 7.5h4", key: "myr1c1" }],
   ["path", { d: "M17 16.5h4", key: "go4c1d" }]
 ];
-const Film = createLucideIcon("film", __iconNode$c);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
-  ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
-  [
-    "path",
-    {
-      d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
-      key: "1d0kgt"
-    }
-  ]
-];
-const House = createLucideIcon("house", __iconNode$b);
+const Film = createLucideIcon("film", __iconNode$b);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15294,28 +14912,18 @@ const List = createLucideIcon("list", __iconNode$9);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$8 = [
-  ["path", { d: "m16 17 5-5-5-5", key: "1bji2h" }],
-  ["path", { d: "M21 12H9", key: "dn1m92" }],
-  ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }]
+  ["rect", { x: "14", y: "4", width: "4", height: "16", rx: "1", key: "zuxfzm" }],
+  ["rect", { x: "6", y: "4", width: "4", height: "16", rx: "1", key: "1okwgv" }]
 ];
-const LogOut = createLucideIcon("log-out", __iconNode$8);
+const Pause = createLucideIcon("pause", __iconNode$8);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ],
-  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
-];
-const Pencil = createLucideIcon("pencil", __iconNode$7);
+const __iconNode$7 = [["polygon", { points: "6 3 20 12 6 21 6 3", key: "1oa8hb" }]];
+const Play = createLucideIcon("play", __iconNode$7);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15334,6 +14942,17 @@ const Plus = createLucideIcon("plus", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
+];
+const RotateCcw = createLucideIcon("rotate-ccw", __iconNode$5);
+/**
+ * @license lucide-react v0.511.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
   [
     "path",
     {
@@ -15343,21 +14962,7 @@ const __iconNode$5 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Settings = createLucideIcon("settings", __iconNode$5);
-/**
- * @license lucide-react v0.511.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$4 = [
-  ["circle", { cx: "18", cy: "5", r: "3", key: "gq8acd" }],
-  ["circle", { cx: "6", cy: "12", r: "3", key: "w7nqdw" }],
-  ["circle", { cx: "18", cy: "19", r: "3", key: "1xt0gg" }],
-  ["line", { x1: "8.59", x2: "15.42", y1: "13.51", y2: "17.49", key: "47mynk" }],
-  ["line", { x1: "15.41", x2: "8.59", y1: "6.51", y2: "10.49", key: "1n3mei" }]
-];
-const Share2 = createLucideIcon("share-2", __iconNode$4);
+const Settings = createLucideIcon("settings", __iconNode$4);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15365,15 +14970,13 @@ const Share2 = createLucideIcon("share-2", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  [
-    "path",
-    {
-      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-      key: "oel41y"
-    }
-  ]
+  ["circle", { cx: "18", cy: "5", r: "3", key: "gq8acd" }],
+  ["circle", { cx: "6", cy: "12", r: "3", key: "w7nqdw" }],
+  ["circle", { cx: "18", cy: "19", r: "3", key: "1xt0gg" }],
+  ["line", { x1: "8.59", x2: "15.42", y1: "13.51", y2: "17.49", key: "47mynk" }],
+  ["line", { x1: "15.41", x2: "8.59", y1: "6.51", y2: "10.49", key: "1n3mei" }]
 ];
-const Shield = createLucideIcon("shield", __iconNode$3);
+const Share2 = createLucideIcon("share-2", __iconNode$3);
 /**
  * @license lucide-react v0.511.0 - ISC
  *
@@ -15411,209 +15014,6 @@ const __iconNode = [
   ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
 ];
 const X$1 = createLucideIcon("x", __iconNode);
-function NewDocModal({ onSelect, onClose }) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      style: {
-        position: "fixed",
-        inset: 0,
-        zIndex: 200,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        background: "rgba(0,0,0,0.85)"
-      },
-      "data-ocid": "new_doc.modal",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            onClick: onClose,
-            style: {
-              position: "absolute",
-              top: 20,
-              right: 20,
-              width: 36,
-              height: 36,
-              background: "#1a1a1a",
-              border: "none",
-              borderRadius: 8,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              color: "#fff"
-            },
-            "data-ocid": "new_doc.close_button",
-            "aria-label": "Close",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 18 })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              fontSize: 22,
-              fontWeight: 800,
-              color: "#ffffff",
-              marginBottom: 32,
-              textAlign: "center",
-              letterSpacing: "0.01em"
-            },
-            children: "What are you writing?"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              display: "flex",
-              gap: 16,
-              alignItems: "stretch"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "button",
-                {
-                  type: "button",
-                  onClick: () => onSelect("Novel"),
-                  "data-ocid": "new_doc.novel.card",
-                  style: {
-                    background: "#0d0d0d",
-                    border: "1px solid #1a1a1a",
-                    borderRadius: 20,
-                    padding: "32px 20px",
-                    width: 140,
-                    minHeight: 200,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 16,
-                    cursor: "pointer"
-                  },
-                  onMouseEnter: (e) => {
-                    e.currentTarget.style.border = "1px solid var(--accent-color, #1DB954)";
-                    e.currentTarget.style.boxShadow = "0 0 16px rgba(29,185,84,0.2)";
-                  },
-                  onMouseLeave: (e) => {
-                    e.currentTarget.style.border = "1px solid #1a1a1a";
-                    e.currentTarget.style.boxShadow = "none";
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      BookOpen,
-                      {
-                        size: 40,
-                        color: "var(--accent-color, #1DB954)",
-                        strokeWidth: 1.5
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          fontSize: 16,
-                          fontWeight: 800,
-                          color: "#ffffff",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase"
-                        },
-                        children: "NOVEL"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          fontSize: 12,
-                          color: "#8a8a8a",
-                          textAlign: "center",
-                          lineHeight: 1.4
-                        },
-                        children: "Long-form narrative"
-                      }
-                    )
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "button",
-                {
-                  type: "button",
-                  onClick: () => onSelect("Screenplay"),
-                  "data-ocid": "new_doc.screenplay.card",
-                  style: {
-                    background: "#0d0d0d",
-                    border: "1px solid #1a1a1a",
-                    borderRadius: 20,
-                    padding: "32px 20px",
-                    width: 140,
-                    minHeight: 200,
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 16,
-                    cursor: "pointer"
-                  },
-                  onMouseEnter: (e) => {
-                    e.currentTarget.style.border = "1px solid var(--accent-color, #1DB954)";
-                    e.currentTarget.style.boxShadow = "0 0 16px rgba(29,185,84,0.2)";
-                  },
-                  onMouseLeave: (e) => {
-                    e.currentTarget.style.border = "1px solid #1a1a1a";
-                    e.currentTarget.style.boxShadow = "none";
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Film,
-                      {
-                        size: 40,
-                        color: "var(--accent-color, #1DB954)",
-                        strokeWidth: 1.5
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          fontSize: 16,
-                          fontWeight: 800,
-                          color: "#ffffff",
-                          letterSpacing: "0.08em",
-                          textTransform: "uppercase"
-                        },
-                        children: "SCREENPLAY"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          fontSize: 12,
-                          color: "#8a8a8a",
-                          textAlign: "center",
-                          lineHeight: 1.4
-                        },
-                        children: "Script format"
-                      }
-                    )
-                  ]
-                }
-              )
-            ]
-          }
-        )
-      ]
-    }
-  );
-}
 var ReplicaRejectCode;
 (function(ReplicaRejectCode2) {
   ReplicaRejectCode2[ReplicaRejectCode2["SysFatal"] = 1] = "SysFatal";
@@ -16238,17 +15638,17 @@ const SHA512_IV = /* @__PURE__ */ Uint32Array.from([
 ]);
 const U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
 const _32n = /* @__PURE__ */ BigInt(32);
-function fromBig(n, le2 = false) {
-  if (le2)
+function fromBig(n, le = false) {
+  if (le)
     return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
   return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
 }
-function split(lst, le2 = false) {
+function split(lst, le = false) {
   const len = lst.length;
   let Ah = new Uint32Array(len);
   let Al = new Uint32Array(len);
   for (let i = 0; i < len; i++) {
-    const { h: h2, l } = fromBig(lst[i], le2);
+    const { h: h2, l } = fromBig(lst[i], le);
     [Ah[i], Al[i]] = [h2, l];
   }
   return [Ah, Al];
@@ -17775,7 +17175,7 @@ class TypeTable {
   }
 }
 class Visitor {
-  visitType(_t2, _data) {
+  visitType(_t, _data) {
     throw new Error("Not implemented");
   }
   visitPrimitive(t, data) {
@@ -17836,7 +17236,7 @@ class Visitor {
   visitVariant(t, _fields, data) {
     return this.visitConstruct(t, data);
   }
-  visitRec(_t2, ty, data) {
+  visitRec(_t, ty, data) {
     return this.visitConstruct(ty, data);
   }
   visitFunc(t, data) {
@@ -17946,7 +17346,7 @@ class UnknownClass extends Type {
   static [Symbol.hasInstance](instance) {
     return instance.typeName === IdlTypeName.UnknownClass;
   }
-  checkType(_t2) {
+  checkType(_t) {
     throw new Error("Method not implemented for unknown.");
   }
   accept(v2, d2) {
@@ -19874,8 +19274,8 @@ function b(t, n) {
   if (e === 1 / 0) {
     let [u, f] = N();
     for (; u !== c.Simple && f !== g.Break; ) {
-      const l = F(f), U2 = B();
-      i[l] = U2, [u, f] = N();
+      const l = F(f), U = B();
+      i[l] = U, [u, f] = N();
     }
     return i;
   }
@@ -19883,8 +19283,8 @@ function b(t, n) {
     const [f, l] = N();
     if (f !== c.TextString)
       throw new w("Map keys must be text strings");
-    const U2 = F(l), D = B();
-    i[U2] = D;
+    const U = F(l), D = B();
+    i[U] = D;
   }
   return i;
 }
@@ -26225,6 +25625,745 @@ function _createActorMethod(actor, methodName, func, blsVerify2) {
   handler.withOptions = (options) => (...args) => caller(options, ...args);
   return handler;
 }
+const DocumentMeta = Record({
+  "id": Text,
+  "lastEdited": Int,
+  "formatType": Text,
+  "title": Text,
+  "owner": Principal2
+});
+const Document = Record({
+  "id": Text,
+  "lastEdited": Int,
+  "formatType": Text,
+  "title": Text,
+  "content": Text,
+  "owner": Principal2
+});
+Service({
+  "createDocument": Func([Text, Text, Text, Text], [], []),
+  "deleteDocument": Func([Text], [], []),
+  "getAllDocumentsMeta": Func([], [Vec(DocumentMeta)], ["query"]),
+  "getDocument": Func([Text], [Document], ["query"]),
+  "getDocumentMeta": Func([Text], [DocumentMeta], ["query"]),
+  "updateDocument": Func([Text, Text, Text], [], [])
+});
+const idlFactory = ({ IDL: IDL2 }) => {
+  const DocumentMeta2 = IDL2.Record({
+    "id": IDL2.Text,
+    "lastEdited": IDL2.Int,
+    "formatType": IDL2.Text,
+    "title": IDL2.Text,
+    "owner": IDL2.Principal
+  });
+  const Document2 = IDL2.Record({
+    "id": IDL2.Text,
+    "lastEdited": IDL2.Int,
+    "formatType": IDL2.Text,
+    "title": IDL2.Text,
+    "content": IDL2.Text,
+    "owner": IDL2.Principal
+  });
+  return IDL2.Service({
+    "createDocument": IDL2.Func(
+      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
+      [],
+      []
+    ),
+    "deleteDocument": IDL2.Func([IDL2.Text], [], []),
+    "getAllDocumentsMeta": IDL2.Func([], [IDL2.Vec(DocumentMeta2)], ["query"]),
+    "getDocument": IDL2.Func([IDL2.Text], [Document2], ["query"]),
+    "getDocumentMeta": IDL2.Func([IDL2.Text], [DocumentMeta2], ["query"]),
+    "updateDocument": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [], [])
+  });
+};
+class ExternalBlob {
+  constructor(directURL, blob) {
+    __publicField(this, "_blob");
+    __publicField(this, "directURL");
+    __publicField(this, "onProgress");
+    if (blob) {
+      this._blob = blob;
+    }
+    this.directURL = directURL;
+  }
+  static fromURL(url) {
+    return new ExternalBlob(url, null);
+  }
+  static fromBytes(blob) {
+    const url = URL.createObjectURL(new Blob([
+      new Uint8Array(blob)
+    ], {
+      type: "application/octet-stream"
+    }));
+    return new ExternalBlob(url, blob);
+  }
+  async getBytes() {
+    if (this._blob) {
+      return this._blob;
+    }
+    const response = await fetch(this.directURL);
+    const blob = await response.blob();
+    this._blob = new Uint8Array(await blob.arrayBuffer());
+    return this._blob;
+  }
+  getDirectURL() {
+    return this.directURL;
+  }
+  withUploadProgress(onProgress) {
+    this.onProgress = onProgress;
+    return this;
+  }
+}
+class Backend {
+  constructor(actor, _uploadFile, _downloadFile, processError2) {
+    this.actor = actor;
+    this._uploadFile = _uploadFile;
+    this._downloadFile = _downloadFile;
+    this.processError = processError2;
+  }
+  async createDocument(arg0, arg1, arg2, arg3) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
+      return result;
+    }
+  }
+  async deleteDocument(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.deleteDocument(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.deleteDocument(arg0);
+      return result;
+    }
+  }
+  async getAllDocumentsMeta() {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getAllDocumentsMeta();
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getAllDocumentsMeta();
+      return result;
+    }
+  }
+  async getDocument(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getDocument(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getDocument(arg0);
+      return result;
+    }
+  }
+  async getDocumentMeta(arg0) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.getDocumentMeta(arg0);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.getDocumentMeta(arg0);
+      return result;
+    }
+  }
+  async updateDocument(arg0, arg1, arg2) {
+    if (this.processError) {
+      try {
+        const result = await this.actor.updateDocument(arg0, arg1, arg2);
+        return result;
+      } catch (e) {
+        this.processError(e);
+        throw new Error("unreachable");
+      }
+    } else {
+      const result = await this.actor.updateDocument(arg0, arg1, arg2);
+      return result;
+    }
+  }
+}
+function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
+  const agent = options.agent || HttpAgent.createSync({
+    ...options.agentOptions
+  });
+  if (options.agent && options.agentOptions) {
+    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
+  }
+  const actor = Actor.createActor(idlFactory, {
+    agent,
+    canisterId,
+    ...options.actorOptions
+  });
+  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
+}
+const MAXIMUM_CONCURRENT_UPLOADS = 10;
+const MAX_RETRIES = 3;
+const BASE_DELAY_MS = 1e3;
+const MAX_DELAY_MS = 3e4;
+const GATEWAY_VERSION = "v1";
+const HASH_ALGORITHM = "SHA-256";
+const SHA256_PREFIX = "sha256:";
+const DOMAIN_SEPARATOR_FOR_CHUNKS = new TextEncoder().encode("icfs-chunk/");
+const DOMAIN_SEPARATOR_FOR_METADATA = new TextEncoder().encode(
+  "icfs-metadata/"
+);
+const DOMAIN_SEPARATOR_FOR_NODES = new TextEncoder().encode("ynode/");
+async function withRetry(operation) {
+  let lastError;
+  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      return await operation();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      const shouldRetry = isRetriableError(error);
+      if (attempt === MAX_RETRIES || !shouldRetry) {
+        if (!shouldRetry && attempt < MAX_RETRIES) {
+          console.warn(
+            `Non-retriable error encountered: ${lastError.message}. Not retrying.`
+          );
+        }
+        throw error;
+      }
+      const delay = Math.min(
+        BASE_DELAY_MS * 2 ** attempt + Math.random() * 1e3,
+        MAX_DELAY_MS
+      );
+      console.warn(
+        `Request failed (attempt ${attempt + 1}/${MAX_RETRIES + 1}): ${lastError.message}. Retrying in ${Math.round(delay)}ms...`
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+  throw lastError || new Error("Unknown error occurred during retry attempts");
+}
+function isRetriableError(error) {
+  var _a3, _b3;
+  const errorMessage = ((_a3 = error == null ? void 0 : error.message) == null ? void 0 : _a3.toLowerCase()) || "";
+  if ((_b3 = error == null ? void 0 : error.response) == null ? void 0 : _b3.status) {
+    const status = error.response.status;
+    if (status === 408 || status === 429) return true;
+    if (status >= 400 && status < 500) return false;
+    if (status >= 500) return true;
+  }
+  if (errorMessage.includes("ssl") || errorMessage.includes("tls") || errorMessage.includes("network error") || errorMessage.includes("connection") || errorMessage.includes("timeout") || errorMessage.includes("fetch")) {
+    return true;
+  }
+  if (errorMessage.includes("validation") || errorMessage.includes("invalid") || errorMessage.includes("malformed") || errorMessage.includes("unauthorized") || errorMessage.includes("forbidden") || errorMessage.includes("not found")) {
+    return false;
+  }
+  return true;
+}
+function validateHashFormat(hash, context) {
+  if (!hash) {
+    throw new Error(`${context}: Hash cannot be empty`);
+  }
+  if (!hash.startsWith(SHA256_PREFIX)) {
+    throw new Error(
+      `${context}: Invalid hash format. Expected format: ${SHA256_PREFIX}<64-char-hex>, got: ${hash}`
+    );
+  }
+  const hexPart = hash.substring(SHA256_PREFIX.length);
+  if (hexPart.length !== 64) {
+    throw new Error(
+      `${context}: Invalid hash format. Expected 64 hex characters after ${SHA256_PREFIX}, got ${hexPart.length} characters: ${hash}`
+    );
+  }
+  if (!/^[0-9a-f]{64}$/i.test(hexPart)) {
+    throw new Error(
+      `${context}: Invalid hash format. Hash must contain only hex characters (0-9, a-f), got: ${hash}`
+    );
+  }
+}
+class YHash {
+  constructor(bytes) {
+    __publicField(this, "bytes");
+    if (bytes.length !== 32) {
+      throw new Error(`YHash must be exactly 32 bytes, got ${bytes.length}`);
+    }
+    this.bytes = new Uint8Array(bytes);
+  }
+  static async fromNodes(left, right) {
+    let leftBytes = left instanceof YHash ? left.bytes : new TextEncoder().encode("UNBALANCED");
+    let rightBytes = right instanceof YHash ? right.bytes : new TextEncoder().encode("UNBALANCED");
+    const combined = new Uint8Array(
+      DOMAIN_SEPARATOR_FOR_NODES.length + leftBytes.length + rightBytes.length
+    );
+    const arrays = [DOMAIN_SEPARATOR_FOR_NODES, leftBytes, rightBytes];
+    let offset = 0;
+    for (const data of arrays) {
+      combined.set(data, offset);
+      offset += data.length;
+    }
+    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
+    return new YHash(new Uint8Array(hashBuffer));
+  }
+  static async fromChunk(data) {
+    return YHash.fromBytes(DOMAIN_SEPARATOR_FOR_CHUNKS, data);
+  }
+  static async fromHeaders(headers) {
+    const headerLines = [];
+    for (const [key, value] of Object.entries(headers)) {
+      headerLines.push(`${key.trim()}: ${value.trim()}
+`);
+    }
+    headerLines.sort();
+    const hash = await YHash.fromBytes(
+      DOMAIN_SEPARATOR_FOR_METADATA,
+      new TextEncoder().encode(headerLines.join(""))
+    );
+    return hash;
+  }
+  static async fromBytes(domainSeparator, data) {
+    const combined = new Uint8Array(domainSeparator.length + data.length);
+    combined.set(domainSeparator);
+    combined.set(data, domainSeparator.length);
+    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
+    return new YHash(new Uint8Array(hashBuffer));
+  }
+  static fromHex(hexString) {
+    const bytes = new Uint8Array(
+      hexString.match(/.{1,2}/g).map((byte) => Number.parseInt(byte, 16))
+    );
+    return new YHash(bytes);
+  }
+  toShaString() {
+    return `${SHA256_PREFIX}${this.toHex()}`;
+  }
+  toString() {
+    throw new Error("toString is not supported for YHash");
+  }
+  toHex() {
+    return Array.from(this.bytes).map((b2) => b2.toString(16).padStart(2, "0")).join("");
+  }
+}
+function nodeToJSON(node) {
+  return {
+    hash: node.hash.toShaString(),
+    left: node.left ? nodeToJSON(node.left) : null,
+    right: node.right ? nodeToJSON(node.right) : null
+  };
+}
+class BlobHashTree {
+  constructor(chunk_hashes, tree, headers = null) {
+    __publicField(this, "tree_type");
+    __publicField(this, "chunk_hashes");
+    __publicField(this, "tree");
+    __publicField(this, "headers");
+    this.tree_type = "DSBMTWH";
+    this.chunk_hashes = chunk_hashes;
+    this.tree = tree;
+    if (headers == null) {
+      this.headers = [];
+    } else if (Array.isArray(headers)) {
+      this.headers = headers;
+    } else {
+      this.headers = Object.entries(headers).map(
+        ([key, value]) => `${key.trim()}: ${value.trim()}`
+      );
+    }
+    this.headers.sort();
+  }
+  static async build(chunkHashes, headers = {}) {
+    if (chunkHashes.length === 0) {
+      const hex = "8b8e620f084e48da0be2287fd12c5aaa4dbe14b468fd2e360f48d741fe7628a0";
+      const bytes = new TextEncoder().encode(hex);
+      chunkHashes.push(new YHash(bytes));
+    }
+    let level = chunkHashes.map((hash) => ({
+      hash,
+      left: null,
+      right: null
+    }));
+    while (level.length > 1) {
+      const nextLevel = [];
+      for (let i = 0; i < level.length; i += 2) {
+        const left = level[i];
+        const right = level[i + 1] || null;
+        const parentHash = await YHash.fromNodes(
+          left.hash,
+          right ? right.hash : null
+        );
+        nextLevel.push({
+          hash: parentHash,
+          left,
+          right
+        });
+      }
+      level = nextLevel;
+    }
+    const chunksRoot = level[0];
+    if (headers && Object.keys(headers).length > 0) {
+      const metadataRootHash = await YHash.fromHeaders(headers);
+      const metadataRoot = {
+        hash: metadataRootHash,
+        left: null,
+        right: null
+      };
+      const combinedRootHash = await YHash.fromNodes(
+        chunksRoot.hash,
+        metadataRoot.hash
+      );
+      const combinedRoot = {
+        hash: combinedRootHash,
+        left: chunksRoot,
+        right: metadataRoot
+      };
+      return new BlobHashTree(chunkHashes, combinedRoot, headers);
+    }
+    return new BlobHashTree(chunkHashes, chunksRoot, headers);
+  }
+  toJSON() {
+    return {
+      tree_type: this.tree_type,
+      chunk_hashes: this.chunk_hashes.map((h2) => h2.toShaString()),
+      tree: nodeToJSON(this.tree),
+      headers: this.headers
+    };
+  }
+}
+class StorageGatewayClient {
+  constructor(storageGatewayUrl) {
+    this.storageGatewayUrl = storageGatewayUrl;
+  }
+  getStorageGatewayUrl() {
+    return this.storageGatewayUrl;
+  }
+  async uploadChunk(params) {
+    const blobHashString = params.blobRootHash.toShaString();
+    const chunkHashString = params.chunkHash.toShaString();
+    validateHashFormat(
+      blobHashString,
+      `uploadChunk[${params.chunkIndex}] blob_hash`
+    );
+    validateHashFormat(
+      chunkHashString,
+      `uploadChunk[${params.chunkIndex}] chunk_hash`
+    );
+    return await withRetry(async () => {
+      const queryParams = new URLSearchParams({
+        owner_id: params.owner,
+        blob_hash: blobHashString,
+        chunk_hash: chunkHashString,
+        chunk_index: params.chunkIndex.toString(),
+        bucket_name: params.bucketName,
+        project_id: params.projectId
+      });
+      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/chunk/?${queryParams.toString()}`;
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/octet-stream",
+          "X-Caffeine-Project-ID": params.projectId
+        },
+        body: params.chunkData
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        const error = new Error(
+          `Failed to upload chunk ${params.chunkIndex}: ${response.status} ${response.statusText} - ${errorText}`
+        );
+        error.response = { status: response.status };
+        throw error;
+      }
+      const result = await response.json();
+      return {
+        isComplete: result.status === "blob_complete"
+      };
+    });
+  }
+  async uploadBlobTree(blobHashTree, bucketName, numBlobBytes, owner, projectId, certificateBytes) {
+    const treeJSON = blobHashTree.toJSON();
+    validateHashFormat(treeJSON.tree.hash, "uploadBlobTree root hash");
+    treeJSON.chunk_hashes.forEach((hash, index2) => {
+      validateHashFormat(hash, `uploadBlobTree chunk_hash[${index2}]`);
+    });
+    return await withRetry(async () => {
+      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/blob-tree/`;
+      const requestBody = {
+        blob_tree: treeJSON,
+        bucket_name: bucketName,
+        num_blob_bytes: numBlobBytes,
+        owner,
+        project_id: projectId,
+        headers: blobHashTree.headers,
+        auth: {
+          OwnerEgressSignature: Array.from(certificateBytes)
+        }
+      };
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Caffeine-Project-ID": projectId
+        },
+        body: JSON.stringify(requestBody)
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        const error = new Error(
+          `Failed to upload blob tree: ${response.status} ${response.statusText} - ${errorText}`
+        );
+        error.response = { status: response.status };
+        throw error;
+      }
+    });
+  }
+}
+class StorageClient {
+  constructor(bucket, storageGatewayUrl, backendCanisterId, projectId, agent) {
+    __publicField(this, "storageGatewayClient");
+    this.bucket = bucket;
+    this.backendCanisterId = backendCanisterId;
+    this.projectId = projectId;
+    this.agent = agent;
+    this.storageGatewayClient = new StorageGatewayClient(storageGatewayUrl);
+  }
+  async getCertificate(hash) {
+    const args = encode$1([Text], [hash]);
+    const result = await this.agent.call(this.backendCanisterId, {
+      methodName: "_caffeineStorageCreateCertificate",
+      arg: args
+    });
+    const respone = result.response.body;
+    if (isV3ResponseBody(respone)) {
+      console.log("Certificate:", respone.certificate);
+      return respone.certificate;
+    }
+    throw new Error("Expected v3 response body");
+  }
+  async putFile(blobBytes, onProgress) {
+    const httpHeaders = {
+      "Content-Type": "application/json"
+    };
+    const file = new Blob([new Uint8Array(blobBytes)], {
+      type: "application/octet-stream"
+    });
+    const fileHeaders = {
+      "Content-Type": "application/octet-stream",
+      "Content-Length": file.size.toString()
+    };
+    const { chunks, chunkHashes, blobHashTree } = await this.processFileForUpload(file, fileHeaders);
+    const blobRootHash = blobHashTree.tree.hash;
+    const hashString2 = blobRootHash.toShaString();
+    const certificateBytes = await this.getCertificate(hashString2);
+    await this.storageGatewayClient.uploadBlobTree(
+      blobHashTree,
+      this.bucket,
+      file.size,
+      this.backendCanisterId,
+      this.projectId,
+      certificateBytes
+    );
+    await this.parallelUpload(
+      chunks,
+      chunkHashes,
+      blobRootHash,
+      httpHeaders,
+      onProgress
+    );
+    return { hash: hashString2 };
+  }
+  async getDirectURL(hash) {
+    if (!hash) {
+      throw new Error("Hash must not be empty");
+    }
+    validateHashFormat(hash, `getDirectURL for path '${hash}'`);
+    return `${this.storageGatewayClient.getStorageGatewayUrl()}/${GATEWAY_VERSION}/blob/?blob_hash=${encodeURIComponent(hash)}&owner_id=${encodeURIComponent(this.backendCanisterId)}&project_id=${encodeURIComponent(this.projectId)}`;
+  }
+  async processFileForUpload(file, headers) {
+    const chunks = this.createFileChunks(file);
+    const chunkHashes = [];
+    for (let i = 0; i < chunks.length; i++) {
+      const chunkData = new Uint8Array(await chunks[i].arrayBuffer());
+      const hash = await YHash.fromChunk(chunkData);
+      chunkHashes.push(hash);
+    }
+    const blobHashTree = await BlobHashTree.build(chunkHashes, headers);
+    return { chunks, chunkHashes, blobHashTree };
+  }
+  async parallelUpload(chunks, chunkHashes, blobRootHash, httpHeaders, onProgress) {
+    let completedChunks = 0;
+    const uploadSingleChunk = async (index2) => {
+      const chunkData = new Uint8Array(await chunks[index2].arrayBuffer());
+      const chunkHash = chunkHashes[index2];
+      await this.storageGatewayClient.uploadChunk({
+        blobRootHash,
+        chunkHash,
+        chunkIndex: index2,
+        chunkData,
+        bucketName: this.bucket,
+        owner: this.backendCanisterId,
+        projectId: this.projectId,
+        httpHeaders
+      });
+      const currentCompleted = ++completedChunks;
+      if (onProgress != null) {
+        const percentage = chunks.length === 0 ? 100 : Math.round(currentCompleted / chunks.length * 100);
+        onProgress(percentage);
+      }
+    };
+    await Promise.all(
+      Array.from(
+        { length: MAXIMUM_CONCURRENT_UPLOADS },
+        async (_2, workerId) => {
+          for (let i = workerId; i < chunks.length; i += MAXIMUM_CONCURRENT_UPLOADS) {
+            await uploadSingleChunk(i);
+          }
+        }
+      )
+    );
+  }
+  createFileChunks(file, chunkSize = 1024 * 1024) {
+    const chunks = [];
+    const totalChunks = Math.ceil(file.size / chunkSize);
+    for (let index2 = 0; index2 < totalChunks; index2++) {
+      const start = index2 * chunkSize;
+      const end = Math.min(start + chunkSize, file.size);
+      const chunk = file.slice(start, end);
+      chunks.push(chunk);
+    }
+    return chunks;
+  }
+}
+var define_process_env_default = {};
+const DEFAULT_STORAGE_GATEWAY_URL = "https://blob.caffeine.ai";
+const DEFAULT_BUCKET_NAME = "default-bucket";
+const DEFAULT_PROJECT_ID = "0000000-0000-0000-0000-00000000000";
+let configCache = null;
+async function loadConfig() {
+  if (configCache) {
+    return configCache;
+  }
+  const backendCanisterId = define_process_env_default.CANISTER_ID_BACKEND;
+  const envBaseUrl = define_process_env_default.BASE_URL || "/";
+  const baseUrl = envBaseUrl.endsWith("/") ? envBaseUrl : `${envBaseUrl}/`;
+  try {
+    const response = await fetch(`${baseUrl}env.json`);
+    const config = await response.json();
+    if (!backendCanisterId && config.backend_canister_id === "undefined") {
+      console.error("CANISTER_ID_BACKEND is not set");
+      throw new Error("CANISTER_ID_BACKEND is not set");
+    }
+    const fullConfig = {
+      backend_host: config.backend_host === "undefined" ? void 0 : config.backend_host,
+      backend_canister_id: config.backend_canister_id === "undefined" ? backendCanisterId : config.backend_canister_id,
+      storage_gateway_url: "https://blob.caffeine.ai",
+      bucket_name: DEFAULT_BUCKET_NAME,
+      project_id: config.project_id !== "undefined" ? config.project_id : DEFAULT_PROJECT_ID,
+      ii_derivation_origin: config.ii_derivation_origin === "undefined" ? void 0 : config.ii_derivation_origin
+    };
+    configCache = fullConfig;
+    return fullConfig;
+  } catch {
+    if (!backendCanisterId) {
+      console.error("CANISTER_ID_BACKEND is not set");
+      throw new Error("CANISTER_ID_BACKEND is not set");
+    }
+    const fallbackConfig = {
+      backend_host: void 0,
+      backend_canister_id: backendCanisterId,
+      storage_gateway_url: DEFAULT_STORAGE_GATEWAY_URL,
+      bucket_name: DEFAULT_BUCKET_NAME,
+      project_id: DEFAULT_PROJECT_ID,
+      ii_derivation_origin: void 0
+    };
+    return fallbackConfig;
+  }
+}
+function extractAgentErrorMessage(error) {
+  const errorString = String(error);
+  const match = errorString.match(/with message:\s*'([^']+)'/s);
+  return match ? match[1] : errorString;
+}
+function processError(e) {
+  if (e && typeof e === "object" && "message" in e) {
+    throw new Error(extractAgentErrorMessage(`${e.message}`));
+  }
+  throw e;
+}
+async function maybeLoadMockBackend() {
+  {
+    return null;
+  }
+}
+async function createActorWithConfig(options) {
+  var _a3;
+  const mock = await maybeLoadMockBackend();
+  if (mock) {
+    return mock;
+  }
+  const config = await loadConfig();
+  const resolvedOptions = options ?? {};
+  const agent = new HttpAgent({
+    ...resolvedOptions.agentOptions,
+    host: config.backend_host
+  });
+  if ((_a3 = config.backend_host) == null ? void 0 : _a3.includes("localhost")) {
+    await agent.fetchRootKey().catch((err) => {
+      console.warn(
+        "Unable to fetch root key. Check to ensure that your local replica is running"
+      );
+      console.error(err);
+    });
+  }
+  const actorOptions = {
+    ...resolvedOptions,
+    agent,
+    processError
+  };
+  const storageClient = new StorageClient(
+    config.bucket_name,
+    config.storage_gateway_url,
+    config.backend_canister_id,
+    config.project_id,
+    agent
+  );
+  const MOTOKO_DEDUPLICATION_SENTINEL = "!caf!";
+  const uploadFile = async (file) => {
+    const { hash } = await storageClient.putFile(
+      await file.getBytes(),
+      file.onProgress
+    );
+    return new TextEncoder().encode(MOTOKO_DEDUPLICATION_SENTINEL + hash);
+  };
+  const downloadFile = async (bytes) => {
+    const hashWithPrefix = new TextDecoder().decode(new Uint8Array(bytes));
+    const hash = hashWithPrefix.substring(MOTOKO_DEDUPLICATION_SENTINEL.length);
+    const url = await storageClient.getDirectURL(hash);
+    return ExternalBlob.fromURL(url);
+  };
+  return createActor(
+    config.backend_canister_id,
+    uploadFile,
+    downloadFile,
+    actorOptions
+  );
+}
 function isObject(value) {
   return value !== null && typeof value === "object";
 }
@@ -27538,745 +27677,6 @@ function mergeLoginOptions(loginOptions, otherLoginOptions) {
     customValues
   };
 }
-const DocumentMeta = Record({
-  "id": Text,
-  "lastEdited": Int,
-  "formatType": Text,
-  "title": Text,
-  "owner": Principal2
-});
-const Document = Record({
-  "id": Text,
-  "lastEdited": Int,
-  "formatType": Text,
-  "title": Text,
-  "content": Text,
-  "owner": Principal2
-});
-Service({
-  "createDocument": Func([Text, Text, Text, Text], [], []),
-  "deleteDocument": Func([Text], [], []),
-  "getAllDocumentsMeta": Func([], [Vec(DocumentMeta)], ["query"]),
-  "getDocument": Func([Text], [Document], ["query"]),
-  "getDocumentMeta": Func([Text], [DocumentMeta], ["query"]),
-  "updateDocument": Func([Text, Text, Text], [], [])
-});
-const idlFactory = ({ IDL: IDL2 }) => {
-  const DocumentMeta2 = IDL2.Record({
-    "id": IDL2.Text,
-    "lastEdited": IDL2.Int,
-    "formatType": IDL2.Text,
-    "title": IDL2.Text,
-    "owner": IDL2.Principal
-  });
-  const Document2 = IDL2.Record({
-    "id": IDL2.Text,
-    "lastEdited": IDL2.Int,
-    "formatType": IDL2.Text,
-    "title": IDL2.Text,
-    "content": IDL2.Text,
-    "owner": IDL2.Principal
-  });
-  return IDL2.Service({
-    "createDocument": IDL2.Func(
-      [IDL2.Text, IDL2.Text, IDL2.Text, IDL2.Text],
-      [],
-      []
-    ),
-    "deleteDocument": IDL2.Func([IDL2.Text], [], []),
-    "getAllDocumentsMeta": IDL2.Func([], [IDL2.Vec(DocumentMeta2)], ["query"]),
-    "getDocument": IDL2.Func([IDL2.Text], [Document2], ["query"]),
-    "getDocumentMeta": IDL2.Func([IDL2.Text], [DocumentMeta2], ["query"]),
-    "updateDocument": IDL2.Func([IDL2.Text, IDL2.Text, IDL2.Text], [], [])
-  });
-};
-class ExternalBlob {
-  constructor(directURL, blob) {
-    __publicField(this, "_blob");
-    __publicField(this, "directURL");
-    __publicField(this, "onProgress");
-    if (blob) {
-      this._blob = blob;
-    }
-    this.directURL = directURL;
-  }
-  static fromURL(url) {
-    return new ExternalBlob(url, null);
-  }
-  static fromBytes(blob) {
-    const url = URL.createObjectURL(new Blob([
-      new Uint8Array(blob)
-    ], {
-      type: "application/octet-stream"
-    }));
-    return new ExternalBlob(url, blob);
-  }
-  async getBytes() {
-    if (this._blob) {
-      return this._blob;
-    }
-    const response = await fetch(this.directURL);
-    const blob = await response.blob();
-    this._blob = new Uint8Array(await blob.arrayBuffer());
-    return this._blob;
-  }
-  getDirectURL() {
-    return this.directURL;
-  }
-  withUploadProgress(onProgress) {
-    this.onProgress = onProgress;
-    return this;
-  }
-}
-class Backend {
-  constructor(actor, _uploadFile, _downloadFile, processError2) {
-    this.actor = actor;
-    this._uploadFile = _uploadFile;
-    this._downloadFile = _downloadFile;
-    this.processError = processError2;
-  }
-  async createDocument(arg0, arg1, arg2, arg3) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.createDocument(arg0, arg1, arg2, arg3);
-      return result;
-    }
-  }
-  async deleteDocument(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.deleteDocument(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.deleteDocument(arg0);
-      return result;
-    }
-  }
-  async getAllDocumentsMeta() {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getAllDocumentsMeta();
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getAllDocumentsMeta();
-      return result;
-    }
-  }
-  async getDocument(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getDocument(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getDocument(arg0);
-      return result;
-    }
-  }
-  async getDocumentMeta(arg0) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.getDocumentMeta(arg0);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.getDocumentMeta(arg0);
-      return result;
-    }
-  }
-  async updateDocument(arg0, arg1, arg2) {
-    if (this.processError) {
-      try {
-        const result = await this.actor.updateDocument(arg0, arg1, arg2);
-        return result;
-      } catch (e) {
-        this.processError(e);
-        throw new Error("unreachable");
-      }
-    } else {
-      const result = await this.actor.updateDocument(arg0, arg1, arg2);
-      return result;
-    }
-  }
-}
-function createActor(canisterId, _uploadFile, _downloadFile, options = {}) {
-  const agent = options.agent || HttpAgent.createSync({
-    ...options.agentOptions
-  });
-  if (options.agent && options.agentOptions) {
-    console.warn("Detected both agent and agentOptions passed to createActor. Ignoring agentOptions and proceeding with the provided agent.");
-  }
-  const actor = Actor.createActor(idlFactory, {
-    agent,
-    canisterId,
-    ...options.actorOptions
-  });
-  return new Backend(actor, _uploadFile, _downloadFile, options.processError);
-}
-const MAXIMUM_CONCURRENT_UPLOADS = 10;
-const MAX_RETRIES = 3;
-const BASE_DELAY_MS = 1e3;
-const MAX_DELAY_MS = 3e4;
-const GATEWAY_VERSION = "v1";
-const HASH_ALGORITHM = "SHA-256";
-const SHA256_PREFIX = "sha256:";
-const DOMAIN_SEPARATOR_FOR_CHUNKS = new TextEncoder().encode("icfs-chunk/");
-const DOMAIN_SEPARATOR_FOR_METADATA = new TextEncoder().encode(
-  "icfs-metadata/"
-);
-const DOMAIN_SEPARATOR_FOR_NODES = new TextEncoder().encode("ynode/");
-async function withRetry(operation) {
-  let lastError;
-  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    try {
-      return await operation();
-    } catch (error) {
-      lastError = error instanceof Error ? error : new Error(String(error));
-      const shouldRetry = isRetriableError(error);
-      if (attempt === MAX_RETRIES || !shouldRetry) {
-        if (!shouldRetry && attempt < MAX_RETRIES) {
-          console.warn(
-            `Non-retriable error encountered: ${lastError.message}. Not retrying.`
-          );
-        }
-        throw error;
-      }
-      const delay = Math.min(
-        BASE_DELAY_MS * 2 ** attempt + Math.random() * 1e3,
-        MAX_DELAY_MS
-      );
-      console.warn(
-        `Request failed (attempt ${attempt + 1}/${MAX_RETRIES + 1}): ${lastError.message}. Retrying in ${Math.round(delay)}ms...`
-      );
-      await new Promise((resolve) => setTimeout(resolve, delay));
-    }
-  }
-  throw lastError || new Error("Unknown error occurred during retry attempts");
-}
-function isRetriableError(error) {
-  var _a3, _b3;
-  const errorMessage = ((_a3 = error == null ? void 0 : error.message) == null ? void 0 : _a3.toLowerCase()) || "";
-  if ((_b3 = error == null ? void 0 : error.response) == null ? void 0 : _b3.status) {
-    const status = error.response.status;
-    if (status === 408 || status === 429) return true;
-    if (status >= 400 && status < 500) return false;
-    if (status >= 500) return true;
-  }
-  if (errorMessage.includes("ssl") || errorMessage.includes("tls") || errorMessage.includes("network error") || errorMessage.includes("connection") || errorMessage.includes("timeout") || errorMessage.includes("fetch")) {
-    return true;
-  }
-  if (errorMessage.includes("validation") || errorMessage.includes("invalid") || errorMessage.includes("malformed") || errorMessage.includes("unauthorized") || errorMessage.includes("forbidden") || errorMessage.includes("not found")) {
-    return false;
-  }
-  return true;
-}
-function validateHashFormat(hash, context) {
-  if (!hash) {
-    throw new Error(`${context}: Hash cannot be empty`);
-  }
-  if (!hash.startsWith(SHA256_PREFIX)) {
-    throw new Error(
-      `${context}: Invalid hash format. Expected format: ${SHA256_PREFIX}<64-char-hex>, got: ${hash}`
-    );
-  }
-  const hexPart = hash.substring(SHA256_PREFIX.length);
-  if (hexPart.length !== 64) {
-    throw new Error(
-      `${context}: Invalid hash format. Expected 64 hex characters after ${SHA256_PREFIX}, got ${hexPart.length} characters: ${hash}`
-    );
-  }
-  if (!/^[0-9a-f]{64}$/i.test(hexPart)) {
-    throw new Error(
-      `${context}: Invalid hash format. Hash must contain only hex characters (0-9, a-f), got: ${hash}`
-    );
-  }
-}
-class YHash {
-  constructor(bytes) {
-    __publicField(this, "bytes");
-    if (bytes.length !== 32) {
-      throw new Error(`YHash must be exactly 32 bytes, got ${bytes.length}`);
-    }
-    this.bytes = new Uint8Array(bytes);
-  }
-  static async fromNodes(left, right) {
-    let leftBytes = left instanceof YHash ? left.bytes : new TextEncoder().encode("UNBALANCED");
-    let rightBytes = right instanceof YHash ? right.bytes : new TextEncoder().encode("UNBALANCED");
-    const combined = new Uint8Array(
-      DOMAIN_SEPARATOR_FOR_NODES.length + leftBytes.length + rightBytes.length
-    );
-    const arrays = [DOMAIN_SEPARATOR_FOR_NODES, leftBytes, rightBytes];
-    let offset = 0;
-    for (const data of arrays) {
-      combined.set(data, offset);
-      offset += data.length;
-    }
-    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
-    return new YHash(new Uint8Array(hashBuffer));
-  }
-  static async fromChunk(data) {
-    return YHash.fromBytes(DOMAIN_SEPARATOR_FOR_CHUNKS, data);
-  }
-  static async fromHeaders(headers) {
-    const headerLines = [];
-    for (const [key, value] of Object.entries(headers)) {
-      headerLines.push(`${key.trim()}: ${value.trim()}
-`);
-    }
-    headerLines.sort();
-    const hash = await YHash.fromBytes(
-      DOMAIN_SEPARATOR_FOR_METADATA,
-      new TextEncoder().encode(headerLines.join(""))
-    );
-    return hash;
-  }
-  static async fromBytes(domainSeparator, data) {
-    const combined = new Uint8Array(domainSeparator.length + data.length);
-    combined.set(domainSeparator);
-    combined.set(data, domainSeparator.length);
-    const hashBuffer = await crypto.subtle.digest(HASH_ALGORITHM, combined);
-    return new YHash(new Uint8Array(hashBuffer));
-  }
-  static fromHex(hexString) {
-    const bytes = new Uint8Array(
-      hexString.match(/.{1,2}/g).map((byte) => Number.parseInt(byte, 16))
-    );
-    return new YHash(bytes);
-  }
-  toShaString() {
-    return `${SHA256_PREFIX}${this.toHex()}`;
-  }
-  toString() {
-    throw new Error("toString is not supported for YHash");
-  }
-  toHex() {
-    return Array.from(this.bytes).map((b2) => b2.toString(16).padStart(2, "0")).join("");
-  }
-}
-function nodeToJSON(node) {
-  return {
-    hash: node.hash.toShaString(),
-    left: node.left ? nodeToJSON(node.left) : null,
-    right: node.right ? nodeToJSON(node.right) : null
-  };
-}
-class BlobHashTree {
-  constructor(chunk_hashes, tree, headers = null) {
-    __publicField(this, "tree_type");
-    __publicField(this, "chunk_hashes");
-    __publicField(this, "tree");
-    __publicField(this, "headers");
-    this.tree_type = "DSBMTWH";
-    this.chunk_hashes = chunk_hashes;
-    this.tree = tree;
-    if (headers == null) {
-      this.headers = [];
-    } else if (Array.isArray(headers)) {
-      this.headers = headers;
-    } else {
-      this.headers = Object.entries(headers).map(
-        ([key, value]) => `${key.trim()}: ${value.trim()}`
-      );
-    }
-    this.headers.sort();
-  }
-  static async build(chunkHashes, headers = {}) {
-    if (chunkHashes.length === 0) {
-      const hex = "8b8e620f084e48da0be2287fd12c5aaa4dbe14b468fd2e360f48d741fe7628a0";
-      const bytes = new TextEncoder().encode(hex);
-      chunkHashes.push(new YHash(bytes));
-    }
-    let level = chunkHashes.map((hash) => ({
-      hash,
-      left: null,
-      right: null
-    }));
-    while (level.length > 1) {
-      const nextLevel = [];
-      for (let i = 0; i < level.length; i += 2) {
-        const left = level[i];
-        const right = level[i + 1] || null;
-        const parentHash = await YHash.fromNodes(
-          left.hash,
-          right ? right.hash : null
-        );
-        nextLevel.push({
-          hash: parentHash,
-          left,
-          right
-        });
-      }
-      level = nextLevel;
-    }
-    const chunksRoot = level[0];
-    if (headers && Object.keys(headers).length > 0) {
-      const metadataRootHash = await YHash.fromHeaders(headers);
-      const metadataRoot = {
-        hash: metadataRootHash,
-        left: null,
-        right: null
-      };
-      const combinedRootHash = await YHash.fromNodes(
-        chunksRoot.hash,
-        metadataRoot.hash
-      );
-      const combinedRoot = {
-        hash: combinedRootHash,
-        left: chunksRoot,
-        right: metadataRoot
-      };
-      return new BlobHashTree(chunkHashes, combinedRoot, headers);
-    }
-    return new BlobHashTree(chunkHashes, chunksRoot, headers);
-  }
-  toJSON() {
-    return {
-      tree_type: this.tree_type,
-      chunk_hashes: this.chunk_hashes.map((h2) => h2.toShaString()),
-      tree: nodeToJSON(this.tree),
-      headers: this.headers
-    };
-  }
-}
-class StorageGatewayClient {
-  constructor(storageGatewayUrl) {
-    this.storageGatewayUrl = storageGatewayUrl;
-  }
-  getStorageGatewayUrl() {
-    return this.storageGatewayUrl;
-  }
-  async uploadChunk(params) {
-    const blobHashString = params.blobRootHash.toShaString();
-    const chunkHashString = params.chunkHash.toShaString();
-    validateHashFormat(
-      blobHashString,
-      `uploadChunk[${params.chunkIndex}] blob_hash`
-    );
-    validateHashFormat(
-      chunkHashString,
-      `uploadChunk[${params.chunkIndex}] chunk_hash`
-    );
-    return await withRetry(async () => {
-      const queryParams = new URLSearchParams({
-        owner_id: params.owner,
-        blob_hash: blobHashString,
-        chunk_hash: chunkHashString,
-        chunk_index: params.chunkIndex.toString(),
-        bucket_name: params.bucketName,
-        project_id: params.projectId
-      });
-      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/chunk/?${queryParams.toString()}`;
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/octet-stream",
-          "X-Caffeine-Project-ID": params.projectId
-        },
-        body: params.chunkData
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        const error = new Error(
-          `Failed to upload chunk ${params.chunkIndex}: ${response.status} ${response.statusText} - ${errorText}`
-        );
-        error.response = { status: response.status };
-        throw error;
-      }
-      const result = await response.json();
-      return {
-        isComplete: result.status === "blob_complete"
-      };
-    });
-  }
-  async uploadBlobTree(blobHashTree, bucketName, numBlobBytes, owner, projectId, certificateBytes) {
-    const treeJSON = blobHashTree.toJSON();
-    validateHashFormat(treeJSON.tree.hash, "uploadBlobTree root hash");
-    treeJSON.chunk_hashes.forEach((hash, index2) => {
-      validateHashFormat(hash, `uploadBlobTree chunk_hash[${index2}]`);
-    });
-    return await withRetry(async () => {
-      const url = `${this.storageGatewayUrl}/${GATEWAY_VERSION}/blob-tree/`;
-      const requestBody = {
-        blob_tree: treeJSON,
-        bucket_name: bucketName,
-        num_blob_bytes: numBlobBytes,
-        owner,
-        project_id: projectId,
-        headers: blobHashTree.headers,
-        auth: {
-          OwnerEgressSignature: Array.from(certificateBytes)
-        }
-      };
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Caffeine-Project-ID": projectId
-        },
-        body: JSON.stringify(requestBody)
-      });
-      if (!response.ok) {
-        const errorText = await response.text();
-        const error = new Error(
-          `Failed to upload blob tree: ${response.status} ${response.statusText} - ${errorText}`
-        );
-        error.response = { status: response.status };
-        throw error;
-      }
-    });
-  }
-}
-class StorageClient {
-  constructor(bucket, storageGatewayUrl, backendCanisterId, projectId, agent) {
-    __publicField(this, "storageGatewayClient");
-    this.bucket = bucket;
-    this.backendCanisterId = backendCanisterId;
-    this.projectId = projectId;
-    this.agent = agent;
-    this.storageGatewayClient = new StorageGatewayClient(storageGatewayUrl);
-  }
-  async getCertificate(hash) {
-    const args = encode$1([Text], [hash]);
-    const result = await this.agent.call(this.backendCanisterId, {
-      methodName: "_caffeineStorageCreateCertificate",
-      arg: args
-    });
-    const respone = result.response.body;
-    if (isV3ResponseBody(respone)) {
-      console.log("Certificate:", respone.certificate);
-      return respone.certificate;
-    }
-    throw new Error("Expected v3 response body");
-  }
-  async putFile(blobBytes, onProgress) {
-    const httpHeaders = {
-      "Content-Type": "application/json"
-    };
-    const file = new Blob([new Uint8Array(blobBytes)], {
-      type: "application/octet-stream"
-    });
-    const fileHeaders = {
-      "Content-Type": "application/octet-stream",
-      "Content-Length": file.size.toString()
-    };
-    const { chunks, chunkHashes, blobHashTree } = await this.processFileForUpload(file, fileHeaders);
-    const blobRootHash = blobHashTree.tree.hash;
-    const hashString2 = blobRootHash.toShaString();
-    const certificateBytes = await this.getCertificate(hashString2);
-    await this.storageGatewayClient.uploadBlobTree(
-      blobHashTree,
-      this.bucket,
-      file.size,
-      this.backendCanisterId,
-      this.projectId,
-      certificateBytes
-    );
-    await this.parallelUpload(
-      chunks,
-      chunkHashes,
-      blobRootHash,
-      httpHeaders,
-      onProgress
-    );
-    return { hash: hashString2 };
-  }
-  async getDirectURL(hash) {
-    if (!hash) {
-      throw new Error("Hash must not be empty");
-    }
-    validateHashFormat(hash, `getDirectURL for path '${hash}'`);
-    return `${this.storageGatewayClient.getStorageGatewayUrl()}/${GATEWAY_VERSION}/blob/?blob_hash=${encodeURIComponent(hash)}&owner_id=${encodeURIComponent(this.backendCanisterId)}&project_id=${encodeURIComponent(this.projectId)}`;
-  }
-  async processFileForUpload(file, headers) {
-    const chunks = this.createFileChunks(file);
-    const chunkHashes = [];
-    for (let i = 0; i < chunks.length; i++) {
-      const chunkData = new Uint8Array(await chunks[i].arrayBuffer());
-      const hash = await YHash.fromChunk(chunkData);
-      chunkHashes.push(hash);
-    }
-    const blobHashTree = await BlobHashTree.build(chunkHashes, headers);
-    return { chunks, chunkHashes, blobHashTree };
-  }
-  async parallelUpload(chunks, chunkHashes, blobRootHash, httpHeaders, onProgress) {
-    let completedChunks = 0;
-    const uploadSingleChunk = async (index2) => {
-      const chunkData = new Uint8Array(await chunks[index2].arrayBuffer());
-      const chunkHash = chunkHashes[index2];
-      await this.storageGatewayClient.uploadChunk({
-        blobRootHash,
-        chunkHash,
-        chunkIndex: index2,
-        chunkData,
-        bucketName: this.bucket,
-        owner: this.backendCanisterId,
-        projectId: this.projectId,
-        httpHeaders
-      });
-      const currentCompleted = ++completedChunks;
-      if (onProgress != null) {
-        const percentage = chunks.length === 0 ? 100 : Math.round(currentCompleted / chunks.length * 100);
-        onProgress(percentage);
-      }
-    };
-    await Promise.all(
-      Array.from(
-        { length: MAXIMUM_CONCURRENT_UPLOADS },
-        async (_2, workerId) => {
-          for (let i = workerId; i < chunks.length; i += MAXIMUM_CONCURRENT_UPLOADS) {
-            await uploadSingleChunk(i);
-          }
-        }
-      )
-    );
-  }
-  createFileChunks(file, chunkSize = 1024 * 1024) {
-    const chunks = [];
-    const totalChunks = Math.ceil(file.size / chunkSize);
-    for (let index2 = 0; index2 < totalChunks; index2++) {
-      const start = index2 * chunkSize;
-      const end = Math.min(start + chunkSize, file.size);
-      const chunk = file.slice(start, end);
-      chunks.push(chunk);
-    }
-    return chunks;
-  }
-}
-var define_process_env_default = {};
-const DEFAULT_STORAGE_GATEWAY_URL = "https://blob.caffeine.ai";
-const DEFAULT_BUCKET_NAME = "default-bucket";
-const DEFAULT_PROJECT_ID = "0000000-0000-0000-0000-00000000000";
-let configCache = null;
-async function loadConfig() {
-  if (configCache) {
-    return configCache;
-  }
-  const backendCanisterId = define_process_env_default.CANISTER_ID_BACKEND;
-  const envBaseUrl = define_process_env_default.BASE_URL || "/";
-  const baseUrl = envBaseUrl.endsWith("/") ? envBaseUrl : `${envBaseUrl}/`;
-  try {
-    const response = await fetch(`${baseUrl}env.json`);
-    const config = await response.json();
-    if (!backendCanisterId && config.backend_canister_id === "undefined") {
-      console.error("CANISTER_ID_BACKEND is not set");
-      throw new Error("CANISTER_ID_BACKEND is not set");
-    }
-    const fullConfig = {
-      backend_host: config.backend_host === "undefined" ? void 0 : config.backend_host,
-      backend_canister_id: config.backend_canister_id === "undefined" ? backendCanisterId : config.backend_canister_id,
-      storage_gateway_url: "https://blob.caffeine.ai",
-      bucket_name: DEFAULT_BUCKET_NAME,
-      project_id: config.project_id !== "undefined" ? config.project_id : DEFAULT_PROJECT_ID,
-      ii_derivation_origin: config.ii_derivation_origin === "undefined" ? void 0 : config.ii_derivation_origin
-    };
-    configCache = fullConfig;
-    return fullConfig;
-  } catch {
-    if (!backendCanisterId) {
-      console.error("CANISTER_ID_BACKEND is not set");
-      throw new Error("CANISTER_ID_BACKEND is not set");
-    }
-    const fallbackConfig = {
-      backend_host: void 0,
-      backend_canister_id: backendCanisterId,
-      storage_gateway_url: DEFAULT_STORAGE_GATEWAY_URL,
-      bucket_name: DEFAULT_BUCKET_NAME,
-      project_id: DEFAULT_PROJECT_ID,
-      ii_derivation_origin: void 0
-    };
-    return fallbackConfig;
-  }
-}
-function extractAgentErrorMessage(error) {
-  const errorString = String(error);
-  const match = errorString.match(/with message:\s*'([^']+)'/s);
-  return match ? match[1] : errorString;
-}
-function processError(e) {
-  if (e && typeof e === "object" && "message" in e) {
-    throw new Error(extractAgentErrorMessage(`${e.message}`));
-  }
-  throw e;
-}
-async function maybeLoadMockBackend() {
-  {
-    return null;
-  }
-}
-async function createActorWithConfig(options) {
-  var _a3;
-  const mock = await maybeLoadMockBackend();
-  if (mock) {
-    return mock;
-  }
-  const config = await loadConfig();
-  const resolvedOptions = options ?? {};
-  const agent = new HttpAgent({
-    ...resolvedOptions.agentOptions,
-    host: config.backend_host
-  });
-  if ((_a3 = config.backend_host) == null ? void 0 : _a3.includes("localhost")) {
-    await agent.fetchRootKey().catch((err) => {
-      console.warn(
-        "Unable to fetch root key. Check to ensure that your local replica is running"
-      );
-      console.error(err);
-    });
-  }
-  const actorOptions = {
-    ...resolvedOptions,
-    agent,
-    processError
-  };
-  const storageClient = new StorageClient(
-    config.bucket_name,
-    config.storage_gateway_url,
-    config.backend_canister_id,
-    config.project_id,
-    agent
-  );
-  const MOTOKO_DEDUPLICATION_SENTINEL = "!caf!";
-  const uploadFile = async (file) => {
-    const { hash } = await storageClient.putFile(
-      await file.getBytes(),
-      file.onProgress
-    );
-    return new TextEncoder().encode(MOTOKO_DEDUPLICATION_SENTINEL + hash);
-  };
-  const downloadFile = async (bytes) => {
-    const hashWithPrefix = new TextDecoder().decode(new Uint8Array(bytes));
-    const hash = hashWithPrefix.substring(MOTOKO_DEDUPLICATION_SENTINEL.length);
-    const url = await storageClient.getDirectURL(hash);
-    return ExternalBlob.fromURL(url);
-  };
-  return createActor(
-    config.backend_canister_id,
-    uploadFile,
-    downloadFile,
-    actorOptions
-  );
-}
 const ONE_HOUR_IN_NANOSECONDS = BigInt(36e11);
 const DEFAULT_IDENTITY_PROVIDER = "https://id.ai";
 const InternetIdentityReactContext = reactExports.createContext(
@@ -28429,375 +27829,6 @@ function InternetIdentityProvider({
     children
   });
 }
-const THEMES = [
-  { name: "Spotify Green", color: "#1DB954" },
-  { name: "Blood Red", color: "#E53E3E" },
-  { name: "Electric Blue", color: "#3B82F6" },
-  { name: "Nebula Purple", color: "#8B5CF6" },
-  { name: "Cyber Gold", color: "#F59E0B" }
-];
-function applyTheme(color) {
-  localStorage.setItem("writefy-theme", color);
-  document.documentElement.style.setProperty("--accent-color", color);
-  const existing = document.getElementById("writefy-theme-style");
-  const style2 = existing ?? (() => {
-    const el = document.createElement("style");
-    el.id = "writefy-theme-style";
-    document.head.appendChild(el);
-    return el;
-  })();
-  style2.textContent = `::-webkit-scrollbar-thumb { background: ${color} !important; } * { scrollbar-color: ${color} #000 !important; }`;
-}
-function SettingsOverlay({ onClose }) {
-  var _a3;
-  const { identity, login, clear, isLoggingIn, isLoginSuccess } = useInternetIdentity();
-  const currentTheme = localStorage.getItem("writefy-theme") ?? "#1DB954";
-  const handleShare = async () => {
-    var _a4;
-    if (navigator.share) {
-      try {
-        await navigator.share({
-          title: "Writefy",
-          text: "Check out Writefy – a professional screenplay writing app!",
-          url: window.location.href
-        });
-      } catch {
-      }
-    } else {
-      (_a4 = navigator.clipboard) == null ? void 0 : _a4.writeText(window.location.href);
-    }
-  };
-  const isConnected = isLoginSuccess || !!identity;
-  const principal = identity == null ? void 0 : identity.getPrincipal().toString();
-  const shortPrincipal = principal ? `${principal.slice(0, 5)}...${principal.slice(-4)}` : "";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "settings-overlay",
-      "aria-modal": "true",
-      "aria-label": "Settings",
-      "data-ocid": "settings.modal",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-panel", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                padding: "0 24px 16px",
-                borderBottom: "1px solid #1A1A1A",
-                marginBottom: "8px"
-              },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "18px", fontWeight: 800, color: "#fff" }, children: "Settings" })
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "16px 24px" }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                style: {
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#8A8A8A",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  marginBottom: 12
-                },
-                children: "Theme"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", gap: 10, flexWrap: "wrap" }, children: THEMES.map((theme) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                title: theme.name,
-                onClick: () => applyTheme(theme.color),
-                "data-ocid": "settings.theme.toggle",
-                style: {
-                  width: 32,
-                  height: 32,
-                  borderRadius: "50%",
-                  background: theme.color,
-                  border: currentTheme === theme.color ? "3px solid #fff" : "3px solid transparent",
-                  cursor: "pointer",
-                  flexShrink: 0,
-                  boxShadow: currentTheme === theme.color ? `0 0 10px ${theme.color}` : "none"
-                }
-              },
-              theme.color
-            )) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                style: {
-                  fontSize: 11,
-                  color: "#8A8A8A",
-                  marginTop: 8
-                },
-                children: ((_a3 = THEMES.find((t) => t.color === currentTheme)) == null ? void 0 : _a3.name) ?? "Spotify Green"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "16px 24px" }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "div",
-              {
-                style: {
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#8A8A8A",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  marginBottom: 12
-                },
-                children: "Cloud Vault"
-              }
-            ),
-            isConnected ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: {
-                  background: "#0d0d0d",
-                  border: "1px solid #1A1A1A",
-                  borderRadius: 10,
-                  padding: "12px 14px"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "div",
-                    {
-                      style: {
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 10,
-                        marginBottom: 10
-                      },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Cloud, { size: 18, color: "var(--accent-color, #1DB954)" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "div",
-                            {
-                              style: {
-                                fontSize: 13,
-                                fontWeight: 600,
-                                color: "#fff"
-                              },
-                              children: "Connected"
-                            }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "div",
-                            {
-                              style: {
-                                fontSize: 11,
-                                color: "#8A8A8A",
-                                marginTop: 1,
-                                fontFamily: "'JetBrains Mono', monospace"
-                              },
-                              children: shortPrincipal
-                            }
-                          )
-                        ] })
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "button",
-                    {
-                      type: "button",
-                      onClick: clear,
-                      "data-ocid": "settings.disconnect.button",
-                      style: {
-                        width: "100%",
-                        padding: "8px 0",
-                        borderRadius: 8,
-                        border: "1px solid #2A2A2A",
-                        background: "transparent",
-                        color: "#ef4444",
-                        fontSize: 13,
-                        fontWeight: 600,
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 6
-                      },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(LogOut, { size: 14 }),
-                        "Disconnect"
-                      ]
-                    }
-                  )
-                ]
-              }
-            ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: login,
-                disabled: isLoggingIn,
-                "data-ocid": "settings.login.button",
-                style: {
-                  width: "100%",
-                  padding: "12px 0",
-                  borderRadius: 10,
-                  border: "none",
-                  background: "var(--accent-color, #1DB954)",
-                  color: "#000",
-                  fontSize: 14,
-                  fontWeight: 700,
-                  cursor: isLoggingIn ? "not-allowed" : "pointer",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  opacity: isLoggingIn ? 0.7 : 1
-                },
-                children: isLoggingIn ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        width: 14,
-                        height: 14,
-                        borderRadius: "50%",
-                        border: "2px solid #000",
-                        borderTopColor: "transparent"
-                      }
-                    }
-                  ),
-                  "Connecting..."
-                ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(CloudOff, { size: 16 }),
-                  "Connect with Internet Identity"
-                ] })
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "16px 24px" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: "12px"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 36,
-                      height: 36,
-                      borderRadius: 8,
-                      background: "#1A1A1A",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Shield, { size: 18, color: "var(--accent-color, #1DB954)" })
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 14, fontWeight: 600, color: "#fff" }, children: "Permission Manager" }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8A8A8A", marginTop: 2 }, children: "Manage app permissions" })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { marginLeft: "auto" }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 28,
-                      height: 16,
-                      borderRadius: 8,
-                      background: "var(--accent-color, #1DB954)",
-                      position: "relative"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          width: 12,
-                          height: 12,
-                          borderRadius: "50%",
-                          background: "#000",
-                          position: "absolute",
-                          right: 2,
-                          top: 2
-                        }
-                      }
-                    )
-                  }
-                ) })
-              ]
-            }
-          ) }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: { height: "1px", background: "#1A1A1A", margin: "0 24px 8px" }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: handleShare,
-              "data-ocid": "settings.share.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Share2, { size: 20, color: "var(--accent-color, #1DB954)" }),
-                "Share with Friends"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { flex: 1 } }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onClose,
-              style: { marginTop: "auto" },
-              "data-ocid": "settings.close_button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { style: { color: "#8A8A8A" }, size: 20 }),
-                "Close"
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "aria-label": "Close settings",
-            onClick: onClose,
-            style: {
-              position: "fixed",
-              inset: 0,
-              zIndex: -1,
-              background: "transparent",
-              border: "none",
-              cursor: "default"
-            }
-          }
-        )
-      ]
-    }
-  );
-}
 const ACTOR_QUERY_KEY = "actor";
 function useActor() {
   const { identity } = useInternetIdentity();
@@ -28908,604 +27939,6 @@ function useDeleteDocument() {
     }
   });
 }
-function DeleteConfirm({
-  title,
-  onConfirm,
-  onCancel
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      className: "confirm-overlay",
-      role: "alertdialog",
-      "aria-modal": "true",
-      "data-ocid": "delete.dialog",
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "confirm-panel", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { marginBottom: "16px" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: "18px",
-                fontWeight: 800,
-                color: "#fff",
-                marginBottom: "8px"
-              },
-              children: "Delete Script?"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "14px", color: "#8A8A8A", lineHeight: 1.5 }, children: [
-            '"',
-            title,
-            '" will be permanently deleted. This action cannot be undone.'
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "10px" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: onCancel,
-              style: {
-                flex: 1,
-                padding: "12px",
-                borderRadius: "10px",
-                border: "1px solid #333",
-                background: "transparent",
-                color: "#fff",
-                fontSize: "14px",
-                fontWeight: 600,
-                cursor: "pointer"
-              },
-              "data-ocid": "delete.cancel_button",
-              children: "Cancel"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: onConfirm,
-              style: {
-                flex: 1,
-                padding: "12px",
-                borderRadius: "10px",
-                border: "none",
-                background: "#ef4444",
-                color: "#fff",
-                fontSize: "14px",
-                fontWeight: 700,
-                cursor: "pointer"
-              },
-              "data-ocid": "delete.confirm_button",
-              children: "Delete"
-            }
-          )
-        ] })
-      ] })
-    }
-  );
-}
-function MenuOverlay({
-  onClose,
-  onExport,
-  onImport,
-  onShare,
-  onDelete
-}) {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "menu-overlay",
-      "aria-modal": "true",
-      "aria-label": "Document options",
-      "data-ocid": "menu.modal",
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "menu-panel", children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                padding: "0 24px 16px",
-                borderBottom: "1px solid #1A1A1A",
-                marginBottom: "8px"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "18px", fontWeight: 800, color: "#fff" }, children: "Document" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "12px", color: "#8A8A8A", marginTop: "4px" }, children: "Options" })
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onExport,
-              "data-ocid": "menu.export.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(FileDown, {}),
-                "Export PDF"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onImport,
-              "data-ocid": "menu.import.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, {}),
-                "Import"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onShare,
-              "data-ocid": "menu.share.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Share2, {}),
-                "Share"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: { height: "1px", background: "#1A1A1A", margin: "8px 0" }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item danger",
-              onClick: onDelete,
-              "data-ocid": "menu.delete.button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, {}),
-                "Delete"
-              ]
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { flex: 1 } }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              className: "menu-item",
-              onClick: onClose,
-              style: { marginTop: "auto" },
-              "data-ocid": "menu.close_button",
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { style: { color: "#8A8A8A" } }),
-                "Close"
-              ]
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            "aria-label": "Close menu",
-            onClick: onClose,
-            style: {
-              position: "fixed",
-              inset: 0,
-              zIndex: -1,
-              background: "transparent",
-              border: "none",
-              cursor: "default"
-            }
-          }
-        )
-      ]
-    }
-  );
-}
-const FORMAT_MODES = [
-  "Slugline",
-  "Action",
-  "Character",
-  "Dialogue",
-  "Parenthetical"
-];
-const FORMAT_MAP = {
-  Slugline: "slugline",
-  Action: "action",
-  Character: "character",
-  Dialogue: "dialogue",
-  Parenthetical: "parenthetical"
-};
-const LINE_TYPE_MAP = {
-  slugline: "Slugline",
-  action: "Action",
-  character: "Character",
-  dialogue: "Dialogue",
-  parenthetical: "Parenthetical"
-};
-const DEFAULT_LINES = [
-  { id: 1, type: "slugline", text: "INT. ABANDONED WAREHOUSE - NIGHT" },
-  {
-    id: 2,
-    type: "action",
-    text: "Moonlight seeps through cracked windows. Dust dances in the air. Two figures face each other in silence."
-  },
-  { id: 3, type: "character", text: "RAMA" },
-  { id: 4, type: "parenthetical", text: "(quietly)" },
-  {
-    id: 5,
-    type: "dialogue",
-    text: "I've been waiting for this moment my entire life."
-  },
-  { id: 6, type: "character", text: "SARAH" },
-  { id: 7, type: "dialogue", text: "Then let's not waste another second." },
-  { id: 8, type: "action", text: "" }
-];
-function parseContentToLines(content) {
-  if (!content.trim()) return DEFAULT_LINES;
-  const rawLines = content.split("\n");
-  let nextId = 1;
-  return rawLines.map((text) => {
-    const trimmed = text.trim();
-    let type = "action";
-    if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.") || trimmed.startsWith("INT/EXT")) {
-      type = "slugline";
-    } else if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-      type = "parenthetical";
-    } else if (trimmed === trimmed.toUpperCase() && trimmed.length > 0 && /^[A-Z\s]+$/.test(trimmed)) {
-      type = "character";
-    }
-    return { id: nextId++, type, text };
-  });
-}
-function linesToContent(lines) {
-  return lines.map((l) => l.text).join("\n");
-}
-function detectNextLineType(currentType) {
-  if (currentType === "character") return "dialogue";
-  if (currentType === "parenthetical") return "dialogue";
-  if (currentType === "slugline") return "action";
-  return "action";
-}
-const SLAB_CLASS = {
-  slugline: "slab-slugline",
-  action: "slab-action",
-  character: "slab-character",
-  dialogue: "slab-dialogue",
-  parenthetical: "slab-parenthetical"
-};
-function ScreenplayEditor({
-  document: document2,
-  onContentChange,
-  isSaved: _isSaved,
-  docTitle,
-  docMeta
-}) {
-  var _a3;
-  const [activeTab, setActiveTab] = reactExports.useState("Write");
-  const [formatMode, setFormatMode] = reactExports.useState("Action");
-  const [lines, setLines] = reactExports.useState(() => {
-    if (document2 == null ? void 0 : document2.content) return parseContentToLines(document2.content);
-    return DEFAULT_LINES;
-  });
-  const [activeLineId, setActiveLineId] = reactExports.useState(((_a3 = lines[0]) == null ? void 0 : _a3.id) ?? 1);
-  const nextId = reactExports.useRef(Math.max(...lines.map((l) => l.id)) + 1);
-  const lineRefs = reactExports.useRef(/* @__PURE__ */ new Map());
-  reactExports.useEffect(() => {
-    if (document2 == null ? void 0 : document2.content) {
-      const parsed = parseContentToLines(document2.content);
-      setLines(parsed);
-      nextId.current = Math.max(...parsed.map((l) => l.id)) + 1;
-    }
-  }, [document2 == null ? void 0 : document2.id]);
-  reactExports.useEffect(() => {
-    const activeLine = lines.find((l) => l.id === activeLineId);
-    if (activeLine) {
-      setFormatMode(LINE_TYPE_MAP[activeLine.type]);
-    }
-  }, [activeLineId, lines]);
-  const emitChange = reactExports.useCallback(
-    (updatedLines) => {
-      onContentChange(linesToContent(updatedLines));
-    },
-    [onContentChange]
-  );
-  const handleLineChange = reactExports.useCallback(
-    (id, text) => {
-      setLines((prev) => {
-        const updated = prev.map((l) => l.id === id ? { ...l, text } : l);
-        emitChange(updated);
-        return updated;
-      });
-    },
-    [emitChange]
-  );
-  const handleFormatModeChange = reactExports.useCallback(
-    (mode) => {
-      setFormatMode(mode);
-      setLines((prev) => {
-        const updated = prev.map(
-          (l) => l.id === activeLineId ? { ...l, type: FORMAT_MAP[mode] } : l
-        );
-        emitChange(updated);
-        return updated;
-      });
-    },
-    [activeLineId, emitChange]
-  );
-  const handleKeyDown = reactExports.useCallback(
-    (e, lineId) => {
-      var _a4, _b3;
-      const lineIndex = lines.findIndex((l) => l.id === lineId);
-      if (e.key === "Enter") {
-        e.preventDefault();
-        const currentLine = lines[lineIndex];
-        const nextType = detectNextLineType(currentLine.type);
-        const newId = nextId.current++;
-        const newLine = { id: newId, type: nextType, text: "" };
-        setLines((prev) => {
-          const updated = [
-            ...prev.slice(0, lineIndex + 1),
-            newLine,
-            ...prev.slice(lineIndex + 1)
-          ];
-          emitChange(updated);
-          return updated;
-        });
-        setActiveLineId(newId);
-        setTimeout(() => {
-          var _a5;
-          (_a5 = lineRefs.current.get(newId)) == null ? void 0 : _a5.focus();
-        }, 0);
-      } else if (e.key === "Backspace" && lines[lineIndex].text === "" && lines.length > 1) {
-        e.preventDefault();
-        const prevLine = lines[lineIndex - 1];
-        setLines((prev) => {
-          const updated = prev.filter((l) => l.id !== lineId);
-          emitChange(updated);
-          return updated;
-        });
-        if (prevLine) {
-          setActiveLineId(prevLine.id);
-          setTimeout(() => {
-            const el = lineRefs.current.get(prevLine.id);
-            if (el) {
-              el.focus();
-              el.setSelectionRange(el.value.length, el.value.length);
-            }
-          }, 0);
-        }
-      } else if (e.key === "Tab") {
-        e.preventDefault();
-        const modes = FORMAT_MODES;
-        const currentIndex = modes.indexOf(formatMode);
-        const nextMode = modes[(currentIndex + 1) % modes.length];
-        handleFormatModeChange(nextMode);
-      } else if (e.key === "ArrowUp" && lineIndex > 0) {
-        e.preventDefault();
-        const prevLine = lines[lineIndex - 1];
-        setActiveLineId(prevLine.id);
-        (_a4 = lineRefs.current.get(prevLine.id)) == null ? void 0 : _a4.focus();
-      } else if (e.key === "ArrowDown" && lineIndex < lines.length - 1) {
-        e.preventDefault();
-        const nextLine = lines[lineIndex + 1];
-        setActiveLineId(nextLine.id);
-        (_b3 = lineRefs.current.get(nextLine.id)) == null ? void 0 : _b3.focus();
-      }
-    },
-    [lines, formatMode, handleFormatModeChange, emitChange]
-  );
-  const sluglineCount = lines.filter((l) => l.type === "slugline").length;
-  const handleOutlineItemClick = (lineId) => {
-    setActiveTab("Write");
-    setActiveLineId(lineId);
-    setTimeout(() => {
-      var _a4;
-      return (_a4 = lineRefs.current.get(lineId)) == null ? void 0 : _a4.focus();
-    }, 100);
-  };
-  const displayTitle = docTitle || (document2 == null ? void 0 : document2.title) || "Untitled Script";
-  const displayMeta = docMeta || "Screenplay • New document";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { minHeight: "100%", position: "relative" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        "aria-hidden": "true",
-        style: {
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          display: "flex",
-          justifyContent: "center",
-          pointerEvents: "none",
-          zIndex: 0,
-          paddingTop: "8px",
-          overflow: "hidden"
-        },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "span",
-          {
-            style: {
-              fontSize: "140px",
-              fontWeight: 900,
-              color: "#4caf50",
-              opacity: 0.06,
-              lineHeight: 1,
-              letterSpacing: "-0.04em",
-              userSelect: "none",
-              fontFamily: "Inter, system-ui, sans-serif"
-            },
-            children: "W"
-          }
-        )
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          position: "relative",
-          zIndex: 1,
-          padding: "20px 16px 0"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: "24px",
-                fontWeight: 800,
-                color: "#ffffff",
-                lineHeight: 1.2,
-                letterSpacing: "-0.01em"
-              },
-              children: displayTitle
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: "13px",
-                color: "rgba(255,255,255,0.55)",
-                marginTop: "4px",
-                fontWeight: 400
-              },
-              children: displayMeta
-            }
-          )
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-tabs", style: { position: "relative", zIndex: 1 }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: `editor-tab${activeTab === "Write" ? " active" : ""}`,
-          onClick: () => setActiveTab("Write"),
-          "data-ocid": "editor.write.tab",
-          children: "Write"
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: `editor-tab${activeTab === "Outline" ? " active" : ""}`,
-          onClick: () => setActiveTab("Outline"),
-          "data-ocid": "editor.outline.tab",
-          children: "Outline"
-        }
-      )
-    ] }),
-    activeTab === "Write" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { position: "relative", zIndex: 1 }, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "format-chips", "data-ocid": "editor.format.panel", children: FORMAT_MODES.map((mode) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "button",
-        {
-          type: "button",
-          className: `format-chip${formatMode === mode ? " active" : ""}`,
-          onClick: () => handleFormatModeChange(mode),
-          "data-ocid": `editor.format.${mode.toLowerCase()}.toggle`,
-          children: mode
-        },
-        mode
-      )) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writing-slab", "data-ocid": "editor.canvas_target", children: lines.map((line) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          className: `${SLAB_CLASS[line.type]}${line.id === activeLineId ? " slab-active" : ""}`,
-          "data-ocid": line.id === activeLineId ? "editor.active.row" : void 0,
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "textarea",
-            {
-              ref: (el) => {
-                if (el) lineRefs.current.set(line.id, el);
-                else lineRefs.current.delete(line.id);
-              },
-              value: line.text,
-              onChange: (e) => handleLineChange(line.id, e.target.value),
-              onFocus: () => setActiveLineId(line.id),
-              onKeyDown: (e) => handleKeyDown(e, line.id),
-              rows: 1,
-              style: {
-                width: "100%",
-                background: "transparent",
-                border: "none",
-                outline: "none",
-                resize: "none",
-                color: "inherit",
-                fontSize: "inherit",
-                lineHeight: "inherit",
-                fontFamily: "inherit",
-                textAlign: "inherit",
-                fontWeight: "inherit",
-                textTransform: "inherit",
-                fontStyle: "inherit",
-                caretColor: "var(--accent-color, #1DB954)",
-                overflow: "hidden",
-                padding: 0
-              },
-              placeholder: line.type === "character" ? "CHARACTER NAME" : line.type === "slugline" ? "INT. LOCATION - TIME" : line.type === "parenthetical" ? "(direction)" : line.type === "dialogue" ? "Dialogue..." : "Action...",
-              spellCheck: false,
-              autoComplete: "off",
-              autoCorrect: "off",
-              autoCapitalize: line.type === "character" || line.type === "slugline" ? "characters" : "sentences"
-            }
-          )
-        },
-        line.id
-      )) })
-    ] }),
-    activeTab === "Outline" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { padding: "8px 0", position: "relative", zIndex: 1 }, children: sluglineCount === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          padding: "40px 20px",
-          textAlign: "center",
-          color: "#8A8A8A"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "32px", marginBottom: "12px" }, children: "🎬" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "15px", fontWeight: 600 }, children: "No scenes yet" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "13px", marginTop: "6px" }, children: "Add sluglines (INT./EXT.) to create scenes in your outline." })
-        ]
-      }
-    ) : lines.filter((l) => l.type === "slugline" || l.type === "character").map((line, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "button",
-      {
-        type: "button",
-        className: "outline-item",
-        style: {
-          width: "100%",
-          textAlign: "left",
-          cursor: "pointer",
-          background: "transparent",
-          border: "none"
-        },
-        onClick: () => handleOutlineItemClick(line.id),
-        "data-ocid": `outline.item.${idx + 1}`,
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "outline-num", children: idx + 1 }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline-text", children: line.text || "(empty)" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline-sub", children: line.type === "slugline" ? "Scene" : "Character" })
-          ] })
-        ]
-      },
-      line.id
-    )) })
-  ] });
-}
 function formatRelativeTime(nanoseconds) {
   const ms = Number(nanoseconds) / 1e6;
   const now2 = Date.now();
@@ -29526,6 +27959,591 @@ function generateUUID() {
     const v2 = c2 === "x" ? r2 : r2 & 3 | 8;
     return v2.toString(16);
   });
+}
+function NewDocModal({ onSelect, onClose }) {
+  const createDoc = useCreateDocument();
+  async function handleSelect(formatType) {
+    const id = generateUUID();
+    const title = "Untitled Script";
+    const defaultContent = `[slugline] INT. ABANDONED WAREHOUSE - NIGHT
+Moonlight seeps through cracked windows.
+[character] HERO
+[parenthetical] (quietly)
+[dialogue] Every story begins with a single word.`;
+    await createDoc.mutateAsync({
+      id,
+      title,
+      content: defaultContent,
+      formatType
+    });
+    onSelect(id);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "modal-overlay", "data-ocid": "newdoc.modal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "modal-title", children: "What are you writing?" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "modal-cards", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "doc-type-card",
+          onClick: () => handleSelect("Novel"),
+          disabled: createDoc.isPending,
+          "data-ocid": "newdoc.novel.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "doc-type-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 28 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "doc-type-name", children: "Novel" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "doc-type-desc", children: "Long-form prose and storytelling" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "doc-type-card",
+          onClick: () => handleSelect("Screenplay"),
+          disabled: createDoc.isPending,
+          "data-ocid": "newdoc.screenplay.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "doc-type-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 28 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "doc-type-name", children: "Screenplay" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "doc-type-desc", children: "Film scripts and screenwriting" })
+          ]
+        }
+      )
+    ] }),
+    createDoc.isPending && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--muted)", fontSize: 13 }, children: "Creating..." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        type: "button",
+        className: "modal-close-btn",
+        onClick: onClose,
+        "aria-label": "Close",
+        "data-ocid": "newdoc.close.button",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 20 })
+      }
+    )
+  ] });
+}
+const THEMES$1 = [
+  { key: "green", color: "#1db954", label: "Spotify Green" },
+  { key: "red", color: "#e53935", label: "Blood Red" },
+  { key: "blue", color: "#1565c0", label: "Electric Blue" },
+  { key: "purple", color: "#7b1fa2", label: "Nebula Purple" },
+  { key: "gold", color: "#f9a825", label: "Cyber Gold" }
+];
+function SettingsOverlay({ onClose }) {
+  const [activeTheme, setActiveTheme] = reactExports.useState(() => {
+    return localStorage.getItem("writefy-theme") ?? "green";
+  });
+  function applyTheme(key, color) {
+    setActiveTheme(key);
+    document.documentElement.style.setProperty("--accent-color", color);
+    localStorage.setItem("writefy-theme", key);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-overlay", "data-ocid": "settings.modal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "settings-backdrop",
+        onClick: onClose,
+        role: "presentation"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-panel", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "settings-close",
+          onClick: onClose,
+          "aria-label": "Close settings",
+          "data-ocid": "settings.close.button",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(X$1, { size: 18 })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "settings-title", children: "Settings" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "settings-section-label", children: "Accent Color" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "theme-swatches", children: THEMES$1.map((t) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: `theme-swatch${activeTheme === t.key ? " active" : ""}`,
+            style: { backgroundColor: t.color },
+            onClick: () => applyTheme(t.key, t.color),
+            title: t.label,
+            "aria-label": t.label,
+            "data-ocid": `settings.theme_${t.key}.button`
+          },
+          t.key
+        )) })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "settings-section-label", children: "About" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { style: { fontSize: 13, color: "var(--muted)", lineHeight: 1.5 }, children: [
+          "Writefy — Your cinematic writing workspace.",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("br", {}),
+          "Version 9.0"
+        ] })
+      ] })
+    ] })
+  ] });
+}
+function DeleteConfirm({ title, onConfirm, onCancel }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "confirm-overlay", "data-ocid": "delete.dialog", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "confirm-panel", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "confirm-title", children: "Delete Script?" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "confirm-body", children: [
+      "“",
+      title,
+      "” will be permanently deleted. This action cannot be undone."
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "confirm-actions", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn-cancel",
+          onClick: onCancel,
+          "data-ocid": "delete.cancel.cancel_button",
+          children: "Cancel"
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "btn-delete",
+          onClick: onConfirm,
+          "data-ocid": "delete.confirm.delete_button",
+          children: "Delete"
+        }
+      )
+    ] })
+  ] }) });
+}
+function MenuOverlay({
+  onClose,
+  onExport,
+  onImport,
+  onShare,
+  onDelete
+}) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "menu-overlay", "data-ocid": "menu.modal", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "menu-backdrop", onClick: onClose, role: "presentation" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "menu-panel", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "menu-item",
+          onClick: onImport,
+          "data-ocid": "menu.import.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Upload, { size: 18 }),
+            "Import"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "menu-item",
+          onClick: onExport,
+          "data-ocid": "menu.export.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { size: 18 }),
+            "Export (.txt)"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "menu-item",
+          onClick: onShare,
+          "data-ocid": "menu.share.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Share2, { size: 18 }),
+            "Share"
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "menu-separator" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "menu-item danger",
+          onClick: onDelete,
+          "data-ocid": "menu.delete.delete_button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 18 }),
+            "Delete Script"
+          ]
+        }
+      )
+    ] })
+  ] });
+}
+const FORMAT_CHIPS = [
+  { label: "Slugline", type: "slugline" },
+  { label: "Action", type: "action" },
+  { label: "Character", type: "character" },
+  { label: "Dialogue", type: "dialogue" },
+  { label: "Parenthetical", type: "parenthetical" }
+];
+const SMART_NEXT = {
+  slugline: "action",
+  action: "action",
+  character: "dialogue",
+  dialogue: "action",
+  parenthetical: "dialogue"
+};
+const TYPE_PREFIX = {
+  slugline: "[slugline]",
+  action: "",
+  character: "[character]",
+  dialogue: "[dialogue]",
+  parenthetical: "[parenthetical]"
+};
+const DEFAULT_LINES = [
+  { id: "d1", type: "slugline", text: "INT. ABANDONED WAREHOUSE - NIGHT" },
+  {
+    id: "d2",
+    type: "action",
+    text: "Moonlight seeps through cracked windows."
+  },
+  { id: "d3", type: "character", text: "RAMA" },
+  { id: "d4", type: "parenthetical", text: "(quietly)" },
+  {
+    id: "d5",
+    type: "dialogue",
+    text: "I've been waiting for this moment my entire life."
+  },
+  { id: "d6", type: "character", text: "SARAH" },
+  { id: "d7", type: "dialogue", text: "Then let's not waste another second." }
+];
+function uid() {
+  return Math.random().toString(36).slice(2, 10);
+}
+function parseContent$1(content) {
+  if (!content.trim()) return DEFAULT_LINES.map((l) => ({ ...l, id: uid() }));
+  const lines = content.split("\n");
+  const result = [];
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line) continue;
+    const trimmed = line.trim();
+    if (trimmed.startsWith("[slugline]")) {
+      result.push({
+        id: uid(),
+        type: "slugline",
+        text: trimmed.replace("[slugline]", "").trim()
+      });
+    } else if (trimmed.startsWith("[character]")) {
+      result.push({
+        id: uid(),
+        type: "character",
+        text: trimmed.replace("[character]", "").trim()
+      });
+    } else if (trimmed.startsWith("[dialogue]")) {
+      result.push({
+        id: uid(),
+        type: "dialogue",
+        text: trimmed.replace("[dialogue]", "").trim()
+      });
+    } else if (trimmed.startsWith("[parenthetical]")) {
+      result.push({
+        id: uid(),
+        type: "parenthetical",
+        text: trimmed.replace("[parenthetical]", "").trim()
+      });
+    } else {
+      result.push({ id: uid(), type: "action", text: line });
+    }
+  }
+  return result.length > 0 ? result : DEFAULT_LINES.map((l) => ({ ...l, id: uid() }));
+}
+function serializeLines(lines) {
+  return lines.map((l) => {
+    const prefix2 = TYPE_PREFIX[l.type];
+    return prefix2 ? `${prefix2} ${l.text}` : l.text;
+  }).join("\n");
+}
+function ScreenplayEditor({
+  document: document2,
+  onContentChange,
+  onTitleChange,
+  onSaveNow,
+  docTitle,
+  docMeta
+}) {
+  var _a3;
+  const [lines, setLines] = reactExports.useState(
+    () => parseContent$1(document2.content)
+  );
+  const [activeTab, setActiveTab] = reactExports.useState("write");
+  const [editingTitle, setEditingTitle] = reactExports.useState(false);
+  const [titleValue, setTitleValue] = reactExports.useState(docTitle);
+  const textareaRefs = reactExports.useRef(/* @__PURE__ */ new Map());
+  const focusedLineIdRef = reactExports.useRef(null);
+  const [focusedLineId, setFocusedLineId] = reactExports.useState(null);
+  const docIdRef = reactExports.useRef(document2.id);
+  reactExports.useEffect(() => {
+    setTitleValue(docTitle);
+  }, [docTitle]);
+  reactExports.useEffect(() => {
+    if (document2.id !== docIdRef.current) {
+      docIdRef.current = document2.id;
+      setLines(parseContent$1(document2.content));
+    }
+  });
+  const resizeAll = reactExports.useCallback(() => {
+    for (const el of textareaRefs.current.values()) {
+      el.style.height = "auto";
+      el.style.height = `${el.scrollHeight}px`;
+    }
+  }, []);
+  const linesLenRef = reactExports.useRef(lines.length);
+  reactExports.useEffect(() => {
+    if (lines.length !== linesLenRef.current) {
+      linesLenRef.current = lines.length;
+      requestAnimationFrame(resizeAll);
+    }
+  });
+  reactExports.useEffect(() => {
+    requestAnimationFrame(resizeAll);
+  }, [resizeAll]);
+  function updateLine(id, text) {
+    setLines((prev) => {
+      const next = prev.map((l) => l.id === id ? { ...l, text } : l);
+      onContentChange(serializeLines(next));
+      return next;
+    });
+    requestAnimationFrame(() => {
+      const el = textareaRefs.current.get(id);
+      if (el) {
+        el.style.height = "auto";
+        el.style.height = `${el.scrollHeight}px`;
+      }
+    });
+  }
+  function changeLineType(id, type) {
+    setLines((prev) => {
+      const next = prev.map((l) => l.id === id ? { ...l, type } : l);
+      onContentChange(serializeLines(next));
+      return next;
+    });
+    requestAnimationFrame(resizeAll);
+  }
+  function handleKeyDown(e, id, idx) {
+    const line = lines[idx];
+    if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+      e.preventDefault();
+      onSaveNow();
+      return;
+    }
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      const newLine = {
+        id: uid(),
+        type: SMART_NEXT[line.type],
+        text: ""
+      };
+      setLines((prev) => {
+        const next = [
+          ...prev.slice(0, idx + 1),
+          newLine,
+          ...prev.slice(idx + 1)
+        ];
+        onContentChange(serializeLines(next));
+        return next;
+      });
+      requestAnimationFrame(() => {
+        const el = textareaRefs.current.get(newLine.id);
+        el == null ? void 0 : el.focus();
+      });
+      return;
+    }
+    if (e.key === "Backspace" && line.text === "" && lines.length > 1) {
+      e.preventDefault();
+      const prevLine = lines[idx - 1] ?? lines[0];
+      setLines((prev) => {
+        const next = prev.filter((l) => l.id !== id);
+        onContentChange(serializeLines(next));
+        return next;
+      });
+      requestAnimationFrame(() => {
+        const el = textareaRefs.current.get(prevLine.id);
+        if (el) {
+          el.focus();
+          el.setSelectionRange(el.value.length, el.value.length);
+        }
+      });
+      return;
+    }
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const types = [
+        "slugline",
+        "action",
+        "character",
+        "dialogue",
+        "parenthetical"
+      ];
+      const currentIdx = types.indexOf(line.type);
+      const nextType = types[(currentIdx + 1) % types.length];
+      changeLineType(id, nextType);
+      return;
+    }
+    if (e.key === "ArrowUp" && idx > 0) {
+      const prevEl = textareaRefs.current.get(lines[idx - 1].id);
+      prevEl == null ? void 0 : prevEl.focus();
+    }
+    if (e.key === "ArrowDown" && idx < lines.length - 1) {
+      const nextEl = textareaRefs.current.get(lines[idx + 1].id);
+      nextEl == null ? void 0 : nextEl.focus();
+    }
+  }
+  const activeLineType = focusedLineId ? ((_a3 = lines.find((l) => l.id === focusedLineId)) == null ? void 0 : _a3.type) ?? "action" : "action";
+  const sluglines = lines.filter((l) => l.type === "slugline" && l.text.trim());
+  const subtitleText = docMeta ? `${docMeta.formatType} · last edited just now` : "Screenplay · last edited just now";
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "screenplay-editor", "data-ocid": "create.editor", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "editor-watermark", "aria-hidden": "true", children: "W" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-header", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-doc-title-wrapper", children: [
+        editingTitle ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            className: "editor-doc-title-input",
+            value: titleValue,
+            onChange: (e) => setTitleValue(e.target.value),
+            onBlur: () => {
+              setEditingTitle(false);
+              const t = titleValue.trim() || "Untitled Script";
+              setTitleValue(t);
+              onTitleChange(t);
+            },
+            onKeyDown: (e) => {
+              if (e.key === "Enter") {
+                e.currentTarget.blur();
+              } else if (e.key === "Escape") {
+                setTitleValue(docTitle);
+                setEditingTitle(false);
+              }
+            },
+            autoFocus: true,
+            "data-ocid": "create.title.input"
+          }
+        ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "editor-doc-title",
+            onClick: () => setEditingTitle(true),
+            title: "Tap to rename",
+            "data-ocid": "create.title.button",
+            children: titleValue || "Untitled Script"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "editor-doc-subtitle", children: subtitleText })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-tabs", role: "tablist", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            role: "tab",
+            "aria-selected": activeTab === "write",
+            className: `editor-tab${activeTab === "write" ? " active" : ""}`,
+            onClick: () => setActiveTab("write"),
+            "data-ocid": "create.write.tab",
+            children: "Write"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            role: "tab",
+            "aria-selected": activeTab === "outline",
+            className: `editor-tab${activeTab === "outline" ? " active" : ""}`,
+            onClick: () => setActiveTab("outline"),
+            "data-ocid": "create.outline.tab",
+            children: "Outline"
+          }
+        )
+      ] })
+    ] }),
+    activeTab === "write" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "format-chips", role: "toolbar", "aria-label": "Format", children: FORMAT_CHIPS.map((chip) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "button",
+      {
+        type: "button",
+        className: `format-chip${activeLineType === chip.type ? " active" : ""}`,
+        onClick: () => {
+          if (focusedLineIdRef.current) {
+            changeLineType(focusedLineIdRef.current, chip.type);
+          }
+        },
+        "data-ocid": `create.format_${chip.type}.button`,
+        children: chip.label
+      },
+      chip.type
+    )) }),
+    activeTab === "write" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writing-slab", "data-ocid": "create.writing.editor", children: lines.map((line, idx) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "slab-line", "data-type": line.type, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "textarea",
+      {
+        ref: (el) => {
+          if (el) textareaRefs.current.set(line.id, el);
+          else textareaRefs.current.delete(line.id);
+        },
+        className: "slab-textarea",
+        value: line.text,
+        rows: 1,
+        placeholder: getPlaceholder(line.type),
+        onChange: (e) => updateLine(line.id, e.target.value),
+        onKeyDown: (e) => handleKeyDown(e, line.id, idx),
+        onFocus: () => {
+          focusedLineIdRef.current = line.id;
+          setFocusedLineId(line.id);
+        },
+        onInput: (e) => {
+          const el = e.currentTarget;
+          el.style.height = "auto";
+          el.style.height = `${el.scrollHeight}px`;
+        },
+        spellCheck: true,
+        "data-ocid": `create.line.${idx + 1}.textarea`
+      }
+    ) }, line.id)) }),
+    activeTab === "outline" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "outline-container", "data-ocid": "create.outline.panel", children: sluglines.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "outline-empty", children: "No scene headings yet. Add a Slugline in the Write tab to see your outline here." }) : sluglines.map((line, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        className: "outline-item",
+        "data-ocid": `create.outline.item.${i + 1}`,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "outline-item-title", children: line.text })
+      },
+      line.id
+    )) })
+  ] });
+}
+function getPlaceholder(type) {
+  switch (type) {
+    case "slugline":
+      return "INT. LOCATION - TIME";
+    case "action":
+      return "Describe the action...";
+    case "character":
+      return "CHARACTER NAME";
+    case "dialogue":
+      return "Dialogue goes here...";
+    case "parenthetical":
+      return "(beat)";
+  }
 }
 const DB_NAME = "writefy-offline";
 const STORE = "scripts";
@@ -29548,513 +28566,267 @@ async function idbSaveScript(id, title, content) {
     tx.onerror = () => reject(tx.error);
   });
 }
+let lastMenuTrigger = 0;
 function CreateScreen({
   activeDocId,
   onDocumentDeleted,
-  allDocs: _allDocs,
-  isInitialized,
-  menuTrigger,
-  onContentUpdate
+  allDocs,
+  menuTrigger
 }) {
-  const { data: document2 } = useGetDocument(activeDocId);
+  const [showMenu, setShowMenu] = reactExports.useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = reactExports.useState(false);
+  const [isSaved, setIsSaved] = reactExports.useState(true);
+  const [liveContent, setLiveContent] = reactExports.useState("");
+  const [liveTitle, setLiveTitle] = reactExports.useState("");
+  const saveTimerRef = reactExports.useRef(null);
+  const liveContentRef = reactExports.useRef(liveContent);
+  const liveTitleRef = reactExports.useRef(liveTitle);
+  const initializedDocRef = reactExports.useRef(null);
+  const { data: doc, isLoading } = useGetDocument(activeDocId);
   const updateDoc = useUpdateDocument();
   const deleteDoc = useDeleteDocument();
-  const [showMenu, setShowMenu] = reactExports.useState(false);
-  const [showDelete, setShowDelete] = reactExports.useState(false);
-  const [isSaved, setIsSaved] = reactExports.useState(true);
-  const [localContent, setLocalContent] = reactExports.useState("");
-  const autoSaveTimer = reactExports.useRef(null);
-  const prevMenuTrigger = reactExports.useRef(0);
-  reactExports.useEffect(() => {
-    if (document2) {
-      setLocalContent(document2.content);
-      onContentUpdate == null ? void 0 : onContentUpdate(document2.content);
+  liveContentRef.current = liveContent;
+  liveTitleRef.current = liveTitle;
+  if (doc && doc.id !== initializedDocRef.current) {
+    initializedDocRef.current = doc.id;
+  }
+  const lastSyncedDocIdRef = reactExports.useRef(null);
+  if (doc && doc.id !== lastSyncedDocIdRef.current) {
+    lastSyncedDocIdRef.current = doc.id;
+    Promise.resolve().then(() => {
+      setLiveTitle(doc.title);
+      setLiveContent(doc.content);
+      setIsSaved(true);
+    });
+  }
+  if (menuTrigger > lastMenuTrigger && activeDocId) {
+    lastMenuTrigger = menuTrigger;
+    Promise.resolve().then(() => setShowMenu(true));
+  }
+  async function doSave(content, title) {
+    if (!activeDocId) return;
+    const useTitle = title.trim() || "Untitled Script";
+    try {
+      await Promise.all([
+        updateDoc.mutateAsync({ id: activeDocId, title: useTitle, content }),
+        idbSaveScript(activeDocId, useTitle, content)
+      ]);
+      setIsSaved(true);
+    } catch {
     }
-  }, [document2 == null ? void 0 : document2.id]);
-  reactExports.useEffect(() => {
-    if (menuTrigger && menuTrigger !== prevMenuTrigger.current) {
-      prevMenuTrigger.current = menuTrigger;
-      setShowMenu(true);
-    }
-  }, [menuTrigger]);
-  const doSave = reactExports.useCallback(
-    async (content) => {
-      if (!activeDocId || !document2) return;
-      try {
-        await updateDoc.mutateAsync({
-          id: activeDocId,
-          title: document2.title,
-          content
-        });
-        setIsSaved(true);
-      } catch {
-      }
-    },
-    [activeDocId, document2, updateDoc]
-  );
-  const handleContentChange = reactExports.useCallback(
-    (content) => {
-      setLocalContent(content);
-      setIsSaved(false);
-      onContentUpdate == null ? void 0 : onContentUpdate(content);
-      if (activeDocId && document2) {
-        idbSaveScript(activeDocId, document2.title, content).catch(() => {
-        });
-      }
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-      autoSaveTimer.current = setTimeout(() => {
-        doSave(content);
-      }, 3e4);
-    },
-    [doSave, activeDocId, document2, onContentUpdate]
-  );
-  reactExports.useEffect(() => {
-    return () => {
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-    };
-  }, []);
-  const handleExportPDF = () => {
-    if (!document2) return;
+  }
+  function scheduleSave(content, title, delay = 3e4) {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => doSave(content, title), delay);
+  }
+  function handleContentChange(content) {
+    setLiveContent(content);
+    setIsSaved(false);
+    scheduleSave(content, liveTitleRef.current);
+  }
+  function handleTitleChange(title) {
+    setLiveTitle(title);
+    setIsSaved(false);
+    scheduleSave(liveContentRef.current, title, 2e3);
+  }
+  function handleManualSave() {
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    doSave(liveContentRef.current, liveTitleRef.current);
+  }
+  function handleExportTxt() {
+    const blob = new Blob([liveContent], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a2 = window.document.createElement("a");
+    a2.href = url;
+    a2.download = `${liveTitle || "untitled"}.txt`;
+    a2.click();
+    URL.revokeObjectURL(url);
     setShowMenu(false);
-    const content = localContent || document2.content;
-    const lines = content.split("\n");
-    const htmlLines = lines.map((line) => {
-      const trimmed = line.trim();
-      if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.")) {
-        return `<p style="font-weight:bold;text-transform:uppercase;margin:16px 0 4px">${trimmed}</p>`;
-      }
-      if (trimmed === trimmed.toUpperCase() && trimmed.length > 0 && /^[A-Z\s]+$/.test(trimmed)) {
-        return `<p style="text-align:center;font-weight:bold;text-transform:uppercase;margin:16px auto 0;width:60%">${trimmed}</p>`;
-      }
-      if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-        return `<p style="text-align:center;font-style:italic;margin:0 auto;width:50%">${trimmed}</p>`;
-      }
-      return `<p style="margin:0 auto 8px;width:80%">${trimmed || "&nbsp;"}</p>`;
-    }).join("");
-    const win = window.open("", "_blank");
-    if (win) {
-      win.document.write(
-        `<!DOCTYPE html><html><head><title>${document2.title}</title><style>body{font-family:'Courier New',monospace;font-size:12pt;line-height:1.5;padding:72px;max-width:8.5in;margin:0 auto;color:#000;background:#fff}p{margin-bottom:8px}@media print{body{padding:1in}}</style></head><body>${htmlLines}</body></html>`
-      );
-      win.document.close();
-      win.focus();
-      setTimeout(() => win.print(), 500);
-    }
-  };
-  const handleImport = () => {
-    setShowMenu(false);
-    const input = globalThis.document.createElement("input");
+  }
+  function handleImport() {
+    const input = window.document.createElement("input");
     input.type = "file";
     input.accept = ".txt,.fountain";
-    input.onchange = async (e) => {
+    input.onchange = (e) => {
       var _a3;
       const file = (_a3 = e.target.files) == null ? void 0 : _a3[0];
       if (!file) return;
-      const text = await file.text();
-      setLocalContent(text);
-      setIsSaved(false);
-      onContentUpdate == null ? void 0 : onContentUpdate(text);
-      if (activeDocId && document2) {
-        idbSaveScript(activeDocId, document2.title, text).catch(() => {
-        });
-      }
-      if (autoSaveTimer.current) clearTimeout(autoSaveTimer.current);
-      doSave(text);
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        var _a4;
+        const text = (_a4 = ev.target) == null ? void 0 : _a4.result;
+        if (text) {
+          setLiveContent(text);
+          setIsSaved(false);
+          scheduleSave(text, liveTitleRef.current, 3e3);
+        }
+      };
+      reader.readAsText(file);
     };
     input.click();
-  };
-  const handleShare = async () => {
-    var _a3;
     setShowMenu(false);
-    if (!document2) return;
+  }
+  function handleShare() {
     if (navigator.share) {
-      try {
-        await navigator.share({
-          title: document2.title,
-          text: localContent || document2.content
-        });
-      } catch {
-      }
+      navigator.share({ title: liveTitle, text: liveContent }).catch(() => {
+      });
     } else {
-      (_a3 = navigator.clipboard) == null ? void 0 : _a3.writeText(localContent || document2.content);
+      navigator.clipboard.writeText(liveContent).catch(() => {
+      });
     }
-  };
-  const handleDeleteConfirm = async () => {
+    setShowMenu(false);
+  }
+  async function handleDelete() {
     if (!activeDocId) return;
-    try {
-      await deleteDoc.mutateAsync(activeDocId);
-    } catch {
-    }
-    setShowDelete(false);
+    await deleteDoc.mutateAsync(activeDocId);
+    setShowDeleteConfirm(false);
     setShowMenu(false);
     onDocumentDeleted();
-  };
-  if (!isInitialized) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          color: "#8A8A8A",
-          flexDirection: "column",
-          gap: 12,
-          padding: 24,
-          minHeight: "calc(100dvh - 176px)"
-        },
-        "data-ocid": "create.loading_state",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                width: 40,
-                height: 40,
-                borderRadius: "50%",
-                border: "3px solid #1A1A1A",
-                borderTopColor: "var(--accent-color, #1DB954)"
-              }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 14, color: "#8A8A8A" }, children: "Loading script..." })
-        ]
-      }
-    );
   }
   if (!activeDocId) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          flexDirection: "column",
-          gap: 12,
-          padding: 24,
-          minHeight: "calc(100dvh - 176px)",
-          textAlign: "center"
-        },
-        "data-ocid": "create.empty_state",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 32, marginBottom: 4 }, children: "✍️" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 16, fontWeight: 700, color: "#fff" }, children: "No script open" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8a8a8a" }, children: "Use the + button to start writing." })
-        ]
-      }
-    );
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "create-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "editor-no-doc", "data-ocid": "create.empty_state", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "div",
+        {
+          style: {
+            width: 60,
+            height: 60,
+            borderRadius: "50%",
+            background: "rgba(29,185,84,0.1)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          },
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 28, style: { color: "var(--accent-color)" } })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Tap the + button below to start a new script" })
+    ] }) });
   }
-  const docMeta = document2 ? `${document2.formatType} • ${formatRelativeTime(document2.lastEdited)}` : "Screenplay • New document";
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+  if (isLoading || !doc) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "create-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "editor-loading", "data-ocid": "create.loading_state", children: "Loading script..." }) });
+  }
+  const currentMeta = allDocs.find((d2) => d2.id === activeDocId) ?? null;
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "create-screen", "data-ocid": "create.section", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
-        style: {
-          position: "fixed",
-          top: 10,
-          left: "50%",
-          transform: "translateX(calc(-50% + 64px))",
-          zIndex: 60,
-          pointerEvents: "none"
-        },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            className: `save-dot${isSaved ? " saved" : ""}`,
-            title: isSaved ? "Saved" : "Unsaved changes",
-            "data-ocid": isSaved ? "create.save.success_state" : "create.save.loading_state"
-          }
-        )
+        className: `save-dot${isSaved ? " saved" : ""}`,
+        title: isSaved ? "Saved" : "Unsaved changes",
+        "data-ocid": "create.save.success_state"
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      ScreenplayEditor,
+      {
+        document: doc,
+        onContentChange: handleContentChange,
+        onTitleChange: handleTitleChange,
+        onSaveNow: handleManualSave,
+        isSaved,
+        docTitle: liveTitle || doc.title,
+        docMeta: currentMeta
       }
     ),
     showMenu && /* @__PURE__ */ jsxRuntimeExports.jsx(
       MenuOverlay,
       {
         onClose: () => setShowMenu(false),
-        onExport: handleExportPDF,
+        onExport: handleExportTxt,
         onImport: handleImport,
         onShare: handleShare,
         onDelete: () => {
           setShowMenu(false);
-          setShowDelete(true);
+          setShowDeleteConfirm(true);
         }
       }
     ),
-    showDelete && /* @__PURE__ */ jsxRuntimeExports.jsx(
+    showDeleteConfirm && /* @__PURE__ */ jsxRuntimeExports.jsx(
       DeleteConfirm,
       {
-        title: (document2 == null ? void 0 : document2.title) ?? "Untitled Script",
-        onConfirm: handleDeleteConfirm,
-        onCancel: () => setShowDelete(false)
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      ScreenplayEditor,
-      {
-        document: document2 ?? null,
-        onContentChange: handleContentChange,
-        isSaved,
-        docTitle: document2 == null ? void 0 : document2.title,
-        docMeta
+        title: liveTitle || "Untitled Script",
+        onConfirm: handleDelete,
+        onCancel: () => setShowDeleteConfirm(false)
       }
     )
   ] });
 }
 function HomeScreen({
-  docs,
-  isLoading,
-  onOpenDoc,
+  mostRecentDoc,
+  onResumeDoc,
   onNewDoc
 }) {
-  const sortedDocs = [...docs].sort(
-    (a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)
-  );
-  const resumeDoc = sortedDocs[0] ?? null;
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      style: {
-        minHeight: "100%",
-        padding: "20px"
-      },
-      children: isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "home-screen", "data-ocid": "home.section", children: mostRecentDoc ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "section-label", children: "Continue Writing" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-card", "data-ocid": "home.resume.card", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-card-top", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "resume-card-type", children: mostRecentDoc.formatType === "Novel" ? "Novel" : "Screenplay" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "resume-card-title", children: mostRecentDoc.title }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "resume-card-meta", children: [
+            "Last edited ",
+            formatRelativeTime(mostRecentDoc.lastEdited)
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { color: "rgba(29,185,84,0.6)", marginTop: 4 }, children: mostRecentDoc.formatType === "Novel" ? /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 24 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 24 }) })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "resume-card-footer", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
         {
-          style: { padding: "60px 0", textAlign: "center" },
-          "data-ocid": "home.loading_state",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                width: 32,
-                height: 32,
-                borderRadius: "50%",
-                border: "3px solid #1A1A1A",
-                borderTopColor: "var(--accent-color, #1DB954)",
-                margin: "0 auto"
-              }
-            }
-          )
+          type: "button",
+          className: "resume-btn",
+          "data-ocid": "home.resume.primary_button",
+          onClick: () => onResumeDoc(mostRecentDoc.id),
+          children: "Resume Writing"
         }
-      ) : resumeDoc ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              fontSize: 11,
-              fontWeight: 700,
-              color: "#8a8a8a",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: 12
-            },
-            children: "Continue Writing"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            "data-ocid": "home.resume.card",
-            style: {
-              height: 180,
-              background: "#0b0b0b",
-              borderRadius: 24,
-              padding: 20,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              border: "1px solid rgba(29,185,84,0.3)",
-              boxShadow: "0 0 20px rgba(29,185,84,0.1), 0 0 6px rgba(29,185,84,0.06)"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: 8
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          fontSize: 18,
-                          fontWeight: 800,
-                          color: "#ffffff",
-                          lineHeight: 1.2,
-                          flex: 1,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap"
-                        },
-                        children: resumeDoc.title
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "span",
-                      {
-                        style: {
-                          fontSize: 11,
-                          fontWeight: 700,
-                          color: "var(--accent-color, #1DB954)",
-                          background: "rgba(29,185,84,0.12)",
-                          border: "1px solid rgba(29,185,84,0.25)",
-                          borderRadius: 100,
-                          padding: "3px 10px",
-                          flexShrink: 0,
-                          whiteSpace: "nowrap"
-                        },
-                        children: resumeDoc.formatType || "Screenplay"
-                      }
-                    )
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(FileText, { size: 13, color: "#8a8a8a", style: { flexShrink: 0 } }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { fontSize: 12, color: "#8a8a8a" }, children: [
-                      "Last edited ",
-                      formatRelativeTime(resumeDoc.lastEdited)
-                    ] })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "button",
-                {
-                  type: "button",
-                  onClick: () => onOpenDoc(resumeDoc.id),
-                  "data-ocid": "home.resume.primary_button",
-                  style: {
-                    background: "var(--accent-color, #1DB954)",
-                    color: "#000",
-                    border: "none",
-                    borderRadius: 10,
-                    padding: "10px 20px",
-                    fontWeight: 700,
-                    fontSize: 14,
-                    cursor: "pointer",
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    gap: 6
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Pencil, { size: 14 }),
-                    "Resume Writing"
-                  ]
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              marginTop: 24,
-              fontSize: 11,
-              fontWeight: 700,
-              color: "#8a8a8a",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              marginBottom: 12
-            },
-            children: "Quick Actions"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            onClick: onNewDoc,
-            "data-ocid": "home.new_doc.primary_button",
-            style: {
-              width: "100%",
-              background: "transparent",
-              border: "1px dashed #333",
-              borderRadius: 14,
-              padding: "16px 20px",
-              color: "var(--accent-color, #1DB954)",
-              fontSize: 14,
-              fontWeight: 600,
-              cursor: "pointer",
-              textAlign: "left"
-            },
-            children: "+ Start something new"
-          }
-        )
-      ] }) : (
-        /* Empty state */
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: 300,
-              textAlign: "center",
-              gap: 12
-            },
-            "data-ocid": "home.empty_state",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 48, marginBottom: 4 }, children: "🎬" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 18, fontWeight: 800, color: "#fff" }, children: "Welcome to Writefy" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  style: {
-                    fontSize: 13,
-                    color: "#8a8a8a",
-                    lineHeight: 1.6,
-                    maxWidth: 260
-                  },
-                  children: "Your writing journey starts here. Create your first screenplay or novel."
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  type: "button",
-                  onClick: onNewDoc,
-                  "data-ocid": "home.create.primary_button",
-                  style: {
-                    marginTop: 8,
-                    background: "var(--accent-color, #1DB954)",
-                    color: "#000",
-                    border: "none",
-                    borderRadius: 10,
-                    padding: "12px 28px",
-                    fontSize: 14,
-                    fontWeight: 700,
-                    cursor: "pointer"
-                  },
-                  children: "Start Writing"
-                }
-              )
-            ]
-          }
-        )
-      )
-    }
-  );
+      ) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "button",
+      {
+        type: "button",
+        className: "start-new-btn",
+        "data-ocid": "home.new.button",
+        onClick: onNewDoc,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16 }),
+          "Start something new"
+        ]
+      }
+    )
+  ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "empty-state", "data-ocid": "home.empty_state", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          width: 72,
+          height: 72,
+          borderRadius: "50%",
+          background: "rgba(29,185,84,0.1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "0 auto 20px"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 32, style: { color: "var(--accent-color)" } })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { children: "Welcome to Writefy" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Your cinematic writing workspace. Start a screenplay or novel and let the words flow." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "button",
+      {
+        type: "button",
+        className: "primary-btn",
+        "data-ocid": "home.start.primary_button",
+        onClick: onNewDoc,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 18 }),
+          "Start Writing"
+        ]
+      }
+    )
+  ] }) });
 }
 function LibraryScreen({
   docs,
@@ -30063,1136 +28835,587 @@ function LibraryScreen({
   onNewDoc
 }) {
   const [viewMode, setViewMode] = reactExports.useState("grid");
-  const sorted = [...docs].sort(
-    (a2, b2) => Number(b2.lastEdited) - Number(a2.lastEdited)
-  );
-  const getDocIcon = (doc, size) => {
-    const color = "var(--accent-color, #1DB954)";
-    if (doc.formatType === "Novel") {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size, color, strokeWidth: 1.5 });
-    }
-    return /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size, color, strokeWidth: 1.5 });
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { minHeight: "100%", paddingBottom: 24 }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { maxWidth: 720, margin: "0 auto", padding: "0 16px" }, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          paddingTop: 24,
-          paddingBottom: 16
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: 22, fontWeight: 800, color: "#fff" }, children: "Library" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 12 }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => setViewMode("grid"),
-                "data-ocid": "library.grid.toggle",
-                style: {
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  background: viewMode === "grid" ? "var(--accent-color, #1DB954)" : "#1A1A1A",
-                  border: viewMode === "grid" ? "none" : "1px solid #333",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer"
-                },
-                "aria-label": "Grid view",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  LayoutGrid,
-                  {
-                    size: 15,
-                    color: viewMode === "grid" ? "#000" : "#8a8a8a"
-                  }
-                )
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => setViewMode("list"),
-                "data-ocid": "library.list.toggle",
-                style: {
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  background: viewMode === "list" ? "var(--accent-color, #1DB954)" : "#1A1A1A",
-                  border: viewMode === "list" ? "none" : "1px solid #333",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer"
-                },
-                "aria-label": "List view",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  List,
-                  {
-                    size: 15,
-                    color: viewMode === "list" ? "#000" : "#8a8a8a"
-                  }
-                )
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: onNewDoc,
-                "data-ocid": "library.create.primary_button",
-                style: {
-                  width: 32,
-                  height: 32,
-                  borderRadius: 8,
-                  background: "var(--accent-color, #1DB954)",
-                  border: "none",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer"
-                },
-                "aria-label": "New document",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16, color: "#000" })
-              }
-            )
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          fontSize: 12,
-          color: "rgba(255,255,255,0.4)",
-          marginBottom: 16
-        },
-        children: [
-          sorted.length,
-          " ",
-          sorted.length === 1 ? "project" : "projects"
-        ]
-      }
-    ),
-    isLoading ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        style: { padding: "40px 0", textAlign: "center" },
-        "data-ocid": "library.loading_state",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              width: 28,
-              height: 28,
-              borderRadius: "50%",
-              border: "2px solid #1A1A1A",
-              borderTopColor: "var(--accent-color, #1DB954)",
-              margin: "0 auto"
-            }
-          }
-        )
-      }
-    ) : sorted.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: { padding: "40px 0", textAlign: "center" },
-        "data-ocid": "library.empty_state",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "36px", marginBottom: "10px" }, children: "📚" }),
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "library-screen", "data-ocid": "library.section", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "library-header", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "library-title", children: "Library" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "library-header-actions", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "view-toggle", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
+            "button",
             {
-              style: {
-                fontSize: 15,
-                fontWeight: 700,
-                color: "#fff",
-                marginBottom: 6
-              },
-              children: "No projects yet"
+              type: "button",
+              className: `view-toggle-btn${viewMode === "grid" ? " active" : ""}`,
+              onClick: () => setViewMode("grid"),
+              "aria-label": "Grid view",
+              "data-ocid": "library.grid.toggle",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(LayoutGrid, { size: 14 })
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 12, color: "#8a8a8a", marginBottom: 18 }, children: "Tap + to create your first screenplay or novel." }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
             "button",
             {
               type: "button",
-              onClick: onNewDoc,
-              "data-ocid": "library.empty.primary_button",
-              style: {
-                padding: "10px 24px",
-                borderRadius: 10,
-                background: "var(--accent-color, #1DB954)",
-                color: "#000",
-                fontWeight: 700,
-                fontSize: 13,
-                border: "none",
-                cursor: "pointer"
-              },
-              children: "New Project"
+              className: `view-toggle-btn${viewMode === "list" ? " active" : ""}`,
+              onClick: () => setViewMode("list"),
+              "aria-label": "List view",
+              "data-ocid": "library.list.toggle",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(List, { size: 14 })
             }
           )
-        ]
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "add-icon-btn",
+            onClick: onNewDoc,
+            "aria-label": "New document",
+            "data-ocid": "library.add.button",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 16 })
+          }
+        )
+      ] })
+    ] }),
+    !isLoading && docs.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "doc-count", children: [
+      docs.length,
+      " ",
+      docs.length === 1 ? "project" : "projects"
+    ] }),
+    isLoading && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          textAlign: "center",
+          padding: "48px",
+          color: "var(--muted)",
+          fontSize: 14
+        },
+        children: "Loading..."
       }
-    ) : viewMode === "grid" ? (
-      /* GRID MODE */
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
+    ),
+    !isLoading && docs.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "lib-empty", "data-ocid": "library.empty_state", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "No projects yet" }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Create your first screenplay or novel to get started." }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
         {
-          style: {
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: 16
-          },
-          "data-ocid": "library.list",
-          children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              onClick: () => onOpenDoc(doc.id),
-              "data-ocid": `library.script.item.${idx + 1}`,
-              style: {
-                borderRadius: 18,
-                background: "#121212",
-                border: "1px solid rgba(29,185,84,0.12)",
-                overflow: "hidden",
-                cursor: "pointer",
-                display: "flex",
-                flexDirection: "column",
-                padding: 16,
-                textAlign: "left",
-                minHeight: 140
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 40,
-                      height: 40,
-                      borderRadius: 10,
-                      background: "rgba(29,185,84,0.1)",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      marginBottom: 12,
-                      flexShrink: 0
-                    },
-                    children: getDocIcon(doc, 20)
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      fontSize: 12,
-                      color: "#8a8a8a",
-                      marginBottom: 6,
-                      fontWeight: 500
-                    },
-                    children: doc.formatType || "Screenplay"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      fontSize: 16,
-                      fontWeight: 700,
-                      color: "#ffffff",
-                      lineHeight: 1.3,
-                      overflow: "hidden",
-                      display: "-webkit-box",
-                      WebkitLineClamp: 2,
-                      WebkitBoxOrient: "vertical",
-                      marginBottom: 6,
-                      flex: 1
-                    },
-                    children: doc.title
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      fontSize: 12,
-                      color: "rgba(255,255,255,0.45)",
-                      whiteSpace: "nowrap",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis"
-                    },
-                    children: formatRelativeTime(doc.lastEdited)
-                  }
-                )
-              ]
-            },
-            doc.id
-          ))
+          type: "button",
+          className: "primary-btn",
+          onClick: onNewDoc,
+          "data-ocid": "library.create.primary_button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 18 }),
+            "Create Project"
+          ]
         }
       )
-    ) : (
-      /* LIST MODE */
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        "div",
-        {
-          style: { display: "flex", flexDirection: "column", gap: 12 },
-          "data-ocid": "library.list",
-          children: sorted.map((doc, idx) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "button",
-            {
-              type: "button",
-              onClick: () => onOpenDoc(doc.id),
-              "data-ocid": `library.script.item.${idx + 1}`,
-              style: {
-                display: "flex",
-                alignItems: "center",
-                gap: 14,
-                padding: "14px 16px",
-                borderRadius: 14,
-                background: "#121212",
-                border: "1px solid rgba(255,255,255,0.06)",
-                width: "100%",
-                cursor: "pointer",
-                textAlign: "left",
-                minHeight: 72
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      width: 44,
-                      height: 44,
-                      borderRadius: 10,
-                      background: "#1e1e1e",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      flexShrink: 0
-                    },
-                    children: getDocIcon(doc, 20)
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, minWidth: 0 }, children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        fontSize: 15,
-                        fontWeight: 700,
-                        color: "#fff",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                        marginBottom: 4
-                      },
-                      children: doc.title
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: 13, color: "rgba(255,255,255,0.5)" }, children: [
-                    doc.formatType || "Screenplay",
-                    " •",
-                    " ",
-                    formatRelativeTime(doc.lastEdited)
-                  ] })
-                ] })
-              ]
-            },
-            doc.id
-          ))
-        }
-      )
-    )
-  ] }) });
+    ] }),
+    !isLoading && docs.length > 0 && viewMode === "grid" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "library-grid", "data-ocid": "library.grid.list", children: docs.map((doc, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "button",
+      {
+        type: "button",
+        className: "library-card",
+        onClick: () => onOpenDoc(doc.id),
+        "data-ocid": `library.grid.item.${i + 1}`,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "card-icon", children: doc.formatType === "Novel" ? /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 18 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 18 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "card-type", children: doc.formatType }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "card-title", children: doc.title })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "card-meta", children: formatRelativeTime(doc.lastEdited) })
+        ]
+      },
+      doc.id
+    )) }),
+    !isLoading && docs.length > 0 && viewMode === "list" && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "library-list", "data-ocid": "library.list.list", children: docs.map((doc, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "button",
+      {
+        type: "button",
+        className: "list-card",
+        onClick: () => onOpenDoc(doc.id),
+        "data-ocid": `library.list.item.${i + 1}`,
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "list-icon", children: doc.formatType === "Novel" ? /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 20 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 20 }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "list-content", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "list-title", children: doc.title }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { className: "list-meta", children: [
+              doc.formatType,
+              " · ",
+              formatRelativeTime(doc.lastEdited)
+            ] })
+          ] })
+        ]
+      },
+      doc.id
+    )) })
+  ] });
 }
-function parseScript(content) {
-  if (!content.trim()) return [];
-  const rawLines = content.split("\n");
-  return rawLines.filter((l) => l.trim().length > 0).map((text) => {
-    const trimmed = text.trim();
-    let type = "action";
-    if (trimmed.startsWith("INT.") || trimmed.startsWith("EXT.") || trimmed.startsWith("INT/EXT")) {
-      type = "slugline";
-    } else if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-      type = "parenthetical";
-    } else if (trimmed === trimmed.toUpperCase() && trimmed.length > 0 && /^[A-Z][A-Z\s]+$/.test(trimmed)) {
-      type = "character";
+function parseContent(content) {
+  const lines = content.split("\n");
+  const result = [];
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line) continue;
+    const trimmed = line.trim();
+    if (trimmed.startsWith("[slugline]")) {
+      result.push({
+        type: "slugline",
+        text: trimmed.replace("[slugline]", "").trim()
+      });
+    } else if (trimmed.startsWith("[character]")) {
+      result.push({
+        type: "character",
+        text: trimmed.replace("[character]", "").trim()
+      });
+    } else if (trimmed.startsWith("[dialogue]")) {
+      result.push({
+        type: "dialogue",
+        text: trimmed.replace("[dialogue]", "").trim()
+      });
+    } else if (trimmed.startsWith("[parenthetical]")) {
+      result.push({
+        type: "parenthetical",
+        text: trimmed.replace("[parenthetical]", "").trim()
+      });
+    } else {
+      result.push({ type: "action", text: line });
     }
-    return { type, text: trimmed };
-  });
+  }
+  return result;
 }
-function PlayReader({ doc }) {
-  const lines = parseScript(doc.content);
+function PlayScreen({ activeDoc }) {
+  const { data: fullDoc, isLoading } = useGetDocument((activeDoc == null ? void 0 : activeDoc.id) ?? null);
   const [isPlaying, setIsPlaying] = reactExports.useState(false);
   const [speed, setSpeed] = reactExports.useState(2);
   const [fontSize, setFontSize] = reactExports.useState(16);
-  const containerRef = reactExports.useRef(null);
+  const readerRef = reactExports.useRef(null);
   const rafRef = reactExports.useRef(null);
-  const posRef = reactExports.useRef(0);
-  const speedRef = reactExports.useRef(speed);
   reactExports.useEffect(() => {
-    speedRef.current = speed;
-  }, [speed]);
-  const scroll = () => {
-    if (!containerRef.current) return;
-    posRef.current += speedRef.current * 0.5;
-    containerRef.current.scrollTop = posRef.current;
-    if (posRef.current < containerRef.current.scrollHeight - containerRef.current.clientHeight) {
-      rafRef.current = requestAnimationFrame(scroll);
-    } else {
-      setIsPlaying(false);
-    }
-  };
-  reactExports.useEffect(() => {
-    if (isPlaying) {
-      rafRef.current = requestAnimationFrame(scroll);
-    } else {
+    if (!isPlaying) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      return;
     }
+    function scroll() {
+      const el = readerRef.current;
+      if (!el) return;
+      el.scrollTop += speed * 0.4;
+      if (el.scrollTop >= el.scrollHeight - el.clientHeight) {
+        setIsPlaying(false);
+        return;
+      }
+      rafRef.current = requestAnimationFrame(scroll);
+    }
+    rafRef.current = requestAnimationFrame(scroll);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [isPlaying]);
-  const handleReset = () => {
+  }, [isPlaying, speed]);
+  function handleReset() {
     setIsPlaying(false);
-    posRef.current = 0;
-    if (containerRef.current) containerRef.current.scrollTop = 0;
-  };
-  if (lines.length === 0) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          padding: "40px 24px",
-          textAlign: "center",
-          color: "#8A8A8A",
-          minHeight: "60vh"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 40, marginBottom: 16 }, children: "🎬" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: 16,
-                fontWeight: 700,
-                color: "#fff",
-                marginBottom: 8
-              },
-              children: "Script is empty"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13, color: "#8A8A8A" }, children: "Write something in the Create tab first." })
-        ]
-      }
-    );
+    if (readerRef.current) readerRef.current.scrollTop = 0;
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", height: "100%" }, children: [
+  if (!activeDoc) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "play-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "play-empty", "data-ocid": "play.empty_state", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Play,
+        {
+          size: 40,
+          style: { color: "var(--accent-color)", opacity: 0.4 }
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--muted)", fontSize: 15 }, children: "Open a script from the Library or Create tab, then come back here to read it." })
+    ] }) });
+  }
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "play-screen", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "play-empty", "data-ocid": "play.loading_state", children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--muted)" }, children: "Loading script..." }) }) });
+  }
+  const lines = parseContent((fullDoc == null ? void 0 : fullDoc.content) ?? "");
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "play-screen", "data-ocid": "play.section", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "play-controls", "data-ocid": "play.panel", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "play-btn",
+          onClick: () => setIsPlaying((p2) => !p2),
+          "aria-label": isPlaying ? "Pause" : "Play",
+          "data-ocid": "play.toggle.button",
+          children: isPlaying ? /* @__PURE__ */ jsxRuntimeExports.jsx(Pause, { size: 20 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Play, { size: 20 })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "reset-btn",
+          onClick: handleReset,
+          "aria-label": "Reset",
+          "data-ocid": "play.reset.button",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(RotateCcw, { size: 16 })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "control-group", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "control-label", children: [
+          "Speed: ",
+          speed,
+          "x"
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "input",
+          {
+            type: "range",
+            min: 1,
+            max: 6,
+            step: 0.5,
+            value: speed,
+            onChange: (e) => setSpeed(Number(e.target.value)),
+            className: "speed-slider",
+            "data-ocid": "play.speed.input"
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "font-size-controls", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "font-btn",
+            onClick: () => setFontSize((s2) => Math.max(12, s2 - 2)),
+            "aria-label": "Decrease font size",
+            "data-ocid": "play.fontsize_down.button",
+            children: "A-"
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "button",
+          {
+            type: "button",
+            className: "font-btn",
+            onClick: () => setFontSize((s2) => Math.min(28, s2 + 2)),
+            "aria-label": "Increase font size",
+            "data-ocid": "play.fontsize_up.button",
+            children: "A+"
+          }
+        )
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "play-fade-top" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "play-fade-bottom" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
-        style: {
-          padding: "12px 16px",
-          background: "rgba(0,0,0,0.85)",
-          borderBottom: "1px solid #1a1a1a",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          flexWrap: "wrap"
-        },
+        ref: readerRef,
+        className: `play-reader${isPlaying ? " is-playing" : ""}`,
+        style: { fontSize },
+        "data-ocid": "play.editor",
         children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: () => setIsPlaying((p2) => !p2),
-              style: {
-                width: 44,
-                height: 44,
-                borderRadius: "50%",
-                background: "#1DB954",
-                border: "none",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
-              },
-              "aria-label": isPlaying ? "Pause" : "Play",
-              "data-ocid": "play.play_pause.button",
-              children: isPlaying ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "svg",
-                {
-                  width: "18",
-                  height: "18",
-                  viewBox: "0 0 24 24",
-                  fill: "#000",
-                  "aria-hidden": "true",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Pause" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "6", y: "4", width: "4", height: "16" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("rect", { x: "14", y: "4", width: "4", height: "16" })
-                  ]
-                }
-              ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "svg",
-                {
-                  width: "18",
-                  height: "18",
-                  viewBox: "0 0 24 24",
-                  fill: "#000",
-                  "aria-hidden": "true",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
-                  ]
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "button",
-            {
-              type: "button",
-              onClick: handleReset,
-              style: {
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                background: "#1a1a1a",
-                border: "1px solid #333",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0,
-                color: "#8A8A8A"
-              },
-              "aria-label": "Reset to top",
-              "data-ocid": "play.reset.button",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "svg",
-                {
-                  width: "14",
-                  height: "14",
-                  viewBox: "0 0 24 24",
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeWidth: "2.5",
-                  "aria-hidden": "true",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Reset" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "1 4 1 10 7 10" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M3.51 15a9 9 0 1 0 .49-4.84" })
-                  ]
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8, flex: 1 }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "span",
-              {
-                style: { fontSize: 11, color: "#8A8A8A", whiteSpace: "nowrap" },
-                children: "Speed"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "input",
-              {
-                type: "range",
-                min: 1,
-                max: 6,
-                step: 0.5,
-                value: speed,
-                onChange: (e) => setSpeed(Number(e.target.value)),
-                style: {
-                  flex: 1,
-                  accentColor: "#1DB954",
-                  height: 4,
-                  cursor: "pointer"
-                },
-                "data-ocid": "play.speed.slider"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { style: { fontSize: 11, color: "#8A8A8A", minWidth: 20 }, children: [
-              speed,
-              "x"
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 6 }, children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => setFontSize((s2) => Math.max(12, s2 - 2)),
-                style: {
-                  width: 28,
-                  height: 28,
-                  background: "#1a1a1a",
-                  border: "1px solid #333",
-                  borderRadius: 6,
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontSize: 14,
-                  lineHeight: 1
-                },
-                "aria-label": "Decrease font size",
-                children: "A"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                type: "button",
-                onClick: () => setFontSize((s2) => Math.min(28, s2 + 2)),
-                style: {
-                  width: 28,
-                  height: 28,
-                  background: "#1a1a1a",
-                  border: "1px solid #333",
-                  borderRadius: 6,
-                  color: "#fff",
-                  cursor: "pointer",
-                  fontSize: 20,
-                  lineHeight: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center"
-                },
-                "aria-label": "Increase font size",
-                children: "A"
-              }
-            )
-          ] })
-        ]
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        ref: containerRef,
-        style: {
-          flex: 1,
-          overflowY: isPlaying ? "hidden" : "auto",
-          padding: "32px 16px 80px",
-          background: "#000",
-          scrollBehavior: "auto"
-        },
-        "data-ocid": "play.reader.area",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              "aria-hidden": "true",
-              style: {
-                position: "sticky",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 48,
-                background: "linear-gradient(to bottom, #000, transparent)",
-                pointerEvents: "none",
-                marginBottom: -48,
-                zIndex: 2
-              }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
             "div",
             {
               style: {
-                maxWidth: 560,
-                margin: "0 auto",
-                fontFamily: "'JetBrains Mono', 'Courier New', monospace"
+                marginBottom: 16,
+                paddingBottom: 8,
+                borderBottom: "1px solid rgba(255,255,255,0.08)"
               },
-              children: lines.map((line, i) => {
-                const key = `${i}-${line.text.slice(0, 8)}`;
-                if (line.type === "slugline") {
-                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        fontSize,
-                        fontWeight: 800,
-                        color: "#4CAF50",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                        marginTop: i === 0 ? 0 : 32,
-                        marginBottom: 12,
-                        lineHeight: 1.5,
-                        borderLeft: "3px solid #1DB954",
-                        paddingLeft: 12
-                      },
-                      children: line.text
-                    },
-                    key
-                  );
-                }
-                if (line.type === "character") {
-                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        fontSize: fontSize - 1,
-                        fontWeight: 700,
-                        color: "var(--accent-color, #1DB954)",
-                        textTransform: "uppercase",
-                        textAlign: "center",
-                        marginTop: 24,
-                        marginBottom: 4,
-                        lineHeight: 1.5,
-                        letterSpacing: "0.04em"
-                      },
-                      children: line.text
-                    },
-                    key
-                  );
-                }
-                if (line.type === "dialogue") {
-                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        fontSize,
-                        color: "#ffffff",
-                        maxWidth: "70%",
-                        margin: "4px auto 8px",
-                        textAlign: "left",
-                        lineHeight: 1.7
-                      },
-                      children: line.text
-                    },
-                    key
-                  );
-                }
-                if (line.type === "parenthetical") {
-                  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "div",
-                    {
-                      style: {
-                        fontSize: fontSize - 2,
-                        color: "rgba(255,255,255,0.6)",
-                        fontStyle: "italic",
-                        textAlign: "center",
-                        maxWidth: "50%",
-                        margin: "0 auto 4px",
-                        lineHeight: 1.5
-                      },
-                      children: line.text
-                    },
-                    key
-                  );
-                }
-                return /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "p",
                   {
                     style: {
-                      fontSize,
-                      color: "#cccccc",
-                      marginBottom: 10,
-                      lineHeight: 1.7
+                      fontSize: fontSize + 4,
+                      fontWeight: 800,
+                      color: "var(--text)",
+                      marginBottom: 4
                     },
-                    children: line.text
-                  },
-                  key
-                );
-              })
+                    children: (fullDoc == null ? void 0 : fullDoc.title) ?? activeDoc.title
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: fontSize - 2, color: "var(--muted)" }, children: activeDoc.formatType })
+              ]
             }
           ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
+          lines.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "p",
             {
-              "aria-hidden": "true",
-              style: {
-                position: "sticky",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: 80,
-                background: "linear-gradient(to top, #000, transparent)",
-                pointerEvents: "none",
-                marginTop: -80,
-                zIndex: 2
-              }
+              style: { color: "var(--muted)", fontSize: 14, fontStyle: "italic" },
+              children: "This script is empty."
             }
-          )
+          ),
+          lines.map((line, i) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static render list
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `play-line ${line.type}`, children: line.text }, i)
+          )),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { height: 120 } })
         ]
       }
     )
   ] });
 }
-function PlayScreen({ activeDoc }) {
-  const { data: fullDoc } = useGetDocument((activeDoc == null ? void 0 : activeDoc.id) ?? null);
-  if (!activeDoc) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          background: "transparent",
-          minHeight: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "40px 24px",
-          textAlign: "center"
-        },
-        "data-ocid": "play.section",
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                width: 72,
-                height: 72,
-                borderRadius: "50%",
-                background: "#1A1A1A",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: 20,
-                border: "2px solid #1DB954"
-              },
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "svg",
-                {
-                  width: "28",
-                  height: "28",
-                  viewBox: "0 0 24 24",
-                  fill: "#1DB954",
-                  "aria-hidden": "true",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
-                  ]
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: 18,
-                fontWeight: 700,
-                color: "#fff",
-                marginBottom: 8
-              },
-              children: "No Script Open"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                fontSize: 13,
-                color: "#8A8A8A",
-                lineHeight: 1.6,
-                maxWidth: 260
-              },
-              children: "Open a screenplay from the Library or create one in the Create tab."
-            }
-          )
-        ]
-      }
-    );
-  }
-  if (!fullDoc) {
-    return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "60vh",
-          color: "#8A8A8A",
-          flexDirection: "column",
-          gap: 12
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(
-            "div",
-            {
-              style: {
-                width: 36,
-                height: 36,
-                borderRadius: "50%",
-                border: "3px solid #1A1A1A",
-                borderTopColor: "#1DB954"
-              }
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: 13 }, children: "Loading script..." })
-        ]
-      }
-    );
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(PlayReader, { doc: fullDoc });
-}
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-    });
-  });
-}
+const THEMES = {
+  green: "#1db954",
+  red: "#e53935",
+  blue: "#1565c0",
+  purple: "#7b1fa2",
+  gold: "#f9a825"
+};
 function App() {
   const [activeTab, setActiveTab] = reactExports.useState("Home");
   const [activeDocId, setActiveDocId] = reactExports.useState(null);
   const [showSettings, setShowSettings] = reactExports.useState(false);
   const [showNewDocModal, setShowNewDocModal] = reactExports.useState(false);
-  const [isInitialized, setIsInitialized] = reactExports.useState(false);
   const [menuTrigger, setMenuTrigger] = reactExports.useState(0);
-  const latestContentRef = reactExports.useRef("");
-  const { actor } = useActor();
-  const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
-  const createDoc = useCreateDocument();
+  const { data: allDocs = [], isLoading } = useGetAllDocumentsMeta();
   reactExports.useEffect(() => {
     const saved = localStorage.getItem("writefy-theme");
-    if (saved) {
-      document.documentElement.style.setProperty("--accent-color", saved);
+    if (saved && THEMES[saved]) {
+      document.documentElement.style.setProperty(
+        "--accent-color",
+        THEMES[saved]
+      );
     }
   }, []);
   reactExports.useEffect(() => {
-    if (!actor || docsLoading) return;
-    if (docs.length > 0) {
-      if (!activeDocId) setActiveDocId(docs[0].id);
-      setIsInitialized(true);
-    } else {
-      setIsInitialized(true);
-    }
-  }, [actor, docsLoading, docs.length]);
-  const activeDoc = docs.find((d2) => d2.id === activeDocId) ?? null;
-  const handleNewDoc = reactExports.useCallback(
-    async (type = "Screenplay") => {
-      const newId = generateUUID();
-      await createDoc.mutateAsync({
-        id: newId,
-        title: "Untitled Script",
-        content: "",
-        formatType: type
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {
+        });
       });
-      setActiveDocId(newId);
-      setActiveTab("Create");
-    },
-    [createDoc]
-  );
-  const handleOpenDoc = reactExports.useCallback((id) => {
+    }
+  }, []);
+  function handleDocumentCreated(id) {
     setActiveDocId(id);
     setActiveTab("Create");
-  }, []);
-  const handleDocumentDeleted = reactExports.useCallback(() => {
-    const remaining = docs.filter((d2) => d2.id !== activeDocId);
-    if (remaining.length > 0) {
-      setActiveDocId(remaining[0].id);
-      setActiveTab("Create");
-    } else {
-      setActiveDocId(null);
-      setActiveTab("Home");
-    }
-  }, [docs, activeDocId]);
-  const renderHeaderCenter = () => {
-    if (activeTab === "Create") {
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writefy-header-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-brand", children: "Writefy" }) });
-    }
-    const tabTitles = {
-      Home: "Home",
-      Library: "Library",
-      Create: "Create",
-      Play: "Play"
-    };
-    return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "writefy-header-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-tab-title", children: tabTitles[activeTab] }) });
-  };
-  const handlePlusPress = () => {
-    setShowNewDocModal(true);
-  };
-  const handleNewDocModalSelect = async (type) => {
     setShowNewDocModal(false);
-    await handleNewDoc(type);
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Toaster, {}),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-app", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "writefy-header", "data-ocid": "header.section", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "writefy-icon-btn",
-            onClick: () => {
-              if (activeTab === "Create") {
-                setMenuTrigger((n) => n + 1);
-              }
-            },
-            "aria-label": "Document options",
-            "data-ocid": "header.menu.button",
-            style: { opacity: activeTab === "Create" ? 1 : 0.3 },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(EllipsisVertical, { size: 20 })
-          }
-        ),
-        renderHeaderCenter(),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "button",
-          {
-            type: "button",
-            className: "writefy-icon-btn",
-            onClick: () => setShowSettings(true),
-            "aria-label": "Settings",
-            "data-ocid": "header.settings.button",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, { size: 20 })
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("main", { className: "writefy-screen", children: [
-        activeTab === "Home" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+  }
+  function handleDocumentDeleted() {
+    setActiveDocId(null);
+    setActiveTab("Library");
+  }
+  function handleOpenDoc(id) {
+    setActiveDocId(id);
+    setActiveTab("Create");
+  }
+  const mostRecentDoc = allDocs.length > 0 ? [...allDocs].sort((a2, b2) => Number(b2.lastEdited - a2.lastEdited))[0] : null;
+  const activeDoc = allDocs.find((d2) => d2.id === activeDocId) ?? null;
+  function renderScreen() {
+    switch (activeTab) {
+      case "Home":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
           HomeScreen,
           {
-            docs,
-            isLoading: docsLoading,
-            onOpenDoc: handleOpenDoc,
-            onNewDoc: handlePlusPress
+            mostRecentDoc,
+            onResumeDoc: handleOpenDoc,
+            onNewDoc: () => setShowNewDocModal(true)
           }
-        ),
-        activeTab === "Library" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        );
+      case "Library":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
           LibraryScreen,
           {
-            docs,
-            isLoading: docsLoading,
+            docs: allDocs,
+            isLoading,
             onOpenDoc: handleOpenDoc,
-            onNewDoc: handlePlusPress
+            onNewDoc: () => setShowNewDocModal(true)
           }
-        ),
-        activeTab === "Create" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+        );
+      case "Create":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(
           CreateScreen,
           {
             activeDocId,
             onDocumentDeleted: handleDocumentDeleted,
-            allDocs: docs,
-            isInitialized,
-            menuTrigger,
-            onContentUpdate: (c2) => {
-              latestContentRef.current = c2;
-            }
+            allDocs,
+            isInitialized: !isLoading,
+            menuTrigger
           }
-        ),
-        activeTab === "Play" && /* @__PURE__ */ jsxRuntimeExports.jsx(PlayScreen, { activeDoc })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "writefy-bottom-nav", "aria-label": "Main navigation", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            className: `writefy-nav-item${activeTab === "Home" ? " active" : ""}`,
-            onClick: () => setActiveTab("Home"),
-            "data-ocid": "nav.home.link",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(House, { size: 22 }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Home" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            className: `writefy-nav-item${activeTab === "Library" ? " active" : ""}`,
-            onClick: () => setActiveTab("Library"),
-            "data-ocid": "nav.library.link",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 22 }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Library" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            className: `writefy-nav-item${activeTab === "Create" ? " active" : ""}`,
-            onClick: handlePlusPress,
-            "data-ocid": "nav.create.link",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: `writefy-create-icon${activeTab === "Create" ? " active" : ""}`,
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 26 })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Create" })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "button",
-          {
-            type: "button",
-            className: `writefy-nav-item${activeTab === "Play" ? " active" : ""}`,
-            onClick: () => setActiveTab("Play"),
-            "data-ocid": "nav.play.link",
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "svg",
-                {
-                  width: "22",
-                  height: "22",
-                  viewBox: "0 0 24 24",
-                  fill: "none",
-                  stroke: "currentColor",
-                  strokeWidth: "2",
-                  "aria-hidden": "true",
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5,3 19,12 5,21" })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "writefy-nav-label", children: "Play" })
-            ]
-          }
-        )
-      ] }),
-      showSettings && /* @__PURE__ */ jsxRuntimeExports.jsx(SettingsOverlay, { onClose: () => setShowSettings(false) }),
-      showNewDocModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
-        NewDocModal,
+        );
+      case "Play":
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(PlayScreen, { activeDoc });
+    }
+  }
+  function getHeaderCenter() {
+    if (activeTab === "Create") {
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "header-brand", children: "WRITEFY" });
+    }
+    return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "16px", fontWeight: 700 }, children: activeTab });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "writefy-app", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("header", { className: "writefy-header", "data-ocid": "app.panel", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
         {
-          onSelect: handleNewDocModalSelect,
-          onClose: () => setShowNewDocModal(false)
+          type: "button",
+          className: "header-btn",
+          style: { opacity: activeTab === "Create" ? 1 : 0.3 },
+          onClick: () => activeTab === "Create" && setMenuTrigger((n) => n + 1),
+          "aria-label": "Menu",
+          "data-ocid": "app.open_modal_button",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(EllipsisVertical, { size: 20 })
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "header-title", children: getHeaderCenter() }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          type: "button",
+          className: "header-btn",
+          onClick: () => setShowSettings(true),
+          "aria-label": "Settings",
+          "data-ocid": "app.settings.button",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, { size: 20 })
         }
       )
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("style", { children: `
-        @media (min-width: 480px) {
-          .writefy-header,
-          .writefy-bottom-nav {
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 720px;
-          }
-          body {
-            background: #111;
-          }
-          .writefy-app {
-            border-left: 1px solid #1A1A1A;
-            border-right: 1px solid #1A1A1A;
-            max-width: 720px;
-          }
+    /* @__PURE__ */ jsxRuntimeExports.jsx("main", { className: "writefy-screen", children: renderScreen() }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("nav", { className: "writefy-bottom-nav", "data-ocid": "app.nav.panel", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: `nav-item${activeTab === "Home" ? " active" : ""}`,
+          onClick: () => setActiveTab("Home"),
+          "data-ocid": "nav.home.link",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(HomeSvg, { active: activeTab === "Home" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Home" })
+          ]
         }
-      ` })
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: `nav-item${activeTab === "Library" ? " active" : ""}`,
+          onClick: () => setActiveTab("Library"),
+          "data-ocid": "nav.library.link",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(LibrarySvg, { active: activeTab === "Library" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Library" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: `nav-item create-btn${activeTab === "Create" ? " active" : ""}`,
+          onClick: () => setShowNewDocModal(true),
+          "aria-label": "Create",
+          "data-ocid": "nav.create.button",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(CreateSvg, { active: activeTab === "Create" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Create" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: `nav-item${activeTab === "Play" ? " active" : ""}`,
+          onClick: () => setActiveTab("Play"),
+          "data-ocid": "nav.play.link",
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(PlaySvg, { active: activeTab === "Play" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Play" })
+          ]
+        }
+      )
+    ] }),
+    showNewDocModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+      NewDocModal,
+      {
+        onSelect: handleDocumentCreated,
+        onClose: () => setShowNewDocModal(false)
+      }
+    ),
+    showSettings && /* @__PURE__ */ jsxRuntimeExports.jsx(SettingsOverlay, { onClose: () => setShowSettings(false) })
   ] });
+}
+function HomeSvg({ active }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "22",
+      height: "22",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: active ? 2.5 : 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Home" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("polyline", { points: "9 22 9 12 15 12 15 22" })
+      ]
+    }
+  );
+}
+function LibrarySvg({ active }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "22",
+      height: "22",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: active ? 2.5 : 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Library" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("path", { d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" })
+      ]
+    }
+  );
+}
+function CreateSvg({ active }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "26",
+      height: "26",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: active ? 2.5 : 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Create" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "12", cy: "12", r: "10" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "12", y1: "8", x2: "12", y2: "16" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("line", { x1: "8", y1: "12", x2: "16", y2: "12" })
+      ]
+    }
+  );
+}
+function PlaySvg({ active }) {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "svg",
+    {
+      width: "22",
+      height: "22",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: active ? 2.5 : 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("title", { children: "Play" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("polygon", { points: "5 3 19 12 5 21 5 3" })
+      ]
+    }
+  );
 }
 BigInt.prototype.toJSON = function() {
   return this.toString();

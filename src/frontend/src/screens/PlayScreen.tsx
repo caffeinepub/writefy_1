@@ -1,8 +1,9 @@
+import { Pause, Play, RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import type { Document, DocumentMeta } from "../backend.d";
+import type { DocumentMeta } from "../backend.d";
 import { useGetDocument } from "../hooks/useQueries";
 
-interface PlayScreenProps {
+interface Props {
   activeDoc: DocumentMeta | null;
 }
 
@@ -11,222 +12,137 @@ type LineType =
   | "action"
   | "character"
   | "dialogue"
-  | "parenthetical"
-  | "transition";
+  | "parenthetical";
 
-interface ParsedLine {
+interface ScriptLine {
   type: LineType;
   text: string;
 }
 
-function parseScript(content: string): ParsedLine[] {
-  if (!content.trim()) return [];
-  const rawLines = content.split("\n");
-  return rawLines
-    .filter((l) => l.trim().length > 0)
-    .map((text) => {
-      const trimmed = text.trim();
-      let type: LineType = "action";
-      if (
-        trimmed.startsWith("INT.") ||
-        trimmed.startsWith("EXT.") ||
-        trimmed.startsWith("INT/EXT")
-      ) {
-        type = "slugline";
-      } else if (trimmed.startsWith("(") && trimmed.endsWith(")")) {
-        type = "parenthetical";
-      } else if (
-        trimmed === trimmed.toUpperCase() &&
-        trimmed.length > 0 &&
-        /^[A-Z][A-Z\s]+$/.test(trimmed)
-      ) {
-        type = "character";
-      }
-      return { type, text: trimmed };
-    });
+function parseContent(content: string): ScriptLine[] {
+  const lines = content.split("\n");
+  const result: ScriptLine[] = [];
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    if (!line) continue;
+    const trimmed = line.trim();
+    if (trimmed.startsWith("[slugline]")) {
+      result.push({
+        type: "slugline",
+        text: trimmed.replace("[slugline]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[character]")) {
+      result.push({
+        type: "character",
+        text: trimmed.replace("[character]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[dialogue]")) {
+      result.push({
+        type: "dialogue",
+        text: trimmed.replace("[dialogue]", "").trim(),
+      });
+    } else if (trimmed.startsWith("[parenthetical]")) {
+      result.push({
+        type: "parenthetical",
+        text: trimmed.replace("[parenthetical]", "").trim(),
+      });
+    } else {
+      result.push({ type: "action", text: line });
+    }
+  }
+  return result;
 }
 
-function PlayReader({ doc }: { doc: Document }) {
-  const lines = parseScript(doc.content);
+export default function PlayScreen({ activeDoc }: Props) {
+  const { data: fullDoc, isLoading } = useGetDocument(activeDoc?.id ?? null);
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [speed, setSpeed] = useState(2);
   const [fontSize, setFontSize] = useState(16);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const readerRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const posRef = useRef(0);
-  const speedRef = useRef(speed);
 
-  // Keep speedRef in sync
   useEffect(() => {
-    speedRef.current = speed;
-  }, [speed]);
-
-  const scroll = () => {
-    if (!containerRef.current) return;
-    posRef.current += speedRef.current * 0.5;
-    containerRef.current.scrollTop = posRef.current;
-    if (
-      posRef.current <
-      containerRef.current.scrollHeight - containerRef.current.clientHeight
-    ) {
-      rafRef.current = requestAnimationFrame(scroll);
-    } else {
-      setIsPlaying(false);
-    }
-  };
-
-  // biome-ignore lint/correctness/useExhaustiveDependencies: scroll is stable ref-based
-  useEffect(() => {
-    if (isPlaying) {
-      rafRef.current = requestAnimationFrame(scroll);
-    } else {
+    if (!isPlaying) {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      return;
     }
+    function scroll() {
+      const el = readerRef.current;
+      if (!el) return;
+      el.scrollTop += speed * 0.4;
+      if (el.scrollTop >= el.scrollHeight - el.clientHeight) {
+        setIsPlaying(false);
+        return;
+      }
+      rafRef.current = requestAnimationFrame(scroll);
+    }
+    rafRef.current = requestAnimationFrame(scroll);
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-  }, [isPlaying]);
+  }, [isPlaying, speed]);
 
-  const handleReset = () => {
+  function handleReset() {
     setIsPlaying(false);
-    posRef.current = 0;
-    if (containerRef.current) containerRef.current.scrollTop = 0;
-  };
+    if (readerRef.current) readerRef.current.scrollTop = 0;
+  }
 
-  if (lines.length === 0) {
+  if (!activeDoc) {
     return (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          height: "100%",
-          padding: "40px 24px",
-          textAlign: "center",
-          color: "#8A8A8A",
-          minHeight: "60vh",
-        }}
-      >
-        <div style={{ fontSize: 40, marginBottom: 16 }}>🎬</div>
-        <div
-          style={{
-            fontSize: 16,
-            fontWeight: 700,
-            color: "#fff",
-            marginBottom: 8,
-          }}
-        >
-          Script is empty
-        </div>
-        <div style={{ fontSize: 13, color: "#8A8A8A" }}>
-          Write something in the Create tab first.
+      <div className="play-screen">
+        <div className="play-empty" data-ocid="play.empty_state">
+          <Play
+            size={40}
+            style={{ color: "var(--accent-color)", opacity: 0.4 }}
+          />
+          <p style={{ color: "var(--muted)", fontSize: 15 }}>
+            Open a script from the Library or Create tab, then come back here to
+            read it.
+          </p>
         </div>
       </div>
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="play-screen">
+        <div className="play-empty" data-ocid="play.loading_state">
+          <p style={{ color: "var(--muted)" }}>Loading script...</p>
+        </div>
+      </div>
+    );
+  }
+
+  const lines = parseContent(fullDoc?.content ?? "");
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
-      {/* Controls bar */}
-      <div
-        style={{
-          padding: "12px 16px",
-          background: "rgba(0,0,0,0.85)",
-          borderBottom: "1px solid #1a1a1a",
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          flexWrap: "wrap",
-        }}
-      >
-        {/* Play/Pause */}
+    <div className="play-screen" data-ocid="play.section">
+      {/* Controls */}
+      <div className="play-controls" data-ocid="play.panel">
         <button
           type="button"
+          className="play-btn"
           onClick={() => setIsPlaying((p) => !p)}
-          style={{
-            width: 44,
-            height: 44,
-            borderRadius: "50%",
-            background: "#1DB954",
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-          }}
           aria-label={isPlaying ? "Pause" : "Play"}
-          data-ocid="play.play_pause.button"
+          data-ocid="play.toggle.button"
         >
-          {isPlaying ? (
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="#000"
-              aria-hidden="true"
-            >
-              <title>Pause</title>
-              <rect x="6" y="4" width="4" height="16" />
-              <rect x="14" y="4" width="4" height="16" />
-            </svg>
-          ) : (
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="#000"
-              aria-hidden="true"
-            >
-              <title>Play</title>
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-          )}
+          {isPlaying ? <Pause size={20} /> : <Play size={20} />}
         </button>
 
-        {/* Reset */}
         <button
           type="button"
+          className="reset-btn"
           onClick={handleReset}
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            background: "#1a1a1a",
-            border: "1px solid #333",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            color: "#8A8A8A",
-          }}
-          aria-label="Reset to top"
+          aria-label="Reset"
           data-ocid="play.reset.button"
         >
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            aria-hidden="true"
-          >
-            <title>Reset</title>
-            <polyline points="1 4 1 10 7 10" />
-            <path d="M3.51 15a9 9 0 1 0 .49-4.84" />
-          </svg>
+          <RotateCcw size={16} />
         </button>
 
-        {/* Speed */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1 }}>
-          <span
-            style={{ fontSize: 11, color: "#8A8A8A", whiteSpace: "nowrap" }}
-          >
-            Speed
-          </span>
+        <div className="control-group">
+          <span className="control-label">Speed: {speed}x</span>
           <input
             type="range"
             min={1}
@@ -234,304 +150,83 @@ function PlayReader({ doc }: { doc: Document }) {
             step={0.5}
             value={speed}
             onChange={(e) => setSpeed(Number(e.target.value))}
-            style={{
-              flex: 1,
-              accentColor: "#1DB954",
-              height: 4,
-              cursor: "pointer",
-            }}
-            data-ocid="play.speed.slider"
+            className="speed-slider"
+            data-ocid="play.speed.input"
           />
-          <span style={{ fontSize: 11, color: "#8A8A8A", minWidth: 20 }}>
-            {speed}x
-          </span>
         </div>
 
-        {/* Font size */}
-        <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        <div className="font-size-controls">
           <button
             type="button"
+            className="font-btn"
             onClick={() => setFontSize((s) => Math.max(12, s - 2))}
-            style={{
-              width: 28,
-              height: 28,
-              background: "#1a1a1a",
-              border: "1px solid #333",
-              borderRadius: 6,
-              color: "#fff",
-              cursor: "pointer",
-              fontSize: 14,
-              lineHeight: 1,
-            }}
             aria-label="Decrease font size"
+            data-ocid="play.fontsize_down.button"
           >
-            A
+            A-
           </button>
           <button
             type="button"
+            className="font-btn"
             onClick={() => setFontSize((s) => Math.min(28, s + 2))}
-            style={{
-              width: 28,
-              height: 28,
-              background: "#1a1a1a",
-              border: "1px solid #333",
-              borderRadius: 6,
-              color: "#fff",
-              cursor: "pointer",
-              fontSize: 20,
-              lineHeight: 1,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
             aria-label="Increase font size"
+            data-ocid="play.fontsize_up.button"
           >
-            A
+            A+
           </button>
         </div>
       </div>
 
-      {/* Script reading area */}
-      <div
-        ref={containerRef}
-        style={{
-          flex: 1,
-          overflowY: isPlaying ? "hidden" : "auto",
-          padding: "32px 16px 80px",
-          background: "#000",
-          scrollBehavior: "auto",
-        }}
-        data-ocid="play.reader.area"
-      >
-        {/* Gradient fade at top */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "sticky",
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 48,
-            background: "linear-gradient(to bottom, #000, transparent)",
-            pointerEvents: "none",
-            marginBottom: -48,
-            zIndex: 2,
-          }}
-        />
+      {/* Fade overlays */}
+      <div className="play-fade-top" />
+      <div className="play-fade-bottom" />
 
+      {/* Script reader */}
+      <div
+        ref={readerRef}
+        className={`play-reader${isPlaying ? " is-playing" : ""}`}
+        style={{ fontSize }}
+        data-ocid="play.editor"
+      >
         <div
           style={{
-            maxWidth: 560,
-            margin: "0 auto",
-            fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+            marginBottom: 16,
+            paddingBottom: 8,
+            borderBottom: "1px solid rgba(255,255,255,0.08)",
           }}
         >
-          {lines.map((line, i) => {
-            const key = `${i}-${line.text.slice(0, 8)}`;
-            if (line.type === "slugline") {
-              return (
-                <div
-                  key={key}
-                  style={{
-                    fontSize: fontSize,
-                    fontWeight: 800,
-                    color: "#4CAF50",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginTop: i === 0 ? 0 : 32,
-                    marginBottom: 12,
-                    lineHeight: 1.5,
-                    borderLeft: "3px solid #1DB954",
-                    paddingLeft: 12,
-                  }}
-                >
-                  {line.text}
-                </div>
-              );
-            }
-            if (line.type === "character") {
-              return (
-                <div
-                  key={key}
-                  style={{
-                    fontSize: fontSize - 1,
-                    fontWeight: 700,
-                    color: "var(--accent-color, #1DB954)",
-                    textTransform: "uppercase",
-                    textAlign: "center",
-                    marginTop: 24,
-                    marginBottom: 4,
-                    lineHeight: 1.5,
-                    letterSpacing: "0.04em",
-                  }}
-                >
-                  {line.text}
-                </div>
-              );
-            }
-            if (line.type === "dialogue") {
-              return (
-                <div
-                  key={key}
-                  style={{
-                    fontSize: fontSize,
-                    color: "#ffffff",
-                    maxWidth: "70%",
-                    margin: "4px auto 8px",
-                    textAlign: "left",
-                    lineHeight: 1.7,
-                  }}
-                >
-                  {line.text}
-                </div>
-              );
-            }
-            if (line.type === "parenthetical") {
-              return (
-                <div
-                  key={key}
-                  style={{
-                    fontSize: fontSize - 2,
-                    color: "rgba(255,255,255,0.6)",
-                    fontStyle: "italic",
-                    textAlign: "center",
-                    maxWidth: "50%",
-                    margin: "0 auto 4px",
-                    lineHeight: 1.5,
-                  }}
-                >
-                  {line.text}
-                </div>
-              );
-            }
-            return (
-              <div
-                key={key}
-                style={{
-                  fontSize: fontSize,
-                  color: "#cccccc",
-                  marginBottom: 10,
-                  lineHeight: 1.7,
-                }}
-              >
-                {line.text}
-              </div>
-            );
-          })}
+          <p
+            style={{
+              fontSize: fontSize + 4,
+              fontWeight: 800,
+              color: "var(--text)",
+              marginBottom: 4,
+            }}
+          >
+            {fullDoc?.title ?? activeDoc.title}
+          </p>
+          <p style={{ fontSize: fontSize - 2, color: "var(--muted)" }}>
+            {activeDoc.formatType}
+          </p>
         </div>
 
-        {/* Gradient fade at bottom */}
-        <div
-          aria-hidden="true"
-          style={{
-            position: "sticky",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 80,
-            background: "linear-gradient(to top, #000, transparent)",
-            pointerEvents: "none",
-            marginTop: -80,
-            zIndex: 2,
-          }}
-        />
+        {lines.length === 0 && (
+          <p
+            style={{ color: "var(--muted)", fontSize: 14, fontStyle: "italic" }}
+          >
+            This script is empty.
+          </p>
+        )}
+
+        {lines.map((line, i) => (
+          // biome-ignore lint/suspicious/noArrayIndexKey: static render list
+          <div key={i} className={`play-line ${line.type}`}>
+            {line.text}
+          </div>
+        ))}
+
+        <div style={{ height: 120 }} />
       </div>
     </div>
   );
-}
-
-export default function PlayScreen({ activeDoc }: PlayScreenProps) {
-  const { data: fullDoc } = useGetDocument(activeDoc?.id ?? null);
-
-  if (!activeDoc) {
-    return (
-      <div
-        style={{
-          background: "transparent",
-          minHeight: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "40px 24px",
-          textAlign: "center",
-        }}
-        data-ocid="play.section"
-      >
-        <div
-          style={{
-            width: 72,
-            height: 72,
-            borderRadius: "50%",
-            background: "#1A1A1A",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 20,
-            border: "2px solid #1DB954",
-          }}
-        >
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="#1DB954"
-            aria-hidden="true"
-          >
-            <title>Play</title>
-            <polygon points="5,3 19,12 5,21" />
-          </svg>
-        </div>
-        <div
-          style={{
-            fontSize: 18,
-            fontWeight: 700,
-            color: "#fff",
-            marginBottom: 8,
-          }}
-        >
-          No Script Open
-        </div>
-        <div
-          style={{
-            fontSize: 13,
-            color: "#8A8A8A",
-            lineHeight: 1.6,
-            maxWidth: 260,
-          }}
-        >
-          Open a screenplay from the Library or create one in the Create tab.
-        </div>
-      </div>
-    );
-  }
-
-  if (!fullDoc) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "60vh",
-          color: "#8A8A8A",
-          flexDirection: "column",
-          gap: 12,
-        }}
-      >
-        <div
-          style={{
-            width: 36,
-            height: 36,
-            borderRadius: "50%",
-            border: "3px solid #1A1A1A",
-            borderTopColor: "#1DB954",
-          }}
-        />
-        <div style={{ fontSize: 13 }}>Loading script...</div>
-      </div>
-    );
-  }
-
-  return <PlayReader doc={fullDoc} />;
 }

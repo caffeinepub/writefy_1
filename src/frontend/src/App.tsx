@@ -1,278 +1,285 @@
-import { Toaster } from "@/components/ui/sonner";
-import { BookOpen, Home, MoreVertical, Plus, Settings } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { MoreVertical, Settings } from "lucide-react";
+import { useEffect, useState } from "react";
+import type { DocumentMeta } from "./backend.d";
 import NewDocModal from "./components/NewDocModal";
 import SettingsOverlay from "./components/SettingsOverlay";
-import { useActor } from "./hooks/useActor";
-import { useCreateDocument, useGetAllDocumentsMeta } from "./hooks/useQueries";
+import { useGetAllDocumentsMeta } from "./hooks/useQueries";
 import CreateScreen from "./screens/CreateScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LibraryScreen from "./screens/LibraryScreen";
 import PlayScreen from "./screens/PlayScreen";
-import { generateUUID } from "./utils/formatTime";
 
-type TabName = "Home" | "Library" | "Create" | "Play";
+type Tab = "Home" | "Library" | "Create" | "Play";
 
-// Register service worker
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
-  });
-}
+const THEMES: Record<string, string> = {
+  green: "#1db954",
+  red: "#e53935",
+  blue: "#1565c0",
+  purple: "#7b1fa2",
+  gold: "#f9a825",
+};
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<TabName>("Home");
+  const [activeTab, setActiveTab] = useState<Tab>("Home");
   const [activeDocId, setActiveDocId] = useState<string | null>(null);
   const [showSettings, setShowSettings] = useState(false);
   const [showNewDocModal, setShowNewDocModal] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
   const [menuTrigger, setMenuTrigger] = useState(0);
 
-  const latestContentRef = useRef("");
+  const { data: allDocs = [], isLoading } = useGetAllDocumentsMeta();
 
-  const { actor } = useActor();
-  const { data: docs = [], isLoading: docsLoading } = useGetAllDocumentsMeta();
-  const createDoc = useCreateDocument();
-
-  // Apply saved theme on mount
+  // Apply saved theme
   useEffect(() => {
     const saved = localStorage.getItem("writefy-theme");
-    if (saved) {
-      document.documentElement.style.setProperty("--accent-color", saved);
-    }
-  }, []);
-
-  // Initialize: set first document id if available
-  // biome-ignore lint/correctness/useExhaustiveDependencies: only run when actor/loading state changes
-  useEffect(() => {
-    if (!actor || docsLoading) return;
-    if (docs.length > 0) {
-      if (!activeDocId) setActiveDocId(docs[0].id);
-      setIsInitialized(true);
-    } else {
-      setIsInitialized(true);
-    }
-  }, [actor, docsLoading, docs.length]);
-
-  const activeDoc = docs.find((d) => d.id === activeDocId) ?? null;
-
-  const handleNewDoc = useCallback(
-    async (type: "Novel" | "Screenplay" = "Screenplay") => {
-      const newId = generateUUID();
-      await createDoc.mutateAsync({
-        id: newId,
-        title: "Untitled Script",
-        content: "",
-        formatType: type,
-      });
-      setActiveDocId(newId);
-      setActiveTab("Create");
-    },
-    [createDoc],
-  );
-
-  const handleOpenDoc = useCallback((id: string) => {
-    setActiveDocId(id);
-    setActiveTab("Create");
-  }, []);
-
-  const handleDocumentDeleted = useCallback(() => {
-    const remaining = docs.filter((d) => d.id !== activeDocId);
-    if (remaining.length > 0) {
-      setActiveDocId(remaining[0].id);
-      setActiveTab("Create");
-    } else {
-      setActiveDocId(null);
-      setActiveTab("Home");
-    }
-  }, [docs, activeDocId]);
-
-  // Header center content
-  const renderHeaderCenter = () => {
-    if (activeTab === "Create") {
-      return (
-        <div className="writefy-header-center">
-          <span className="writefy-brand">Writefy</span>
-        </div>
+    if (saved && THEMES[saved]) {
+      document.documentElement.style.setProperty(
+        "--accent-color",
+        THEMES[saved],
       );
     }
-    const tabTitles: Record<TabName, string> = {
-      Home: "Home",
-      Library: "Library",
-      Create: "Create",
-      Play: "Play",
-    };
-    return (
-      <div className="writefy-header-center">
-        <span className="writefy-tab-title">{tabTitles[activeTab]}</span>
-      </div>
-    );
-  };
+  }, []);
 
-  const handlePlusPress = () => {
-    setShowNewDocModal(true);
-  };
+  // Register service worker
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("/sw.js").catch(() => {});
+      });
+    }
+  }, []);
 
-  const handleNewDocModalSelect = async (type: "Novel" | "Screenplay") => {
+  function handleDocumentCreated(id: string) {
+    setActiveDocId(id);
+    setActiveTab("Create");
     setShowNewDocModal(false);
-    await handleNewDoc(type);
-  };
+  }
+
+  function handleDocumentDeleted() {
+    setActiveDocId(null);
+    setActiveTab("Library");
+  }
+
+  function handleOpenDoc(id: string) {
+    setActiveDocId(id);
+    setActiveTab("Create");
+  }
+
+  const mostRecentDoc: DocumentMeta | null =
+    allDocs.length > 0
+      ? [...allDocs].sort((a, b) => Number(b.lastEdited - a.lastEdited))[0]
+      : null;
+
+  const activeDoc: DocumentMeta | null =
+    allDocs.find((d) => d.id === activeDocId) ?? null;
+
+  function renderScreen() {
+    switch (activeTab) {
+      case "Home":
+        return (
+          <HomeScreen
+            mostRecentDoc={mostRecentDoc}
+            onResumeDoc={handleOpenDoc}
+            onNewDoc={() => setShowNewDocModal(true)}
+          />
+        );
+      case "Library":
+        return (
+          <LibraryScreen
+            docs={allDocs}
+            isLoading={isLoading}
+            onOpenDoc={handleOpenDoc}
+            onNewDoc={() => setShowNewDocModal(true)}
+          />
+        );
+      case "Create":
+        return (
+          <CreateScreen
+            activeDocId={activeDocId}
+            onDocumentDeleted={handleDocumentDeleted}
+            allDocs={allDocs}
+            isInitialized={!isLoading}
+            menuTrigger={menuTrigger}
+          />
+        );
+      case "Play":
+        return <PlayScreen activeDoc={activeDoc} />;
+    }
+  }
+
+  function getHeaderCenter() {
+    if (activeTab === "Create") {
+      return <span className="header-brand">WRITEFY</span>;
+    }
+    return (
+      <span style={{ fontSize: "16px", fontWeight: 700 }}>{activeTab}</span>
+    );
+  }
 
   return (
-    <>
-      <Toaster />
-      <div className="writefy-app">
-        {/* ── Fixed Header ── */}
-        <header className="writefy-header" data-ocid="header.section">
-          <button
-            type="button"
-            className="writefy-icon-btn"
-            onClick={() => {
-              if (activeTab === "Create") {
-                setMenuTrigger((n) => n + 1);
-              }
-            }}
-            aria-label="Document options"
-            data-ocid="header.menu.button"
-            style={{ opacity: activeTab === "Create" ? 1 : 0.3 }}
-          >
-            <MoreVertical size={20} />
-          </button>
+    <div className="writefy-app">
+      {/* Header */}
+      <header className="writefy-header" data-ocid="app.panel">
+        <button
+          type="button"
+          className="header-btn"
+          style={{ opacity: activeTab === "Create" ? 1 : 0.3 }}
+          onClick={() => activeTab === "Create" && setMenuTrigger((n) => n + 1)}
+          aria-label="Menu"
+          data-ocid="app.open_modal_button"
+        >
+          <MoreVertical size={20} />
+        </button>
+        <div className="header-title">{getHeaderCenter()}</div>
+        <button
+          type="button"
+          className="header-btn"
+          onClick={() => setShowSettings(true)}
+          aria-label="Settings"
+          data-ocid="app.settings.button"
+        >
+          <Settings size={20} />
+        </button>
+      </header>
 
-          {renderHeaderCenter()}
+      {/* Screen Content */}
+      <main className="writefy-screen">{renderScreen()}</main>
 
-          <button
-            type="button"
-            className="writefy-icon-btn"
-            onClick={() => setShowSettings(true)}
-            aria-label="Settings"
-            data-ocid="header.settings.button"
-          >
-            <Settings size={20} />
-          </button>
-        </header>
+      {/* Bottom Navigation */}
+      <nav className="writefy-bottom-nav" data-ocid="app.nav.panel">
+        <button
+          type="button"
+          className={`nav-item${activeTab === "Home" ? " active" : ""}`}
+          onClick={() => setActiveTab("Home")}
+          data-ocid="nav.home.link"
+        >
+          <HomeSvg active={activeTab === "Home"} />
+          <span>Home</span>
+        </button>
 
-        {/* ── Main Content ── */}
-        <main className="writefy-screen">
-          {activeTab === "Home" && (
-            <HomeScreen
-              docs={docs}
-              isLoading={docsLoading}
-              onOpenDoc={handleOpenDoc}
-              onNewDoc={handlePlusPress}
-            />
-          )}
-          {activeTab === "Library" && (
-            <LibraryScreen
-              docs={docs}
-              isLoading={docsLoading}
-              onOpenDoc={handleOpenDoc}
-              onNewDoc={handlePlusPress}
-            />
-          )}
-          {activeTab === "Create" && (
-            <CreateScreen
-              activeDocId={activeDocId}
-              onDocumentDeleted={handleDocumentDeleted}
-              allDocs={docs}
-              isInitialized={isInitialized}
-              menuTrigger={menuTrigger}
-              onContentUpdate={(c) => {
-                latestContentRef.current = c;
-              }}
-            />
-          )}
-          {activeTab === "Play" && <PlayScreen activeDoc={activeDoc} />}
-        </main>
+        <button
+          type="button"
+          className={`nav-item${activeTab === "Library" ? " active" : ""}`}
+          onClick={() => setActiveTab("Library")}
+          data-ocid="nav.library.link"
+        >
+          <LibrarySvg active={activeTab === "Library"} />
+          <span>Library</span>
+        </button>
 
-        {/* ── Fixed Bottom Navigation ── */}
-        <nav className="writefy-bottom-nav" aria-label="Main navigation">
-          <button
-            type="button"
-            className={`writefy-nav-item${activeTab === "Home" ? " active" : ""}`}
-            onClick={() => setActiveTab("Home")}
-            data-ocid="nav.home.link"
-          >
-            <Home size={22} />
-            <span className="writefy-nav-label">Home</span>
-          </button>
+        <button
+          type="button"
+          className={`nav-item create-btn${activeTab === "Create" ? " active" : ""}`}
+          onClick={() => setShowNewDocModal(true)}
+          aria-label="Create"
+          data-ocid="nav.create.button"
+        >
+          <CreateSvg active={activeTab === "Create"} />
+          <span>Create</span>
+        </button>
 
-          <button
-            type="button"
-            className={`writefy-nav-item${activeTab === "Library" ? " active" : ""}`}
-            onClick={() => setActiveTab("Library")}
-            data-ocid="nav.library.link"
-          >
-            <BookOpen size={22} />
-            <span className="writefy-nav-label">Library</span>
-          </button>
+        <button
+          type="button"
+          className={`nav-item${activeTab === "Play" ? " active" : ""}`}
+          onClick={() => setActiveTab("Play")}
+          data-ocid="nav.play.link"
+        >
+          <PlaySvg active={activeTab === "Play"} />
+          <span>Play</span>
+        </button>
+      </nav>
 
-          <button
-            type="button"
-            className={`writefy-nav-item${activeTab === "Create" ? " active" : ""}`}
-            onClick={handlePlusPress}
-            data-ocid="nav.create.link"
-          >
-            <div
-              className={`writefy-create-icon${activeTab === "Create" ? " active" : ""}`}
-            >
-              <Plus size={26} />
-            </div>
-            <span className="writefy-nav-label">Create</span>
-          </button>
+      {/* Modals */}
+      {showNewDocModal && (
+        <NewDocModal
+          onSelect={handleDocumentCreated}
+          onClose={() => setShowNewDocModal(false)}
+        />
+      )}
 
-          <button
-            type="button"
-            className={`writefy-nav-item${activeTab === "Play" ? " active" : ""}`}
-            onClick={() => setActiveTab("Play")}
-            data-ocid="nav.play.link"
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              aria-hidden="true"
-            >
-              <title>Play</title>
-              <polygon points="5,3 19,12 5,21" />
-            </svg>
-            <span className="writefy-nav-label">Play</span>
-          </button>
-        </nav>
+      {showSettings && (
+        <SettingsOverlay onClose={() => setShowSettings(false)} />
+      )}
+    </div>
+  );
+}
 
-        {showSettings && (
-          <SettingsOverlay onClose={() => setShowSettings(false)} />
-        )}
+// ── SVG Nav Icons ──
+function HomeSvg({ active }: { active: boolean }) {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.5 : 2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <title>Home</title>
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
 
-        {showNewDocModal && (
-          <NewDocModal
-            onSelect={handleNewDocModalSelect}
-            onClose={() => setShowNewDocModal(false)}
-          />
-        )}
-      </div>
+function LibrarySvg({ active }: { active: boolean }) {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.5 : 2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <title>Library</title>
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+    </svg>
+  );
+}
 
-      <style>{`
-        @media (min-width: 480px) {
-          .writefy-header,
-          .writefy-bottom-nav {
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 720px;
-          }
-          body {
-            background: #111;
-          }
-          .writefy-app {
-            border-left: 1px solid #1A1A1A;
-            border-right: 1px solid #1A1A1A;
-            max-width: 720px;
-          }
-        }
-      `}</style>
-    </>
+function CreateSvg({ active }: { active: boolean }) {
+  return (
+    <svg
+      width="26"
+      height="26"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.5 : 2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <title>Create</title>
+      <circle cx="12" cy="12" r="10" />
+      <line x1="12" y1="8" x2="12" y2="16" />
+      <line x1="8" y1="12" x2="16" y2="12" />
+    </svg>
+  );
+}
+
+function PlaySvg({ active }: { active: boolean }) {
+  return (
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={active ? 2.5 : 2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <title>Play</title>
+      <polygon points="5 3 19 12 5 21 5 3" />
+    </svg>
   );
 }
